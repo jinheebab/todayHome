@@ -375,7 +375,6 @@ $(function(){
     <input type="text" id="edate">
 
 	 	<script>
-	 	$(document).ready(function () {
 	 	    $.datepicker.regional['ko'] = {
 	 	        closeText: '닫기',
 	 	        prevText: '이전달',
@@ -414,7 +413,6 @@ $(function(){
 	 	    $('#edate').datepicker("option", "onClose", function ( selectedDate ) {
 	 	        $("#sdate").datepicker( "option", "maxDate", selectedDate );
 	 	    });
-	 	});
 		</script>
 				    
 	 
