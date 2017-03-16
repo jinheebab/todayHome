@@ -27,9 +27,9 @@ public class HostingController {
 		
 		//mav.addObject("id",id);
 				
-		mav.addObject("main", "/hosting/host01");
+		mav.addObject("main", "hosting/host01");
 		
-		mav.setViewName("t_index");
+		mav.setViewName("g_index");
 		
 		return mav;
 								
