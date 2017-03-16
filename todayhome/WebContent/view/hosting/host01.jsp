@@ -12,53 +12,19 @@
 
 <div class="container">
   <h2>호스팅 1단계</h2>
-  <p>${id} 님 안녕하세요. 호스팅 등록을 도와드리겠습니다.</p>
-  <dl class="dropdown"> 
-  
-    <dt>
-      <span class="hida1">방유형</span>    
-      <p class="multiSel1"></p>  
-    </a>
-    </dt>
-  
-    <dd>
-        <div class="select01">
-            <ul>
-                <li>
-                    <input type="button" value="AllRoom" />집전체</li>
-                <li>
-                    <input type="button" value="OneRoom" />개인실</li>
-                <li>
-                    <input type="button" value="ManyRoom" />다인실</li>
-                
-            </ul>
-        </div>
-    </dd>
-    
-    <dt>
-      <span class="hida2">인원수</span>    
-      <p class="multiSel2"></p>  
-    </a>
-    </dt>
-  
-		    <dd>
-		        <div class="select01">
-		            <ul>
-		               <c:forEach var="item" items="${cnt}" begin=1 end=16 step=1 varStatus="status">
-								 <li>
-                    				<input type="button" value="${cnt}room" />${cnt}인실</li>
-						</c:forEach>
-		
-					</ul>
-		                
-		        </div>
-		    </dd>
-		  <button>계속</button>
-		</dl>
-		</div>
-		
-		           
-		                
+  <p>${id}님 안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">방종류
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+    <input type="button" 
+      <li><a href="#">CSS</a></li>
+      <li><a href="#">JavaScript</a></li>
+      <li class="divider"></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+  </div>
+</div>
 
 </body>
 </html>
