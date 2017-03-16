@@ -2,11 +2,12 @@
 <!DOCTYPE tiles-definitions PUBLIC 
 	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="base" template="/views/template.jsp">
+	<definition name="base" template="/view/tiles/template.jsp">
 		<put-attribute name="title" value="todayhome" />
-		<put-attribute name="header" value="/views/header.jsp" />
-		<put-attribute name="nav" value="/views/nav.jsp" />
-		<put-attribute name="footer" value="/views/footer.jsp" />
+		<put-attribute name="header" value="/view/header.jsp" />
+		<put-attribute name="nav" value="/view/nav.jsp" />
+		<put-attribute name="main" value="/view/main.jsp" />
+		<put-attribute name="footer" value="/view/footer.jsp" />
 	</definition>
 	
 	<definition name="t_index" extends="base">
