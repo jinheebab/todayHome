@@ -29,7 +29,7 @@
 <!-- 	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
 		<property name="order" value="2" />
 	</bean> -->
-<<<<<<< HEAD
+
 <!-- 	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"> -->
 <!-- 		타일 설정을 연동해주는 것 tilesViewResolver와 세트다 --> 
 <!-- 		<property name="definitions"> -->
@@ -39,7 +39,7 @@
 <!-- 			</list> -->
 <!-- 		</property> -->
 <!-- 	</bean> -->
-=======
+
 <!-- 	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		타일 설정을 연동해주는 것 tilesViewResolver와 세트다
 		<property name="definitions">
@@ -49,7 +49,7 @@
 			</list>
 		</property>
 	</bean> -->
->>>>>>> branch 'master' of https://github.com/jinheebab/todayhome.git
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/view/"></property>
