@@ -25,26 +25,30 @@
 			</p>
 			<p>
 				<b>NAME</b><br/>
-				<input type="text" class="form-control" name="name" placeholder="이름을 입력하세요"/>
+				<input type="text" id="name" class="form-control" name="name" placeholder="이름을 입력하세요" onkeyup="javascript:allCompare()"/>
 			</p>	
 			<p>
 				<b>GENDER</b><br/>
-				<select class="form-control" name="gender">
+				<select class="form-control" name="gender"  id="gender" onkeyup="javascript:allCompare()">
 					<option value="male">남</option>
 					<option value="female">여</option>
 				</select> 
 			</p>
 			<p>
 				<b>BIRTH</b><br/>
-				<input type="date" name="bday">
+				<input class="form-control" type="date" name="bday"  id="birth" onkeyup="javascript:allCompare()">
 			</p>
 			<p>
 				<b>E-MAIL</b><br/>
-				<input type="email" class="form-control" name="email" placeholder="e-mail을 입력하세요" />
+				<input type="email" class="form-control"  id="email" name="email" placeholder="e-mail을 입력하세요" onkeyup="javascript:allCompare()"/>
 			</p>
 			<p>
 				<b>COUNTRY</b><br/>
-				<input type="text" class="form-control" name="country"  placeholder="국가를 입력하세요" />
+					<select class="form-control" name="country"  id="country" onkeyup="javascript:allCompare()">
+				<c:forEach var="item" items="${list}">
+						<option value="${item }">${item }</option>
+				</c:forEach>
+					</select>
 			</p>
 			<p>
 				<button type="submit" id="sbt" class="btn" disabled >등록하기</button>
@@ -52,7 +56,7 @@
 		</form>
 	</div>
 <script>
-	var flag1 =false, flag2 =false, flag3=false;
+	var flag1 =false, flag2 =false, flag3 = false;
 	
 	document.getElementById("id").onblur = function() {
 		var xhr = new XMLHttpRequest();
@@ -74,14 +78,6 @@
 			}
 		};
 	};
-	
-	function sbtChange() {
-		if(flag1 && flag2 && flag3 ) {
-			document.getElementById("sbt").disabled = false;
-		}else {
-			document.getElementById("sbt").disabled = true;
-		}
-	}
 	function passCompare( ) {
 		var flag = document.getElementById("pass").value == document.getElementById("rpass").value;
 		if(flag) {
@@ -93,9 +89,36 @@
 			document.getElementById("cmpResult").style.color = "red";
 			document.getElementById("cmpResult").innerHTML = "<i>비밀번호가 일치하지 않습니다.</i>";
 		}
+	}
+	function allCompare( ) {
+		var f1 = document.getElementById("name").value;
+		var f2 = document.getElementById("gender").value;
+		var f3 = document.getElementById("birth").value;
+		var f4 = document.getElementById("email").value;
+		var f5 = document.getElementById("country").value;
+		
+		console.log(f1);
+		console.log(f2);
+		console.log(f3);
+		console.log(f4);
+		console.log(f5);
+		
+		if(f1=="" || f2==""  || f3==""  || f4==""  || f5==""){
+			flag3=false;
+		}else{
+			flag3=true;
+		}
 		sbtChange();
 	}
-	
+	function sbtChange() {
+		console.log(flag1+","+flag2+","+flag3);
+		console.log("sbt!!");
+		if(flag1 && flag2 && flag3) {
+			document.getElementById("sbt").disabled = false;
+		}else {
+			document.getElementById("sbt").disabled = true;
+		}
+	}
 </script>
 
 

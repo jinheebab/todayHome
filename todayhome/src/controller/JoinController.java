@@ -1,8 +1,16 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +27,34 @@ import model.JoinDao;
 public class JoinController {
 	@Autowired
 	JoinDao jDao;
+	@Autowired
+	ServletContext ac;
 	
 	@RequestMapping("/join/join")
-	public ModelAndView joinHandler(){
+	public ModelAndView joinHandler() throws FileNotFoundException{
 		ModelAndView mav = new ModelAndView("g_index");
+		String path = ac.getRealPath("/nation.txt");
+		System.out.println(path);
+		File f = new File(path);
+		FileInputStream fis = new FileInputStream(f);
+		InputStreamReader isr = new InputStreamReader(fis);
+		BufferedReader br = new BufferedReader(isr);
+		List li = new ArrayList<>();
+		try {
+			while(true){
+				String ss = br.readLine();
+				if(ss==null) break;
+//					System.out.println(ss);
+				li.add(ss);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+//		for(int i =0; i<li.size(); i++){
+//			System.out.println("result  : "+	li.get(i));
+//		}
+		
+		mav.addObject("list", li);
 		mav.addObject("main", "/join/join");
 		return mav;
 	}
@@ -35,15 +67,7 @@ public class JoinController {
 		String birth = (String)req.getParameter("bday");
 		String mail = (String)req.getParameter("email");
 		String country = (String)req.getParameter("country");
-				 
-		System.out.println(id);
-		System.out.println(pass);
-		System.out.println(name);
-		System.out.println(gender);
-		System.out.println(birth);
-		System.out.println(mail);
-		System.out.println(country);
-		
+
 		HashMap<String, Object> map = new HashMap<>();	
 			map.put("ID", id);
 			map.put("PASS", pass);
