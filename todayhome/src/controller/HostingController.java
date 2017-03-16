@@ -1,9 +1,9 @@
 package controller;
 
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,21 +13,27 @@ import org.springframework.web.servlet.ModelAndView;
 import model.HostingDao;
 
 @Controller
-public class MainController {
+@RequestMapping("/hosting")
+public class HostingController {
 	
 	
-	@Autowired
-	HostingDao hd;
-
-	@RequestMapping("view/main")
-	public ModelAndView main(HttpServletRequest request, HttpSession session){	
-		// 컨트롤러 1 - 1번
+	
+	@RequestMapping("/host01")
+	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
+		
 		ModelAndView mav = new ModelAndView();
-		List list = hd.readHostingSome();
+		
+		//String id = (String)session.getAttribute("id");
+		
+		//mav.addObject("id",id);
+				
+		mav.addObject("main", "/hosting/host01");
+		
 		mav.setViewName("t_index");
-		mav.addObject("list", list);
-		mav.addObject("main", "/main/main");
-		System.out.println("들어옴");
+		
 		return mav;
+								
 	}
+	
+	
 }
