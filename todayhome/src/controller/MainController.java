@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import model.HostingDao;
 
 @Controller
-public class mainController {
+public class MainController {
 	
 	
 	@Autowired
