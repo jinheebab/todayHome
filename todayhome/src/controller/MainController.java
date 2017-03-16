@@ -13,29 +13,20 @@ import org.springframework.web.servlet.ModelAndView;
 import model.HostingDao;
 
 @Controller
-public class mainController {
+public class MainController {
 	
 	
 	@Autowired
-	HostingDao hdao;
+	HostingDao hd;
 
-	@RequestMapping
-	public ModelAndView main01(HttpServletRequest request, HttpSession session){	// 컨트롤러 1 - 1번
-		
+	@RequestMapping("view/main")
+	public ModelAndView main(HttpServletRequest request, HttpSession session){	
+		// 컨트롤러 1 - 1번
 		ModelAndView mav = new ModelAndView();
-		
-		session.setAttribute("login", "no");
-		
-		List list = hdao.readHostingSome();
-		
-		mav.setViewName("main/main");
-		
-		mav.addObject("list", list);
-		
+		//List list = hd.readHostingSome();
+		mav.setViewName("t_index");
+		//mav.addObject("list", list);
+		mav.addObject("main", "view/main/main");
 		return mav;
-		
-		
-		
-		
 	}
 }
