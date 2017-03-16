@@ -29,7 +29,7 @@ public class HostingController {
 				
 		mav.addObject("main", "/hosting/host01");
 		
-		mav.setViewName("");
+		mav.setViewName("t_index");
 		
 		return mav;
 								

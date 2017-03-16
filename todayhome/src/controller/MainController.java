@@ -1,9 +1,9 @@
 package controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,25 +17,17 @@ public class MainController {
 	
 	
 	@Autowired
-	HostingDao hdao;
+	HostingDao hd;
 
-	@RequestMapping
-	public ModelAndView main01(HttpServletRequest request, HttpSession session){	// 컨트롤러 1 - 1번
-		
+	@RequestMapping("view/main")
+	public ModelAndView main(HttpServletRequest request, HttpSession session){	
+		// 컨트롤러 1 - 1번
 		ModelAndView mav = new ModelAndView();
-		
-		session.setAttribute("login", "no");
-		
-		List list = hdao.readHostingSome();
-		
-		mav.setViewName("main/main");
-		
-		mav.addObject("list", list);
-		
+		//List list = hd.readHostingSome();
+		mav.setViewName("t_index");
+		//mav.addObject("list", list);
+		mav.addObject("main", "/main/main");
+		System.out.println("들어옴");
 		return mav;
-		
-		
-		
-		
 	}
 }

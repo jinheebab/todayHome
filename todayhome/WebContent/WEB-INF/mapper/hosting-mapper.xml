@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hosting">
-	<insert id="" parameterType="">
+<!-- 	<insert id="" parameterType="">
 		
-	</insert>
+	</insert> -->
 	<select id="readSome" resultType="java.util.HashMap">
 		select picURL, price, category from hosting order by grade desc limit 10
 	</select>
