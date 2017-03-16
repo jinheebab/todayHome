@@ -78,8 +78,7 @@
 		</list> </property> </bean> -->
 
 
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/view/"></property>
 		<property name="suffix" value=".jsp"></property>
 		<property name="order" value="3"></property>
