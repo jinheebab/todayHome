@@ -21,7 +21,7 @@ public class MainController {
 	@Autowired
 	HostingDao hd;
 
-	@RequestMapping("view/main")
+	@RequestMapping("view/")
 	public ModelAndView main(HttpServletRequest request, HttpSession session){	
 		// 컨트롤러 1 - 1번
 		ModelAndView mav = new ModelAndView();

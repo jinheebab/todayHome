@@ -4,7 +4,7 @@
 <br />
 <div style="line-height: 2.5em; font-family: MS Sans Serif; padding: 0 50; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: black;">
 	<div style="padding-left: 20; padding-bottom: -20; margin: -10 0;">
-		<img src="/logo.JPG" width=150px height=50px>
+	<a href="/view/"><img src="/logo.JPG" width=150px height=50px></a>
 	</div>
 	<h1>
 		Todayhome<br /> <small
