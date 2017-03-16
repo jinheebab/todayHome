@@ -19,7 +19,11 @@ public class HostingDao {
 			List<HashMap> list = new ArrayList<>();
 			SqlSession sql = factory.openSession();
 			try {
-				list = sql.selectList("hosting.readSome");
+				list = sql.selectList("hosting.getMainList");
+				int r = list.size();
+				
+				System.out.println(r);
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
