@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -25,5 +26,19 @@ public class JoinDao {
 			session.close();
 		}
 		return r;
+	}
+	public boolean checkMember(Map map){
+		boolean flag = false;
+		SqlSession session = factory.openSession();
+		try{
+			int r = session.selectOne("join.checkOne", map);
+			if(r==1)
+				flag = true;
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return flag;
 	}
 }

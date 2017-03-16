@@ -40,11 +40,11 @@
 			</p>
 			<p>
 				<b>E-MAIL</b><br/>
-				<input type="email" class="form-control" name="email"/>
+				<input type="email" class="form-control" name="email" placeholder="e-mail을 입력하세요" />
 			</p>
 			<p>
 				<b>COUNTRY</b><br/>
-				<input type="text" class="form-control" name="country"/>
+				<input type="text" class="form-control" name="country"  placeholder="국가를 입력하세요" />
 			</p>
 			<p>
 				<button type="submit" id="sbt" class="btn" disabled >등록하기</button>
@@ -52,13 +52,11 @@
 		</form>
 	</div>
 <script>
-	var flag1 =false, flag2 =false;
+	var flag1 =false, flag2 =false, flag3=false;
 	
 	document.getElementById("id").onblur = function() {
 		var xhr = new XMLHttpRequest();
-		// this .. 이 스크립트를 호출시킨 DOM 객체
-		// document.getElementById("id") 
-		xhr.open("get", "/join/checkAjax?id="+this.value, true);
+		xhr.open("get", "/join/ajax?id="+this.value, true);
 		xhr.send();
 		xhr.onreadystatechange = function() {
 			if(xhr.readyState==4 && xhr.status==200) {
@@ -78,16 +76,13 @@
 	};
 	
 	function sbtChange() {
-		if(flag1 && flag2 ) {
+		if(flag1 && flag2 && flag3 ) {
 			document.getElementById("sbt").disabled = false;
 		}else {
 			document.getElementById("sbt").disabled = true;
 		}
 	}
-	// string .. length 라는 property 가 존재함.. 문자열 길이.
-	
 	function passCompare( ) {
-		
 		var flag = document.getElementById("pass").value == document.getElementById("rpass").value;
 		if(flag) {
 			flag2 =true;
