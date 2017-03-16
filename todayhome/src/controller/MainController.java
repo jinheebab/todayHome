@@ -1,6 +1,8 @@
 package controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthSeparatorUI;
@@ -23,9 +25,9 @@ public class MainController {
 	public ModelAndView main(HttpServletRequest request, HttpSession session){	
 		// 컨트롤러 1 - 1번
 		ModelAndView mav = new ModelAndView();
-		//List list = hd.readHostingSome();
+		List list = hd.readHostingSome();
 		mav.setViewName("t_index");
-		//mav.addObject("list", list);
+		mav.addObject("list", list);
 		mav.addObject("main", "/main/main");
 		System.out.println("들어옴");
 		return mav;

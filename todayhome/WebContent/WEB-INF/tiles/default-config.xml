@@ -2,14 +2,25 @@
 <!DOCTYPE tiles-definitions PUBLIC 
 	"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	<definition name="base" template="/view/template.jsp">
+	<definition name="guest_main" template="/view/template.jsp">
+		<put-attribute name="title" value="todayhome" />
+		<put-attribute name="header" value="/view/header.jsp" />
+		<put-attribute name="nav" value="/view/nav_guest.jsp" />
+		<put-attribute name="footer" value="/view/footer.jsp" />
+	</definition>
+	
+	<definition name="g_index" extends="guest_main">
+		<put-attribute name="main" expression="/view/${main}.jsp"/>
+	</definition>
+	
+		<definition name="main" template="/view/template.jsp">
 		<put-attribute name="title" value="todayhome" />
 		<put-attribute name="header" value="/view/header.jsp" />
 		<put-attribute name="nav" value="/view/nav.jsp" />
 		<put-attribute name="footer" value="/view/footer.jsp" />
 	</definition>
 	
-	<definition name="t_index" extends="base">
+	<definition name="m_index" extends="main">
 		<put-attribute name="main" expression="/view/${main}.jsp"/>
 	</definition>
 
