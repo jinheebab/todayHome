@@ -9,4 +9,7 @@
 	<select resultType="java.lang.Integer" id="checkOne" parameterType="java.util.HashMap"> 
 		select count(*) from member where id=#{ID} 
 	</select>
+	<select id="confirm" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) from member where id=#{id} and pass=#{pass}
+	</select>
 </mapper>
