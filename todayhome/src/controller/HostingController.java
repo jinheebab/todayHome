@@ -17,18 +17,19 @@ import model.HostingDao;
 public class HostingController {
 	
 	
-	@Autowired
-	HostingDao hdao;
+	
 	@RequestMapping("/host01")
 	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String id = (String)session.getAttribute("id");
+		//String id = (String)session.getAttribute("id");
 		
-		mav.addObject("id",id);
+		//mav.addObject("id",id);
 				
-		mav.addObject("main", "host01");
+		mav.addObject("main", "/hosting/host01");
+		
+		mav.setViewName("");
 		
 		return mav;
 								
