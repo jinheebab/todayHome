@@ -16,6 +16,7 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
+>>>>>>> branch 'master' of https://github.com/jinheebab/todayhome.git
 
 /* Modal Content */
 .modal-content {
@@ -62,10 +63,10 @@
   <div class="modal-content"  >
   <div style="padding-right: 33%; padding-left: 33%; text-align: center;">
     <span class="close">&times;</span>
-    <form action="/view/loginconfirm" >
+    <form action="/view/login/confirm" >
    	<h3>로그인</h3><br/>
-   ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="name"/><br/><br/>
-   PASS : <input type="text" name="name"/><br/><br/>
+   ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="id"/><br/><br/>
+   PASS : <input type="text" name="pass"/><br/><br/>
   <input type="checkbox" name="autologin" />자동로그인<br/><br/>
   <button type="submit" class="btn" style="background-color: white; border-style: solid; border-color: orange; border-width: 2px;">로그인</button>
   </form>
