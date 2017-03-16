@@ -6,18 +6,7 @@
 <div>
 	<h3>기본정보 입력</h3>
 </div>
-<div>
-	<div class="col-md-3" style="background-color:white">
-		<form action="/info/pictureAjax.jsp" method="post" enctype="multipart/form-data">
-			<b>PICTURE</b><br />
-			<img src="${val.URL}" width="200" height="200"/>
-			<hr/>
-			<input type="file" class="form-control"	name="pic" />
-			<br/>
-			<button type="submit" class="btn">사진등록</button>
-		</form>
-	</div>
-	<div class="col-md-9" style="background-color:white">
+	<div style="background-color:white">
 		<c:if test="${param.mode ne null }">
 			<p><i style="color: red">비밀번호가 일치하지 않았습니다.</i></p>
 		</c:if>
@@ -25,29 +14,29 @@
 			<p>
 				<b>ID</b><span id="chkResult" ></span><br/>
 				<input type="text" class="form-control" name="id" id="id" placeholder="id를 입력하세요"/>
-			</p>
+			</p> 
 			<p>
 				<b>PASS</b><br/>
 				<input type="password" class="form-control" name="pass" id="pass" placeholder="password를 입력하세요"/>
 			</p>
 			<p>
 				<b>PASS CONFIRM</b> <span id="cmpResult" ></span><br/>
-				<input type="password" class="form-control" name="rpass" id="rpass"
-					onkeyup="javascript:passCompare()" placeholder="password를 입력하세요"/>
+				<input type="password" class="form-control" name="rpass" id="rpass" onkeyup="javascript:passCompare()" placeholder="password를 입력하세요"/>
 			</p>
 			<p>
 				<b>NAME</b><br/>
-				<input type="text" class="form-control" name="name"/>
+				<input type="text" class="form-control" name="name" placeholder="이름을 입력하세요"/>
 			</p>	
 			<p>
 				<b>GENDER</b><br/>
 				<select class="form-control" name="gender">
-					<option value="male">male</option>
-					<option value="female">female</option>
+					<option value="male">남</option>
+					<option value="female">여</option>
 				</select> 
 			</p>
 			<p>
 				<b>BIRTH</b><br/>
+				<input type="date" name="bday">
 			</p>
 			<p>
 				<b>E-MAIL</b><br/>
@@ -62,7 +51,6 @@
 			</p>
 		</form>
 	</div>
-</div>
 <script>
 	var flag1 =false, flag2 =false;
 	
