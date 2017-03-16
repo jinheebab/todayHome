@@ -26,7 +26,7 @@ public class MainController {
 		// 컨트롤러 1 - 1번
 		ModelAndView mav = new ModelAndView();
 		List list = hd.readHostingSome();
-		mav.setViewName("t_index");
+		mav.setViewName("g_index");
 		mav.addObject("list", list);
 		mav.addObject("main", "/main/main");
 		System.out.println("들어옴");
