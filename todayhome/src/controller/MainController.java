@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,8 @@ public class MainController {
 		//List list = hd.readHostingSome();
 		mav.setViewName("t_index");
 		//mav.addObject("list", list);
-		mav.addObject("main", "view/main/main");
+		mav.addObject("main", "/main/main");
+		System.out.println("들어옴");
 		return mav;
 	}
 }

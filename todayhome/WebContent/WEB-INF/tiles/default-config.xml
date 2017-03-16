@@ -10,7 +10,8 @@
 	</definition>
 	
 	<definition name="t_index" extends="base">
-		<put-attribute name="main" value="/views/${main}.jsp"/>
+		<put-attribute name="main" expression="/view/${main}.jsp"/>
 	</definition>
 
 </tiles-definitions>
+
