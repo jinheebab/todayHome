@@ -6,7 +6,6 @@
 		<put-attribute name="title" value="todayhome" />
 		<put-attribute name="header" value="/view/header.jsp" />
 		<put-attribute name="nav" value="/view/nav.jsp" />
-		<put-attribute name="main" value="/view/main.jsp" />
 		<put-attribute name="footer" value="/view/footer.jsp" />
 	</definition>
 	

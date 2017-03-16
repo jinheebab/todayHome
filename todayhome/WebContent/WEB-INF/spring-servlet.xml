@@ -34,48 +34,19 @@
 	<!-- 타일 뷰 리졸버를 등록하면 뷰 이름을 등록된 타일에서도 검색할 수 있게 됨 /실제 타일을 정의내리고 만드려면 타일API가 
 		필요함 -->
 
-<!-- 	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
-		<property name="order" value="2" />
-	</bean> -->
+	 <bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"> 
+		<property name="order" value="2" /> </bean> 
 
-<!-- 	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"> -->
-<!-- 		타일 설정을 연동해주는 것 tilesViewResolver와 세트다 --> 
-<!-- 		<property name="definitions"> -->
-<!-- 			<list> -->
-<!-- 				<value>/WEB-INF/tiles/default-config.xml</value> -->
-<!-- 				<value>/WEB-INF/tiles/advanse-config.xml</value> -->
-<!-- 			</list> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+<!-- 	타일 설정을 연동해주는 것 tilesViewResolver와 세트다 -->
+	<property name="definitions">
+	<list>
+	<value>/WEB-INF/tiles/default-config.xml</value>
+	<value>/WEB-INF/tiles/advanse-config.xml</value>
+	</list>
+	</property>
+	</bean> 
 
-<!-- 	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-		타일 설정을 연동해주는 것 tilesViewResolver와 세트다
-		<property name="definitions">
-			<list>
-				<value>/WEB-INF/tiles/default-config.xml</value>
-				<value>/WEB-INF/tiles/advanse-config.xml</value>
-			</list>
-		</property>
-	</bean> -->
-
-
-	<!-- <bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"> 
-		<property name="order" value="2" /> </bean> -->
-
-	<!-- <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"> -->
-	<!-- 타일 설정을 연동해주는 것 tilesViewResolver와 세트다 -->
-	<!-- <property name="definitions"> -->
-	<!-- <list> -->
-	<!-- <value>/WEB-INF/tiles/default-config.xml</value> -->
-	<!-- <value>/WEB-INF/tiles/advanse-config.xml</value> -->
-	<!-- </list> -->
-	<!-- </property> -->
-	<!-- </bean> -->
-
-	<!-- <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer"> 
-		타일 설정을 연동해주는 것 tilesViewResolver와 세트다 <property name="definitions"> <list> 
-		<value>/WEB-INF/tiles/default-config.xml</value> <value>/WEB-INF/tiles/advanse-config.xml</value> 
-		</list> </property> </bean> -->
 
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
