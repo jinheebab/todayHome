@@ -6,4 +6,8 @@
 	<insert id="insert" parameterType="java.util.HashMap">
 		insert into member values(MEMBER_SEQ.NEXTVAL, #{NAME}, #{ID}, #{PASS}, #{GENDER}, #{BIRTH}, #{MAIL}, #{COUNTRY}, "NULL")
 	</insert>
+	
+	<select id="confirm" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select count(*) from member where id=#{id} and pass=#{pass}
+	</select>
 </mapper>
