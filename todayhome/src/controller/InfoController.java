@@ -83,27 +83,33 @@ public class InfoController {
 			return mav;	
 		}
 	}
-	@RequestMapping("/info/withdraw")
-	@ResponseBody
-	public ModelAndView withdrawHandler(){
-		ModelAndView mav = new ModelAndView("m_index");
-			mav.addObject("main", "info/withdraw");
-		return mav;
-	}
 	@RequestMapping("/info/withdrawAjax")
 	@ResponseBody
 	public ModelAndView infoAjaxHandler(@RequestParam HashMap map, HttpSession session){
-		int rst = iDao.updateInfo(map);
+		String pass = (String)map.get("pass");
+		System.out.println(pass);
+		
+		String id = (String)session.getAttribute("auth");
+		System.out.println(id);
+		
+		HashMap val = iDao.readOne(id);
+		String passs = (String)val.get("PASS");
+		System.out.println(passs);
+		
+		int rst = 0;
+		if(pass.equals(passs)){
+			rst = iDao.deleteId(id);			
+		}
 		ModelAndView mav = null;
 		if(rst==1) {
-			mav = new ModelAndView("/info/ajax");
-			mav.addObject("msg", "회원정보가 변경되었습니다.. 2초 뒤 화면이 전환됩니다.");
-			System.out.println("회원정보 변경 성공");	
+			mav = new ModelAndView("/info/withdrawAjax");
+			mav.addObject("msg", "회원탈퇴가 성공하였습니다. 2초 뒤 화면이 전환됩니다.");
+			System.out.println("회원탈퇴 성공");	
 			return mav;
 		}else {
-			mav = new ModelAndView("/info/ajax");
-			mav.addObject("msg", "회원정보 변경이 실패하였습니다. 2초 뒤 화면이 전환됩니다.");
-			System.out.println("회원정보 변경 실패");
+			mav = new ModelAndView("/info/withdrawAjax");
+			mav.addObject("msg", "회원탈퇴가 실패하였습니다. 2초 뒤 화면이 전환됩니다.");
+			System.out.println("회원탈퇴 실패");
 			return mav;	
 		}
 	}

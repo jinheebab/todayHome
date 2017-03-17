@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class HostingDao {			
+public class HostingDao {
 
 	@Autowired
 	SqlSessionFactory factory;
