@@ -56,11 +56,11 @@ public class LoginController {
 
 	
 	@RequestMapping("view/login/pagelogin")
-	public String pageLoinHandler(){
-		
-		
-		
-		return "";
+	public ModelAndView pageLoinHandler(){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("g_index2");
+		mav.addObject("main", "/login/pagelogin");
+		return mav;
 	}
 	
 	@RequestMapping("view/login/logout")
