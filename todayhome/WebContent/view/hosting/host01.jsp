@@ -358,16 +358,16 @@ $(function(){
         
  <h2>제공비품</h2>
     
-    <textarea rows="3" cols="50" id="amenity">제공비품을 입력하세요</textarea>
+    <textarea rows="3" cols="50" id="amenity" placeholder="제공비품을 입력하세요"></textarea>
     
     
  <h2>이용수칙</h2>
  
- 	<textarea rows="3" cols="50" id="rule">이용수칙을 입력하세요</textarea>
+ 	<textarea rows="3" cols="50" id="rule" placeholder="이용수칙을 입력하세요"></textarea>
  	
  <h2>게스트 자격조건</h2>
  
- 	<textarea rows="3" cols="50" id="rule">게스트 자격조건을 입력하세요</textarea>
+ 	<textarea rows="3" cols="50" id="rule" placeholder="게스트 자격조건을 입력하세요"></textarea>
  	
 <h2> 호스팅 기간: </h2> 
 
@@ -417,7 +417,9 @@ $(function(){
 	 	     
 	 	    </script>
 	 	    
+	 	    </br></br>
 	 	    
+	 	    <span class="label label-danger">Danger Label</span>
 	 	    
 	 	    
 	 	    
@@ -452,6 +454,15 @@ $(function(){
      
      var address = $('#pac-input').attr('id').val();
      
+     var address2 = string.split(' ');
+     
+     var country = address2[0];
+     
+     var city = address2[2];
+     
+     var location = address2[3];
+     
+          
      var amenity = $('#amenity').attr('id').val();
      
      var rule = $('#rule').attr('id').val();
@@ -467,7 +478,9 @@ $(function(){
     	membercnt : membercnt,
     	bedcnt : bedcnt,
     	bathcnt : bathcnt,
-    	address : address,
+    	country : country,
+    	city : city,
+    	location : location,
     	amenity : amenity,
     	rule : rule,
     	startdate : startdate,
@@ -477,7 +490,7 @@ $(function(){
 
      $.ajax({
     	   type : "POST",
-    	   url : "/hosting/host02",
+    	   url : "/hosting/host03",
     	   data : request,
     	   success : function(){
     		   alert('호스팅정보 등록성공');

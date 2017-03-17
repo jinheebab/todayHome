@@ -26,13 +26,19 @@ public class HostingController {
 		
 		ModelAndView mav = new ModelAndView();
 		
+//		if(session.getAttribute("auth") == null){
+//			mav.addObject("main","login/pagelogin");
+//			
+//			mav.setViewName("g_index");
+//		}
+		
 		//String id = (String)session.getAttribute("id");
 		
 		//mav.addObject("id",id);
 				
 		mav.addObject("main", "hosting/host01");
 		
-		mav.setViewName("g_index");
+		mav.setViewName("m_index2");
 		
 		return mav;
 								
@@ -48,7 +54,7 @@ public class HostingController {
 		
 		mav.addObject("main","hosting/host02");
 		
-		mav.setViewName("g_index");
+		mav.setViewName("m_index");
 		
 		return mav;
 	}
