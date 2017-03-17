@@ -13,6 +13,18 @@
 		<put-attribute name="main" expression="/view/${main}.jsp"/>
 	</definition>
 	
+		<definition name="guest_sub_main" template="/view/sub_template.jsp">
+		<put-attribute name="title" value="todayhome" />
+		<put-attribute name="header" value="/view/header.jsp" />
+		<put-attribute name="nav" value="/view/nav_guest.jsp" />
+		<put-attribute name="footer" value="/view/footer.jsp" />
+	</definition>
+	
+	<definition name="g_index2" extends="guest_sub_main">
+		<put-attribute name="main" expression="/view/${main}.jsp"/>
+	</definition>
+	
+	
 	<definition name="main" template="/view/template.jsp">
 		<put-attribute name="title" value="todayhome" />
 		<put-attribute name="header" value="/view/header.jsp" />
@@ -21,6 +33,17 @@
 	</definition>
 	
 	<definition name="m_index" extends="main">
+		<put-attribute name="main" expression="/view/${main}.jsp"/>
+	</definition>
+	
+		<definition name="sub_main" template="/view/sub_template.jsp">
+		<put-attribute name="title" value="todayhome" />
+		<put-attribute name="header" value="/view/header.jsp" />
+		<put-attribute name="nav" value="/view/nav.jsp" />
+		<put-attribute name="footer" value="/view/footer.jsp" />
+	</definition>
+	
+	<definition name="m_index2" extends="sub_main">
 		<put-attribute name="main" expression="/view/${main}.jsp"/>
 	</definition>
 
