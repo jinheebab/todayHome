@@ -25,14 +25,11 @@ public class LoginController {
 	public String LoginHandler(@RequestParam("id") String id, @RequestParam("pass") String pass,
 			@RequestParam(name = "autologin", defaultValue = "off", required = false) String keep, HttpSession session,
 			HttpServletResponse resp) {
-		System.out.println(id + "," + pass);
-
 		HashMap map = new HashMap();
 		map.put("id", id);
 		map.put("pass", pass);
 		System.out.println(keep);
 		boolean r = ld.confirm(map);
-		System.out.println("return what: " + r);
 		String redirect = "";
 		if (r) {
 			if (keep.equals("on")) {
@@ -56,14 +53,15 @@ public class LoginController {
 
 	
 	@RequestMapping("view/login/pagelogin")
-	public String pageLoinHandler(){
-		return "";
-		
+	public ModelAndView pageLoinHandler(){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("g_index2");
+		mav.addObject("main", "/login/pagelogin");
+		return mav;
 	}
 	
 	@RequestMapping("view/login/logout")
 	public String logOurHandler(HttpSession session, HttpServletResponse resp) {
-		System.out.println("로그아웃들어옴");
 		String redirect = "";
 		session.removeAttribute("auth");
 		Cookie c1 = new Cookie("auto", "");
