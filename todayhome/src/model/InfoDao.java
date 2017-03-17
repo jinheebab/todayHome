@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class InfoDao {
 	@Autowired
 	SqlSessionFactory factory;
-
+	
 	public List<HashMap> readOne(String id){
 		List<HashMap> list = new ArrayList<>();
 		SqlSession sql = factory.openSession();
@@ -26,11 +26,11 @@ public class InfoDao {
 		}
 		return list;
 	}
-	public int updatePic(String id){
+	public int updatePic(HashMap map){
 		SqlSession sql = factory.openSession();
 		int rst = 0;
 		try{
-			rst = sql.update("info.updatePic", id);
+			rst = sql.update("info.updatePic", map);
 			if(rst == 1)
 				sql.commit();
 		}catch(Exception e){
@@ -40,11 +40,11 @@ public class InfoDao {
 		}
 		return rst;
 	}
-	public int updateInfo(String id){
+	public int updateInfo(HashMap map){
 		SqlSession sql = factory.openSession();
 		int rst = 0;
 		try{
-			rst = sql.update("info.updateInfo", id);
+			rst = sql.update("info.updateInfo", map);
 			if(rst == 1)
 				sql.commit();
 		}catch(Exception e){
