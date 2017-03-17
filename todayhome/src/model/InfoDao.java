@@ -14,11 +14,11 @@ public class InfoDao {
 	@Autowired
 	SqlSessionFactory factory;
 	
-	public List<HashMap> readOne(String id){
-		List<HashMap> list = new ArrayList<>();
+	public HashMap readOne(String id){
+		HashMap list = null;
 		SqlSession sql = factory.openSession();
 		try{
-			list = sql.selectList("info.info", id);
+			list = sql.selectOne("info.info", id);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{

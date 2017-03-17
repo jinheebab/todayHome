@@ -28,11 +28,11 @@ public class InfoController {
 	@RequestMapping("/info/info")
 	public ModelAndView infoHandler(HttpSession session){
 		String id = (String)session.getAttribute("auth");
-		List<HashMap> val = iDao.readOne(id);
-		
+		HashMap val = iDao.readOne(id);
+		System.out.println(val);
 		ModelAndView mav = new ModelAndView("m_index");
-			mav.addObject(val);
-			mav.addObject("main", "/info/info");
+			mav.addObject("val", val);
+			mav.addObject("main", "info/info");
 		return mav;
 	}
 	@RequestMapping("/info/ajax")

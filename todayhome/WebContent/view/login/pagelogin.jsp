@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-
-<div style="padding: 10% 0;">
-	<h2>Login</h2>
+<div style="padding: 5% 33%; text-align: center;">
+	<h2>로그인</h2><br/>
 	<form action="/view/login/confirm">
-		ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="id" />
+		ID &nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="id" />
 		<br /><br />
 		 PASS : <input type="password" name="pass"/>
 		 <br/><br/>

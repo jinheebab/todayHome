@@ -477,14 +477,16 @@ $(function(){
 	 	    });
 	 	    
 	 	    
-	 	    
-	 	    
+	 	        
 	 	    
 	 	    
 	 	    </script>
 	 	    
 	 	    
+	 	    <hr>
 	 	    
+	 	    
+	 	    <input type="text" placeholder="카테고리 추가" >
 	 	    
 	 	    
 			
