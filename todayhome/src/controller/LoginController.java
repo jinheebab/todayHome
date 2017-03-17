@@ -53,19 +53,27 @@ public class LoginController {
 
 	}
 
+
+	
+	@RequestMapping("view/login/pagelogin")
+	public String pageLoinHandler(){
+		return "";
+		
+	}
+	
 	@RequestMapping("view/login/logout")
 	public String logOurHandler(HttpSession session, HttpServletResponse resp) {
 		System.out.println("로그아웃들어옴");
 		String redirect = "";
 		session.removeAttribute("auth");
-		Cookie c1 = new Cookie("auth", "");
+		Cookie c1 = new Cookie("auto", "");
 		Cookie c2 = new Cookie("keep", "");
 		c1.setMaxAge(0);
-		c1.setPath("/");
+		c1.setPath("/view/");
 		resp.addCookie(c1);
 
 		c2.setMaxAge(0);
-		c2.setPath("/");
+		c2.setPath("/view/");
 		resp.addCookie(c2);
 
 		redirect = "redirect:/view/";
