@@ -23,23 +23,26 @@ public class LoginController {
 
 	@RequestMapping("view/login/confirm")
 	public String LoginHandler(@RequestParam("id") String id, @RequestParam("pass") String pass,
-			@RequestParam(name="autologin", defaultValue="off",required=false) String keep, HttpSession session, HttpServletResponse resp) {
-		System.out.println(id+","+pass);
-		
+			@RequestParam(name = "autologin", defaultValue = "off", required = false) String keep, HttpSession session,
+			HttpServletResponse resp) {
+		System.out.println(id + "," + pass);
+
 		HashMap map = new HashMap();
 		map.put("id", id);
 		map.put("pass", pass);
 		System.out.println(keep);
 		boolean r = ld.confirm(map);
-		String redirect ="";
+		System.out.println("return what: " + r);
+		String redirect = "";
 		if (r) {
-			session.setAttribute("id", id);
-			if(keep.equals("on")){
-			Cookie cookie = new Cookie("auto", id);
-			cookie.setMaxAge(60*60);
-			cookie.setPath("/");
-			resp.addCookie(cookie);
+			if (keep.equals("on")) {
+				Cookie cookie = new Cookie("auto", id);
+				cookie.setMaxAge(60 * 60);
+				cookie.setPath("/view/");
+				resp.addCookie(cookie);
 			}
+
+			session.setAttribute("auth", id);
 			
 			redirect = "redirect:success.jsp";
 		} else {
@@ -49,23 +52,23 @@ public class LoginController {
 		return redirect;
 
 	}
-	
+
 	@RequestMapping("view/login/logout")
-	public String logOurHandler(HttpSession session, HttpServletResponse resp){
-		String redirect ="";
+	public String logOurHandler(HttpSession session, HttpServletResponse resp) {
+		String redirect = "";
 		session.removeAttribute("id");
-		Cookie c1 = new Cookie("auth","");
-		Cookie c2 = new Cookie("keep","");
+		Cookie c1 = new Cookie("auth", "");
+		Cookie c2 = new Cookie("keep", "");
 		c1.setMaxAge(0);
 		c1.setPath("/");
 		resp.addCookie(c1);
-		
+
 		c2.setMaxAge(0);
 		c2.setPath("/");
 		resp.addCookie(c2);
-		
-		redirect="redirect:view/";
-		
+
+		redirect = "redirect:view/";
+
 		return redirect;
 	}
 
