@@ -32,7 +32,7 @@ public class JoinController {
 	
 	@RequestMapping("/join/join")
 	public ModelAndView joinHandler() throws FileNotFoundException{
-		ModelAndView mav = new ModelAndView("g_index");
+		ModelAndView mav = new ModelAndView("g_index2");
 		String path = ac.getRealPath("/nation.txt");
 		File f = new File(path);
 		FileInputStream fis = new FileInputStream(f);
