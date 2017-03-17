@@ -21,9 +21,6 @@ public class HostingDao {
 			SqlSession sql = factory.openSession();
 			try {
 				list = sql.selectList("hosting.getMainList");
-				int r = list.size();
-				System.out.println(r);
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
@@ -31,5 +28,4 @@ public class HostingDao {
 			}
 			return list;
 	}
-	
 }
