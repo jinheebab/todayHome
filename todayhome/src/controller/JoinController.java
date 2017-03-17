@@ -34,7 +34,6 @@ public class JoinController {
 	public ModelAndView joinHandler() throws FileNotFoundException{
 		ModelAndView mav = new ModelAndView("g_index");
 		String path = ac.getRealPath("/nation.txt");
-		System.out.println(path);
 		File f = new File(path);
 		FileInputStream fis = new FileInputStream(f);
 		InputStreamReader isr = new InputStreamReader(fis);
@@ -44,15 +43,11 @@ public class JoinController {
 			while(true){
 				String ss = br.readLine();
 				if(ss==null) break;
-//					System.out.println(ss);
 				li.add(ss);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		for(int i =0; i<li.size(); i++){
-//			System.out.println("result  : "+	li.get(i));
-//		}
 		
 		mav.addObject("list", li);
 		mav.addObject("main", "/join/join");
