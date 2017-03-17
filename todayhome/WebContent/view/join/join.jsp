@@ -13,7 +13,7 @@
 		<form action="/join/check" method="post" style="background-color:white">
 			<p>
 				<b>ID</b><span id="chkResult" ></span><br/>
-				<input type="text" class="form-control" name="id" id="id" placeholder="id를 입력하세요"/>
+				<input type="text" class="form-control" name="id" id="id" placeholder="id를 입력하세요" maxlength="10" onkeyup="chkword(this.10)"/>
 			</p> 
 			<p>
 				<b>PASS</b><br/>
