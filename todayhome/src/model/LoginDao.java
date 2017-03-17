@@ -17,7 +17,7 @@ public class LoginDao {
 	public boolean confirm(HashMap map){
 		SqlSession sql = factory.openSession();
 			try {
-			int r = sql.selectOne("member.confirm", map);
+			int r = sql.selectOne("join.confirm", map);
 			System.out.println("whatisr: "+r);
 			if(r==1){
 				return true;
