@@ -49,6 +49,21 @@ public class HostingDao {
 			
 		}
 		
+		
+		public int addHosting(Map map) {
+			SqlSession session = factory.openSession();
+			int r = 0;
+			try {
+				r = session.insert("hosting.register", map);
+				session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return r;
+		}
+		
 }
 		
 		

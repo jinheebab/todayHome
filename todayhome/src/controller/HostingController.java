@@ -72,22 +72,46 @@ public class HostingController {
 	}
 	
 	
+	@RequestMapping("/upload")
+	@ResponseBody
+	public String upload(@RequestParam ("city") String city){
+		
+		System.out.println(city);
+		
+		
+		Map param = new HashMap<>();
+		
+		param.put("city", city);
+		
+		
+		Map map = hdao.getPrice(param);
+		
+		System.out.println(map.toString());
+		
+		BigDecimal price = (BigDecimal)map.get("PRICE");
+		
+		System.out.println("price는"+price);		
+		
+		return price.toString();
+	}
+	
+	
 	
 	
 	
 	@RequestMapping("/host03")
-	public ModelAndView host03(@RequestParam Map map){
-		ModelAndView mav = new ModelAndView();
+	@ResponseBody
+	public String host03(@RequestParam Map map){
 		
-		String startdate = (String)map.get("startdate");
 		
-		System.out.println(startdate);
+		int n = hdao.addHosting(map);
 		
-		mav.addObject("main","hosting/host02");
+		if(n == 1){
+			return "등록 성공!";
+		}else{
+			return "등록 실패!";
+		}
 		
-		mav.setViewName("g_index");
-		
-		return mav;
 	}
 	
 	
