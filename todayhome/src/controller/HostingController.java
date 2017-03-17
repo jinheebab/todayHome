@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.HostingDao;
@@ -74,25 +75,23 @@ public class HostingController {
 	
 	@RequestMapping("/upload")
 	@ResponseBody
-	public String upload(@RequestParam ("city") String city){
+	public String upload(@RequestParam(name="item") MultipartFile file){
 		
-		System.out.println(city);
+		Map map = fuSrv.execute(file);
 		
+		param.putAll(map);
 		
-		Map param = new HashMap<>();
+		System.out.println();
+		int rst = sdao.createOne(param);
 		
-		param.put("city", city);
-		
-		
-		Map map = hdao.getPrice(param);
-		
-		System.out.println(map.toString());
-		
-		BigDecimal price = (BigDecimal)map.get("PRICE");
-		
-		System.out.println("price는"+price);		
-		
-		return price.toString();
+		if(rst == 1)
+			return new ModelAndView("redirect:/share/list");
+		else {
+			ModelAndView mav = new ModelAndView("share/error");
+				mav.addObject("err", "업로드 처리중에 문제가 발생하였습니다");
+				mav.addObject("dest", "/share/form");
+			return mav;
+		}
 	}
 	
 	
