@@ -14,8 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.FileUploadService;
 import model.HostingDao;
 
 @Controller
@@ -24,6 +27,8 @@ public class HostingController {
 	
 	@Autowired
 	HostingDao hdao;
+	@Autowired
+	FileUploadService fdao;
 	
 	@RequestMapping("/host01")
 	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
@@ -72,22 +77,38 @@ public class HostingController {
 	}
 	
 	
+	@RequestMapping("/upload")
+	@ResponseBody
+	public String upload(@RequestParam(name="file") MultipartFile file) throws Exception {
+		
+		Map map = fdao.execute(file);
+		
+		String picurl = (String)map.get("fileaddress");
+		
+		return picurl.toString();
+		
+		}
+
+
+	
+	
+	
 	
 	
 	
 	@RequestMapping("/host03")
-	public ModelAndView host03(@RequestParam Map map){
-		ModelAndView mav = new ModelAndView();
+	@ResponseBody
+	public String host03(@RequestParam Map map){
 		
-		String startdate = (String)map.get("startdate");
 		
-		System.out.println(startdate);
+		int n = hdao.addHosting(map);
 		
-		mav.addObject("main","hosting/host02");
+		if(n == 1){
+			return "등록 성공!";
+		}else{
+			return "등록 실패!";
+		}
 		
-		mav.setViewName("g_index");
-		
-		return mav;
 	}
 	
 	

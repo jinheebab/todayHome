@@ -1,20 +1,26 @@
 package model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class HostingDao {
 
 	@Autowired
 	SqlSessionFactory factory;
+	@Autowired
+	ServletContext application;
 	
 		public List<HashMap> readHostingSome() {	
 			// DAO 1-1번
@@ -49,7 +55,27 @@ public class HostingDao {
 			
 		}
 		
-}
+		
+		public int addHosting(Map map) {
+			SqlSession session = factory.openSession();
+			int r = 0;
+			try {
+				r = session.insert("hosting.register", map);
+				session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return r;
+		}
+		
+		
+		
+		
+	}
+		
+
 		
 		
 	

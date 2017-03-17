@@ -58,7 +58,7 @@ public class InfoDao {
 		SqlSession sql = factory.openSession();
 		int rst = 0;
 		try{
-			rst = sql.update("join.deleteId", id);
+			rst = sql.delete("join.deleteId", id);
 			if(rst == 1)
 				sql.commit();
 		}catch(Exception e){

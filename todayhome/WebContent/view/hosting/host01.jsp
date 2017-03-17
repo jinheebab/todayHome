@@ -65,6 +65,12 @@
 }
 
 
+.thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+
     </style>
 
 
@@ -486,11 +492,87 @@ $(function(){
 	 	    <hr>
 	 	    
 	 	    
-	 	    <input type="text" placeholder="카테고리 추가" >
+	 	   <h2> <input type="text" id="inputCategory" placeholder="카테고리를 입력해주세요"> <button type="button" id="plus" class="btn btn-primary btn-md">추가</button></h2> 
+	 	   
+	 	  <textarea class="form-control" rows="3" id="category"></textarea>
+	 	    
+	 	    <script>
+	 	    
+	 	    $('#plus').click(function(){
+	 	    	
+	 	    	var inputCategory = $('#inputCategory').val();
+	 	    	
+	 	    	$('#inputCategory').val('');
+	 	    	
+	 	    	var category = $('#category').val() + '#' + inputCategory;
+	 	    	
+	 	    	$('#category').val(category);
+	 	    	
+	 	    });
 	 	    
 	 	    
+	 	    </script>
+			<hr>
+			
 			
 			</br></br>	    
+	 
+				 <div class="form-group">
+				 
+				 <label for="text">호스트이름</label>
+    				<input type="text" class="form-control" id="hname">
+    				
+    			<label for="text">숙소이름</label>
+    				<input type="text" class="form-control" id="title">
+    				
+			  		<label for="comment">소개글:</label>
+			  			<textarea id="intro" class="form-control" rows="5"></textarea>
+			  			
+			  			
+			  		<label for="comment">게스트 자격조건:</label>
+			  			<textarea id="condition" class="form-control" rows="5"></textarea>
+						</div>
+	 
+	 <div style="height: auto; width: 100%; border:1px solid black;">
+	 
+	 <h2 align="center">사진등록</h2>
+	 
+	 
+<form id="FILE_FORM" method="post" enctype="multipart/form-data" action="">
+            <input type="file" id="FILE_TAG" name="FILE_TAG">
+            <a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile();">등록</a>
+        </form>
+
+
+
+
+</div>
+	<script>
+	
+	function uploadFile(){
+        var form = $('FILE_FORM')[0];
+        var formData = new FormData(form);
+        formData.append("fileObj", $("#FILE_TAG")[0].files[0]);
+
+        $.ajax({
+            url: '/hosting/upload',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    type: 'POST',
+                    success: function(result){
+                        alert(result);
+                    }
+            });
+    }
+
+
+
+
+	
+	</script>
+	 
+	 
 	 
 	 
 	 
@@ -537,6 +619,16 @@ $(function(){
      
      var price = $('#price').attr('id').val();
      
+     var category = $('#category').attr('id').val();
+     
+     var hname = $('#category').attr('id').val();
+     
+     var intro = $('#category').attr('id').val();
+     
+     var title = $('#title').attr('id').val();
+     
+     var condition = $('#condition').attr('id').val();
+     
      var request ={
     	htype : htype,
     	rtype : rtype,
@@ -551,7 +643,12 @@ $(function(){
     	rule : rule,
     	startdate : startdate,
     	enddate : enddate,
-    	price : price
+    	price : price,
+    	category : category,
+    	hname : hname,
+    	intro : intro,
+    	title : title,
+    	condition : condition
     		 
      }
 
@@ -559,11 +656,11 @@ $(function(){
     	   type : "POST",
     	   url : "/hosting/host03",
     	   data : request,
-    	   success : function(){
-    		   alert('호스팅정보 등록성공');
+    	   success : function(message){
+    		  
+    		   alert(message);
     		   
-    		   
-    	   }
+    		   }
     	  }); 
      
      

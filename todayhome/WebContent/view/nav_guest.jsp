@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <head>
 <style>
 /* The Modal (background) */
@@ -48,9 +48,9 @@
 <!-- =========================================================== -->
 
 <div align ="right" style="background-color: black;">
-	<a href="/join/join"><button type="button" style="border-radius: 0; background-color: black;" class="btn"><font color=white>회원가입</font></button></a>
+   <a href="/join/join"><button type="button" style="border-radius: 0; background-color: black;" class="btn"><font color=white>회원가입</font></button></a>
 <button id="myBtn" class="btn" type="button" 
-	style="border-radius: 0; background-color: black; "><font color=white>로그인</font></button>
+   style="border-radius: 0; background-color: black; "><font color=white>로그인</font></button>
 </div>
 
 
@@ -64,7 +64,7 @@
   <div style="padding-right: 10%; padding-left: 10%; padding-bottom: 20%; padding-top: 10%; text-align: center;">
     <span class="close">&times;</span>
     <form action="/view/login/confirm" >
-   	<h3>로그인</h3><br/>
+      <h3>로그인</h3><br/>
    ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="id"/><br/><br/>
    PASS : <input type="password" name="pass"/><br/><br/>
   <input type="checkbox" name="autologin" />자동로그인<br/><br/>
