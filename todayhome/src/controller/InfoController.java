@@ -32,6 +32,7 @@ public class InfoController {
 		
 		ModelAndView mav = new ModelAndView("m_index");
 			mav.addObject(val);
+			mav.addObject("main", "/info/info");
 		return mav;
 	}
 	@RequestMapping("/info/ajax")

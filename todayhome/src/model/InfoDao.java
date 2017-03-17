@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class InfoDao {
 	@Autowired
 	SqlSessionFactory factory;
-
+	
 	public List<HashMap> readOne(String id){
 		List<HashMap> list = new ArrayList<>();
 		SqlSession sql = factory.openSession();
