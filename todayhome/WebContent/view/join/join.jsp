@@ -45,9 +45,9 @@
 			<p>
 				<b>COUNTRY</b><br/>
 					<select class="form-control" name="country"  id="country" onkeyup="javascript:allCompare()">
-				<c:forEach var="item" items="${list}">
-						<option value="${item }">${item }</option>
-				</c:forEach>
+						<c:forEach var="item" items="${list}">
+								<option value="${item }">${item }</option>
+						</c:forEach>
 					</select>
 			</p>
 			<p>
