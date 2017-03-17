@@ -369,7 +369,7 @@ $(function(){
  
  	<textarea rows="3" cols="50" id="rule">게스트 자격조건을 입력하세요</textarea>
  	
-<h2> 기간: </h2> 
+<h2> 호스팅 기간: </h2> 
 
 <input type="text" id="sdate"> ~
     <input type="text" id="edate">
@@ -415,11 +415,15 @@ $(function(){
 	 	    });
 		</script>
 				    
-	 
+	 <button type="button" class="btn btn-success" id="next">계속</button>
 	
 	        
 	     <script>
      
+	  $('#next').click(function(){
+		  
+		  
+	     
      var htype = $('#htype').attr('id');
      
      var rtype = $('#rtype').attr('id');
@@ -437,8 +441,38 @@ $(function(){
      var amenity = $('#amenity').attr('id');
      
      var rule = $('#rule').attr('id');
-
      
+     var startdate = $('#sdate').attr('id');
+     
+     var enddate = $('#edate').attr('id');
+     
+     var request ={
+    	htype : htype,
+    	rtype : rtype,
+    	roomcnt : roomcnt,
+    	membercnt : membercnt,
+    	bedcnt : bedcnt,
+    	bathcnt : bathcnt,
+    	address : address,
+    	amenity : amenity,
+    	rule : rule,
+    	startdate : startdate,
+    	enddate : enddate
+    		 
+     }
+
+     $.ajax({
+    	   type : "POST",
+    	   url : "/hosting/host02",
+    	   data : request,
+    	   success : function(){
+    		   alert('성공');
+    	   }
+    	  }); 
+     
+     
+     
+	  });
      
      </script>
      

@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,18 @@ public class HostingController {
 		
 		return mav;
 								
+	}
+	
+	@RequestMapping("/host02")
+	public ModelAndView host02(HttpServletRequest request, HttpServletResponse response){
+		ModelAndView mav = new ModelAndView();
+		
+		
+		mav.addObject("main","hosting/host02");
+		
+		mav.setViewName("g_index");
+		
+		return mav;
 	}
 	
 	
