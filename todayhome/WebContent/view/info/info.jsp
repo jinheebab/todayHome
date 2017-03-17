@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		
 <div>
@@ -25,7 +26,7 @@
 		</p>
 		<p>
 			<b>PASS</b><br/>
-			<input type="password" class="form-control" name="pass" value="${val.PASS}"/>
+			<input type="password" class="form-control" name="pass" value=<fmt:formatNumber value="${val.PASS}" pattern="yyyy-MM-dd" />/>
 		</p>
 		<p>
 			<b>NAME</b><br/>
@@ -40,7 +41,7 @@
 		</p>
 		<p>
 			<b>BIRTH</b><br/>
-			<input class="form-control" type="date" name="bday"  id="birth"  value="${val.BIRTH}">
+			<input class="form-control" type="date" name="bday"  id="birth"  value="2010-11-20">
 		</p>
 		<p>
 			<b>E-MAIL</b><br/>
@@ -50,7 +51,7 @@
 			<b>COUNTRY</b><br/>
 				<select class="form-control" name="country"  id="country" >
 					<c:forEach var="item" items="${list}">
-						<option value="${item }" ${val.COUNTRY eq '${item }' ? 'selected' : ''}>${item }</option>
+						<option value="${item }" ${val.COUNTRY eq item  ? 'selected' : ''}>${item }</option>
 					</c:forEach>
 				</select>
 		</p>

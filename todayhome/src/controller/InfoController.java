@@ -1,5 +1,12 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,16 +28,32 @@ public class InfoController {
 	@Autowired
 	InfoDao iDao;
 	@Autowired
-	ServletContext application;
+	ServletContext ac;
 	@Autowired
 	FileUploadService fs;
 	
 	@RequestMapping("/info/info")
-	public ModelAndView infoHandler(HttpSession session){
+	public ModelAndView infoHandler(HttpSession session) throws FileNotFoundException{
 		String id = (String)session.getAttribute("auth");
 		HashMap val = iDao.readOne(id);
-		System.out.println(val);
+		
 		ModelAndView mav = new ModelAndView("m_index");
+			String path = ac.getRealPath("/nation.txt");
+			File f = new File(path);
+			FileInputStream fis = new FileInputStream(f);
+			InputStreamReader isr = new InputStreamReader(fis);
+			BufferedReader br = new BufferedReader(isr);
+			List li = new ArrayList<>();
+			try {
+				while(true){
+					String ss = br.readLine();
+					if(ss==null) break;
+					li.add(ss);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}		
+			mav.addObject("list", li);
 			mav.addObject("val", val);
 			mav.addObject("main", "info/info");
 		return mav;

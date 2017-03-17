@@ -3,11 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hosting">
-<!-- 	<insert id="" parameterType="">
-		
-	</insert> -->
+
 	<select id="getMainList" resultType="java.util.HashMap">
 		select num, title, picURL, price, category, country, Htype from hosting order by num desc
+	</select>
+	
+	<select id="getPrice" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select avg(price) as price, city from hosting where city=#{city} group by city
 	</select>
 	
 </mapper>
