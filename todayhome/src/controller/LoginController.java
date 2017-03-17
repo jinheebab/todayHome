@@ -55,8 +55,9 @@ public class LoginController {
 
 	@RequestMapping("view/login/logout")
 	public String logOurHandler(HttpSession session, HttpServletResponse resp) {
+		System.out.println("로그아웃들어옴");
 		String redirect = "";
-		session.removeAttribute("id");
+		session.removeAttribute("auth");
 		Cookie c1 = new Cookie("auth", "");
 		Cookie c2 = new Cookie("keep", "");
 		c1.setMaxAge(0);
@@ -67,7 +68,7 @@ public class LoginController {
 		c2.setPath("/");
 		resp.addCookie(c2);
 
-		redirect = "redirect:view/";
+		redirect = "redirect:/view/";
 
 		return redirect;
 	}
