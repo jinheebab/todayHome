@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MessageController {
 
 	@RequestMapping("/msg01")
-	public ModelAndView msg01(HttpServletRequest request, HttpSession session){	// 
+	public ModelAndView msg01(){	// 
 		
 		ModelAndView mav = new ModelAndView();
 		
