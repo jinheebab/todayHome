@@ -6,7 +6,15 @@
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
-  <br/><br/> 
+  <br/><br/>
+  
+  <div class="row" align="center">
+  <form action="none"> 
+  	<input type="text" name="search" size="100px"/> 
+  	<button class="btn" type="submit" style="background-color: orange; border-radius: 0"><font color="white"><b>검색</b></font></button>
+  </form>
+  </div>
+   
   <div class="row" style="margin-bottom: 30px;">
   <div class="col-md-1" align="right">
     <br/><br/><br/><br/><br/><br/><br/><br/>
