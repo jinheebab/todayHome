@@ -17,8 +17,6 @@ import model.HostingDao;
 @RequestMapping("/hosting")
 public class HostingController {
 	
-	
-	
 	@RequestMapping("/host01")
 	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
 		
@@ -47,6 +45,4 @@ public class HostingController {
 		
 		return mav;
 	}
-	
-	
 }

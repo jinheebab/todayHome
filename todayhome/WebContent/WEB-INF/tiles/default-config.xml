@@ -24,7 +24,6 @@
 		<put-attribute name="main" expression="/view/${main}.jsp"/>
 	</definition>
 	
-	
 	<definition name="main" template="/view/template.jsp">
 		<put-attribute name="title" value="todayhome" />
 		<put-attribute name="header" value="/view/header.jsp" />
