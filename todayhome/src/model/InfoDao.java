@@ -54,4 +54,18 @@ public class InfoDao {
 		}
 		return rst;
 	}
+	public int deleteId(String id){
+		SqlSession sql = factory.openSession();
+		int rst = 0;
+		try{
+			rst = sql.update("join.deleteId", id);
+			if(rst == 1)
+				sql.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			sql.close();
+		}
+		return rst;
+	}
 }
