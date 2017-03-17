@@ -12,4 +12,7 @@
 	<select id="confirm" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		select count(*) from member where id=#{id} and pass=#{pass}
 	</select>
+	<delete id="deleteId" parameterType="java.lang.String">
+		delete from member where id=#{id};
+	</delete>
 </mapper>
