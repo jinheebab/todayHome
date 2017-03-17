@@ -6,10 +6,10 @@
 	<select id="info" resultType="java.util.HashMap" parameterType="java.lang.String"> 
 		select * from member where id=#{ID} 
 	</select>
-	<update id="updateInfo" parameterType="java.lang.String"> 
+	<update id="updateInfo" parameterType="java.util.HashMap"> 
 		update member set id=#{id}, pass=#{pass}, name=#{name}, age=#{age}, gender=#{gender}, email=#{email} where id=#{ID} 
 	</update>
-	<update id="updatePic" parameterType="java.lang.String">
+	<update id="updatePic" parameterType="java.util.HashMap">
 		update member set picurl=#{PICURL} where id=#{ID}
 	</update>
 </mapper>
