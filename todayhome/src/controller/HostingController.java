@@ -54,4 +54,23 @@ public class HostingController {
 	}
 	
 	
+	
+	
+	
+	@RequestMapping("/host03")
+	public ModelAndView host03(@RequestParam Map map){
+		ModelAndView mav = new ModelAndView();
+		
+		String startdate = (String)map.get("startdate");
+		
+		System.out.println(startdate);
+		
+		mav.addObject("main","hosting/host02");
+		
+		mav.setViewName("g_index");
+		
+		return mav;
+	}
+	
+	
 }

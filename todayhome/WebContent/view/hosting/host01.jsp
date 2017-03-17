@@ -413,15 +413,22 @@ $(function(){
 	 	    $('#edate').datepicker("option", "onClose", function ( selectedDate ) {
 	 	        $("#sdate").datepicker( "option", "maxDate", selectedDate );
 	 	    });
-	 	    
-	 	    
-	 	    
-		
-	 	    
-	 	    
+	 	    	    
+	 	     
 	 	    </script>
+	 	    
+	 	    
+	 	    
+	 	    
+	 	    
+	 	    
+	 	    
+	 	    
+	 	    
+	 	    
+	 	    
 			
-			</br>	    
+			</br></br>	    
 	 <button type="button" class="btn btn-success" id="register">최종등록</button>
 	
 	        
