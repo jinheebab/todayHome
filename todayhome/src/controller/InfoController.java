@@ -86,9 +86,10 @@ public class InfoController {
 	@RequestMapping("/info/withdraw")
 	@ResponseBody
 	public ModelAndView withdrawHandler(){
-		
+		ModelAndView mav = new ModelAndView("m_index");
+			mav.addObject("main", "info/withdraw");
+		return mav;
 	}
-	
 	@RequestMapping("/info/withdrawAjax")
 	@ResponseBody
 	public ModelAndView infoAjaxHandler(@RequestParam HashMap map, HttpSession session){

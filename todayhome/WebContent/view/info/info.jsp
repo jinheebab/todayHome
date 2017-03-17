@@ -58,7 +58,7 @@
 		<br/>
 		<p>
 			<button type="submit" class="btn">변경하기</button>
-			<a href="/info/withdrawAjax"><button type="button" class="btn">탈퇴하기</button></a>
+			<a href="/info/withdraw"><button type="button" class="btn">탈퇴하기</button></a>
 		</p>
 	</form>
 	</div>

@@ -13,6 +13,6 @@
 		select count(*) from member where id=#{id} and pass=#{pass}
 	</select>
 	<delete id="deleteId" parameterType="java.lang.String">
-		delete from member where id=#{id};
+		delete from member where id=#{id}
 	</delete>
 </mapper>
