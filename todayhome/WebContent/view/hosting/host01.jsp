@@ -413,38 +413,45 @@ $(function(){
 	 	    $('#edate').datepicker("option", "onClose", function ( selectedDate ) {
 	 	        $("#sdate").datepicker( "option", "maxDate", selectedDate );
 	 	    });
-		</script>
-				    
-	 <button type="button" class="btn btn-success" id="next">계속</button>
+	 	    
+	 	    
+	 	    
+		
+	 	    
+	 	    
+	 	    </script>
+			
+			</br>	    
+	 <button type="button" class="btn btn-success" id="register">최종등록</button>
 	
 	        
 	     <script>
      
-	  $('#next').click(function(){
+	  $('#register').click(function(){
 		  
 		  
 	     
-     var htype = $('#htype').attr('id');
+     var htype = $('#htype').attr('id').val();
      
-     var rtype = $('#rtype').attr('id');
+     var rtype = $('#rtype').attr('id').val();
      
-     var roomcnt = $('#roomcnt').attr('id');
+     var roomcnt = $('#roomcnt').attr('id').val();
      
-     var membercnt = $('#membercnt').attr('id');
+     var membercnt = $('#membercnt').attr('id').val();
      
-     var bedcnt = $('#bedcnt').attr('id');
+     var bedcnt = $('#bedcnt').attr('id').val();
      
-     var bathcnt = $('#bathcnt').attr('id');
+     var bathcnt = $('#bathcnt').attr('id').val();
      
-     var address = $('#pac-input').attr('id');
+     var address = $('#pac-input').attr('id').val();
      
-     var amenity = $('#amenity').attr('id');
+     var amenity = $('#amenity').attr('id').val();
      
-     var rule = $('#rule').attr('id');
+     var rule = $('#rule').attr('id').val();
      
-     var startdate = $('#sdate').attr('id');
+     var startdate = $('#sdate').attr('id').val();
      
-     var enddate = $('#edate').attr('id');
+     var enddate = $('#edate').attr('id').val();
      
      var request ={
     	htype : htype,
@@ -466,7 +473,9 @@ $(function(){
     	   url : "/hosting/host02",
     	   data : request,
     	   success : function(){
-    		   alert('성공');
+    		   alert('호스팅정보 등록성공');
+    		   
+    		   
     	   }
     	  }); 
      
