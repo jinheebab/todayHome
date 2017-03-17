@@ -60,8 +60,8 @@
 <div id="myModal" class="modal"  >
 
   <!-- Modal content -->
-  <div class="modal-content"  >
-  <div style="padding-right: 33%; padding-left: 33%; padding-bottom: 5%; padding-top: 5%; text-align: center;">
+  <div class="modal-content" style="margin-right: 35%; margin-left:35%;" >
+  <div style="padding-right: 10%; padding-left: 10%; padding-bottom: 20%; padding-top: 10%; text-align: center;">
     <span class="close">&times;</span>
     <form action="/view/login/confirm" >
    	<h3>로그인</h3><br/>
