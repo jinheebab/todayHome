@@ -7,7 +7,7 @@
 		select * from member where id=#{id} 
 	</select>
 	<update id="updateInfo" parameterType="java.util.HashMap"> 
-		update member set id=#{id}, pass=#{pass}, name=#{name}, age=#{age}, gender=#{gender}, email=#{email} where id=#{id} 
+		update member set id=#{id}, name=#{name}, pass=#{pass}, gender=#{gender}, birth=#{birth}, mail=#{mail}, country=#{country} where id=#{id} 
 	</update>
 	<update id="updatePic" parameterType="java.util.HashMap">
 		update member set picurl=#{PICURL} where id=#{id}
