@@ -6,14 +6,25 @@
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
-  <br/><br/> 
-  <div class="row">
+  <br/><br/>
+  
+  <div class="row" align="center">
+  <form action="none"> 
+  	<input type="text" name="search" size="100px"/> 
+  	<button class="btn" type="submit" style="background-color: orange; border-radius: 0"><font color="white"><b>검색</b></font></button>
+  </form>
+  </div>
+   
+  <div class="row" style="margin-bottom: 30px;">
   <div class="col-md-1" align="right">
     <br/><br/><br/><br/><br/><br/><br/><br/>
  <span id="slider-prev" style="font-size: 2em; padding-left: 20%"></span>
  </div>
-<div class="col-md-10" align="center">
-<ul class="bxslider">
+<div class="col-md-10">
+<span style=" font-weight:bold; font-size:1.5em; ">HOT LOCATION</span>
+<hr style="border-bottom-style: solid; border-bottom-width: 1.5px; border-bottom-color: black; margin-top: 10px;"/>
+<div align="center">
+<ul class="bxslider" >
 <c:forEach var="i" items="${list}" end="4" >
   <li><div style="width: 480.5px; height: 320.33px; overflow: hidden;">
   <a href="/view/detail?num=${i.NUM}">
@@ -22,9 +33,37 @@
   </c:forEach>
 </ul>
 </div>
+</div>
 <div class="col-md-1" align="left">
 <br/><br/><br/><br/><br/><br/><br/><br/>
 <span id="slider-next" style="font-size: 2em; padding-right: 20%"></span>
+</div>
+</div>
+
+
+<!-- ================================================================= -->
+  <div class="row">
+  <div class="col-md-1" align="right">
+    <br/><br/><br/><br/><br/>
+ <span id="slider-prev1" style="font-size: 2em; padding-left: 20%"></span>
+ </div>
+<div class="col-md-10">
+<span style=" font-weight:bold; font-size:1.5em; ">TODAY's CHOICE</span>
+<hr style="border-bottom-style: solid; border-bottom-width: 1.5px; border-bottom-color: black; margin-top: 10px;"/>
+<div align="center">
+<ul class="bxslider1" >
+<c:forEach var="i" items="${list}" end="4" >
+  <li><div style="width: 330.5px; height: 170.33px; overflow: hidden;">
+  <a href="/view/detail?num=${i.NUM}">
+  <img src="${i.PICURL}" width=270px height=170px title="${i.TITLE} .${i.COUNTRY}  [${i.HTYPE}] "/>
+  </a></div></li>
+  </c:forEach>
+</ul>
+</div>
+</div>
+<div class="col-md-1" align="left">
+<br/><br/><br/><br/><br/>
+<span id="slider-next1" style="font-size: 2em; padding-right: 20%"></span>
 </div>
 </div>
 
@@ -33,7 +72,6 @@
   <a data-slide-index="1" ></a>
   <a data-slide-index="2" ></a>
 </div>
-
 
 <div class="row" align="center" style="padding-bottom: 2%;" >	
   <br/><br/>
@@ -47,10 +85,27 @@
 	  prevSelector: '#slider-prev',
 	  nextText: '>',
 	  prevText: '<',
+	  
 	
 	  minSlides: 2,
 	  maxSlides: 2,
 	  slideWidth: 480,
+	  slideMargin: 10,
+	  mode: 'horizontal' ,
+	  captions: true,
+	  pagerCustom: '#bx-pager'
+	});
+  
+  $('.bxslider1').bxSlider({
+	  
+	  nextSelector: '#slider-next1',
+	  prevSelector: '#slider-prev1',
+	  nextText: '>',
+	  prevText: '<',
+	
+	  minSlides: 3,
+	  maxSlides: 3,
+	  slideWidth: 350,
 	  slideMargin: 10,
 	  mode: 'horizontal' ,
 	  captions: true,
