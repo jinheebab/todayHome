@@ -57,8 +57,10 @@ public class LoginController {
 	
 	@RequestMapping("view/login/pagelogin")
 	public String pageLoinHandler(){
-		return "";
 		
+		
+		
+		return "";
 	}
 	
 	@RequestMapping("view/login/logout")
