@@ -95,7 +95,7 @@
 		</div>
 
 
-
+<hr>
 
 
 
@@ -109,6 +109,9 @@
 			</select>
 		</div>
 
+<hr>
+
+
 <h2>게스트가 묵을 방 개수</h2>
 
 <input type="text" name="roomcnt" value="1" id="roomcnt" class="num"/>개
@@ -116,6 +119,8 @@
                   <button alt="" width="30" height="30" class="bt_up">+</button>
                   <button alt="" width="30" height="30" class="bt_down">-</button>
                   
+<hr>
+
 
 
 <script>
@@ -152,8 +157,11 @@ $(function(){
                   <button alt="" width="30" height="30" class="bt_up2">+</button>
                   <button alt="" width="30" height="30" class="bt_down2">-</button>
                   
+ <hr>
+ 
  <script>
-
+ 
+ 
  $(function(){ 
 	  $('.bt_up2').click(function(){ 
 	    var n = $('#membercnt').val();
@@ -212,7 +220,7 @@ $(function(){
 })
 
 </script>
-
+<hr>
 
 <h2>욕실개수</h2>
 
@@ -247,7 +255,7 @@ $(function(){
 })
 
 </script>
-
+<hr>
 <h2>주소</h2>
 
 
@@ -355,20 +363,20 @@ $(function(){
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK0WmkDko31qXUi_KV5kZNvtLwkKxePyU&libraries=places&callback=initMap"
         async defer></script>
-        
+        <hr>
  <h2>제공비품</h2>
     
     <textarea rows="3" cols="50" id="amenity" placeholder="제공비품을 입력하세요"></textarea>
     
-    
+    <hr>
  <h2>이용수칙</h2>
  
  	<textarea rows="3" cols="50" id="rule" placeholder="이용수칙을 입력하세요"></textarea>
- 	
+ 	<hr>
  <h2>게스트 자격조건</h2>
  
  	<textarea rows="3" cols="50" id="rule" placeholder="게스트 자격조건을 입력하세요"></textarea>
- 	
+ 	<hr>
 <h2> 호스팅 기간: </h2> 
 
 <input type="text" id="sdate"> ~
@@ -419,11 +427,61 @@ $(function(){
 	 	    
 	 	    </br></br>
 	 	    
-	 	    <span class="label label-danger">Danger Label</span>
+	 	    <div style="height: auto; width: 100%; border:1px solid black;">
+	 	    
+	 	    <h2 align="center">지역별 평균금액</h2>
+	 	    
+	 	    <h2 align="center"><span id="findPrice" class="label label-danger"></span></h2>
+	 	    
+	 	    </br>
+	 	    
+	 	    <h3 align="center"><input type="text" id="city" placeholder="도시이름 입력"/></h3>
+	 	    
+	 	    
+	 	    <h3 align="center"><input type="number" name="quantity" min="1" max="15" placeholder="인원수 입력" id="number">명</h3>
+
+	 	    
+	 	    
+	 	    <h3 align="center"><button type="button" id="find" class="btn btn-success">가격검색</button></h3>
+	 	    
+	 	    <h2 align="center">위를 참고하시고 원하시는 가격을 입력해주세요</h2>
+	 	    
+	 	    <h3 align="center"><input type="number" name="quantity" min="1" max="1000000" placeholder="가격" id="price">원</h3>
+	 	    
+	 	    </div>
+	 	    
+	 	    <script>
+	 	    
+	 	    
+	 	    $('#find').click(function(){
+	 	    	
+	 	    	var city = $('#city').val();
+	 	    	var people = $('#number').val();
+	 	    	var people2 = Number(people);
+	 	    	
+	 	    		 	    	
+	 	    	$.ajax({
+	 	            url:'/hosting/host02',
+	 	            type:'post',
+	 	            data: { "city" : city },
+	 	            success: function(price){
+	 	                
+	 	                var total = Number(price) + people2 *10000;
+	 	                
+	 	                $('#findPrice').html(total+"원");
+	 	                
+	 	            }
+	 	        });
+	 	    	
+	 	    	
+	 	    });
 	 	    
 	 	    
 	 	    
 	 	    
+	 	    
+	 	    
+	 	    </script>
 	 	    
 	 	    
 	 	    
@@ -431,8 +489,12 @@ $(function(){
 	 	    
 			
 			</br></br>	    
+	 
+	 
+	 
+	 
 	 <button type="button" class="btn btn-success" id="register">최종등록</button>
-	
+	   
 	        
 	     <script>
      
@@ -471,6 +533,8 @@ $(function(){
      
      var enddate = $('#edate').attr('id').val();
      
+     var price = $('#price').attr('id').val();
+     
      var request ={
     	htype : htype,
     	rtype : rtype,
@@ -484,7 +548,8 @@ $(function(){
     	amenity : amenity,
     	rule : rule,
     	startdate : startdate,
-    	enddate : enddate
+    	enddate : enddate,
+    	price : price
     		 
      }
 

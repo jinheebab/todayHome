@@ -1,5 +1,7 @@
 package controller;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.HostingDao;
@@ -19,7 +22,8 @@ import model.HostingDao;
 @RequestMapping("/hosting")
 public class HostingController {
 	
-	
+	@Autowired
+	HostingDao hdao;
 	
 	@RequestMapping("/host01")
 	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
@@ -45,18 +49,26 @@ public class HostingController {
 	}
 	
 	@RequestMapping("/host02")
-	public ModelAndView host02(@RequestParam Map map){
-		ModelAndView mav = new ModelAndView();
+	@ResponseBody
+	public String host02(@RequestParam ("city") String city){
 		
-		String startdate = (String)map.get("startdate");
+		System.out.println(city);
 		
-		System.out.println(startdate);
 		
-		mav.addObject("main","hosting/host02");
+		Map param = new HashMap<>();
 		
-		mav.setViewName("m_index");
+		param.put("city", city);
 		
-		return mav;
+		
+		Map map = hdao.getPrice(param);
+		
+		System.out.println(map.toString());
+		
+		BigDecimal price = (BigDecimal)map.get("PRICE");
+		
+		System.out.println("price는"+price);		
+		
+		return price.toString();
 	}
 	
 	
