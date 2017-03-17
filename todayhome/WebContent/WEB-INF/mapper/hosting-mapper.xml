@@ -7,7 +7,7 @@
 		
 	</insert> -->
 	<select id="getMainList" resultType="java.util.HashMap">
-		select title, picURL, price, category, country, Htype from hosting order by num desc
+		select num, title, picURL, price, category, country, Htype from hosting order by num desc
 	</select>
 	
 </mapper>
