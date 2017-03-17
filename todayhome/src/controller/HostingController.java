@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.FileUploadService;
 import model.HostingDao;
 
 @Controller
@@ -25,6 +27,8 @@ public class HostingController {
 	
 	@Autowired
 	HostingDao hdao;
+	@Autowired
+	FileUploadService fdao;
 	
 	@RequestMapping("/host01")
 	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
@@ -75,24 +79,18 @@ public class HostingController {
 	
 	@RequestMapping("/upload")
 	@ResponseBody
-	public String upload(@RequestParam(name="item") MultipartFile file){
+	public String upload(@RequestParam(name="file") MultipartFile file) throws Exception {
 		
-		Map map = fuSrv.execute(file);
+		Map map = fdao.execute(file);
 		
-		param.putAll(map);
+		String picurl = (String)map.get("fileaddress");
 		
-		System.out.println();
-		int rst = sdao.createOne(param);
+		return picurl.toString();
 		
-		if(rst == 1)
-			return new ModelAndView("redirect:/share/list");
-		else {
-			ModelAndView mav = new ModelAndView("share/error");
-				mav.addObject("err", "업로드 처리중에 문제가 발생하였습니다");
-				mav.addObject("dest", "/share/form");
-			return mav;
 		}
-	}
+
+
+	
 	
 	
 	

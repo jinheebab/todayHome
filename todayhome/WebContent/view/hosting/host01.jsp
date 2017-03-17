@@ -537,11 +537,15 @@ $(function(){
 	 
 	 <h2 align="center">사진등록</h2>
 	 
-	 <form id="FILE_FORM" method="post" enctype="multipart/form-data" action="hosting/upload">
+	 
+<form id="FILE_FORM" method="post" enctype="multipart/form-data" action="">
             <input type="file" id="FILE_TAG" name="FILE_TAG">
-
-            <a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile();">전송</a>
+            <a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile();">등록</a>
         </form>
+
+
+
+
 </div>
 	<script>
 	
@@ -551,16 +555,20 @@ $(function(){
         formData.append("fileObj", $("#FILE_TAG")[0].files[0]);
 
         $.ajax({
-            url: 'hosting/upload',
+            url: '/hosting/upload',
                     processData: false,
                     contentType: false,
                     data: formData,
                     type: 'POST',
                     success: function(result){
-                        alert("업로드 성공!!");
+                        alert(result);
                     }
             });
     }
+
+
+
+
 	
 	</script>
 	 
