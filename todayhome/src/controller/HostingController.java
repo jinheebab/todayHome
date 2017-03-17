@@ -1,6 +1,9 @@
 package controller;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.HostingDao;
@@ -17,12 +22,19 @@ import model.HostingDao;
 @RequestMapping("/hosting")
 public class HostingController {
 	
-	
+	@Autowired
+	HostingDao hdao;
 	
 	@RequestMapping("/host01")
 	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
 		
 		ModelAndView mav = new ModelAndView();
+		
+//		if(session.getAttribute("auth") == null){
+//			mav.addObject("main","login/pagelogin");
+//			
+//			mav.setViewName("g_index");
+//		}
 		
 		//String id = (String)session.getAttribute("id");
 		
@@ -30,16 +42,46 @@ public class HostingController {
 				
 		mav.addObject("main", "hosting/host01");
 		
-		mav.setViewName("g_index");
+		mav.setViewName("m_index2");
 		
 		return mav;
 								
 	}
 	
 	@RequestMapping("/host02")
-	public ModelAndView host02(HttpServletRequest request, HttpServletResponse response){
+	@ResponseBody
+	public String host02(@RequestParam ("city") String city){
+		
+		System.out.println(city);
+		
+		
+		Map param = new HashMap<>();
+		
+		param.put("city", city);
+		
+		
+		Map map = hdao.getPrice(param);
+		
+		System.out.println(map.toString());
+		
+		BigDecimal price = (BigDecimal)map.get("PRICE");
+		
+		System.out.println("price는"+price);		
+		
+		return price.toString();
+	}
+	
+	
+	
+	
+	
+	@RequestMapping("/host03")
+	public ModelAndView host03(@RequestParam Map map){
 		ModelAndView mav = new ModelAndView();
 		
+		String startdate = (String)map.get("startdate");
+		
+		System.out.println(startdate);
 		
 		mav.addObject("main","hosting/host02");
 		

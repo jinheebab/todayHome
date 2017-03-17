@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -28,4 +29,28 @@ public class HostingDao {
 			}
 			return list;
 	}
+		
+		
+		public Map getPrice(Map param){
+			
+			Map map = new HashMap<>();
+			
+			SqlSession sql = factory.openSession();
+			try {
+				map = sql.selectOne("hosting.getPrice",param);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			
+			return map;
+			
+		}
+		
 }
+		
+		
+	
+
