@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<mvc:default-servlet-handler />
+	<mvc:annotation-driven />
+
+	<context:component-scan base-package="controller" />
+	<context:component-scan base-package="view" />
+	<context:component-scan base-package="model" />
+
+	<!-- 멀티파트 요청 처리용 빈 등록/ 파일업로드용 -->
+	<bean
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+		id="multipartResolver">
+		<property name="uploadTempDir" value="/temp"></property>
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="-1" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="1" />
+	</bean>
+
+	<!-- 타일 뷰 리졸버를 등록하면 뷰 이름을 등록된 타일에서도 검색할 수 있게 됨 /실제 타일을 정의내리고 만드려면 타일API가 
+		필요함 -->
+
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+		<property name="order" value="2" />
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<!-- 타일 설정을 연동해주는 것 tilesViewResolver와 세트다 -->
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/default-config.xml</value>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+		<property name="order" value="3"></property>
+	</bean>
+	<!-- orm setting -->
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations">
+			<list>
+				<value>/WEB-INF/mapper/*-mapper.xml</value>
+			</list>
+		</property>
+		<property name="dataSource" ref="datasource" />
+	</bean>
+
+	<!-- <bean class="org.apache.tomcat.jdbc.pool.DataSource" id="datasource"> 
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" 
+		/> <property name="url" value="jdbc:oracle:thin:@192.168.10.1:1521:xe" /> 
+		<property name="username" value="jinhee" /> <property name="password" value="jinheebab" 
+		/> </bean> -->
+
+	<bean class="com.mchange.v2.c3p0.ComboPooledDataSource" id="datasource">
+		<property name="password" value="oracle" />
+		<property name="user" value="todayhome" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@121.134.125.131:1521:xe" />
+		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
+	</bean>
+</beans>
