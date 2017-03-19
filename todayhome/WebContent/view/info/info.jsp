@@ -52,9 +52,9 @@
 </div>
 <div class="well row" style="background-color: white">	
 	<div class="col-md-3" align="center" style="background-color: white">
-		<form action="/info/ajax" method="post" enctype="multipart/form-data">
+		<form action="/info/picAjax" method="post" enctype="multipart/form-data">
 				<b>PICTURE</b><br />
-				<img src="${val.PICURL}" width="200" height="200"/>
+				<img src="${sharing.FILELINK}" width="200" height="200" />
 				<hr/>
 				<input type="file" class="form-control"	name="pic" />
 				<br/>
