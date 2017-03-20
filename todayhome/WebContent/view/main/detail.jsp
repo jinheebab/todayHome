@@ -33,6 +33,9 @@
 	width: ${score}%;
 
 }
+.point2_r{
+	overflow: hidden;
+}
 .icon {
 	width: 60px;
 	height: 60px;
@@ -188,8 +191,13 @@
 	<div class="row font1">
 
 		<c:forEach var="r" items="${review}">
-		no.${r.NUM} ${r.WRITER}
-		<br/>
+		<b><a href="/view/message/send?id=${r.WRITER}"> ${r.WRITER}</a></b>
+			<div class="point1">
+				<div class="point2_r" style="width: ${r.GRADE*10}%;">
+					<img src="/icon/star_on.png" width="120px" height="30px">
+				</div>
+			</div>
+		
 		${r.CONTENT}
 		<hr/>
 		</c:forEach>
