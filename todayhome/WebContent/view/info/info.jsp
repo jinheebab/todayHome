@@ -54,7 +54,9 @@
 	<div class="col-md-3" align="center" style="background-color: white">
 		<form action="/info/picAjax" method="post" enctype="multipart/form-data">
 				<b>PICTURE</b><br />
-				<img src="${sharing.FILELINK}" width="200" height="200" />
+				<div style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden;">
+				<img src="${sharing.FILELINK}" width="200px"  />
+				</div>
 				<hr/>
 				<input type="file" class="form-control"	name="pic" />
 				<br/>

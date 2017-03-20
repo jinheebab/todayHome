@@ -70,6 +70,8 @@ public class MainController {
 		System.out.println(avgstar);
 		avgstar = avgstar*10;
 		int score = (int)avgstar;
+		List<HashMap> review = md.getReview(map);
+		
 		
 		String hoster = md.hoster(num);
 		System.out.println("hoster name="+ hoster);
@@ -98,6 +100,7 @@ public class MainController {
 		mav.addObject("score", score);
 		mav.addObject("uphoto", uphoto);
 		mav.addObject("hphoto", hphoto);
+		mav.addObject("review", review);
 		mav.addObject("main", "main/detail");
 		
 		System.out.println("여기까지 옴");
