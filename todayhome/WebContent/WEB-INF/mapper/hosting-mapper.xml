@@ -16,6 +16,10 @@
 		insert into hosting values(HOSTING_SEQ.NEXTVAL, #{title}, #{htype}, #{rtype}, #{roomcnt}, #{membercnt}, #{bedcnt}, #{bathcnt}, #{country}, #{city}, #{location}, #{amenity}, #{rule}, #{condition}, to_date(#{startdate}), to_date(#{enddate}),#{price}, #{category}, #{hname}, #{intro}, #{picurl},NULL)
 	</insert>
 	
+	<select id="getAllList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from hosting where num=#{num}
+	</select>
+		
 	<select id="getDetailList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select * from hosting where num = #{num}
 	</select>
