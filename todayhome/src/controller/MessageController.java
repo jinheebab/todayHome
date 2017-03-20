@@ -36,16 +36,22 @@ public class MessageController {
 		return mav;
 	}	
 		
-	@RequestMapping("/message02")
+/*	@RequestMapping("/message")
 	@ResponseBody					
-	public String message02(@RequestParam ("Send")String Send){
-		System.out.println(Send);
+	public ModelAndView sendlist(HttpSession session){
+		System.out.println("message send page 접속");
+		ModelAndView mav = new ModelAndView();
 		
+		String receiver = (String)session.getAttribute("auth");
 		
+		List message = mdao.getRecvMsgs(receiver);
+
+		mav.setViewName("m_index2");
+		mav.addObject("main", "message/sendlist");
 		
-		return null;
+		return mav;
 	}	
-		
+*/		
 		
 		
 }		
