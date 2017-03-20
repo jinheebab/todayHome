@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.BookDao;
 import model.FileUploadService;
 import model.HostingDao;
 
@@ -27,6 +28,7 @@ public class HostingController {
 	
 	@Autowired
 	HostingDao hdao;
+	
 	@Autowired
 	FileUploadService fdao;
 	
