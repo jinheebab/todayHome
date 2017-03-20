@@ -53,5 +53,33 @@ public class MainDao {
 		return score;
 	}
 	
+	public List getPhoto(HashMap map){
+		SqlSession session = factory.openSession();
+		List<HashMap> list = new ArrayList();
+		
+		try{
+			list = session.selectList("sharing.read", map);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return list;
+	}
+	
+	public String hoster(String num){
+		SqlSession session = factory.openSession();
+			String hoster="";
+		try{
+			hoster = session.selectOne("hosting.getHoster", num);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return hoster;
+	}
+	
+	
 	
 }

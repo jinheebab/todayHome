@@ -20,4 +20,7 @@
 		select * from hosting where num = #{num}
 	</select>
 	
+	<select id="getHoster" parameterType="java.lang.String" resultType="java.lang.String">
+		select Hname from hosting where num =#{num}
+	</select>
 </mapper>
