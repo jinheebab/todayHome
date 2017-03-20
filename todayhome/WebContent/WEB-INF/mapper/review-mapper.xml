@@ -6,5 +6,8 @@
 	<select id="staravg" resultType="java.lang.Double" parameterType="java.util.HashMap"> 
 		select avg(grade) from review where hostingnum=#{num} 
 	</select>
+	<select id="getReview" resultType="java.util.HashMap" parameterType="java.util.HashMap"> 
+		select * from review where hostingnum=#{num} 
+	</select>
 
 </mapper>

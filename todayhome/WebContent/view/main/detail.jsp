@@ -45,8 +45,10 @@
 	font-size: 1.7em;
 }
 .profile{
-	text-align:center;
 	overflow: hidden;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
 
 }
 </style>
@@ -67,12 +69,12 @@
 		</div>
 		</div>
 		
-		<div class="col-md-1 font1" >
-		<br/>
-		${i.HNAME} 
+	
+		<div class="col-md-4 font1" align="center">
+		<div class="profile">
+		<img src="${uphoto[0].FILELINK}" width="70px"  >
 		</div>
-		<div class="col-md-3 profile" >
-		<img src="${uphoto[0].FILELINK}" width="70px"  style="border-radius: 50%;">
+			<a href="/view/message/send?id=${i.HNAME}">${i.HNAME}</a> 
 		</div>
 		</div>
 
@@ -129,7 +131,7 @@
 		<!-- 시설 -->
 		<div class="row font1">
 		<div class="col-md-4">
-		시설
+		편의
 		</div>
 		<div class="col-md-4">
 		${i.AMENITY}<br/>
@@ -177,9 +179,25 @@
 		${hphoto}
 		</div>
 		
-		
-		
 	</c:forEach>
+
+			<!-- 리뷰 -->
+	<hr/>
+	<div class="font2">후기</div>
+	<hr/>
+	<div class="row font1">
+
+		<c:forEach var="r" items="${review}">
+		no.${r.NUM} ${r.WRITER}
+		<br/>
+		${r.CONTENT}
+		<hr/>
+		</c:forEach>
+	</div>
+	
+
+	
+	
 	
 </div>
 
