@@ -17,7 +17,11 @@
 	</insert>
 	
 	<select id="getAllList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		select * from hosting where num=${num}
+		select * from hosting where num=#{num}
+	</select>
+		
+	<select id="getDetailList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from hosting where num = #{num}
 	</select>
 	
 </mapper>
