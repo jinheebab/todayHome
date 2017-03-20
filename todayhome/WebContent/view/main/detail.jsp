@@ -136,12 +136,10 @@
 		<div class="col-md-4">
 		편의
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-8">
 		${i.AMENITY}<br/>
 		</div>
-		<div class="col-md-4">
-		
-		</div>
+
 		</div>
 		<hr />
 		<!-- 가격 -->
