@@ -120,10 +120,7 @@
 
 <h2>게스트가 묵을 방 개수</h2>
 
-<input type="text" name="roomcnt" value="1" id="roomcnt" class="num"/>개
-
-                  <button alt="" width="30" height="30" class="bt_up">+</button>
-                  <button alt="" width="30" height="30" class="bt_down">-</button>
+<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="roomcnt">개</h3>
                   
 <hr>
 
@@ -158,10 +155,7 @@ $(function(){
 
 <h2>수용인원</h2>
 
-			<input type="text" name="membercnt" value="1" id="membercnt" class="num"/>개
-
-                  <button alt="" width="30" height="30" class="bt_up2">+</button>
-                  <button alt="" width="30" height="30" class="bt_down2">-</button>
+			<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="membercnt">명</h3>
                   
  <hr>
  
@@ -195,10 +189,7 @@ $(function(){
 
 <h2>침대개수</h2>
 
-<input type="text" name="bedcnt" value="1" id="bedcnt" class="num"/>개
-
-                  <button alt="" width="30" height="30" class="bt_up3">+</button>
-                  <button alt="" width="30" height="30" class="bt_down3">-</button>
+<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="bedcnt">개</h3>
                   
  <script>
 
@@ -230,10 +221,7 @@ $(function(){
 
 <h2>욕실개수</h2>
 
-<input type="text" name="bathcnt" value="1" id="bathcnt" class="num"/>개
-
-                  <button alt="" width="30" height="30" class="bt_up4">+</button>
-                  <button alt="" width="30" height="30" class="bt_down4">-</button>
+<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="bathcnt">개</h3>
                   
  <script>
 
@@ -413,7 +401,7 @@ $(function(){
 	 	        changeYear: true,
 	 	        showButtonPanel: true,
 	 	        yearRange: 'c-99:c+99',
-	 	    };
+	 	        };
 	 	    $.datepicker.setDefaults($.datepicker.regional['ko']);
 	 	 
 	 	    $('#sdate').datepicker();
@@ -542,6 +530,8 @@ $(function(){
             <input type="file" id="FILE_TAG" name="FILE_TAG">
             <a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile();">등록</a>
         </form>
+        
+        <span id="picurl"></span>
 
 
 
@@ -561,7 +551,9 @@ $(function(){
                     data: formData,
                     type: 'POST',
                     success: function(result){
-                        alert(result);
+                        alert('사진등록성공');
+                        $('#picurl').html(result);
+                        
                     }
             });
     }
@@ -628,6 +620,8 @@ $(function(){
      var title = $('#title').attr('id').val();
      
      var condition = $('#condition').attr('id').val();
+     
+     var picurl = $('#picurl').attr('id').val();
      
      var request ={
     	htype : htype,

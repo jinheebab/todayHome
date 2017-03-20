@@ -71,6 +71,20 @@ public class HostingDao {
 		}
 		
 		
+		public Map readHostingAll(int num) {	
+			
+			Map map = new HashMap<>();
+			SqlSession sql = factory.openSession();
+			try {
+				map = sql.selectOne("hosting.getAllList",num);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return map;
+	}
+		
 		
 		
 	}
