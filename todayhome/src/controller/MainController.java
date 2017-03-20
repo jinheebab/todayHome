@@ -71,7 +71,19 @@ public class MainController {
 		avgstar = avgstar*10;
 		int score = (int)avgstar;
 		
-		System.out.println(score+" 는 스코어");
+		String hoster = md.hoster(num);
+		System.out.println("hoster name="+ hoster);
+		HashMap map2 = new HashMap();
+		map2.put("id", hoster);
+		map2.put("type", "info");
+		List<HashMap> uphoto = md.getPhoto(map2);
+		
+		
+		HashMap map3 = new HashMap();
+		map3.put("id", hoster);
+		map3.put("type", "hosting");
+		List<HashMap> hphoto = md.getPhoto(map3);
+		
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -84,6 +96,8 @@ public class MainController {
 		}
 		mav.addObject("list", list);
 		mav.addObject("score", score);
+		mav.addObject("uphoto", uphoto);
+		mav.addObject("hphoto", hphoto);
 		mav.addObject("main", "main/detail");
 		
 		System.out.println("여기까지 옴");
