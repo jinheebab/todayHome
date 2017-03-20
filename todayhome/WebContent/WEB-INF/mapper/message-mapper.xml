@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="message">
-	<select id="findAll" parameterType="java.lang.String" resultType="java.util.HashMap">
-		select * from member
-	</select>
-	<select id="findTarget" parameterType="java.lang.String" resultType="java.util.HashMap">
-		select * from member where id=ID
-	</select>
-	<!-- insert mapper : parameter type resultType은 설정 불가능! ==> 결과물은 int기 때문에.. -->
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="message"> 
+	<select id="findAll" resultType="java.util.HashMap"> 
+		select * from member 
+	</select> 
+	<select id="findTarget" resultType="java.util.HashMap"> 
+		select * from member where id=ID 
+	</select> 
+	<!-- insert mapper : parameter type resultType은 설정 불가능! ==> 결과물은 int기 때문에.. --> 
 	<insert id="addMsg" parameterType="java.util.HashMap" >	
-		insert into message values(message_SEQ.nextval, #{sender}, #{receiver}, #{content} )
-	</insert>
-	<select id="getRecvMsgs" parameterType="java.lang.String" resultType="java.util.HashMap">
-		select * from message where receiver=#{receiver} order by num desc
-	</select>
+		insert into message values(message_SEQ.nextval, #{sender}, #{receiver}, #{content} ) 
+	</insert> 
+	<select id="getRecvMsgs" parameterType="java.lang.String" resultType="java.util.HashMap"> 
+		select * from message where receiver=#{receiver} order by num desc 
+	</select> 
 	<update parameterType="java.lang.Integer" id="updateCount"> 
-		update message set count = count+1 where num =#{num }
-	</update>
-</mapper>
+		update message set count = count+1 where num =#{num } 
+	</update> 
+</mapper> 

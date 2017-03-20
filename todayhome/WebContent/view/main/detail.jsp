@@ -33,6 +33,9 @@
 	width: ${score}%;
 
 }
+.point2_r{
+	overflow: hidden;
+}
 .icon {
 	width: 60px;
 	height: 60px;
@@ -45,8 +48,10 @@
 	font-size: 1.7em;
 }
 .profile{
-	text-align:center;
 	overflow: hidden;
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
 
 }
 </style>
@@ -67,12 +72,12 @@
 		</div>
 		</div>
 		
-		<div class="col-md-1 font1" >
-		<br/>
-		${i.HNAME} 
+	
+		<div class="col-md-4 font1" align="center">
+		<div class="profile">
+		<img src="${uphoto[0].FILELINK}" width="70px"  >
 		</div>
-		<div class="col-md-3 profile" >
-		<img src="${uphoto[0].FILELINK}" width="70px"  style="border-radius: 50%;">
+			<a href="/view/message/send?id=${i.HNAME}">${i.HNAME}</a> 
 		</div>
 		</div>
 
@@ -129,14 +134,12 @@
 		<!-- 시설 -->
 		<div class="row font1">
 		<div class="col-md-4">
-		시설
+		편의
 		</div>
-		<div class="col-md-4">
+		<div class="col-md-8">
 		${i.AMENITY}<br/>
 		</div>
-		<div class="col-md-4">
-		
-		</div>
+
 		</div>
 		<hr />
 		<!-- 가격 -->
@@ -177,9 +180,30 @@
 		${hphoto}
 		</div>
 		
-		
-		
 	</c:forEach>
+
+			<!-- 리뷰 -->
+	<hr/>
+	<div class="font2">후기</div>
+	<hr/>
+	<div class="row font1">
+
+		<c:forEach var="r" items="${review}">
+		<b><a href="/view/message/send?id=${r.WRITER}"> ${r.WRITER}</a></b>
+			<div class="point1">
+				<div class="point2_r" style="width: ${r.GRADE*10}%;">
+					<img src="/icon/star_on.png" width="120px" height="30px">
+				</div>
+			</div>
+		
+		${r.CONTENT}
+		<hr/>
+		</c:forEach>
+	</div>
+	
+
+	
+	
 	
 </div>
 

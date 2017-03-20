@@ -80,6 +80,19 @@ public class MainDao {
 		return hoster;
 	}
 	
+	public List getReview(HashMap map){
+		SqlSession session= factory.openSession();
+		List<HashMap> list = new ArrayList();
+		try{
+			list= session.selectList("review.getReview", map);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return list;
+	}
+	
 	
 	
 }

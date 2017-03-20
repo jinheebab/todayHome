@@ -51,7 +51,7 @@ public class InfoController {
 		List list = sDao.read(map);
 		HashMap sharing = (HashMap) list.get(0);
 		
-		ModelAndView mav = new ModelAndView("m_index");
+		ModelAndView mav = new ModelAndView("m_index2");
 			String path = ac.getRealPath("/nation.txt");
 			File f = new File(path);
 			FileInputStream fis = new FileInputStream(f);
