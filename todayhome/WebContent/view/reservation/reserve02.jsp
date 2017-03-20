@@ -20,7 +20,7 @@
 
 
 <h2 align="center">
-	<span id="total" class="label label-danger" name="total"> 결제금액 </span>
+	<span id="total" class="label label-danger" name="total"> 결제금액</span>
 </h2>
 <h2 align="left">결제국가</h2>
 <select class="form-control" name="country" id="country">
@@ -30,16 +30,28 @@
 </select>
 
 <h2 align="left">결제방법</h2>
-<select class="form-control" name="payway" id="payway"
+<select class="form-control" name="payinfo" id="payinfo"
 	onclick="javascript:changeview()">
 	<option value="card">신용카드</option>
 	<option value="phone">휴대폰결제</option>
-	<option value="cacao">무통장입금</option>
+	<option value="noaccount">무통장입금</option>
 </select>
 
 <div id="card" style="display: none;">
 	<form action="/reservation/reserve03" id="form" class="cmxform"
 		method="post">
+		
+		<p>
+				<b>카드사</b><br/>
+				<select class="form-control" name="company"  id="company">
+					<option value="신한카드">신한카드</option>
+					<option value="비씨카드">비씨카드</option>
+					<option value="현대카드">현대카드</option>
+					<option value="외환카드">외환카드</option>
+					<option value="롯데카드">롯데카드</option>
+				</select> 
+			</p>
+		
 		<p>
 			<label for="card">카드번호 </label> <input id="card" name="card"
 				type="text" required />
@@ -95,13 +107,13 @@
 	<h2>통신사 선택</h2>
 	<div class="btn-group" data-toggle="buttons">
 	  <label class="btn btn-primary active">
-	    <input type="radio" name="kt" id="kt" autocomplete="off" checked> KT
+	    <input type="radio" name="company" value="KT" autocomplete="off" checked> KT
 	  </label>
 	  <label class="btn btn-primary">
-	    <input type="radio" name="skt" id="skt" autocomplete="off"> SKT
+	    <input type="radio" name="company" value="SKT" autocomplete="off"> SKT
 	  </label>
 	  <label class="btn btn-primary">
-	    <input type="radio" name="lgt" id="lgt" autocomplete="off"> LGT
+	    <input type="radio" name="company" value="LGT" autocomplete="off"> LGT
 	  </label>
 	  
 	  <div><input type="text" name="phonenumber" id="phonenumber" placeholder="휴대폰번호를 입력해주세요" maxlength="11">
@@ -161,9 +173,11 @@
 	</script>
 
 
-<div id="cacao" style="display: none;">
+<div id="noaccount" style="display: none;">
 <form action="/reservation/reserve03" id="form3" class="cmxform">
 <div><input type="text" name="accountnumber" id="accountnumber" placeholder="통장번호를 입력해주세요" maxlength="15"></div>
+
+<input type="text" name="company" id="company" value="무통장" readonly="readonly">
 
 카드비밀번호<input type="password" placeholder="XXXX" maxlength="4"/>
 
@@ -176,18 +190,18 @@
 <script>
 	function changeview() {
 		
-		if($('#payway').val() == 'card'){
+	if($('#payinfo').val() == 'card'){
 		$('#card').show();
 		$('#phone').hide();
-		$('#cacao').hide();
-	}else if($('#payway').val() == 'phone'){
+		$('#noaccount').hide();
+	}else if($('#payinfo').val() == 'phone'){
 		$('#card').hide();
 		$('#phone').show();
-		$('#cacao').hide();
+		$('#noaccount').hide();
 	}else{
 		$('#card').hide();
 		$('#phone').hide();
-		$('#cacao').show();
+		$('#noaccount').show();
 		}
 		
 	}

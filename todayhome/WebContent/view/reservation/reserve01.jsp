@@ -75,7 +75,7 @@
    
   </script>
   
-  <h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="people" name="membercnt">명</h3>
+  <h3 align="left"><input type="number" min="1" max="20" placeholder="1" id="people" name="membercnt">명</h3>
   
   
   <h4 align="center">호스트에게 간단한 자기소개를 하고 여행가는 이유를 알려주세요</h4>
@@ -109,18 +109,16 @@
 	
 	var total = reserve_time2 * 50000 + clean + service + people*10000;
 	
-	var message = $('#message').val();
+	var intro = $('#intro').val();
 
 	$('#reserveinfo').html(reserve_time2 + "박 = " + 50000*reserve_time2 + "원" +'\n'+ "+ 청소비 = " + clean + "원"+ 
-			'\n' + " + 서비스수수료 = " + service +"원" + '\n' + "+ 인원수 " + people + "명 = " + people*10000 + "원" + "\n" + "메세지 : " + message);
+			'\n' + " + 서비스수수료 = " + service +"원" + '\n' + "+ 인원수 " + people + "명 = " + people*10000 + "원" + "\n" + "메세지 : " + intro);
 	
 	$('#total').html(total + "원");
 	
 	
 	
-	
-	
-	
+		
 	
 	
 	  

@@ -4,7 +4,11 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="booking">
 	<insert id="addOne" parameterType="java.util.HashMap"> 
-		insert into book values(book_seq.nextval, )
+		insert into book values(book_seq.nextval, #{name}, #{membercnt}, #{intro}, #{startdate}, #{enddate}, null, null)
 	</insert>
+	
+	<update id="update" parameterType="java.util.HashMap"> 
+		update book where payinfo = #{payinfo}, company = #{company}
+	</update>
 
 </mapper>

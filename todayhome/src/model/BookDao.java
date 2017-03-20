@@ -22,7 +22,7 @@ public class BookDao {
 		SqlSession session = factory.openSession();
 		int r = 0;
 		try {
-			r = session.insert("booking.add", map);
+			r = session.insert("booking.addOne", map);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -30,6 +30,22 @@ public class BookDao {
 			session.close();
 		}
 		return r;
+	}
+	
+	public int updateBook(Map map){
+		
+		SqlSession session = factory.openSession();
+		int r = 0;
+		try {
+			r = session.insert("booking.update", map);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return r;
+		
 	}
 	
 }

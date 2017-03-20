@@ -89,15 +89,21 @@ public class ReservationController {
 			e.printStackTrace();
 		}
 		
-		String total = (String)map.get("total");
+		String total = (String)request.getAttribute("total");
+		
+		System.out.println(total);
+		
+		request.setAttribute("total", total);
 		
 		String name = (String)session.getAttribute("auth");
 		
 		map.put("name", name);
 		
+		System.out.println(map.toString());
+		
 		int r = bdao.addBook(map);
 		
-		System.out.println("1차 북 등록 여부(1이면 true)" + r);
+		System.out.println("1차 북 등록 여부(1이면 true) : " + r);
 				
 		mav.addObject("countrylist", countrylist);
 				
@@ -111,9 +117,13 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/reserve03")
-	public ModelAndView reserve03(HttpServletRequest request){
+	public ModelAndView reserve03(@RequestParam Map map){
 		
 		ModelAndView mav = new ModelAndView();
+		
+		int r = bdao.updateBook(map);
+		
+		System.out.println("2차 북 등록 여부(1이면 true) : " + r);
 		
 		mav.addObject("main", "reservation/reserve03");
 		
