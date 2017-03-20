@@ -22,11 +22,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.JoinDao;
+import model.SharingDao;
 
 @Controller
 public class JoinController {
 	@Autowired
 	JoinDao jDao;
+	@Autowired
+	SharingDao sDao;
 	@Autowired
 	ServletContext ac;
 	
@@ -73,11 +76,19 @@ public class JoinController {
 			map.put("COUNTRY", country);
 			
 		ModelAndView mav = null;
+		HashMap m = new HashMap();
+			m.put("type", "info");
+			m.put("filename", "NULL");
+			m.put("filesize", "NULL");
+			m.put("fileaddress", "NULL");
+			m.put("filelink", "/img.png");
+			m.put("id", id);
+		sDao.createOne(m);
 		int rst = jDao.addMember(map);
 		
 		if(rst==1) {
 			mav = new ModelAndView("/join/check");
-			mav.addObject("msg", "회원가입이 완료 되었습니다. 2초 뒤 화면이 전환됩니다.");
+			mav.addObject("msg", "<h2>회원가입이 완료 되었습니다.</h2><br/><b>로그인을 시도해주세요 :)</b>");
 			System.out.println("회원가입 성공");	
 			return mav;
 			

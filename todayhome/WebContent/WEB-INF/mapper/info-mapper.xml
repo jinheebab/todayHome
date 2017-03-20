@@ -9,7 +9,7 @@
 	<update id="updateInfo" parameterType="java.util.HashMap"> 
 		update member set id=#{id}, name=#{name}, pass=#{pass}, gender=#{gender}, birth=#{birth}, mail=#{mail}, country=#{country} where id=#{id} 
 	</update>
-	<update id="updatePic" parameterType="java.util.HashMap">
-		update member set picurl=#{PICURL} where id=#{id}
-	</update>
+	<insert id="createOne" parameterType="java.util.HashMap">
+		insert into sharing values(sharing_seq.nextval, )
+	</insert>
 </mapper>

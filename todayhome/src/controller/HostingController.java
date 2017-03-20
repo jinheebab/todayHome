@@ -79,15 +79,15 @@ public class HostingController {
 	
 	@RequestMapping("/upload")
 	@ResponseBody
-	public String upload(@RequestParam(name="file") MultipartFile file) throws Exception {
-		
+	public String upload(@RequestParam(name="fileObj") MultipartFile file) throws Exception {
+		System.out.println(file.toString());
 		Map map = fdao.execute(file);
 		
 		String picurl = (String)map.get("fileaddress");
 		
 		return picurl.toString();
 		
-		}
+	}
 
 
 	
