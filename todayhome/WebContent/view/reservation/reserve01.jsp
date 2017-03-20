@@ -38,18 +38,18 @@
 
   <script>
   
-  //var startdate = "${hostinglist.STARTDATE}";
+  var startdate = "${hostinglist.STARTDATE}";
   
-  //var enddate = "${hostinglist.ENDDATE}";
+  var enddate = "${hostinglist.ENDDATE}";
   
-  //var reservedate = "$hostinglist.RESERVEDATE";
+  var reservedate = "$hostinglist.RESERVEDATE";
   
 
      
   
   $.datepicker.regional['ko'] = {
-		  //minDate : startdate,
-		  //MaxDate : enddate,
+		  minDate : startdate,
+		  MaxDate : enddate,
 		  changeMonth: true,
 	      changeYear: true,		  
 	      dateFormat: 'yy-mm-dd',
@@ -75,12 +75,12 @@
    
   </script>
   
-  <h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="people" name="people">명</h3>
+  <h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="people" name="membercnt">명</h3>
   
   
   <h4 align="center">호스트에게 간단한 자기소개를 하고 여행가는 이유를 알려주세요</h4>
   
-  <h4 align="center"><textarea rows="10" cols="50" id="message" name="message"></textarea></h4>
+  <h4 align="center"><textarea rows="10" cols="50" id="intro" name=intro></textarea></h4>
   
   <h4 align="center">이용수칙</h4>
   

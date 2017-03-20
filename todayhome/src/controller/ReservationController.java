@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import model.BookDao;
 import model.HostingDao;
 
 @Controller
@@ -30,28 +32,33 @@ public class ReservationController {
 	@Autowired
 	HostingDao hdao;
 	@Autowired
+	BookDao bdao;
+	@Autowired
 	ServletContext ac;
 	
 	@RequestMapping("/reserve01")
 	public ModelAndView reserve01(HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		
-//		if(session.getAttribute("auth") == null){
-//			mav.addObject("main","login/pagelogin");
-//			
-//			mav.setViewName("g_index");
-//		}
+		if(session.getAttribute("auth") == null){
+			
+			mav.addObject("main","login/pagelogin");
+			
+			mav.setViewName("g_index");
+		}
 		
 		
-//		String id = (String)session.getAttribute("id");
-//		
-//		mav.addObject("id", id);
+		String id = (String)session.getAttribute("auth");
 		
-//		int num = (int)session.getAttribute("num");
-//		
-//		List hostinglist = hdao.readHostingAll(num);
+		mav.addObject("id", id);
 		
-//		mav.addObject("hostinglist", hostinglist);
+	//	int num = (int)session.getAttribute("num");
+		
+		int num = 1;
+		
+		Map hostinglist = hdao.readHostingAll(num);
+		
+		mav.addObject("hostinglist", hostinglist);
 		
 		mav.addObject("main", "reservation/reserve01");
 		
@@ -62,7 +69,7 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/reserve02")
-	public ModelAndView reserve02(@RequestParam Map map, HttpServletRequest request) throws FileNotFoundException{
+	public ModelAndView reserve02(@RequestParam Map map, HttpServletRequest request, HttpSession session) throws FileNotFoundException{
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -82,15 +89,33 @@ public class ReservationController {
 			e.printStackTrace();
 		}
 		
-		String total = (String)request.getAttribute("total");
+		String total = (String)map.get("total");
 		
-		String message = (String)request.getAttribute("message");
+		String name = (String)session.getAttribute("auth");
 		
+		map.put("name", name);
+		
+		int r = bdao.addBook(map);
+		
+		System.out.println("1차 북 등록 여부(1이면 true)" + r);
+				
 		mav.addObject("countrylist", countrylist);
 				
 		mav.addObject("total", total);
-		
+					
 		mav.addObject("main", "reservation/reserve02");
+		
+		mav.setViewName("m_index2");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/reserve03")
+	public ModelAndView reserve03(HttpServletRequest request){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("main", "reservation/reserve03");
 		
 		mav.setViewName("m_index2");
 		

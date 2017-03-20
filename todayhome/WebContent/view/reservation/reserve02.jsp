@@ -34,7 +34,7 @@
 	onclick="javascript:changeview()">
 	<option value="card">신용카드</option>
 	<option value="phone">휴대폰결제</option>
-	<option value="cacao">카카오페이</option>
+	<option value="cacao">무통장입금</option>
 </select>
 
 <div id="card" style="display: none;">
@@ -49,6 +49,10 @@
 				type="text" required placeholder="MM" /> <input id="year"
 				name="year" type="text" required placeholder="YYYY" />
 		</p>
+		<p>
+			카드비밀번호<input type="password" placeholder="XXXX" maxlength="4"/>
+		</p>
+		
 		<p>
 			<button type="submit" class="btn btn-primary" id="pay" name="pay">결제</button>
 		</p>
@@ -84,10 +88,91 @@
 	</script>
 </div>
 
-<div id="phone" style="display: none;">휴대폰</div>
 
-<div id="cacao" style="display: none;">카카오</div>
+<form action="/reservation/reserve03" id="form2" class="cmxform">
+<div id="phone" style="display: none;">
 
+	<h2>통신사 선택</h2>
+	<div class="btn-group" data-toggle="buttons">
+	  <label class="btn btn-primary active">
+	    <input type="radio" name="kt" id="kt" autocomplete="off" checked> KT
+	  </label>
+	  <label class="btn btn-primary">
+	    <input type="radio" name="skt" id="skt" autocomplete="off"> SKT
+	  </label>
+	  <label class="btn btn-primary">
+	    <input type="radio" name="lgt" id="lgt" autocomplete="off"> LGT
+	  </label>
+	  
+	  <div><input type="text" name="phonenumber" id="phonenumber" placeholder="휴대폰번호를 입력해주세요" maxlength="11">
+	  <span id="phonecheck"></span><button type="button" class="btn btn-info" id="pleasenumber">인증번호요청</button></div><br/>
+	  
+	  <div style="border: 1px solid blue">
+
+	  <h3 align="center"><span id="authnumber"></span></h3>
+	  
+	  <h2 align="center"><input type="text" style="font-size: medium;" placeholder="인증번호" id="inputnumber"></h2>
+	  
+	  <h3 align="right"><button type="button" class="btn btn-info" id="check">확인</button></h3>
+	  
+		</div>
+		
+	</div>
+		
+		<p>
+			<button type="submit" class="btn btn-primary" id="pay2" name="pay2">결제</button>
+		</p>
+	
+	</div>
+	
+	</form>
+	
+	
+	<script>
+	
+	
+	
+		$('#pleasenumber').click(function(){
+			
+			var number = Math.floor(Math.random() * 8999) + 999;
+
+			if($('#phonenumber').val().length < 11){
+		
+			$('#phonecheck').html("휴대폰 번호 11자리를 입력해주세요");
+			
+		}else{
+								
+			$('#authnumber').html(number);
+			
+			}
+			
+			
+		$('#check').click(function(){
+			
+			if($('#inputnumber').val() == number){
+				alert("인증성공 !");
+			}else{
+				alert("인증실패 !");
+			}
+			
+			});
+		});
+		
+	</script>
+
+
+<div id="cacao" style="display: none;">
+<form action="/reservation/reserve03" id="form3" class="cmxform">
+<div><input type="text" name="accountnumber" id="accountnumber" placeholder="통장번호를 입력해주세요" maxlength="15"></div>
+
+카드비밀번호<input type="password" placeholder="XXXX" maxlength="4"/>
+
+<p>
+			<button type="submit" class="btn btn-primary" id="pay3" name="pay3">결제</button>
+</p>
+
+</form>
+</div>
 <script>
 	function changeview() {
 		
