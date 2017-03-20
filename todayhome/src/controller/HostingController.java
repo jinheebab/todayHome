@@ -61,19 +61,17 @@ public class HostingController {
 		
 		System.out.println(city);
 		
-		
 		Map param = new HashMap<>();
 		
 		param.put("city", city);
-		
 		
 		Map map = hdao.getPrice(param);
 		
 		System.out.println(map.toString());
 		
-		BigDecimal price = (BigDecimal)map.get("PRICE");
-		
-		System.out.println("price는"+price);		
+		BigDecimal price = (BigDecimal)map.get("PRICE");	
+															
+		System.out.println("price는"+price);				
 		
 		return price.toString();
 	}
