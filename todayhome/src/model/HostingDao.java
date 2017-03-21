@@ -34,8 +34,7 @@ public class HostingDao {
 				sql.close();
 			}
 			return list;
-	}
-		
+		}
 		
 		public Map getPrice(Map param){
 			
@@ -85,9 +84,20 @@ public class HostingDao {
 			return map;
 	}
 		
+		public List<HashMap> searchList(HashMap search) {	
+			List<HashMap> list = new ArrayList<>();
+			SqlSession sql = factory.openSession();
+			try {
+				list = sql.selectList("hosting.searchList", search);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return list;
+		}		
 		
-		
-	}
+}
 		
 
 		

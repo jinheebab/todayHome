@@ -2,19 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" ></script>
+<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js" ></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-<form action="/board/write" method="post">
+<form action="/search/search" method="post">
    <div align="center" >
       <table style="width:80%; height:5%; border: 0px; border-collapse:collapse;" >
             <tr style="text-align:left; height: 30px; " >
                <td>
                   <label for="location">위치</label>
                   <span class="glyphicon glyphicon-map-marker"></span>    
-                  <input type="text" class="form-control" name="search" size="10px" placeholder="목적지, 도시명, 주소" style="border:0; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"></input>
+                  <input type="text" class="form-control" name="target" size="10px" placeholder="목적지, 도시명, 주소" style="border:0; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"></input>
                </td>
                <td>
                   <label for="checkin">체크인</label>

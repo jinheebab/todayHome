@@ -3,7 +3,6 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="/js/jquery.bxslider.min.js"></script>
-<link rel="stylesheet"   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    
    
 <div class="row" style="margin-bottom: 30px;">
