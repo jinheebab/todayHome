@@ -47,6 +47,9 @@
 .font2{
 	font-size: 1.7em;
 }
+.font3{
+	font-size: 0.7em;
+}
 .profile{
 	overflow: hidden;
 	width: 70px;
@@ -75,7 +78,7 @@
 	
 		<div class="col-md-4 font1" align="center">
 		<div class="profile">
-		<img src="${uphoto[0].FILELINK}" width="70px"  >
+		<img src="${uphoto.FILELINK}" width="70px"  >
 		</div>
 			<a href="/view/message/send?id=${i.HNAME}">${i.HNAME}</a> 
 		</div>
@@ -101,7 +104,7 @@
 		<div class="col-md-3">
 		${i.HTYPE}[${i.RTYPE}(${i.ROOMCNT}개)]
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3" >
 		침대 ${i.BEDCNT}개
 		</div>
 		<div class="col-md-3">
@@ -116,7 +119,7 @@
 		<hr />
 		<!-- 숙소 -->
 		<div class="row font1">
-		<div class="col-md-4">
+		<div class="col-md-4" style="font-weight: bold;" >
 		숙소
 		</div>
 		<div class="col-md-4">
@@ -133,7 +136,7 @@
 		<hr />
 		<!-- 시설 -->
 		<div class="row font1">
-		<div class="col-md-4">
+		<div class="col-md-4"  style="font-weight: bold;">
 		편의
 		</div>
 		<div class="col-md-8">
@@ -144,7 +147,7 @@
 		<hr />
 		<!-- 가격 -->
 		<div class="row font1">
-		<div class="col-md-4" >
+		<div class="col-md-4"  style="font-weight: bold;">
 		가격
 		</div>
 		<div class="col-md-4">
@@ -158,7 +161,7 @@
 		<hr />
 		<!-- 설명 -->
 		<div class="row font1">
-		<div class="col-md-4">
+		<div class="col-md-4"  style="font-weight: bold;">
 		설명
 		</div>
 		<div class="col-md-8">
@@ -168,7 +171,7 @@
 		<hr />
 		<!-- 규칙 -->
 		<div class="row font1">
-		<div class="col-md-4">
+		<div class="col-md-4"  style="font-weight: bold;">
 		규칙
 		</div>
 		<div class="col-md-8">
@@ -184,22 +187,39 @@
 
 			<!-- 리뷰 -->
 	<hr/>
-	<div class="font2">후기</div>
-	<hr/>
-	<div class="row font1">
+	<div class="row">
+	<div class="col-md-3"><div class="font2">후기 ${reviewcnt[0].CNT}개 <span class="font3" >${score/10}점</span> </div></div>
+	<div class="col-md-9" align="left">
+	
+				<div class="point1">
+				<div class="point2" >
+					<img src="/icon/star_on.png" width="120px" height="30px">
+				</div>
+			</div>
+	</div>
 
-		<c:forEach var="r" items="${review}">
-		<b><a href="/view/message/send?id=${r.WRITER}"> ${r.WRITER}</a></b>
+	</div>
+	<hr/>
+		<c:forEach var ="i" begin="0" end="${review.size()-1}">
+	<div class="row font1">
+	<div class="col-md-1" align="center">
+		<div class="profile">
+		<img src="${reviewerphoto[i].FILELINK} " width="70px">
+		</div>
+	</div>
+	<div class="col-md-11" >
+		<b><a href="/view/message/send?id=${review[i].WRITER}"> ${review[i].WRITER}</a></b>
 			<div class="point1">
-				<div class="point2_r" style="width: ${r.GRADE*10}%;">
+				<div class="point2_r" style="width: ${review[i].GRADE*10}%;">
 					<img src="/icon/star_on.png" width="120px" height="30px">
 				</div>
 			</div>
 		
-		${r.CONTENT}
+		${review[i].CONTENT}
 		<hr/>
-		</c:forEach>
 	</div>
+	</div>
+		</c:forEach>
 	
 
 	

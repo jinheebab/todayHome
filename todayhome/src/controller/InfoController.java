@@ -48,8 +48,7 @@ public class InfoController {
 		HashMap map = new HashMap();
 			map.put("id", id);
 			map.put("type", "info");
-		List list = sDao.read(map);
-		HashMap sharing = (HashMap) list.get(0);
+			HashMap sharing = sDao.read(map);
 		
 		ModelAndView mav = new ModelAndView("m_index2");
 			String path = ac.getRealPath("/nation.txt");
@@ -79,7 +78,6 @@ public class InfoController {
 			String id = (String)session.getAttribute("auth");
 			HashMap map = fs.execute(file);
 				map.put("id", id);
-				map.put("type", "info");
 				
 			int rst = sDao.update(map);
 			if(rst==1) {
