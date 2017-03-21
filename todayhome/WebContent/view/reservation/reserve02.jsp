@@ -21,7 +21,12 @@
 
 <h2 align="center">
 	<span id="total" class="label label-danger" name="total"> 총결제금액 : ${totalmoney} 원</span>
+	
 </h2>
+	<form action="/reservation/reserve03" id="form" class="cmxform">
+	호스팅번호<input type="text" readonly="readonly" name="hostingnum" value="${hostingnum}">
+	
+	
 <h2 align="left">결제국가</h2>
 <select class="form-control" name="country" id="country">
 	<c:forEach var="item" items="${countrylist}">
@@ -29,8 +34,6 @@
 	</c:forEach>
 </select>
 
-	<form action="/reservation/reserve03" id="form" class="cmxform">
-	
 <h2 align="left">결제방법</h2>
 <select class="form-control" name="payinfo" id="payinfo"
 	onclick="javascript:changeview()">

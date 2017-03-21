@@ -32,6 +32,8 @@
 
 <form action="/reservation/reserve02">
 
+호스팅번호 :<input type="text" readonly="readonly" id="hostingnum" name="hostingnum" value="${hostingnum}">
+
  <input type="text" readonly="readonly" id="totalmoney" name="totalmoney" placeholder="총결제금액">
  
 <p>체크인 <input type="text" id="sdate" name="startdate"> ~ 체크아웃 <input type="text" id="edate" name="enddate"></p>
@@ -113,7 +115,7 @@
   
   <h4 align="center">이용수칙</h4>
   
-  <h4 align="center"><textarea rows="10" cols="50" id="rule" readonly="readonly">안녕하세요</textarea></h4>
+  <h4 align="center"><textarea rows="10" cols="50" id="rule" readonly="readonly">${hostinglist.RULE}</textarea></h4>
   
   
   

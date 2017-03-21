@@ -62,6 +62,8 @@ public class ReservationController {
 		
 		mav.addObject("hostinglist", hostinglist);
 		
+		mav.addObject("hostingnum", num);
+		
 		mav.addObject("main", "reservation/reserve01");
 		
 		mav.setViewName("m_index2");
@@ -103,9 +105,14 @@ public class ReservationController {
 		
 		System.out.println(map.toString());
 		
+		String hostingnum = (String)map.get("hostingnum");
+		
+		
 		int r = bdao.addBook(map);
 		
 		System.out.println("1차 북 등록 여부(1이면 true) : " + r);
+
+		mav.addObject("hostingnum", hostingnum);
 				
 		mav.addObject("countrylist", countrylist);
 				
@@ -119,13 +126,32 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/reserve03")
-	public ModelAndView reserve03(@RequestParam Map map){
+	public ModelAndView reserve03(@RequestParam Map map, HttpSession session){
 		
 		ModelAndView mav = new ModelAndView();
 		
-		int r = bdao.updateBook(map);
+		int hostingnum = Integer.parseInt((String)map.get("hostingnum"));
+		
+		String name = (String)session.getAttribute("auth");
+		
+		System.out.println("아이디는 " + name);
+		
+		Map param = new HashMap<>();
+		
+		
+		param.put("hostingnum", hostingnum);
+		
+		param.put("name", name);
+		
+		int r = bdao.updateBook(map);	// 나머지 두개 마저 업데이트
+		
+		Map bookinfo = bdao.getBook(param);
+		
+		System.out.println(bookinfo.toString());
 		
 		System.out.println("2차 북 등록 여부(1이면 true) : " + r);
+		
+		mav.addObject("bookinfo", bookinfo);
 		
 		mav.addObject("main", "reservation/reserve03");
 		
