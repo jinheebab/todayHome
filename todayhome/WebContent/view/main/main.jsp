@@ -3,45 +3,7 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script src="/js/jquery.bxslider.min.js"></script>
-<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<br/><br/>
-
-<form action="/board/write" method="post">
-	<div align="center" >
-		<table style="width:80%; height:5%; border: 0px; border-collapse:collapse;" >
-				<tr style="text-align:left; height: 30px; " >
-					<td>
-						<label for="location">위치</label>
-						<span class="glyphicon glyphicon-map-marker"></span>    
-						<input type="text" class="form-control" name="search" size="10px" placeholder="목적지, 도시명, 주소" style="border:0; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"></input>
-					</td>
-					<td>
-						<label for="checkin">체크인</label>
-						<span class="glyphicon glyphicon-calendar"></span>
-						<input type="date" class="form-control" name="sdate" size="10px" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
-					</td>
-					<td>
-						<label for="checkout">체크아웃</label>
-						<span class="glyphicon glyphicon-calendar"></span>
-						<input type="date" class="form-control" name="edate" size="10px" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
-					</td>
-					<td>
-						<label for="cnt">인원</label>
-						<span class="glyphicon glyphicon-user"></span><br/>    
-						<select class="form-control" name="cnt"  id="cnt" >
-							<c:forEach var="item" begin="1" end="20" varStatus="vs">
-								<option value="${item}" >${item }</option>
-							</c:forEach>
-						</select>
-					</td>
-					<td>
-						<button type="submit" class="btn" style="background-color: orange; border-radius: 0" ><font color="white"><b>검색</b></font></button>
-					</td>
-				</tr> 
-		</table>
-	</div>
-</form>
+<link rel="stylesheet"   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    
    
 <div class="row" style="margin-bottom: 30px;">
@@ -102,7 +64,7 @@
   <a data-slide-index="2" ></a>
 </div>
 
-<div class="row" align="center" style="padding-bottom: 2%;" >	
+<div class="row" align="center" style="padding-bottom: 2%;" >   
   <br/><br/>
   <b>오늘만큼은 여기가 우리 집이에요. 전 세계에 있는 우리 집을 경험해보세요.</b>
  </div>
@@ -111,34 +73,34 @@
 <script>
 
   $('.bxslider').bxSlider({
-	  nextSelector: '#slider-next',
-	  prevSelector: '#slider-prev',
-	  nextText: '>',
-	  prevText: '<',
-	  
-	
-	  minSlides: 2,
-	  maxSlides: 2,
-	  slideWidth: 480,
-	  slideMargin: 10,
-	  mode: 'horizontal' ,
-	  captions: true,
-	  pagerCustom: '#bx-pager'
-	});
+     nextSelector: '#slider-next',
+     prevSelector: '#slider-prev',
+     nextText: '>',
+     prevText: '<',
+     
+   
+     minSlides: 2,
+     maxSlides: 2,
+     slideWidth: 480,
+     slideMargin: 10,
+     mode: 'horizontal' ,
+     captions: true,
+     pagerCustom: '#bx-pager'
+   });
   
   $('.bxslider1').bxSlider({
-	  
-	  nextSelector: '#slider-next1',
-	  prevSelector: '#slider-prev1',
-	  nextText: '>',
-	  prevText: '<',
-	
-	  minSlides: 3,
-	  maxSlides: 3,
-	  slideWidth: 350,
-	  slideMargin: 10,
-	  mode: 'horizontal' ,
-	  captions: true,
-	  pagerCustom: '#bx-pager'
-	});
+     
+     nextSelector: '#slider-next1',
+     prevSelector: '#slider-prev1',
+     nextText: '>',
+     prevText: '<',
+   
+     minSlides: 3,
+     maxSlides: 3,
+     slideWidth: 350,
+     slideMargin: 10,
+     mode: 'horizontal' ,
+     captions: true,
+     pagerCustom: '#bx-pager'
+   });
 </script>
