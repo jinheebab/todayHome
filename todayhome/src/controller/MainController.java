@@ -106,10 +106,10 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		
 		if(session.getAttribute("auth")!=null){
-		mav.setViewName("m_index2");
+		mav.setViewName("m_detail");
 		System.out.println("멤버임");
 		}else{
-			mav.setViewName("g_index2");
+			mav.setViewName("g_detail");
 			System.out.println("멤버아님");		
 		}
 		mav.addObject("list", list);

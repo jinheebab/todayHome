@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
+.mainpic{
+	width:100%;
+	height: 70%;
+	overflow: hidden;
+}
 .title {
 	font-weight: bold;
 	font-size: 2.2em;
@@ -59,7 +64,10 @@
 }
 </style>
 
-<div style="padding-top: 5%;">
+<div class="mainpic">
+<div><img src="${list[0].PICURL}" width="1600px" height="800px" ></div>
+</div>
+	<div style="padding-top: 5%; margin: 0 250; padding-right: 25px; padding-left: 25px;">
 	<c:forEach var="i" items="${list}">
 		<span class="title">${i.TITLE}</span>
 		<br />
@@ -200,6 +208,8 @@
 
 	</div>
 	<hr/>
+	<c:choose>
+		<c:when test="${review.size() gt 0 }">
 		<c:forEach var ="i" begin="0" end="${review.size()-1}">
 	<div class="row font1">
 	<div class="col-md-1" align="center">
@@ -220,10 +230,12 @@
 	</div>
 	</div>
 		</c:forEach>
-	
-
-	
-	
+		</c:when>
+		<c:otherwise>
+			후기가 없다.
+		</c:otherwise>
+	</c:choose>
+		
 	
 </div>
 
