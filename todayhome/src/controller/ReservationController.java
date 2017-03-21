@@ -58,6 +58,8 @@ public class ReservationController {
 		
 		Map hostinglist = hdao.readHostingAll(num);
 		
+		System.out.println("호스팅리스트 : " + hostinglist.toString());
+		
 		mav.addObject("hostinglist", hostinglist);
 		
 		mav.addObject("main", "reservation/reserve01");
@@ -89,11 +91,11 @@ public class ReservationController {
 			e.printStackTrace();
 		}
 		
-		String total = (String)request.getAttribute("total");
+		String totalmoney = (String)map.get("totalmoney");
 		
-		System.out.println(total);
+		System.out.println(totalmoney);
 		
-		request.setAttribute("total", total);
+		request.setAttribute("totalmoney", totalmoney);
 		
 		String name = (String)session.getAttribute("auth");
 		
@@ -107,7 +109,7 @@ public class ReservationController {
 				
 		mav.addObject("countrylist", countrylist);
 				
-		mav.addObject("total", total);
+		mav.addObject("totalmoney", totalmoney);
 					
 		mav.addObject("main", "reservation/reserve02");
 		
