@@ -9,5 +9,8 @@
 	<select id="getReview" resultType="java.util.HashMap" parameterType="java.util.HashMap"> 
 		select * from review where hostingnum=#{num} 
 	</select>
+	<select id="getReviewcnt" resultType="java.util.HashMap" parameterType="java.util.HashMap"> 
+		select count(*) as cnt from review where hostingnum=#{num} 
+	</select>
 
 </mapper>
