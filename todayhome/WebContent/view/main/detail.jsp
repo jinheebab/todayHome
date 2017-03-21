@@ -187,6 +187,11 @@
 		</div>
 		</div>
 		
+		<hr/>
+		<div class="row font2">
+		사진
+		</div>
+		
 		<div class="row">
 		${hphoto}
 		</div>
@@ -196,7 +201,9 @@
 			<!-- 리뷰 -->
 	<hr/>
 	<div class="row">
-	<div class="col-md-3"><div class="font2">후기 ${reviewcnt[0].CNT}개 <span class="font3" >${score/10}점</span> </div></div>
+	<div class="col-md-3">
+	<div class="font2">후기 ${reviewcnt[0].CNT}개 <span class="font3" >${score/10}점</span> </div>
+	</div>
 	<div class="col-md-9" align="left">
 	
 				<div class="point1">

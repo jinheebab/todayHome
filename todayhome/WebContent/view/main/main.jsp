@@ -22,7 +22,7 @@
  </div>
 <div class="col-md-10">
 <span style=" font-weight:bold; font-size:1.5em; ">HOT LOCATION</span>
-<hr style="border-bottom-style: solid; border-bottom-width: 1.5px; border-bottom-color: black; margin-top: 10px;"/>
+<hr style="border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: black; margin-top: 10px;"/>
 <div align="center">
 <ul class="bxslider" >
 <c:forEach var="i" items="${list}" end="4" >
@@ -49,7 +49,7 @@
  </div>
 <div class="col-md-10">
 <span style=" font-weight:bold; font-size:1.5em; ">TODAY's CHOICE</span>
-<hr style="border-bottom-style: solid; border-bottom-width: 1.5px; border-bottom-color: black; margin-top: 10px;"/>
+<hr style="border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: black; margin-top: 10px;"/>
 <div align="center">
 <ul class="bxslider1" >
 <c:forEach var="i" items="${list}" end="4" >
