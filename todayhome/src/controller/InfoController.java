@@ -92,7 +92,6 @@ public class InfoController {
 				return mav;	
 			}
 	}
-
 	@RequestMapping("/info/ajax")
 	@ResponseBody
 	public ModelAndView withdrawAjaxHandler(@RequestParam HashMap map, HttpSession session){
