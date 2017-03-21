@@ -25,13 +25,13 @@ import model.HostingDao;
 @Controller
 @RequestMapping("/hosting")
 public class HostingController {
-	
+		
 	@Autowired
 	HostingDao hdao;
-	
+		
 	@Autowired
 	FileUploadService fdao;
-	
+		
 	@RequestMapping("/host01")
 	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
 		
@@ -46,15 +46,15 @@ public class HostingController {
 		//String id = (String)session.getAttribute("id");
 		
 		//mav.addObject("id",id);
-				
+		
 		mav.addObject("main", "hosting/host01");
 		
 		mav.setViewName("m_index2");
 		
 		return mav;
-								
-	}
-	
+		
+	}	
+		
 	@RequestMapping("/host02")
 	@ResponseBody
 	public String host02(@RequestParam ("city") String city){
@@ -75,7 +75,6 @@ public class HostingController {
 		
 		return price.toString();
 	}
-	
 	
 	@RequestMapping("/upload")
 	@ResponseBody

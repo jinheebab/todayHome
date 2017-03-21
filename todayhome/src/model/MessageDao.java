@@ -71,3 +71,7 @@ public class MessageDao {
 		return rst;
 	}
 }
+
+
+
+

@@ -1,6 +1,5 @@
 package controller;
-
-
+		
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,9 +20,9 @@ public class MessageController {
 	@Autowired
 	MessageDao mdao;
 		
-	@RequestMapping("/message")
+	@RequestMapping("/message")		// 수신 리스트 and 메시지 main
 	public ModelAndView message(HttpSession session){	//
-		System.out.println("message main 접속");
+		System.out.println("메시지 수신 리스트 접속");
 		ModelAndView mav = new ModelAndView();
 		
 		String receiver = (String)session.getAttribute("auth");
@@ -36,23 +35,36 @@ public class MessageController {
 		return mav;
 	}	
 		
-/*	@RequestMapping("/message")
-	@ResponseBody					
+	@RequestMapping("/sendlist")
+	@ResponseBody
 	public ModelAndView sendlist(HttpSession session){
-		System.out.println("message send page 접속");
+		System.out.println("메시지 발신 리스트 접속");
 		ModelAndView mav = new ModelAndView();
 		
-		String receiver = (String)session.getAttribute("auth");
+		String sender = (String)session.getAttribute("auth");
 		
-		List message = mdao.getRecvMsgs(receiver);
-
+		List message = mdao.getRecvMsgs(sender);
+		
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/sendlist");
 		
 		return mav;
 	}	
-*/		
 		
+	@RequestMapping("/send")
+	@ResponseBody
+	public ModelAndView send(HttpSession session){
+		System.out.println("메시지 작성 페이지 접속");
+		ModelAndView mav = new ModelAndView();
 		
+		String send = (String)session.getAttribute("auth");
+		
+		List message = mdao.getRecvMsgs(send);
+		
+		mav.setViewName("m_index2");
+		mav.addObject("main", "message/send");
+		
+		return mav;
+	}	
 }		
 
