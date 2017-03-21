@@ -78,7 +78,10 @@
 </head>
 <body>
 		<h2>호스팅</h2>
-		<p>${id}님안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
+		<p><b>${id}</b>님안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
+		
+		<form action="/hosting/host03">
+		
 		
 		<div class="dropdown">
 			<select id="htype" name="htype">
@@ -92,7 +95,7 @@
 			<select id="people" name="people">
 
 				<c:forEach begin="1" end="15" step="1" var="x" varStatus="status">
-					<option value="room${x}">${x}인실</option>
+					<option value=${x}>${x}인실</option>
 					<c:if test="${not status.last}">
 						<br>
 					</c:if>
@@ -126,32 +129,7 @@
 
 
 
-<script>
 
-$(function(){ 
-	  $('.bt_up').click(function(){ 
-	    var n = $('#roomcnt').val();
-	    
-	    var num = Number(n)+Number('1');
-	    
-	    $('#roomcnt').val(num);
-	    
-	  });
-	  
-	  
-	  $('.bt_down').click(function(){ 
-		    var n = $('#roomcnt').val();
-		    
-		    var num = Number(n)-Number('1');
-		    
-		    $('#roomcnt').val(num);
-		    
-		  });
-	
-	
-})
-
-</script>
 
 <h2>수용인원</h2>
 
@@ -159,96 +137,20 @@ $(function(){
                   
  <hr>
  
- <script>
  
- 
- $(function(){ 
-	  $('.bt_up2').click(function(){ 
-	    var n = $('#membercnt').val();
-	    
-	    var num = Number(n)+Number('1');
-	    
-	    $('#membercnt').val(num);
-	    
-	  });
-	  
-	  
-	  $('.bt_down2').click(function(){ 
-		    var n = $('#membercnt').val();
-		    
-		    var num = Number(n)-Number('1');
-		    
-		    $('#membercnt').val(num);
-		    
-		  });
-	
-	
-})
-
-</script>
 
 <h2>침대개수</h2>
 
 <h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="bedcnt">개</h3>
                   
- <script>
 
- $(function(){ 
-	  $('.bt_up3').click(function(){ 
-	    var n = $('#bedcnt').val();
-	    
-	    var num = Number(n)+Number('1');
-	    
-	    $('#bedcnt').val(num);
-	    
-	  });
-	  
-	  
-	  $('.bt_down3').click(function(){ 
-		    var n = $('#bedcnt').val();
-		    
-		    var num = Number(n)-Number('1');
-		    
-		    $('#bedcnt').val(num);
-		    
-		  });
-	
-	
-})
-
-</script>
 <hr>
 
 <h2>욕실개수</h2>
 
 <h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="bathcnt">개</h3>
                   
- <script>
-
- $(function(){ 
-	  $('.bt_up4').click(function(){ 
-	    var n = $('#bathcnt').val();
-	    
-	    var num = Number(n)+Number('1');
-	    
-	    $('#bathcnt').val(num);
-	    
-	  });
-	  
-	  
-	  $('.bt_down4').click(function(){ 
-		    var n = $('#bathcnt').val();
-		    
-		    var num = Number(n)-Number('1');
-		    
-		    $('#bathcnt').val(num);
-		    
-		  });
-	
-	
-})
-
-</script>
+ 
 <hr>
 <h2>주소</h2>
 
@@ -569,99 +471,13 @@ $(function(){
 	 
 	 
 	 
-	 <button type="button" class="btn btn-success" id="register">최종등록</button>
+	 <button type="submit" class="btn btn-success" id="register">최종등록</button>
 	   
 	        
-	     <script>
-     
-	  $('#register').click(function(){
-		  
-		  
+	        </form>
+	        
+	        
 	     
-     var htype = $('#htype').attr('id').val();
-     
-     var rtype = $('#rtype').attr('id').val();
-     
-     var roomcnt = $('#roomcnt').attr('id').val();
-     
-     var membercnt = $('#membercnt').attr('id').val();
-     
-     var bedcnt = $('#bedcnt').attr('id').val();
-     
-     var bathcnt = $('#bathcnt').attr('id').val();
-     
-     var address = $('#pac-input').attr('id').val();
-     
-     var address2 = string.split(' ');
-     
-     var country = address2[0];
-     
-     var city = address2[2];
-     
-     var location = address2[3];
-     
-          
-     var amenity = $('#amenity').attr('id').val();
-     
-     var rule = $('#rule').attr('id').val();
-     
-     var startdate = $('#sdate').attr('id').val();
-     
-     var enddate = $('#edate').attr('id').val();
-     
-     var price = $('#price').attr('id').val();
-     
-     var category = $('#category').attr('id').val();
-     
-     var hname = $('#category').attr('id').val();
-     
-     var intro = $('#category').attr('id').val();
-     
-     var title = $('#title').attr('id').val();
-     
-     var condition = $('#condition').attr('id').val();
-     
-     var picurl = $('#picurl').attr('id').val();
-     
-     var request ={
-    	htype : htype,
-    	rtype : rtype,
-    	roomcnt : roomcnt,
-    	membercnt : membercnt,
-    	bedcnt : bedcnt,
-    	bathcnt : bathcnt,
-    	country : country,
-    	city : city,
-    	location : location,
-    	amenity : amenity,
-    	rule : rule,
-    	startdate : startdate,
-    	enddate : enddate,
-    	price : price,
-    	category : category,
-    	hname : hname,
-    	intro : intro,
-    	title : title,
-    	condition : condition
-    		 
-     }
-
-     $.ajax({
-    	   type : "POST",
-    	   url : "/hosting/host03",
-    	   data : request,
-    	   success : function(message){
-    		  
-    		   alert(message);
-    		   
-    		   }
-    	  }); 
-     
-     
-     
-	  });
-     
-     </script>
      
      
 </body> 

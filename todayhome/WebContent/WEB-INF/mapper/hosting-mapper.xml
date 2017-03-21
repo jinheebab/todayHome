@@ -13,7 +13,7 @@
 	</select>
 	
 	<insert id="register" parameterType="java.util.HashMap">
-		insert into hosting values(HOSTING_SEQ.NEXTVAL, #{title}, #{htype}, #{rtype}, #{roomcnt}, #{membercnt}, #{bedcnt}, #{bathcnt}, #{country}, #{city}, #{location}, #{amenity}, #{rule}, #{condition}, to_date(#{startdate}), to_date(#{enddate}),#{price}, #{category}, #{hname}, #{intro}, #{picurl},NULL)
+		insert into hosting values(HOSTING_SEQ.NEXTVAL, #{title}, #{htype}, #{rtype}, #{roomcnt}, #{membercnt}, #{bedcnt}, #{bathcnt}, #{country}, #{city}, #{location}, #{amenity}, #{rule}, #{condition}, to_date(#{startdate}), to_date(#{enddate}),#{price}, #{category}, #{hname}, #{intro}, #{picurl})
 	</insert>
 	
 	<select id="getAllList" parameterType="java.util.HashMap" resultType="java.util.HashMap">

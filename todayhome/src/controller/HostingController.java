@@ -37,15 +37,17 @@ public class HostingController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-//		if(session.getAttribute("auth") == null){
-//			mav.addObject("main","login/pagelogin");
-//			
-//			mav.setViewName("g_index");
-//		}
+		if(session.getAttribute("auth") == null){
+			mav.addObject("main","login/pagelogin");
+			
+			mav.setViewName("g_index");
+		}
 		
-		//String id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("auth");
 		
-		//mav.addObject("id",id);
+		System.out.println("id는 "+ id);
+		
+		mav.addObject("id",id);
 				
 		mav.addObject("main", "hosting/host01");
 		
@@ -99,6 +101,8 @@ public class HostingController {
 	@RequestMapping("/host03")
 	@ResponseBody
 	public String host03(@RequestParam Map map){
+		
+		System.out.println(map.toString());
 		
 		
 		int n = hdao.addHosting(map);
