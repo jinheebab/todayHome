@@ -190,10 +190,15 @@
 		<hr/>
 		<div class="row font2">
 		사진
+		<hr/>
 		</div>
 		
-		<div class="row">
-		${hphoto}
+		<div class="row" align="center">
+	
+		<c:forEach var="i" items="${hphoto}">
+		<img src="${i.FILELINK}" width="70%">
+		<br/><br/><br/>
+		</c:forEach>
 		</div>
 		
 	</c:forEach>
@@ -202,7 +207,7 @@
 	<hr/>
 	<div class="row">
 	<div class="col-md-3">
-	<div class="font2">후기 ${reviewcnt[0].CNT}개 <span class="font3" >${score/10}점</span> </div>
+	<div class="font2">후기 <span class="font3" >(${reviewcnt[0].CNT}개) 평균 ${score/10}점</span> </div>
 	</div>
 	<div class="col-md-9" align="left">
 	
@@ -239,7 +244,7 @@
 		</c:forEach>
 		</c:when>
 		<c:otherwise>
-			후기가 없다.
+			<font color ="grey">등록된 후기가 없습니다.</font>
 		</c:otherwise>
 	</c:choose>
 		
