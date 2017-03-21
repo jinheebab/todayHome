@@ -6,7 +6,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Datepicker - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -33,6 +32,7 @@
 
 <form action="/reservation/reserve02">
 
+ <input type="text" readonly="readonly" id="totalmoney" name="totalmoney" placeholder="총결제금액">
  
 <p>체크인 <input type="text" id="sdate" name="startdate"> ~ 체크아웃 <input type="text" id="edate" name="enddate"></p>
 
@@ -40,16 +40,43 @@
   
   var startdate = "${hostinglist.STARTDATE}";
   
+  var startdate2 = startdate.split(' ');
+  
+  console.log(startdate2[0]);
+  
+  
+  
+  
+  
   var enddate = "${hostinglist.ENDDATE}";
+  
+  var enddate2 = enddate.split(' ');
   
   var reservedate = "$hostinglist.RESERVEDATE";
   
-
+//===============================================================================================================
+	
+	var disabledDays = ["3-24-2017"];
      
+	/* utility functions */
+	function noDay(date) {
+		var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+		//console.log('Checking (raw): ' + m + '-' + d + '-' + y);
+		for (i = 0; i < disabledDays.length; i++) {
+			if($.inArray((m+1) + '-' + d + '-' + y,disabledDays) != -1 || new Date() > date) {
+				//console.log('bad:  ' + (m+1) + '-' + d + '-' + y + ' / ' + disabledDays[i]);
+				return [false];
+			}
+		}
+		//console.log('good:  ' + (m+1) + '-' + d + '-' + y);
+		return [true];
+	}
+	
+	
   
   $.datepicker.regional['ko'] = {
-		  minDate : startdate,
-		  MaxDate : enddate,
+		  
+		  minDate : 0,
 		  changeMonth: true,
 	      changeYear: true,		  
 	      dateFormat: 'yy-mm-dd',
@@ -59,16 +86,18 @@
   $.datepicker.setDefaults($.datepicker.regional['ko']);
   
   $('#sdate').datepicker();
-   $('#sdate').datepicker("option", "maxDate", $("#edate").val());
-   $('#sdate').datepicker("option", "onClose", function ( selectedDate ) {
-       $("#edate").datepicker( "option", "minDate", selectedDate );
-   });
+ 
+  $('#sdate').datepicker("option", "minDate", startdate2[0]);
+  $('#sdate').datepicker("option", "maxDate", enddate2[0]);
+  $('#sdate').datepicker("option", "beforeShowDay", noDay);
+  
 
    $('#edate').datepicker();
-   $('#edate').datepicker("option", "minDate", $("#sdate").val());
-   $('#edate').datepicker("option", "onClose", function ( selectedDate ) {
-       $("#sdate").datepicker( "option", "maxDate", selectedDate );
-   });
+   
+   $('#edate').datepicker("option", "minDate", startdate2[0]);
+   $('#edate').datepicker("option", "maxDate", enddate2[0]);
+   $('#edate').datepicker("option", "beforeShowDay", noDay);
+  
    
    
    
@@ -115,6 +144,8 @@
 			'\n' + " + 서비스수수료 = " + service +"원" + '\n' + "+ 인원수 " + people + "명 = " + people*10000 + "원" + "\n" + "메세지 : " + intro);
 	
 	$('#total').html(total + "원");
+	
+	$('#totalmoney').val(total);
 	
 	
 	
