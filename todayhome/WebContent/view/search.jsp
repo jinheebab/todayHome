@@ -6,6 +6,7 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
 <form action="/board/write" method="post">
    <div align="center" >
       <table style="width:80%; height:5%; border: 0px; border-collapse:collapse;" >
