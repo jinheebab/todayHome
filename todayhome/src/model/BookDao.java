@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -47,5 +48,22 @@ public class BookDao {
 		return r;
 		
 	}
+	
+	public Map getBook(Map param) {	
+		
+		Map map = new HashMap<>();
+		SqlSession sql = factory.openSession();
+		try {
+			map = sql.selectOne("booking.getBook",param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sql.close();
+		}
+		return map;
+}
+		
+		
+	
 	
 }
