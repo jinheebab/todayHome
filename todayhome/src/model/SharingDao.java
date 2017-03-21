@@ -32,17 +32,18 @@ public class SharingDao {
 		}
 		return rst;
 	}
-	public List<HashMap> read(HashMap map){
-		List<HashMap>list = new ArrayList<>();
+	public HashMap read(HashMap map){
+		HashMap photomap = new HashMap();
 		SqlSession sql = factory.openSession();
 		try{
-			list = sql.selectList("sharing.read", map);
+			photomap = sql.selectOne("sharing.getuphoto", map);
+			System.out.println("map사이즈"+photomap.size());
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
 			sql.close();
 		}
-		return list;
+		return photomap;
 	}
 	public int update(HashMap map){
 		SqlSession sql = factory.openSession();

@@ -65,35 +65,51 @@ public class MainController {
 	public ModelAndView detailHandler(@RequestParam("num")String num, HttpSession session){
 		HashMap map = new HashMap();
 		map.put("num", num);
+		
 		List<HashMap> list = md.getDetaillist(map);
+		
 		double avgstar = md.getScore(map);
 		System.out.println(avgstar);
 		avgstar = avgstar*10;
 		int score = (int)avgstar;
+		
+		
 		List<HashMap> review = md.getReview(map);
+		System.out.println("리뮤갯수: "+review.size());
+		List<HashMap> reviewerphoto = new ArrayList();
+		HashMap reviewer = new HashMap();
+		Iterator<HashMap> it = review.iterator();
+		while(it.hasNext()){
+			reviewer.put("id", it.next().get("WRITER"));
+			reviewerphoto.add(md.getUserPhoto(reviewer)); 
+		}
+		
+		System.out.println("사진 갯수"+reviewerphoto.size());
+		
+		List<HashMap> reviewcnt  = md.getReviewcnt(map);
 		
 		
 		String hoster = md.hoster(num);
 		System.out.println("hoster name="+ hoster);
 		HashMap map2 = new HashMap();
 		map2.put("id", hoster);
-		map2.put("type", "info");
-		List<HashMap> uphoto = md.getPhoto(map2);
+		HashMap uphoto = md.getUserPhoto(map2);
 		
 		
 		HashMap map3 = new HashMap();
 		map3.put("id", hoster);
-		map3.put("type", "hosting");
-		List<HashMap> hphoto = md.getPhoto(map3);
+		List<HashMap> hphoto = md.getHostingPhoto(map3);
+		
+		
 		
 		
 		ModelAndView mav = new ModelAndView();
 		
 		if(session.getAttribute("auth")!=null){
-		mav.setViewName("m_index2");
+		mav.setViewName("m_detail");
 		System.out.println("멤버임");
 		}else{
-			mav.setViewName("g_index2");
+			mav.setViewName("g_detail");
 			System.out.println("멤버아님");		
 		}
 		mav.addObject("list", list);
@@ -101,9 +117,10 @@ public class MainController {
 		mav.addObject("uphoto", uphoto);
 		mav.addObject("hphoto", hphoto);
 		mav.addObject("review", review);
+		mav.addObject("reviewcnt", reviewcnt);
+		mav.addObject("reviewerphoto", reviewerphoto);
 		mav.addObject("main", "main/detail");
 		
-		System.out.println("여기까지 옴");
 		
 		return mav;
 	}

@@ -6,7 +6,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Datepicker - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -33,6 +32,9 @@
 
 <form action="/reservation/reserve02">
 
+호스팅번호 :<input type="text" readonly="readonly" id="hostingnum" name="hostingnum" value="${hostingnum}">
+
+ <input type="text" readonly="readonly" id="totalmoney" name="totalmoney" placeholder="총결제금액">
  
 <p>체크인 <input type="text" id="sdate" name="startdate"> ~ 체크아웃 <input type="text" id="edate" name="enddate"></p>
 
@@ -40,16 +42,43 @@
   
   var startdate = "${hostinglist.STARTDATE}";
   
+  var startdate2 = startdate.split(' ');
+  
+  console.log(startdate2[0]);
+  
+  
+  
+  
+  
   var enddate = "${hostinglist.ENDDATE}";
+  
+  var enddate2 = enddate.split(' ');
   
   var reservedate = "$hostinglist.RESERVEDATE";
   
-
+//===============================================================================================================
+	
+	var disabledDays = ["3-24-2017"];
      
+	/* utility functions */
+	function noDay(date) {
+		var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+		//console.log('Checking (raw): ' + m + '-' + d + '-' + y);
+		for (i = 0; i < disabledDays.length; i++) {
+			if($.inArray((m+1) + '-' + d + '-' + y,disabledDays) != -1 || new Date() > date) {
+				//console.log('bad:  ' + (m+1) + '-' + d + '-' + y + ' / ' + disabledDays[i]);
+				return [false];
+			}
+		}
+		//console.log('good:  ' + (m+1) + '-' + d + '-' + y);
+		return [true];
+	}
+	
+	
   
   $.datepicker.regional['ko'] = {
-		  minDate : startdate,
-		  MaxDate : enddate,
+		  
+		  minDate : 0,
 		  changeMonth: true,
 	      changeYear: true,		  
 	      dateFormat: 'yy-mm-dd',
@@ -59,23 +88,25 @@
   $.datepicker.setDefaults($.datepicker.regional['ko']);
   
   $('#sdate').datepicker();
-   $('#sdate').datepicker("option", "maxDate", $("#edate").val());
-   $('#sdate').datepicker("option", "onClose", function ( selectedDate ) {
-       $("#edate").datepicker( "option", "minDate", selectedDate );
-   });
+ 
+  $('#sdate').datepicker("option", "minDate", startdate2[0]);
+  $('#sdate').datepicker("option", "maxDate", enddate2[0]);
+  $('#sdate').datepicker("option", "beforeShowDay", noDay);
+  
 
    $('#edate').datepicker();
-   $('#edate').datepicker("option", "minDate", $("#sdate").val());
-   $('#edate').datepicker("option", "onClose", function ( selectedDate ) {
-       $("#sdate").datepicker( "option", "maxDate", selectedDate );
-   });
+   
+   $('#edate').datepicker("option", "minDate", startdate2[0]);
+   $('#edate').datepicker("option", "maxDate", enddate2[0]);
+   $('#edate').datepicker("option", "beforeShowDay", noDay);
+  
    
    
    
    
   </script>
   
-  <h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="people" name="membercnt">명</h3>
+  <h3 align="left"><input type="number" min="1" max="20" placeholder="1" id="people" name="membercnt">명</h3>
   
   
   <h4 align="center">호스트에게 간단한 자기소개를 하고 여행가는 이유를 알려주세요</h4>
@@ -84,7 +115,7 @@
   
   <h4 align="center">이용수칙</h4>
   
-  <h4 align="center"><textarea rows="10" cols="50" id="rule" readonly="readonly">안녕하세요</textarea></h4>
+  <h4 align="center"><textarea rows="10" cols="50" id="rule" readonly="readonly">${hostinglist.RULE}</textarea></h4>
   
   
   
@@ -109,18 +140,18 @@
 	
 	var total = reserve_time2 * 50000 + clean + service + people*10000;
 	
-	var message = $('#message').val();
+	var intro = $('#intro').val();
 
 	$('#reserveinfo').html(reserve_time2 + "박 = " + 50000*reserve_time2 + "원" +'\n'+ "+ 청소비 = " + clean + "원"+ 
-			'\n' + " + 서비스수수료 = " + service +"원" + '\n' + "+ 인원수 " + people + "명 = " + people*10000 + "원" + "\n" + "메세지 : " + message);
+			'\n' + " + 서비스수수료 = " + service +"원" + '\n' + "+ 인원수 " + people + "명 = " + people*10000 + "원" + "\n" + "메세지 : " + intro);
 	
 	$('#total').html(total + "원");
 	
+	$('#totalmoney').val(total);
 	
 	
 	
-	
-	
+		
 	
 	
 	  

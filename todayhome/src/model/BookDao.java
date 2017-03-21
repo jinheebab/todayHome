@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -22,7 +23,7 @@ public class BookDao {
 		SqlSession session = factory.openSession();
 		int r = 0;
 		try {
-			r = session.insert("booking.add", map);
+			r = session.insert("booking.addOne", map);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -31,5 +32,38 @@ public class BookDao {
 		}
 		return r;
 	}
+	
+	public int updateBook(Map map){
+		
+		SqlSession session = factory.openSession();
+		int r = 0;
+		try {
+			r = session.insert("booking.update", map);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return r;
+		
+	}
+	
+	public Map getBook(Map param) {	
+		
+		Map map = new HashMap<>();
+		SqlSession sql = factory.openSession();
+		try {
+			map = sql.selectOne("booking.getBook",param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sql.close();
+		}
+		return map;
+}
+		
+		
+	
 	
 }

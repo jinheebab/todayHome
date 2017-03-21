@@ -58,7 +58,11 @@ public class ReservationController {
 		
 		Map hostinglist = hdao.readHostingAll(num);
 		
+		System.out.println("호스팅리스트 : " + hostinglist.toString());
+		
 		mav.addObject("hostinglist", hostinglist);
+		
+		mav.addObject("hostingnum", num);
 		
 		mav.addObject("main", "reservation/reserve01");
 		
@@ -89,19 +93,30 @@ public class ReservationController {
 			e.printStackTrace();
 		}
 		
-		String total = (String)map.get("total");
+		String totalmoney = (String)map.get("totalmoney");
+		
+		System.out.println(totalmoney);
+		
+		request.setAttribute("totalmoney", totalmoney);
 		
 		String name = (String)session.getAttribute("auth");
 		
 		map.put("name", name);
 		
+		System.out.println(map.toString());
+		
+		String hostingnum = (String)map.get("hostingnum");
+		
+		
 		int r = bdao.addBook(map);
 		
-		System.out.println("1차 북 등록 여부(1이면 true)" + r);
+		System.out.println("1차 북 등록 여부(1이면 true) : " + r);
+
+		mav.addObject("hostingnum", hostingnum);
 				
 		mav.addObject("countrylist", countrylist);
 				
-		mav.addObject("total", total);
+		mav.addObject("totalmoney", totalmoney);
 					
 		mav.addObject("main", "reservation/reserve02");
 		
@@ -111,9 +126,32 @@ public class ReservationController {
 	}
 	
 	@RequestMapping("/reserve03")
-	public ModelAndView reserve03(HttpServletRequest request){
+	public ModelAndView reserve03(@RequestParam Map map, HttpSession session){
 		
 		ModelAndView mav = new ModelAndView();
+		
+		int hostingnum = Integer.parseInt((String)map.get("hostingnum"));
+		
+		String name = (String)session.getAttribute("auth");
+		
+		System.out.println("아이디는 " + name);
+		
+		Map param = new HashMap<>();
+		
+		
+		param.put("hostingnum", hostingnum);
+		
+		param.put("name", name);
+		
+		int r = bdao.updateBook(map);	// 나머지 두개 마저 업데이트
+		
+		Map bookinfo = bdao.getBook(param);
+		
+		System.out.println(bookinfo.toString());
+		
+		System.out.println("2차 북 등록 여부(1이면 true) : " + r);
+		
+		mav.addObject("bookinfo", bookinfo);
 		
 		mav.addObject("main", "reservation/reserve03");
 		

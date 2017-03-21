@@ -53,19 +53,32 @@ public class MainDao {
 		return score;
 	}
 	
-	public List getPhoto(HashMap map){
+	public HashMap getUserPhoto(HashMap map){
 		SqlSession session = factory.openSession();
-		List<HashMap> list = new ArrayList();
-		
+		HashMap photomap = new HashMap();
 		try{
-			list = session.selectList("sharing.read", map);
+			photomap = session.selectOne("sharing.getuphoto", map);
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally {
 			session.close();
 		}
-		return list;
+		return photomap;
 	}
+	
+	public List getHostingPhoto(HashMap map){
+		SqlSession session = factory.openSession();
+		List<HashMap> photomap = new ArrayList();
+		try{
+			photomap = session.selectList("sharing.gethphoto", map);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return photomap;
+	}
+	
 	
 	public String hoster(String num){
 		SqlSession session = factory.openSession();
@@ -93,6 +106,21 @@ public class MainDao {
 		return list;
 	}
 	
+	
+	public List getReviewcnt(HashMap map){
+		SqlSession session= factory.openSession();
+		List<HashMap> list = new ArrayList();
+		try{
+			list= session.selectList("review.getReviewcnt", map);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return list;
+	}
+	
+
 	
 	
 }
