@@ -5,17 +5,46 @@
 <script src="/js/jquery.bxslider.min.js"></script>
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+<br/><br/>
 
-  <br/><br/>
-  
-  <div class="row" align="center">
-  <form action="none"> 
-  	<input type="text" name="search" size="100px"/> 
-  	<button class="btn" type="submit" style="background-color: orange; border-radius: 0"><font color="white"><b>검색</b></font></button>
-  </form>
-  </div>
+<form action="/board/write" method="post">
+	<div align="center" >
+		<table style="width:80%; height:5%; border: 0px; border-collapse:collapse;" >
+				<tr style="text-align:left; height: 30px; " >
+					<td>
+						<label for="location">위치</label>
+						<span class="glyphicon glyphicon-map-marker"></span>    
+						<input type="text" class="form-control" name="search" size="10px" placeholder="목적지, 도시명, 주소" style="border:0; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"></input>
+					</td>
+					<td>
+						<label for="checkin">체크인</label>
+						<span class="glyphicon glyphicon-calendar"></span>
+						<input type="date" class="form-control" name="sdate" size="10px" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+					</td>
+					<td>
+						<label for="checkout">체크아웃</label>
+						<span class="glyphicon glyphicon-calendar"></span>
+						<input type="date" class="form-control" name="edate" size="10px" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+					</td>
+					<td>
+						<label for="cnt">인원</label>
+						<span class="glyphicon glyphicon-user"></span><br/>    
+						<select class="form-control" name="cnt"  id="cnt" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
+							<c:forEach var="item" begin="1" end="20" varStatus="vs">
+								<option value="${item}" >${item }</option>
+							</c:forEach>
+						</select>
+					</td>
+					<td>
+						<button type="submit" class="btn" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; background-color: orange; border-radius: 0" ><font color="white"><b>검색</b></font></button>
+					</td>
+				</tr> 
+		</table>
+	</div>
+</form>
    
-  <div class="row" style="margin-bottom: 30px;">
+   
+<div class="row" style="margin-bottom: 30px;">
   <div class="col-md-1" align="right">
     <br/><br/><br/><br/><br/><br/><br/><br/>
  <span id="slider-prev" style="font-size: 2em; padding-left: 20%"></span>
@@ -79,7 +108,8 @@
  </div>
   
   
-  <script>
+<script>
+
   $('.bxslider').bxSlider({
 	  nextSelector: '#slider-next',
 	  prevSelector: '#slider-prev',
