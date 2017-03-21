@@ -20,7 +20,7 @@
 
 
 <h2 align="center">
-	<span id="total" class="label label-danger" name="total"> 결제금액</span>
+	<span id="total" class="label label-danger" name="total"> 총결제금액 : ${totalmoney} 원</span>
 </h2>
 <h2 align="left">결제국가</h2>
 <select class="form-control" name="country" id="country">
@@ -29,6 +29,8 @@
 	</c:forEach>
 </select>
 
+	<form action="/reservation/reserve03" id="form" class="cmxform">
+	
 <h2 align="left">결제방법</h2>
 <select class="form-control" name="payinfo" id="payinfo"
 	onclick="javascript:changeview()">
@@ -38,8 +40,6 @@
 </select>
 
 <div id="card" style="display: none;">
-	<form action="/reservation/reserve03" id="form" class="cmxform"
-		method="post">
 		
 		<p>
 				<b>카드사</b><br/>
@@ -65,10 +65,8 @@
 			카드비밀번호<input type="password" placeholder="XXXX" maxlength="4"/>
 		</p>
 		
-		<p>
-			<button type="submit" class="btn btn-primary" id="pay" name="pay">결제</button>
-		</p>
-	</form>
+		
+</div>
 	<script>
 		$("form").validate({
 			rules : {
@@ -98,10 +96,8 @@
 			}
 		});
 	</script>
-</div>
 
 
-<form action="/reservation/reserve03" id="form2" class="cmxform">
 <div id="phone" style="display: none;">
 
 	<h2>통신사 선택</h2>
@@ -127,17 +123,12 @@
 	  
 	  <h3 align="right"><button type="button" class="btn btn-info" id="check">확인</button></h3>
 	  
+		
+			</div>
+		
 		</div>
-		
-	</div>
-		
-		<p>
-			<button type="submit" class="btn btn-primary" id="pay2" name="pay2">결제</button>
-		</p>
-	
 	</div>
 	
-	</form>
 	
 	
 	<script>
@@ -174,19 +165,20 @@
 
 
 <div id="noaccount" style="display: none;">
-<form action="/reservation/reserve03" id="form3" class="cmxform">
 <div><input type="text" name="accountnumber" id="accountnumber" placeholder="통장번호를 입력해주세요" maxlength="15"></div>
 
 <input type="text" name="company" id="company" value="무통장" readonly="readonly">
 
 카드비밀번호<input type="password" placeholder="XXXX" maxlength="4"/>
 
+</div>
+
 <p>
-			<button type="submit" class="btn btn-primary" id="pay3" name="pay3">결제</button>
+			<button type="submit" class="btn btn-primary" id="pay" name="pay">결제</button>
 </p>
 
+
 </form>
-</div>
 <script>
 	function changeview() {
 		
