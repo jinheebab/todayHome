@@ -60,7 +60,50 @@
    width: 70px;
    height: 70px;
    border-radius: 50%;
+}
+.modal1 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+/* Modal Content */
+.modal-content1 {
+    background-color: #fefefe;
+	margin-right: 30%; 
+	margin-left:30%;
+    padding: 5%;
+    border: 1px solid #888;
+}
+
+/* The Close Button */
+.close1 {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close1:hover,
+.close1:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn{
+	border-style: soild;
+	border-width: 2px;
+	border-color: black;
+	background-color: white;
+	font-weight: bold;
 }
 </style>
 
@@ -207,7 +250,7 @@
    <div class="col-md-3">
    <div class="font2">후기 ${reviewcnt[0].CNT}개 <span class="font3" >${score/10}점</span> </div>
    </div>
-   <div class="col-md-9" align="left">
+   <div class="col-md-5" align="left">
    
             <div class="point1">
             <div class="point2" >
@@ -215,6 +258,10 @@
             </div>
          </div>
    </div>
+   <div class="col-md-4">
+  <button id="myBtn1" class="btn">후기등록</button>
+   </div>
+   
 
    </div>
    <hr/>
@@ -248,3 +295,52 @@
       
    
 </div>
+
+<!-- =============================== -->
+
+<!-- Trigger/Open The Modal -->
+
+<!-- The Modal -->
+<div id="myModal1" class="modal1">
+
+  <!-- Modal content -->
+  <div class="modal-content1">
+    <span class="close1">&times;</span>
+    <div align="center">
+    <h2>후기 등록</h2> <br/><br/>
+    <form action="/view/review/result" method="get">
+ <textarea rows="5" cols="80" id="content" class="form-control" placeholder="후기를 입력해주세요"></textarea>
+ <br/><br/>
+ <button type="submit" class="btn">등록</button>
+ </form>
+    </div>
+  </div>
+
+</div>
+<script>
+// Get the modal
+var modal1 = document.getElementById('myModal1');
+
+// Get the button that opens the modal
+var btn1 = document.getElementById("myBtn1");
+
+// Get the <span> element that closes the modal
+var span1 = document.getElementsByClassName("close1")[0];
+
+// When the user clicks the button, open the modal 
+btn1.onclick = function() {
+    modal1.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span1.onclick = function() {
+    modal1.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal1) {
+        modal1.style.display = "none";
+    }
+}
+</script>
