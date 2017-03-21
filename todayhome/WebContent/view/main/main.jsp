@@ -29,14 +29,14 @@
 					<td>
 						<label for="cnt">인원</label>
 						<span class="glyphicon glyphicon-user"></span><br/>    
-						<select class="form-control" name="cnt"  id="cnt" >
+						<select class="form-control" name="cnt"  id="cnt" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;">
 							<c:forEach var="item" begin="1" end="20" varStatus="vs">
 								<option value="${item}" >${item }</option>
 							</c:forEach>
 						</select>
 					</td>
 					<td>
-						<button type="submit" class="btn" style="background-color: orange; border-radius: 0" ><font color="white"><b>검색</b></font></button>
+						<button type="submit" class="btn" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; background-color: orange; border-radius: 0" ><font color="white"><b>검색</b></font></button>
 					</td>
 				</tr> 
 		</table>
