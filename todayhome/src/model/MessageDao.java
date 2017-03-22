@@ -16,9 +16,9 @@ public class MessageDao {
 	
 	
 	//수신리스트
-	public List getreceiveList(HashMap map){
+	public List<HashMap> getreceiveList(HashMap map){
 		System.out.println(map);
-		List list = null;
+		List<HashMap> list = null;
 		try{
 			SqlSession sql = factory.openSession();
 			list = sql.selectList("message.getRecvMsgs", map);
