@@ -97,6 +97,19 @@ public class HostingDao {
 			return list;
 		}		
 		
+		public int selectCnt(Map map) {
+			SqlSession session = factory.openSession();
+			int r = 0;
+			try {
+				r = session.selectOne("hosting.searchCnt", map);
+				session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return r;
+		}
 }
 		
 
