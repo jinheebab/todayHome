@@ -15,5 +15,8 @@
 	<insert id="addReview" parameterType="java.util.HashMap">
 		insert into review values (review_seq.nextval, #{msg}, #{writer}, #{grade}, #{hostingnum})
 	</insert>
+	<select id="queryReview" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	select r.WRITER, r.CONTENT, r.GRADE ,r.HOSTINGNUM, t.FILELINK from REVIEW r, SHARING t where r.writer=t.id and t.type='info' and r.HOSTINGNUM =#{num}
+	</select>
 
 </mapper>

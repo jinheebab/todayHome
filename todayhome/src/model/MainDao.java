@@ -124,10 +124,10 @@ public class MainDao {
 		SqlSession session = factory.openSession();
 		boolean rst = false;
 		try{
+			System.out.println("등록성공");
 			int r= session.insert("review.addReview", map);
 			if(r==1){
 				rst = true;
-				System.out.println("등록성공");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -139,7 +139,18 @@ public class MainDao {
 		
 	}
 	
-
+	public List AjaxReviewHandler(HashMap map){
+		SqlSession session = factory.openSession();
+		List list = new ArrayList();
+		try{
+			list = session.selectList("review.queryReview", map);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return list;
+	}
 	
 	
 }

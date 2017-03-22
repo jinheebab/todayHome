@@ -14,5 +14,7 @@
 	<select id="getBook" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select rownum rn, a.* from (select * from book where hostingnum=#{hostingnum} and name=#{name} order by num desc) a where rownum = 1
 	</select>
+	
+	
 
 </mapper>

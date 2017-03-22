@@ -78,7 +78,10 @@
 </head>
 <body>
 		<h2>호스팅</h2>
-		<p>${id}님안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
+		<p><b>${id}</b>님안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
+		
+		<form action="/hosting/host03">
+		
 		
 		<div class="dropdown">
 			<select id="htype" name="htype">
@@ -92,7 +95,7 @@
 			<select id="people" name="people">
 
 				<c:forEach begin="1" end="15" step="1" var="x" varStatus="status">
-					<option value="room${x}">${x}인실</option>
+					<option value=${x}>${x}인실</option>
 					<c:if test="${not status.last}">
 						<br>
 					</c:if>
@@ -120,141 +123,40 @@
 
 <h2>게스트가 묵을 방 개수</h2>
 
-<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="roomcnt">개</h3>
+<h3 align="left"><input type="number" name="roomcnt" min="1" max="20" placeholder="1" id="roomcnt">개</h3>
                   
 <hr>
 
 
 
-<script>
 
-$(function(){ 
-	  $('.bt_up').click(function(){ 
-	    var n = $('#roomcnt').val();
-	    
-	    var num = Number(n)+Number('1');
-	    
-	    $('#roomcnt').val(num);
-	    
-	  });
-	  
-	  
-	  $('.bt_down').click(function(){ 
-		    var n = $('#roomcnt').val();
-		    
-		    var num = Number(n)-Number('1');
-		    
-		    $('#roomcnt').val(num);
-		    
-		  });
-	
-	
-})
-
-</script>
 
 <h2>수용인원</h2>
 
-			<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="membercnt">명</h3>
+			<h3 align="left"><input type="number" name="membercnt" min="1" max="20" placeholder="1" id="membercnt">명</h3>
                   
  <hr>
  
- <script>
  
- 
- $(function(){ 
-	  $('.bt_up2').click(function(){ 
-	    var n = $('#membercnt').val();
-	    
-	    var num = Number(n)+Number('1');
-	    
-	    $('#membercnt').val(num);
-	    
-	  });
-	  
-	  
-	  $('.bt_down2').click(function(){ 
-		    var n = $('#membercnt').val();
-		    
-		    var num = Number(n)-Number('1');
-		    
-		    $('#membercnt').val(num);
-		    
-		  });
-	
-	
-})
-
-</script>
 
 <h2>침대개수</h2>
 
-<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="bedcnt">개</h3>
+<h3 align="left"><input type="number" name="bedcnt" min="1" max="20" placeholder="1" id="bedcnt">개</h3>
                   
- <script>
 
- $(function(){ 
-	  $('.bt_up3').click(function(){ 
-	    var n = $('#bedcnt').val();
-	    
-	    var num = Number(n)+Number('1');
-	    
-	    $('#bedcnt').val(num);
-	    
-	  });
-	  
-	  
-	  $('.bt_down3').click(function(){ 
-		    var n = $('#bedcnt').val();
-		    
-		    var num = Number(n)-Number('1');
-		    
-		    $('#bedcnt').val(num);
-		    
-		  });
-	
-	
-})
-
-</script>
 <hr>
 
 <h2>욕실개수</h2>
 
-<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="bathcnt">개</h3>
+<h3 align="left"><input type="number" name="bathcnt" min="1" max="20" placeholder="1" id="bathcnt">개</h3>
                   
- <script>
-
- $(function(){ 
-	  $('.bt_up4').click(function(){ 
-	    var n = $('#bathcnt').val();
-	    
-	    var num = Number(n)+Number('1');
-	    
-	    $('#bathcnt').val(num);
-	    
-	  });
-	  
-	  
-	  $('.bt_down4').click(function(){ 
-		    var n = $('#bathcnt').val();
-		    
-		    var num = Number(n)-Number('1');
-		    
-		    $('#bathcnt').val(num);
-		    
-		  });
-	
-	
-})
-
-</script>
+ 
 <hr>
 <h2>주소</h2>
 
 
 <input id="pac-input" class="controls" type="text"
-        placeholder="주소를 입력하세요">
+        placeholder="반드시 여기다가 주소를 입력하세요" name=address>
     <div id="type-selector" class="controls">
       <input type="radio" name="type" id="changetype-all" checked="checked">
       <label for="changetype-all">All</label>
@@ -269,6 +171,18 @@ $(function(){
       <label for="changetype-geocode">Geocodes</label>
     </div>
     <div id="map"></div>
+    
+    <button type="button" id="refresh" class="btn btn-primary btn-md">갱신</button>
+    
+    
+    <label for="text">국가</label>
+    				<input type="text" class="form-control" id="country" name="country">
+    				
+    <label for="text">도시</label>
+    				<input type="text" class="form-control" id="city" name="city">
+    				
+    <label for="text">하위주소</label>
+    				<input type="text" class="form-control" id="location" name="location">
     
     
     
@@ -351,6 +265,33 @@ $(function(){
     	  setupClickListener('changetype-geocode', ['geocode']);
     	}
 
+     
+     $('#refresh').click(function(){
+    	 
+    	 var address = $('#pac-input').val();
+    	 
+    	 var address2 = address.split(' ');
+    	 
+    	 var address3 = '';
+    	 
+    	 $('#country').val(address2[0]);
+    	 
+    	 $('#city').val(address2[2]);
+    	 
+    	 for(var i=3; i<address2.length; i++){
+    		 address3 += address2[i];
+    	 }
+    	 
+    	 $('#location').val(address3);
+    	 
+     });
+    	
+    	 
+    	 
+    	 
+     
+     
+     
 		 
 	 
 	</script>
@@ -360,21 +301,18 @@ $(function(){
         <hr>
  <h2>제공비품</h2>
     
-    <textarea rows="3" cols="50" id="amenity" placeholder="제공비품을 입력하세요"></textarea>
+    <textarea rows="3" cols="50" name="amenity" id="amenity" placeholder="제공비품을 입력하세요"></textarea>
     
     <hr>
  <h2>이용수칙</h2>
  
- 	<textarea rows="3" cols="50" id="rule" placeholder="이용수칙을 입력하세요"></textarea>
+ 	<textarea rows="3" cols="50" name="rule" id="rule" placeholder="이용수칙을 입력하세요"></textarea>
  	<hr>
- <h2>게스트 자격조건</h2>
- 
- 	<textarea rows="3" cols="50" id="rule" placeholder="게스트 자격조건을 입력하세요"></textarea>
- 	<hr>
+
 <h2> 호스팅 기간: </h2> 
 
-<input type="text" id="sdate"> ~
-    <input type="text" id="edate">
+<input type="text" id="sdate" name="startdate"> ~
+    <input type="text" id="edate" name="enddate">
 
 	 	<script>
 	 	    $.datepicker.regional['ko'] = {
@@ -441,7 +379,7 @@ $(function(){
 	 	    
 	 	    <h2 align="center">위를 참고하시고 원하시는 가격을 입력해주세요</h2>
 	 	    
-	 	    <h3 align="center"><input type="number" name="quantity" min="1" max="1000000" placeholder="가격" id="price">원</h3>
+	 	    <h3 align="center"><input type="number" name="price" min="1" max="1000000" placeholder="가격" id="price">원</h3>
 	 	    
 	 	    </div>
 	 	    
@@ -483,7 +421,7 @@ $(function(){
 	 	    
 	 	   <h2> <input type="text" id="inputCategory" placeholder="카테고리를 입력해주세요"> <button type="button" id="plus" class="btn btn-primary btn-md">추가</button></h2> 
 	 	   
-	 	  <textarea class="form-control" rows="3" id="category"></textarea>
+	 	  <textarea class="form-control" rows="3" id="category" name="category"></textarea>
 	 	    
 	 	    <script>
 	 	    
@@ -504,38 +442,36 @@ $(function(){
 			<hr>
 			
 			
-			</br></br>	    
+			<br/>	<br/>	    
 	 
 				 <div class="form-group">
 				 
 				 <label for="text">호스트이름</label>
-    				<input type="text" class="form-control" id="hname">
+    				<input type="text" class="form-control" id="hname" name="hname">
     				
     			<label for="text">숙소이름</label>
-    				<input type="text" class="form-control" id="title">
+    				<input type="text" class="form-control" id="title" name="title">
     				
 			  		<label for="comment">소개글:</label>
-			  			<textarea id="intro" class="form-control" rows="5"></textarea>
+			  			<textarea name="intro" id="intro" class="form-control" rows="5"></textarea>
 			  			
 			  			
 			  		<label for="comment">게스트 자격조건:</label>
-			  			<textarea id="condition" class="form-control" rows="5"></textarea>
+			  			<textarea name="condition" id="condition" class="form-control" rows="5"></textarea>
 						</div>
 	 
 	 <div style="height: auto; width: 100%; border:1px solid black;">
 	 
-	 <h2 align="center">사진등록</h2>
+	 <h2 align="center">메인사진등록</h2>
 	 
 	 
-<form id="FILE_FORM" method="post" enctype="multipart/form-data" action="">
-            <input type="file" id="FILE_TAG" name="FILE_TAG">
+            <input type="file" id="FILE_TAG" >
             <a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile();">등록</a>
-        </form>
         
-        <span id="picurl"></span>
-
-
-
+        파일주소<input type="text" id="picurl" name=picurl readonly="readonly"/>
+        
+        
+   
 
 </div>
 	<script>
@@ -553,13 +489,16 @@ $(function(){
                     type: 'POST',
                     success: function(result){
                         alert('사진등록성공');
-                        $('#picurl').html(result);
+                        console.log(result);
+                        
+                        $('#picurl').val(result);
                         
                     }
             });
     }
-
-
+	
+	
+	
 
 
 	
@@ -570,99 +509,13 @@ $(function(){
 	 
 	 
 	 
-	 <button type="button" class="btn btn-success" id="register">최종등록</button>
+	 <button type="submit" class="btn btn-success" id="register">최종등록</button>
 	   
 	        
-	     <script>
-     
-	  $('#register').click(function(){
-		  
-		  
+	        </form>
+	        
+	        
 	     
-     var htype = $('#htype').attr('id').val();
-     
-     var rtype = $('#rtype').attr('id').val();
-     
-     var roomcnt = $('#roomcnt').attr('id').val();
-     
-     var membercnt = $('#membercnt').attr('id').val();
-     
-     var bedcnt = $('#bedcnt').attr('id').val();
-     
-     var bathcnt = $('#bathcnt').attr('id').val();
-     
-     var address = $('#pac-input').attr('id').val();
-     
-     var address2 = string.split(' ');
-     
-     var country = address2[0];
-     
-     var city = address2[2];
-     
-     var location = address2[3];
-     
-          
-     var amenity = $('#amenity').attr('id').val();
-     
-     var rule = $('#rule').attr('id').val();
-     
-     var startdate = $('#sdate').attr('id').val();
-     
-     var enddate = $('#edate').attr('id').val();
-     
-     var price = $('#price').attr('id').val();
-     
-     var category = $('#category').attr('id').val();
-     
-     var hname = $('#category').attr('id').val();
-     
-     var intro = $('#category').attr('id').val();
-     
-     var title = $('#title').attr('id').val();
-     
-     var condition = $('#condition').attr('id').val();
-     
-     var picurl = $('#picurl').attr('id').val();
-     
-     var request ={
-    	htype : htype,
-    	rtype : rtype,
-    	roomcnt : roomcnt,
-    	membercnt : membercnt,
-    	bedcnt : bedcnt,
-    	bathcnt : bathcnt,
-    	country : country,
-    	city : city,
-    	location : location,
-    	amenity : amenity,
-    	rule : rule,
-    	startdate : startdate,
-    	enddate : enddate,
-    	price : price,
-    	category : category,
-    	hname : hname,
-    	intro : intro,
-    	title : title,
-    	condition : condition
-    		 
-     }
-
-     $.ajax({
-    	   type : "POST",
-    	   url : "/hosting/host03",
-    	   data : request,
-    	   success : function(message){
-    		  
-    		   alert(message);
-    		   
-    		   }
-    	  }); 
-     
-     
-     
-	  });
-     
-     </script>
      
      
 </body> 

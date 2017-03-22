@@ -15,7 +15,7 @@
 <hr style="border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: black; margin-top: 10px;"/>
 <div align="center">
 <ul class="bxslider" >
-<c:forEach var="i" items="${list}" end="4" >
+<c:forEach var="i" items="${list}" end="12" >
   <li><div style="width: 480.5px; height: 320.33px; overflow: hidden;">
   <a href="/view/detail?num=${i.NUM}">
   <img src="${i.PICURL}" width=600px height=350px title="${i.TITLE} .${i.COUNTRY}  [${i.HTYPE}] "/>
@@ -42,7 +42,7 @@
 <hr style="border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: black; margin-top: 10px;"/>
 <div align="center">
 <ul class="bxslider1" >
-<c:forEach var="i" items="${list}" end="4" >
+<c:forEach var="i" items="${list}" end="12" >
   <li><div style="width: 330.5px; height: 170.33px; overflow: hidden;">
   <a href="/view/detail?num=${i.NUM}">
   <img src="${i.PICURL}" width=270px height=170px title="${i.TITLE} .${i.COUNTRY}  [${i.HTYPE}] "/>
