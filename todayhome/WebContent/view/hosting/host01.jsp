@@ -123,7 +123,7 @@
 
 <h2>게스트가 묵을 방 개수</h2>
 
-<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="roomcnt">개</h3>
+<h3 align="left"><input type="number" name="roomcnt" min="1" max="20" placeholder="1" id="roomcnt">개</h3>
                   
 <hr>
 
@@ -133,7 +133,7 @@
 
 <h2>수용인원</h2>
 
-			<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="membercnt">명</h3>
+			<h3 align="left"><input type="number" name="membercnt" min="1" max="20" placeholder="1" id="membercnt">명</h3>
                   
  <hr>
  
@@ -141,14 +141,14 @@
 
 <h2>침대개수</h2>
 
-<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="bedcnt">개</h3>
+<h3 align="left"><input type="number" name="bedcnt" min="1" max="20" placeholder="1" id="bedcnt">개</h3>
                   
 
 <hr>
 
 <h2>욕실개수</h2>
 
-<h3 align="left"><input type="number" name="quantity" min="1" max="20" placeholder="1" id="bathcnt">개</h3>
+<h3 align="left"><input type="number" name="bathcnt" min="1" max="20" placeholder="1" id="bathcnt">개</h3>
                   
  
 <hr>
@@ -171,6 +171,18 @@
       <label for="changetype-geocode">Geocodes</label>
     </div>
     <div id="map"></div>
+    
+    <button type="button" id="refresh" class="btn btn-primary btn-md">갱신</button>
+    
+    
+    <label for="text">국가</label>
+    				<input type="text" class="form-control" id="country" name="country">
+    				
+    <label for="text">도시</label>
+    				<input type="text" class="form-control" id="city" name="city">
+    				
+    <label for="text">하위주소</label>
+    				<input type="text" class="form-control" id="location" name="location">
     
     
     
@@ -253,6 +265,33 @@
     	  setupClickListener('changetype-geocode', ['geocode']);
     	}
 
+     
+     $('#refresh').click(function(){
+    	 
+    	 var address = $('#pac-input').val();
+    	 
+    	 var address2 = address.split(' ');
+    	 
+    	 var address3 = '';
+    	 
+    	 $('#country').val(address2[0]);
+    	 
+    	 $('#city').val(address2[2]);
+    	 
+    	 for(var i=3; i<address2.length; i++){
+    		 address3 += address2[i];
+    	 }
+    	 
+    	 $('#location').val(address3);
+    	 
+     });
+    	
+    	 
+    	 
+    	 
+     
+     
+     
 		 
 	 
 	</script>
@@ -262,21 +301,18 @@
         <hr>
  <h2>제공비품</h2>
     
-    <textarea rows="3" cols="50" id="amenity" placeholder="제공비품을 입력하세요"></textarea>
+    <textarea rows="3" cols="50" name="amenity" id="amenity" placeholder="제공비품을 입력하세요"></textarea>
     
     <hr>
  <h2>이용수칙</h2>
  
- 	<textarea rows="3" cols="50" id="rule" placeholder="이용수칙을 입력하세요"></textarea>
+ 	<textarea rows="3" cols="50" name="rule" id="rule" placeholder="이용수칙을 입력하세요"></textarea>
  	<hr>
- <h2>게스트 자격조건</h2>
- 
- 	<textarea rows="3" cols="50" id="rule" placeholder="게스트 자격조건을 입력하세요"></textarea>
- 	<hr>
+
 <h2> 호스팅 기간: </h2> 
 
-<input type="text" id="sdate"> ~
-    <input type="text" id="edate">
+<input type="text" id="sdate" name="startdate"> ~
+    <input type="text" id="edate" name="enddate">
 
 	 	<script>
 	 	    $.datepicker.regional['ko'] = {
@@ -342,7 +378,7 @@
 	 	    
 	 	    <h2 align="center">위를 참고하시고 원하시는 가격을 입력해주세요</h2>
 	 	    
-	 	    <h3 align="center"><input type="number" name="quantity" min="1" max="1000000" placeholder="가격" id="price">원</h3>
+	 	    <h3 align="center"><input type="number" name="price" min="1" max="1000000" placeholder="가격" id="price">원</h3>
 	 	    
 	 	    </div>
 	 	    
@@ -384,7 +420,7 @@
 	 	    
 	 	   <h2> <input type="text" id="inputCategory" placeholder="카테고리를 입력해주세요"> <button type="button" id="plus" class="btn btn-primary btn-md">추가</button></h2> 
 	 	   
-	 	  <textarea class="form-control" rows="3" id="category"></textarea>
+	 	  <textarea class="form-control" rows="3" id="category" name="category"></textarea>
 	 	    
 	 	    <script>
 	 	    
@@ -405,35 +441,42 @@
 			<hr>
 			
 			
-			</br></br>	    
+			<br/>	<br/>	    
 	 
 				 <div class="form-group">
 				 
 				 <label for="text">호스트이름</label>
-    				<input type="text" class="form-control" id="hname">
+    				<input type="text" class="form-control" id="hname" name="hname">
     				
     			<label for="text">숙소이름</label>
-    				<input type="text" class="form-control" id="title">
+    				<input type="text" class="form-control" id="title" name="title">
     				
 			  		<label for="comment">소개글:</label>
-			  			<textarea id="intro" class="form-control" rows="5"></textarea>
+			  			<textarea name="intro" id="intro" class="form-control" rows="5"></textarea>
 			  			
 			  			
 			  		<label for="comment">게스트 자격조건:</label>
-			  			<textarea id="condition" class="form-control" rows="5"></textarea>
+			  			<textarea name="condition" id="condition" class="form-control" rows="5"></textarea>
 						</div>
 	 
 	 <div style="height: auto; width: 100%; border:1px solid black;">
 	 
-	 <h2 align="center">사진등록</h2>
+	 <h2 align="center">메인사진등록</h2>
 	 
 	 
-<form id="FILE_FORM" method="post" enctype="multipart/form-data" action="">
-            <input type="file" id="FILE_TAG" name="FILE_TAG">
+            <input type="file" id="FILE_TAG" >
             <a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile();">등록</a>
-        </form>
         
-        <span id="picurl"></span>
+        파일주소<input type="text" id="picurl" name=picurl readonly="readonly"/>
+        
+        
+     <h2 align="center">상세사진등록</h2>
+	 
+	 
+            <input type="file" id="FILE_TAG2" >
+            <a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile2();">등록</a>
+        
+        파일주소<input type="text" id="picurl2" name=picurl2 readonly="readonly"/>
 
 
 
@@ -454,7 +497,33 @@
                     type: 'POST',
                     success: function(result){
                         alert('사진등록성공');
-                        $('#picurl').html(result);
+                        console.log(result);
+                        
+                        $('#picurl').val(result);
+                        
+                    }
+            });
+    }
+	
+	
+	function uploadFile2(){
+        var form = $('FILE_FORM2')[0];
+        var formData = new FormData(form);
+        formData.append("fileObj2", $("#FILE_TAG2")[0].files[0]);
+
+        $.ajax({
+            url: '/hosting/upload2',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    type: 'POST',
+                    success: function(result){
+                        alert('사진등록성공');
+                        console.log(result);
+                        
+                        result += $('#picurl2').val();
+                        
+                        $('#picurl2').val(result);
                         
                     }
             });
