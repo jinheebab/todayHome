@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.HostingDao;
+import model.MainDao;
 
 @Controller
 public class SearchController {
 	@Autowired
 	HostingDao hDao;
+	@Autowired
+	MainDao mDao;
 
 	@RequestMapping("/search/search")
 	public ModelAndView search(@RequestParam HashMap map){
@@ -36,11 +39,12 @@ public class SearchController {
 		HashMap countmap = new HashMap();
 			countmap.put("count", count);
 		
-		ModelAndView mav = new ModelAndView("m_index2");
-		mav.addObject("main", "search/searchList");
-		mav.addObject("val", list);
-		mav.addObject("vall", countmap);
-		mav.addObject("map", map);
+			
+		ModelAndView mav = new ModelAndView("m_index3");
+			mav.addObject("main", "search/searchList");
+			mav.addObject("val", list);
+			mav.addObject("vall", countmap);
+			mav.addObject("map", map);
 		return mav;
 	}
 }
