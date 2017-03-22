@@ -29,15 +29,17 @@ public class SearchController {
 		System.out.println(cnt);
 		
 		List<HashMap> list = hDao.searchList(map);
-			HashMap mapp = (HashMap)list.get(0);
-			System.out.println(mapp);
-			
+		System.out.println(list);
 		
 		
+		int count = hDao.selectCnt(map);  
+		HashMap countmap = new HashMap();
+			countmap.put("count", count);
 		
 		ModelAndView mav = new ModelAndView("m_index2");
 		mav.addObject("main", "search/searchList");
-		mav.addObject("val", mapp);
+		mav.addObject("val", list);
+		mav.addObject("vall", countmap);
 		mav.addObject("map", map);
 		return mav;
 	}

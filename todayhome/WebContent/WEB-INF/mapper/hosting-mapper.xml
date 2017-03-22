@@ -5,7 +5,11 @@
 <mapper namespace="hosting">
 	
 	<select id="searchList" parameterType="java.util.HashMap" resultType="java.util.HashMap" >
-		select * from hosting where city=#{target} or location=#{target} and startdate=#{sdate} and enddate=#{edate} and membercnt=#{cnt}
+		select * from hosting where membercnt=#{cnt} and startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} and city=#{target} or location=#{target}
+	</select>
+	
+	<select id="searchCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+		select count(*) from hosting where membercnt=#{cnt} and startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} and city=#{target} or location=#{target}
 	</select>
 
 	<select id="getMainList" resultType="java.util.HashMap">
