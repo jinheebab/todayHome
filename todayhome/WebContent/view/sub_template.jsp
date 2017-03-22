@@ -14,7 +14,6 @@
 	<div style="min-height: 10%; margin: 0 0;">
 		<tiles:insertAttribute name="header" />
 	</div>
-	
 	<div
 		style="min-height: 50%; margin: 0 250; font-family: Sans-serif; line-height: 2.0em;  padding: 0px 25px;">
 		<tiles:insertAttribute name="main" />

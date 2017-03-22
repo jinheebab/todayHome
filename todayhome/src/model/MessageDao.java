@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,63 +14,75 @@ public class MessageDao {
 	@Autowired
 	SqlSessionFactory factory;
 	
-	public List getRecvMsgs(String receiver){
+	
+	//수신리스트
+	public List getreceiveList(HashMap map){
+		System.out.println(map);
+		List list = null;
+		try{
+			SqlSession sql = factory.openSession();
+			list = sql.selectList("message.getRecvMsgs", map);
+			sql.close();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}	
+			
+		return list;
+	}		
+	
+	
+	//발신리스트
+	public List getsendList(HashMap map){
 		
 		List list = null;
 		try{
 			SqlSession sql = factory.openSession();
-			list = sql.selectList("message.getRecvMsgs", receiver);
+			list = sql.selectList("message.getSendList", map);
 			sql.close();
-			
 			
 		}catch(Exception e){
 			e.printStackTrace();
-			return null;
-		}
+		}	
 		
 		return list;
 		
 	}
-	public int sendRecv(HashMap<String, Object> map){
+	
+	//메시지 보내기
+	public boolean sendRecv(HashMap map){
+		boolean rst = false;
 		try{
 			SqlSession sql = factory.openSession();
-			int rst = sql.insert("mappers.message-mapper.addMsg", map);
-			if(rst == 1){
+			int r = sql.insert("message.addMsg", map);
+			if(r == 1){
+				rst= true;
 				sql.commit();
+			}else{
+				rst = false;
 			}
 			sql.close();
-			return rst;
 			
 		}catch(Exception e){
 			e.printStackTrace();
-			return 0;
-		}
-	}
+		}	
+		return rst;
+	}	
+		
+	//회원찾기
 	public List<HashMap> getRecvAll(){
+		List<HashMap> list = new ArrayList();
 		try{
 			SqlSession sql = factory.openSession();
-			List<HashMap> list = sql.selectList("mappers.message-mapper.findAll");
+			list = sql.selectList("message.findAll");
 			sql.close();
-			return list;
-			
 		}catch(Exception e){
 			e.printStackTrace();
-			return null;
 		}
+		return list;
 	}
-	public boolean existOne(String target) {
-		boolean rst = false;
-		try {
-			SqlSession sql = factory.openSession();
-			HashMap map = sql.selectOne("mappers.message-mapper.findTarget");
-			if(map != null)
-				rst = !rst;
-			sql.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return rst;
-	}
+	
 }
 
 

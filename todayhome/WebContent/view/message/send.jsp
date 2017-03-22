@@ -29,33 +29,40 @@
  
         // 넘어가는 글자는 자른다.
         if (totalByte > maxByte) {
-            alert(maxByte + "더이상 입력할 수 없습니다.");
+            alert(maxByte + "자 이상 입력할 수 없습니다.");
             str2 = strValue.substr(0, len);
             obj.value = str2;
             chkword(obj, 4000);
-        }
-    }
+		
+		}
+    }	
 </script>
-
-<div>
+		
+<div>	
+		
+<div align="center">
+<h3>용건을 전달해드립니다.</h3>
+<ul class="nav nav-tabs"> </ul> <br/>
+</div>	
+		
+		
 <div class="row">
-<h3>메시지 작성</h3>
 	<div class="col-md-2"></div>
 	<div class="col-md-8">
 		<p class="form-inline">
 			<input type="text" class="form-control" id="writer" placeholder="받는 분" maxlength="50" onkeyup="chkword(this, 50)"/>
 		</p>
 		<p>
-			<textarea rows="2" cols="83" id="content" class="form-control"
+			<textarea rows="2" cols="100" id="content" class="form-control"
 				placeholder="내용" maxlength="500" onkeyup="chkword(this, 500)" ></textarea>
 		</p>
 		<p style="text-align: right; font-size: 14px;">
 			<span id="cnt" >0</span>/500
-			<button type="button" id="send" class="btn">Send</button>
+			<button type="button" id="send" class="btn">전송</button>
 		</p>
 	</div>
-</div>
-</div>
-
-
-
+</div>	
+</div>	
+		
+		
+		

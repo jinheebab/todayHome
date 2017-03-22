@@ -351,6 +351,7 @@
 	 	    $('#edate').datepicker();
 	 	    $('#edate').datepicker("option", "minDate", $("#sdate").val());
 	 	    $('#edate').datepicker("option", "onClose", function ( selectedDate ) {
+	 	    	console.log(selectedDate)
 	 	        $("#sdate").datepicker( "option", "maxDate", selectedDate );
 	 	    });
 	 	    	    

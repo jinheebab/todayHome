@@ -6,17 +6,18 @@
 	<select id="findAll" resultType="java.util.HashMap"> 
 		select * from member 
 	</select> 
-	<select id="findTarget" resultType="java.util.HashMap"> 
-		select * from member where id=ID 
-	</select> 
+
 	<!-- insert mapper : parameter type resultType은 설정 불가능! ==> 결과물은 int기 때문에.. --> 
 	<insert id="addMsg" parameterType="java.util.HashMap" >	
 		insert into message values(message_SEQ.nextval, #{sender}, #{receiver}, #{content} ) 
 	</insert> 
-	<select id="getRecvMsgs" parameterType="java.lang.String" resultType="java.util.HashMap"> 
-		select * from message where receiver=#{receiver} order by num desc 
+	<select id="getRecvMsgs" parameterType="java.util.HashMap" resultType="java.util.HashMap"> 
+		select * from message where receiver= #{receiver} order by num desc 
 	</select> 
-	<update parameterType="java.lang.Integer" id="updateCount"> 
-		update message set count = count+1 where num =#{num } 
+	<select id="getSendList" parameterType="java.util.HashMap" resultType="java.util.HashMap"> 
+		select * from message where sender= #{sender} order by num desc 
+	</select> 
+	<update parameterType="java.util.HashMap" id="updateCount"> 
+		update message set count = count+1 where num =#{num} 
 	</update> 
 </mapper> 

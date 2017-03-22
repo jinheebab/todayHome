@@ -48,7 +48,7 @@ public class InfoController {
 		HashMap map = new HashMap();
 			map.put("id", id);
 			map.put("type", "info");
-			HashMap sharing = sDao.read(map);
+		HashMap sharing = sDao.read(map);
 		
 		ModelAndView mav = new ModelAndView("m_index2");
 			String path = ac.getRealPath("/nation.txt");
@@ -92,7 +92,6 @@ public class InfoController {
 				return mav;	
 			}
 	}
-
 	@RequestMapping("/info/ajax")
 	@ResponseBody
 	public ModelAndView withdrawAjaxHandler(@RequestParam HashMap map, HttpSession session){

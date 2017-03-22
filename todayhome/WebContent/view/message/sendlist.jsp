@@ -10,10 +10,14 @@
     <li><a href="/view/sendlist">보낸 메시지</a></li>
   </ul>
   <br>
-  <p><strong> Send List </strong> </p>
+	<p><strong> Receive List </strong> </p> <br/>
+  
+	<ul class="nav nav-tabs"> </ul> <br/>
+	<button style="background-color: #E5E5E5; color: black; border:none;
+	text-align: right; font-size: 14px;" class="btn btn-success"
+	onClick="location.href='/view/send'">작성</button>
+
 </div>
-
-
 
 </body>
 </html>
