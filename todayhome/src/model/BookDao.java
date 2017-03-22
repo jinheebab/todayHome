@@ -66,19 +66,7 @@ public class BookDao {
 }
 	
 	
-public List getWishlist(Map param) {	
-		
-		List list = new ArrayList<>();
-		SqlSession sql = factory.openSession();
-		try {
-			list = sql.selectList("booking.getWishlist",param);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sql.close();
-		}
-		return list;
-}
+
 		
 		
 	

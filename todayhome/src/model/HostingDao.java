@@ -124,6 +124,20 @@ public class HostingDao {
 			}
 			return hostingNumber;
 		}
+		
+		public List getWishList(Map param){
+			
+			List<HashMap> list = new ArrayList<>();
+			SqlSession sql = factory.openSession();
+			try {
+				list = sql.selectList("hosting.getWishList", param);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return list;
+		}
 }
 		
 

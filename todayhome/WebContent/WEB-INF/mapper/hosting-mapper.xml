@@ -39,4 +39,8 @@
 	<select id="getHostingNum" parameterType="java.util.HashMap" resultType="java.lang.Integer">
 		select num from hosting where title=#{title}
 	</select>
+	
+	<select id="getWishList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from hosting where num in (select hostingnum from book where name=#{id})
+	</select>
 </mapper>

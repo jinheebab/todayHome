@@ -166,13 +166,17 @@ public class ReservationController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String id = (String)session.getAttribute("auth");
+		//String id = (String)session.getAttribute("auth");
+		
+		String id = "leeja";
+		
+		System.out.println("아이디는 " + id);
 		
 		Map param = new HashMap<>();
 		
 		param.put("id", id);
 		
-		List wishlist = bdao.getWishlist(param);
+		List wishlist = hdao.getWishList(param);
 		
 		mav.addObject("wishlist", wishlist);
 		

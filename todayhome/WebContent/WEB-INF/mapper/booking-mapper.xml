@@ -15,8 +15,6 @@
 		select rownum rn, a.* from (select * from book where hostingnum=#{hostingnum} and name=#{name} order by num desc) a where rownum = 1
 	</select>
 	
-	<select id="getWishlist" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		select * from book where id=#{id}
-	</select>
+	
 
 </mapper>
