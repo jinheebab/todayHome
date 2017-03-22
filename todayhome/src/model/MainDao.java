@@ -120,6 +120,25 @@ public class MainDao {
 		return list;
 	}
 	
+	public boolean addReview(HashMap map){
+		SqlSession session = factory.openSession();
+		boolean rst = false;
+		try{
+			int r= session.insert("review.addReview", map);
+			if(r==1){
+				rst = true;
+				System.out.println("등록성공");
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			rst = false;
+		}finally{
+			session.close();
+		}
+		return rst;
+		
+	}
+	
 
 	
 	

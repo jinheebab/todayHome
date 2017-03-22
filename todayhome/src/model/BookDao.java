@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -61,6 +63,21 @@ public class BookDao {
 			sql.close();
 		}
 		return map;
+}
+	
+	
+public List getWishlist(Map param) {	
+		
+		List list = new ArrayList<>();
+		SqlSession sql = factory.openSession();
+		try {
+			list = sql.selectList("booking.getWishlist",param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sql.close();
+		}
+		return list;
 }
 		
 		

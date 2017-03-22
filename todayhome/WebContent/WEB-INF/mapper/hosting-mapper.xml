@@ -3,17 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hosting">
+	
+	<select id="searchList" parameterType="java.util.HashMap" resultType="java.util.HashMap" >
+		select * from hosting where membercnt=#{cnt} and startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} and city=#{target} or location=#{target}
+	</select>
+	
+	<select id="searchCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+		select count(*) from hosting where membercnt=#{cnt} and startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} and city=#{target} or location=#{target}
+	</select>
 
 	<select id="getMainList" resultType="java.util.HashMap">
 		select num, title, picURL, price, category, country, Htype from hosting order by num desc
 	</select>
-	
+
 	<select id="getPrice" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select avg(price) as price, city from hosting where city=#{city} group by city
 	</select>
 	
 	<insert id="register" parameterType="java.util.HashMap">
-		insert into hosting values(HOSTING_SEQ.NEXTVAL, #{title}, #{htype}, #{rtype}, #{roomcnt}, #{membercnt}, #{bedcnt}, #{bathcnt}, #{country}, #{city}, #{location}, #{amenity}, #{rule}, #{condition}, to_date(#{startdate}), to_date(#{enddate}),#{price}, #{category}, #{hname}, #{intro}, #{picurl},NULL)
+		insert into hosting values(HOSTING_SEQ.NEXTVAL, #{title}, #{htype}, #{rtype}, #{roomcnt}, #{membercnt}, #{bedcnt}, #{bathcnt}, #{country}, #{city}, #{location}, #{amenity}, #{rule}, #{condition}, to_date(#{startdate}), to_date(#{enddate}),#{price}, #{category}, #{hname}, #{intro}, #{picurl},#{address})
 	</insert>
 	
 	<select id="getAllList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
@@ -26,5 +34,9 @@
 	
 	<select id="getHoster" parameterType="java.lang.String" resultType="java.lang.String">
 		select Hname from hosting where num =#{num}
+	</select>
+	
+	<select id="getHostingNum" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select num from hosting where title=#{title}
 	</select>
 </mapper>

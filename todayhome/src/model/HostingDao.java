@@ -34,8 +34,7 @@ public class HostingDao {
 				sql.close();
 			}
 			return list;
-	}
-		
+		}
 		
 		public Map getPrice(Map param){
 			
@@ -85,9 +84,47 @@ public class HostingDao {
 			return map;
 	}
 		
+		public List<HashMap> searchList(HashMap search) {	
+			List<HashMap> list = new ArrayList<>();
+			SqlSession sql = factory.openSession();
+			try {
+				list = sql.selectList("hosting.searchList", search);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return list;
+		}		
+		
+		public int selectCnt(Map map) {
+			SqlSession session = factory.openSession();
+			int r = 0;
+			try {
+				r = session.selectOne("hosting.searchCnt", map);
+				session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return r;
+		}
 		
 		
-	}
+		public int getHostingNum(Map param){
+			int hostingNumber = 0;
+			SqlSession sql = factory.openSession();
+			try {
+				hostingNumber = sql.selectOne("hosting.getHostingNum",param);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return hostingNumber;
+		}
+}
 		
 
 		

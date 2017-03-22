@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.HostingDao;
@@ -123,6 +124,31 @@ public class MainController {
 		
 		
 		return mav;
+	}
+	
+	
+	@RequestMapping("view/review/resultAjax")
+	@ResponseBody 
+	public boolean chatHandler(@RequestParam("msg")String msg, @RequestParam("grade")String grade, @RequestParam("hostingnum")String num,
+			HttpSession session){
+			HashMap map = new HashMap (); 
+			map.put("writer", session.getAttribute("id"));
+			map.put("msg", msg);
+			map.put("grade", grade);
+			map.put("hostingnum", num);
+			
+			System.out.println(msg);
+			boolean rst = md.addReview(map);
+		return rst;
+	}
+	
+	@RequestMapping("/listAjax")
+	@ResponseBody //를 responseText로 ajax에서 받는다.
+	public List listHandler(HttpSession session) {
+		
+		List li = new ArrayList();
+		return li;
+	
 	}
 	
 }
