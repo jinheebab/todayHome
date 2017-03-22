@@ -307,14 +307,17 @@
   <div class="modal-content1">
     <span class="close1">&times;</span>
     <div align="center">
-    <h2>후기 등록</h2> <br/><br/>
+    <h2>후기 등록</h2> <br/>
     <form action="/view/review/result" method="get">
- <textarea rows="5" cols="80" id="content" class="form-control" placeholder="후기를 입력해주세요"></textarea>
- <br/><br/>
- <button type="submit" class="btn">등록</button>
+<textarea  rows="6" cols="80" id="content" class="form-control" placeholder="후기를 입력해주세요" 
+name="textarea" maxlength="200" onkeyup="return teaxtarea_maxlength(this)"></textarea>
+ <br/>
+ <button type="submit" style="background-color: white; border-style: solid; border-color: orange; border-width: 2px;  width: 80px;">등록</button>
  </form>
     </div>
   </div>
+  
+
 
 </div>
 <script>
@@ -342,5 +345,14 @@ window.onclick = function(event) {
     if (event.target == modal1) {
         modal1.style.display = "none";
     }
+}
+</script>
+
+<script >
+function textarea_maxlength(obj){
+var maxLength = parseInt(obj.getAttribute("maxlength"));'
+if(obj.value.length>maxLength){
+obj.value = obj.value.substring(0, maxLength);
+}
 }
 </script>
