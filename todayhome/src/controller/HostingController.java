@@ -18,9 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import model.BookDao;
 import model.FileUploadService;
 import model.HostingDao;
+import model.SharingDao;
 
 @Controller
 @RequestMapping("/hosting")
@@ -31,6 +34,9 @@ public class HostingController {
 		
 	@Autowired
 	FileUploadService fdao;
+	
+	@Autowired
+	SharingDao sdao;
 		
 	@RequestMapping("/host01")
 	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
@@ -82,7 +88,9 @@ public class HostingController {
 	@RequestMapping("/upload")
 	@ResponseBody
 	public String upload(@RequestParam(name="fileObj") MultipartFile file) throws Exception {
+		
 		System.out.println(file.toString());
+		
 		Map map = fdao.execute(file);
 		
 		String picurl = (String)map.get("fileaddress");
@@ -94,39 +102,118 @@ public class HostingController {
 	
 	@RequestMapping("/upload2")
 	@ResponseBody
-	public String upload2(@RequestParam(name="fileObj2") MultipartFile file) throws Exception {
+	public Map upload2(@RequestParam(name="fileObj") MultipartFile file, HttpSession session) throws Exception {
+		
 		System.out.println(file.toString());
+		
+		String id = (String)session.getAttribute("auth");
+		
 		Map map = fdao.execute(file);
 		
+		Map json = new HashMap<>();
 		
+		String type = (String)map.get("type");
 		
-		String picurl = (String)map.get("fileaddress");
+		String filename = (String)map.get("filename");
 		
-		return picurl.toString();
+		long filesize = (long)map.get("filesize");
+		
+		String fileaddress = (String)map.get("fileaddress");
+		
+		json.put("type", type);
+		
+		json.put("filename", filename);
+		
+		json.put("filesize", filesize);
+		
+		json.put("fileaddress", fileaddress);
+		
+		json.put("filelink", fileaddress);
+		
+		json.put("id", id);
+		
+		System.out.println("제이슨출력  " + json.toString());
+		String  objm = new ObjectMapper().writeValueAsString(json);
+		System.out.println(objm);
+		return json;
 		
 	}
-
-
 	
+	
+		
 	
 	
 	
 	
 	
 	@RequestMapping("/host03")
-	@ResponseBody
-	public String host03(@RequestParam Map map){
+	public ModelAndView host03(@RequestParam Map map){
 		
 		System.out.println(map.toString());
 		
+		ModelAndView mav= new ModelAndView();
+		
+		Map hostinginfo = map;
 		
 		int n = hdao.addHosting(map);
 		
+		int hostingNumber = hdao.getHostingNum(map);
+		
+		System.out.println("호스팅등록성공하면 1 == " +n);
+		
 		if(n == 1){
-			return "등록 성공!";
+			
+			mav.addObject("hostinginfo", hostinginfo);
+			
+			mav.addObject("hostingNumber", hostingNumber);
+			
+			mav.addObject("main", "hosting/host02");
+			
+			mav.setViewName("m_index2");
+			
 		}else{
-			return "등록 실패!";
+			
+			mav.addObject("main", "hosting/host01");
+			
+			mav.setViewName("m_index2");
 		}
+		
+			return mav;
+		
+	}
+	
+	@RequestMapping("/host04")
+	public ModelAndView host04(@RequestParam Map map){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		int r = sdao.createOne(map);
+		
+		if(r == 1){
+		
+			mav.addObject("main", "hosting/host03");
+		
+			mav.setViewName("m_index2");
+		
+		}else{
+			mav.addObject("main", "hosting/host02");
+			
+			mav.setViewName("m_index2");
+		}
+		return mav;
+		
+	}
+	
+	@RequestMapping("/again")
+	public ModelAndView again(){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("main", "hosting/host02");
+		
+		mav.setViewName("m_index2");
+		
+		return mav;
 		
 	}
 	

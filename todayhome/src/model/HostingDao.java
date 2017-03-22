@@ -110,6 +110,20 @@ public class HostingDao {
 			}
 			return r;
 		}
+		
+		
+		public int getHostingNum(Map param){
+			int hostingNumber = 0;
+			SqlSession sql = factory.openSession();
+			try {
+				hostingNumber = sql.selectOne("hosting.getHostingNum",param);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return hostingNumber;
+		}
 }
 		
 

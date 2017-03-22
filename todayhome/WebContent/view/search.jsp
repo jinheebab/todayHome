@@ -60,8 +60,9 @@
       isRTL: false,
       showMonthAfterYear: true,
       yearSuffix: '',
-
-      changeMonth: true,
+      showOn: 'both',
+      buttonText: "달력",
+	  changeMonth: true,
       changeYear: true,
       showButtonPanel: true,
       yearRange: 'c-99:c+99',

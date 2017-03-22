@@ -160,4 +160,33 @@ public class ReservationController {
 		return mav;
 	}
 	
+	
+	@RequestMapping("/mywishlist")
+	public ModelAndView mywishlist(HttpSession session){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String id = (String)session.getAttribute("auth");
+		
+		Map param = new HashMap<>();
+		
+		param.put("id", id);
+		
+		List wishlist = bdao.getWishlist(param);
+		
+		mav.addObject("wishlist", wishlist);
+		
+		mav.addObject("main", "reservation/mywishlist");
+		
+		mav.setViewName("m_index2");
+		
+		return mav;
+		
+		
+		
+		
+		
+		
+	}
+	
 }

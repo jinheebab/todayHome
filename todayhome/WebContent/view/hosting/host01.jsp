@@ -156,7 +156,7 @@
 
 
 <input id="pac-input" class="controls" type="text"
-        placeholder="주소를 입력하세요">
+        placeholder="반드시 여기다가 주소를 입력하세요" name=address>
     <div id="type-selector" class="controls">
       <input type="radio" name="type" id="changetype-all" checked="checked">
       <label for="changetype-all">All</label>
@@ -471,16 +471,7 @@
         파일주소<input type="text" id="picurl" name=picurl readonly="readonly"/>
         
         
-     <h2 align="center">상세사진등록</h2>
-	 
-	 
-            <input type="file" id="FILE_TAG2" >
-            <a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile2();">등록</a>
-        
-        파일주소<input type="text" id="picurl2" name=picurl2 readonly="readonly"/>
-
-
-
+   
 
 </div>
 	<script>
@@ -507,30 +498,7 @@
     }
 	
 	
-	function uploadFile2(){
-        var form = $('FILE_FORM2')[0];
-        var formData = new FormData(form);
-        formData.append("fileObj2", $("#FILE_TAG2")[0].files[0]);
-
-        $.ajax({
-            url: '/hosting/upload2',
-                    processData: false,
-                    contentType: false,
-                    data: formData,
-                    type: 'POST',
-                    success: function(result){
-                        alert('사진등록성공');
-                        console.log(result);
-                        
-                        result += $('#picurl2').val();
-                        
-                        $('#picurl2').val(result);
-                        
-                    }
-            });
-    }
-
-
+	
 
 
 	
