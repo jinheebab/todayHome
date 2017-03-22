@@ -307,14 +307,19 @@
   <div class="modal-content1">
     <span class="close1">&times;</span>
     <div align="center">
-    <h2>후기 등록</h2> <br/><br/>
-    <form action="/view/review/result" method="get">
- <textarea rows="5" cols="80" id="content" class="form-control" placeholder="후기를 입력해주세요"></textarea>
- <br/><br/>
- <button type="submit" class="btn">등록</button>
- </form>
+    <h2>후기 등록</h2> <br/>
+    <b><span id="num" >${list[0].NUM}</span>.${list[0].TITLE}</b><br/>
+<textarea  rows="6" cols="80" id="content" class="form-control" placeholder="후기를 입력해주세요" 
+name="textarea" maxlength="200" onkeyup="return teaxtarea_maxlength(this)"></textarea>
+ <br/>
+ <c:forEach var="i" begin="1" end="5">
+ <input type="radio" value="i" id="grade"/> ${i}
+ </c:forEach> <br/>
+ <button type="submit" id="Rbtn" style="background-color: white; border-style: solid; border-color: orange; border-width: 2px;  width: 80px;">등록</button>
     </div>
   </div>
+  
+
 
 </div>
 <script>
@@ -343,4 +348,27 @@ window.onclick = function(event) {
         modal1.style.display = "none";
     }
 }
+
+
+$("#Rbtn").click(function(){
+	var msg = $("#content").val();
+	var grade = $("#grade").val();
+	var hostingnum = $("#num").val();
+	console.log(hostingnum+grade+msg);
+/* 	$.ajax({
+		url : "/review/resultAjax?msg="+msg+"grade="+grade+"hostingnum="+num
+	}).done(function(txt){
+		window.alert("등록 성공");
+		modal1.style.display = "none";
+	}); */
+});
+
+
+function textarea_maxlength(obj){
+	var maxLength = parseInt(obj.getAttribute("maxlength"));
+		if(obj.value.length>maxLength){
+		obj.value = obj.value.substring(0, maxLength);
+		}
+};
 </script>
+
