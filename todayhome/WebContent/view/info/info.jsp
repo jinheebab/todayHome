@@ -19,7 +19,6 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
->>>>>>> branch 'master' of https://github.com/jinheebab/todayhome.git
 
 /* Modal Content */
 .modal-content {

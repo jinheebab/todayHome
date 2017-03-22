@@ -53,7 +53,32 @@ public class HostingDao {
 			return map;
 			
 		}
-		
+		public List<HashMap> getAll(){
+			List<HashMap> list = new ArrayList<>();
+			
+			SqlSession sql = factory.openSession();
+			try {
+				list = sql.selectList("hosting.getAll");
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return list;
+		}
+		public int allCnt() {
+			SqlSession session = factory.openSession();
+			int r = 0;
+			try {
+				r = session.selectOne("hosting.allCnt");
+				session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+			return r;
+		}
 		
 		public int addHosting(Map map) {
 			SqlSession session = factory.openSession();
@@ -110,6 +135,20 @@ public class HostingDao {
 			}
 			return r;
 		}
+//		페이징 처리
+//		public List<HashMap> getSelectPage(HashMap map){
+//			List<HashMap> list = new ArrayList<>();
+//			SqlSession sql = factory.openSession();
+//			try {
+//				list = sql.selectList("hosting.pagingSelect", map);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				sql.close();
+//			}
+//			return list;
+//		}
+		
 }
 		
 

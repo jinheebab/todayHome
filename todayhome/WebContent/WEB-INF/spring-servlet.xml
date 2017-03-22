@@ -74,4 +74,11 @@
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@121.134.125.131:1521:xe" />
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 	</bean>
+	
+	<!-- mongoClient -->
+<!-- 	<mongo:mongo-client host="192.168.10.15" port="27017" id="mongo"/> -->
+<!-- 	<bean class="org.springframework.data.mongodb.core.MongoTemplate"> -->
+<!-- 		<constructor-arg name="mongo" ref="mongo"/> -->
+<!-- 		<constructor-arg name="databaseName" value="patrick"/> -->
+<!-- 	</bean> -->
 </beans>
