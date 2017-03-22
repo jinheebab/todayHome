@@ -21,7 +21,7 @@
 	</select>
 	
 	<insert id="register" parameterType="java.util.HashMap">
-		insert into hosting values(HOSTING_SEQ.NEXTVAL, #{title}, #{htype}, #{rtype}, #{roomcnt}, #{membercnt}, #{bedcnt}, #{bathcnt}, #{country}, #{city}, #{location}, #{amenity}, #{rule}, #{condition}, to_date(#{startdate}), to_date(#{enddate}),#{price}, #{category}, #{hname}, #{intro}, #{picurl},NULL)
+		insert into hosting values(HOSTING_SEQ.NEXTVAL, #{title}, #{htype}, #{rtype}, #{roomcnt}, #{membercnt}, #{bedcnt}, #{bathcnt}, #{country}, #{city}, #{location}, #{amenity}, #{rule}, #{condition}, to_date(#{startdate}), to_date(#{enddate}),#{price}, #{category}, #{hname}, #{intro}, #{picurl},#{address})
 	</insert>
 	
 	<select id="getAllList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
@@ -34,5 +34,13 @@
 	
 	<select id="getHoster" parameterType="java.lang.String" resultType="java.lang.String">
 		select Hname from hosting where num =#{num}
+	</select>
+	
+	<select id="getHostingNum" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select num from hosting where title=#{title}
+	</select>
+	
+	<select id="getWishList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from hosting where num in (select hostingnum from book where name=#{id})
 	</select>
 </mapper>

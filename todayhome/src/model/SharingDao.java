@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -18,7 +19,7 @@ public class SharingDao {
 	@Autowired
 	SqlSessionFactory factory;
 	
-	public int createOne(HashMap map){
+	public int createOne(Map map){
 		int rst = 0;
 		SqlSession sql = factory.openSession();
 		try {
@@ -59,4 +60,6 @@ public class SharingDao {
 		}
 		return rst;
 	}
+	
+	
 }
