@@ -12,5 +12,8 @@
 	<select id="getReviewcnt" resultType="java.util.HashMap" parameterType="java.util.HashMap"> 
 		select count(*) as cnt from review where hostingnum=#{num} 
 	</select>
+	<insert id="addReview" parameterType="java.util.HashMap">
+		insert into review values (review_seq.nextval, #{msg}, #{writer}, #{grade}, #{hostingnum})
+	</insert>
 
 </mapper>
