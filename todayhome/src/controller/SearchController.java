@@ -57,7 +57,7 @@ public class SearchController {
 				String ad = (String)addr.get(i);
 				ad=ad.replaceAll("\\s", "");
 				String target = "https://maps.googleapis.com/maps/api/geocode/json?address=" + ad
-						+ "&key=AIzaSyBS-83LLE8F1nvtVtsy1Adu-j4LeS9qAQg&language=ko";
+						+ "&key=AIzaSyCTedVAKth6lZoKGXnNbPolpWVSjyctv6g&language=ko";
 				
 				URL url = new URL(target);
 				BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));

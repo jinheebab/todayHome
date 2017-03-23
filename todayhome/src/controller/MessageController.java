@@ -56,36 +56,6 @@ public class MessageController {
 
 		return mav;
 	}
-
-	
-	@RequestMapping("/sendlist")
-	public ModelAndView sendlist(HttpSession session) {
-		System.out.println("메시지 '발신' 리스트 접속");
-		ModelAndView mav = new ModelAndView();
-
-		String sender = (String) session.getAttribute("auth");
-		HashMap map = new HashMap();
-		map.put("sender", sender);
-		List<HashMap> list = mdao.getsendList(map);
-
-		mav.setViewName("m_index2");
-		mav.addObject("main", "message/sendlist");
-		mav.addObject("lists", list);
-
-		return mav;
-	}
-
-	@RequestMapping("/send")
-	public ModelAndView send(HttpSession session) {
-		System.out.println("메시지 '작성' 페이지 접속");
-		ModelAndView mav = new ModelAndView();
-
-		String send = (String) session.getAttribute("auth");
-		mav.setViewName("m_index2");
-		mav.addObject("main", "message/send");
-		mav.addObject("send", send);
-		return mav;
-	}
 	
 	@RequestMapping("/paging")
 	public ModelAndView paging(@RequestParam(name="page")int page, HttpSession session){
@@ -116,9 +86,69 @@ public class MessageController {
 		
 		
 		return mav;
-		
-		
-		
 	}
+	
+	@RequestMapping("/sendpaging")
+	public ModelAndView sendpaging(@RequestParam(name="sendpage")int sendpage, HttpSession session){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String sender = (String)session.getAttribute("auth");
+		
+		Map map = new HashMap<>();
+		
+		Map move = new HashMap<>();
+		
+		map.put("sender", sender);
+		
+		List sendlist = mdao.getsendMessage(map);
+		
+		List boards = new ArrayList<>();
+		
+		for(int i=5*sendpage-5; i< 5*sendpage ; i++){
+			
+			boards.add(sendlist.get(i));
+			
+		}
+		
+		mav.setViewName("m_index2");
+		mav.addObject("main", "message/sendlist");
+		mav.addObject("boards", boards);
+		
+		return mav;
+	}	
+	
+	@RequestMapping("/sendlist")
+	public ModelAndView sendlist(HttpSession session) {
+		System.out.println("메시지 '발신' 리스트 접속");
+		ModelAndView mav = new ModelAndView();
+
+		String sender = (String) session.getAttribute("auth");
+		HashMap map = new HashMap();
+		map.put("sender", sender);
+		List<HashMap> list = mdao.getsendMessage(map);
+
+		mav.setViewName("m_index2");
+		mav.addObject("main", "message/sendlist");
+		mav.addObject("lists", list);
+
+		return mav;
+	}
+
+
+	
+	
+	@RequestMapping("/send")
+	public ModelAndView send(HttpSession session) {
+		System.out.println("메시지 '작성' 페이지 접속");
+		ModelAndView mav = new ModelAndView();
+
+		String send = (String) session.getAttribute("auth");
+		mav.setViewName("m_index2");
+		mav.addObject("main", "message/send");
+		mav.addObject("send", send);
+		return mav;
+	}
+	
 
 }
