@@ -69,7 +69,27 @@ public class MessageDao {
 			e.printStackTrace();
 		}	
 		return rst;
-	}	
+	}
+	
+	//메시지 보내기
+	public class RequestModel {
+		private String title;
+		private String content;
+
+		public String getTitle() {
+				return title;
+		}
+		public void setTitle(String title) {
+			this.title = title;
+		}
+		public String getContent() {
+			return content;
+		} public void setContent(String content) {
+			this.content = content;
+		}
+	}
+
+	
 		
 	//회원찾기
 	public List<HashMap> getRecvAll(){
@@ -83,6 +103,7 @@ public class MessageDao {
 		}
 		return list;
 	}
+	
 	
 }
 
