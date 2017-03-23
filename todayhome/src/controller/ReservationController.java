@@ -37,7 +37,7 @@ public class ReservationController {
 	ServletContext ac;
 	
 	@RequestMapping("/reserve01")
-	public ModelAndView reserve01(HttpSession session){
+	public ModelAndView reserve01(HttpSession session, @RequestParam(name="num")int num){
 		ModelAndView mav = new ModelAndView();
 		
 		if(session.getAttribute("auth") == null){
@@ -52,9 +52,7 @@ public class ReservationController {
 		
 		mav.addObject("id", id);
 		
-	//	int num = (int)session.getAttribute("num");
-		
-		int num = 111;
+	
 		
 		Map hostinglist = hdao.readHostingAll(num);
 		

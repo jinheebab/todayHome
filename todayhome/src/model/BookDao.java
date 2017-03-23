@@ -65,6 +65,20 @@ public class BookDao {
 		return map;
 }
 	
+	public List getReserveDate(Map param){
+		
+		List list = new ArrayList<>();
+		SqlSession sql = factory.openSession();
+		try {
+			list = sql.selectOne("booking.getReserveDate",param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sql.close();
+		}
+		return list;
+	}
+	
 	
 
 		
