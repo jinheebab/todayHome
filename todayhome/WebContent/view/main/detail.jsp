@@ -467,6 +467,8 @@ $('#testDatepicker2').datepicker("option", "maxDate", date2);
 
 
 	$("#testDatepicker").datepicker({
+
+				dateFormat: 'yyyy-mm-dd',
 				changeMonth : true,
 				changeYear : true,
 				nextText : '다음 달',
@@ -484,6 +486,7 @@ $('#testDatepicker2').datepicker("option", "maxDate", date2);
 	    });
 	 
 	$("#testDatepicker2").datepicker({
+				dateFormat: 'yyyy-mm-dd',
 				changeMonth : true,
 				changeYear : true,
 				nextText : '다음 달',
@@ -514,7 +517,7 @@ $('#testDatepicker2').datepicker("option", "maxDate", date2);
 		var price = ${list[0].PRICE};
 		price += member*10000;
 		price = price * days;
-		$("#price").html("₩ "+price+"<span style=\"font-size: 0.6em;\">"+days+"박</span>");
+		$("#price").html("₩ "+price+"<span style=\"font-size: 0.6em;\"> "+days+"박</span>");
 	});
 	
 
