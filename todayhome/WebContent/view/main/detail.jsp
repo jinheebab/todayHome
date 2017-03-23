@@ -352,7 +352,7 @@ name="textarea" maxlength="200" ></textarea>
 <hr/>
 <div class="col-md-4 " >
 <div class="bookbox">
-<form action="/reservation/reserve01?num="${list[0].NUM} method="get" style="margin-bottom: 0;">
+<form action="/reservation/reserve01" method="get" style="margin-bottom: 0;">
 <div style="padding-top: 5%; padding-left: 5%; padding-bottom: 1%; font-size: 2em; font-weight: bold; 
 background-color: 309; "><font color="white" id="price">₩ ${list[0].PRICE} <span style="font-size: 0.6em;">1박</span></font></div>
 <div class="row" style="padding: 5%;">
@@ -372,6 +372,7 @@ background-color: 309; "><font color="white" id="price">₩ ${list[0].PRICE} <sp
       </c:forEach>
 </select>
 </div>
+<input type="text" name="num" value="${list[0].NUM}" hidden="true"/>
 <button type="submit" id="book" style=" background-color: CC3300; width: 100%; 
 font-size: 1.3em; font-weight: bold; padding-top: 2%; padding-bottom: 2%;"><font color="white">예 약 하 기</font></button>
 </form>
@@ -481,8 +482,9 @@ $('#testDatepicker2').datepicker("option", "maxDate", day2);
 				}
 	});
 	
-	$("#member").select(function(){
-		var member = $("#member").val();
+	$("#member").change(function(){
+		var member = $('#member option:selected').val()
+
 		var days  = day2-day;
 		console.log(days);
 		
