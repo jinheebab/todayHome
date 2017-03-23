@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,7 +17,7 @@ public class MessageDao {
 	
 	
 	//수신리스트
-	public List<HashMap> getreceiveList(HashMap map){
+	public List<HashMap> getMyMessage(Map map){
 		System.out.println(map);
 		List<HashMap> list = null;
 		try{
@@ -34,7 +35,7 @@ public class MessageDao {
 	
 	
 	//발신리스트
-	public List getsendList(HashMap map){
+	public List getsendList(Map map){
 		
 		List list = null;
 		try{
@@ -51,7 +52,7 @@ public class MessageDao {
 	}
 	
 	//메시지 보내기
-	public boolean sendRecv(HashMap map){
+	public boolean sendRecv(Map map){
 		boolean rst = false;
 		try{
 			SqlSession sql = factory.openSession();

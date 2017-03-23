@@ -132,7 +132,6 @@ public class HostingController {
 		
 		json.put("id", id);
 		
-		System.out.println("제이슨출력  " + json.toString());
 		String  objm = new ObjectMapper().writeValueAsString(json);
 		System.out.println(objm);
 		return json;
