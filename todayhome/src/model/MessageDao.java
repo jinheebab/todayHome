@@ -29,26 +29,23 @@ public class MessageDao {
 			e.printStackTrace();
 			return null;
 		}	
-			
 		return list;
 	}		
 	
-	
 	//발신리스트
-	public List getsendList(Map map){
-		
-		List list = null;
+	public List<HashMap> getsendMessage(Map map){
+		System.out.println(map);
+		List<HashMap> list = null;
 		try{
 			SqlSession sql = factory.openSession();
 			list = sql.selectList("message.getSendList", map);
 			sql.close();
-			
+		
 		}catch(Exception e){
 			e.printStackTrace();
+			return null;
 		}	
-		
 		return list;
-		
 	}
 	
 	//메시지 보내기
@@ -106,7 +103,3 @@ public class MessageDao {
 	
 	
 }
-
-
-
-
