@@ -60,13 +60,6 @@
 </form>
 
 
-<!-- <form action="/message/message" method="post">
-	제목 : <input type="text" name="title" /> <br /> 내용 :
-	<textarea rows="10" cols="50" name="content"></textarea>
-	<br /> <input type="submit" value="서버전달" />
-</form> -->
-
-
 
 <script type="text/javascript">
 	$("a").click(function() {
