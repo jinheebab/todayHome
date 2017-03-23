@@ -29,26 +29,23 @@ public class MessageDao {
 			e.printStackTrace();
 			return null;
 		}	
-			
 		return list;
 	}		
 	
-	
 	//발신리스트
-	public List getsendList(Map map){
-		
-		List list = null;
+	public List<HashMap> getsendMessage(Map map){
+		System.out.println(map);
+		List<HashMap> list = null;
 		try{
 			SqlSession sql = factory.openSession();
 			list = sql.selectList("message.getSendList", map);
 			sql.close();
-			
+		
 		}catch(Exception e){
 			e.printStackTrace();
+			return null;
 		}	
-		
 		return list;
-		
 	}
 	
 	//메시지 보내기
@@ -70,26 +67,6 @@ public class MessageDao {
 		}	
 		return rst;
 	}
-	
-	//메시지 보내기
-	public class RequestModel {
-		private String title;
-		private String content;
-
-		public String getTitle() {
-				return title;
-		}
-		public void setTitle(String title) {
-			this.title = title;
-		}
-		public String getContent() {
-			return content;
-		} public void setContent(String content) {
-			this.content = content;
-		}
-	}
-
-	
 		
 	//회원찾기
 	public List<HashMap> getRecvAll(){
@@ -106,7 +83,3 @@ public class MessageDao {
 	
 	
 }
-
-
-
-

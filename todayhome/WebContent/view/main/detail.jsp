@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet"	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"	type="text/css" />
+<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
+
 <style>
 .mainpic{
    width:100%;
@@ -50,9 +53,11 @@
 .font1{
    font-size: 1.2em;
    line-height: 1.9em;
+      padding-top: 1%;
 }
 .font2{
    font-size: 1.7em;
+   padding-top: 1%;
 }
 .font3{
    font-size: 0.7em;
@@ -67,7 +72,7 @@
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
+    padding-top: 100px; 
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -107,17 +112,26 @@
 	background-color: white;
 	font-weight: bold;
 }
+.bookbox { 
+	border-style: solid;
+	border-color: grey;
+	border-width: thin;
+	width: 100%;
+}
 </style>
+
+
+
 
 <div class="mainpic">
 <div><img src="${list[0].PICURL}" width="1600px" height="800px" ></div>
 </div>
-   <div style="padding-top: 5%; margin: 0 250; padding-right: 25px; padding-left: 25px;">
+<div class="row" style="padding-top: 5%; margin: 0 150; padding-right: 25px; padding-left: 25px;">
    <c:forEach var="i" items="${list}">
       <span class="title">${i.TITLE}</span>
       <br />
       
-         <div class="row" >
+    <div class="row"  >
    <div class="col-md-8">
       <div class="location">${i.COUNTRY}, ${i.CITY} <span style="font-size: 0.8em;">${i.CATEGORY}</span>
          <div class="point1">
@@ -127,6 +141,7 @@
          </div>
       </div>
       </div>
+      
       
    
       <div class="col-md-4 font1" align="center">
@@ -167,6 +182,12 @@
       욕실 ${i.BATHCNT}개
       </div>
       </div>
+      </c:forEach>
+      </div>
+      
+      <div class="row"  style="padding-top: 5%; margin: 0 150; padding-right: 25px; padding-left: 25px;">
+   <div class="col-md-8" >
+      <c:forEach var="i" items="${list}">
       <hr />
       <div class="font2">상세설명</div>
       <hr />
@@ -328,6 +349,38 @@ name="textarea" maxlength="200" ></textarea>
 </div>
 </div>
 
+<hr/>
+<div class="col-md-4 " >
+<div class="bookbox">
+<form action="/reservation/reserve01" method="get" style="margin-bottom: 0;">
+<div style="padding-top: 5%; padding-left: 5%; padding-bottom: 1%; font-size: 2em; font-weight: bold; 
+background-color: 309; "><font color="white" id="price">₩ ${list[0].PRICE} <span style="font-size: 0.6em;">1박</span></font></div>
+<div class="row" style="padding: 5%;">
+<div class="col-md-6" style="padding-left: 8%;">
+체크인<input type="text" size="15" name="checkin" id="testDatepicker">
+</div>
+<div class="col-md-6" style="padding-left: 8%;">
+체크아웃<input type="text" size="15"  name="checkout" id="testDatepicker2">
+</div>
+</div>
+<div class="row"  style="padding-left: 13%; ">인원</div>
+<div class="row" align ="center" style="padding-left: 5%; padding-right: 5%; padding-bottom: 5%;">
+<select name="membercnt" id="member" style="width: 300px; height: 40px;">
+<option value="0">인원을 선택하세요</option>
+      <c:forEach var="item" begin="1" end="20" varStatus="vs">
+      <option value="${item}">${item}명</option>
+      </c:forEach>
+</select>
+</div>
+<input type="text" name="num" value="${list[0].NUM}" hidden="true"/>
+<button type="submit" id="book" style=" background-color: CC3300; width: 100%; 
+font-size: 1.3em; font-weight: bold; padding-top: 2%; padding-bottom: 2%;"><font color="white">예 약 하 기</font></button>
+</form>
+
+</div>
+</div>
+</div>
+
 
 
 <script>
@@ -380,5 +433,93 @@ $("#content").onkeyup = function(obj){
 		obj.value = obj.value.substring(0, maxLength);
 		}
 };
+
+
+/* datepicker area */
+var min;
+var max;
+
+var startdate = "${list[0].STARTDATE}";
+var enddate = "${list[0].ENDDATE}";
+/* 2017-03-17 */
+/* 03/28/2017 */
+var day = startdate.split(' ');
+var day2 = enddate.split(' ');
+var ar1 = day[0].split("-");
+var ar2 = day2[0].split("-");
+
+var date1 = ar1[1]+"/"+ar1[2]+"/"+ar1[0];
+var date2 = ar2[1]+"/"+ar2[2]+"/"+ar2[0];
+
+
+console.log(date1);
+console.log(date2);
+
+$('#testDatepicker').datepicker();
+
+$('#testDatepicker').datepicker("option", "minDate",date1);
+$('#testDatepicker').datepicker("option", "maxDate", date2);
+
+$('#testDatepicker2').datepicker();
+
+$('#testDatepicker2').datepicker("option", "minDate", date1);
+$('#testDatepicker2').datepicker("option", "maxDate", date2);
+
+
+	$("#testDatepicker").datepicker({
+
+				dateFormat: 'yyyy-mm-dd',
+				changeMonth : true,
+				changeYear : true,
+				nextText : '다음 달',
+				prevText : '이전 달',
+				minDate : 0,
+				maxDate : 0,
+				onSelect : function(dateText, init) {
+					console.log(dateText);
+				}
+	});
+	
+	 $('#testDatepicker').datepicker("option", "onClose", function ( selectedDate ) {
+		 min = selectedDate;
+	        $("#testDatepicker2").datepicker( "option", "minDate", selectedDate );
+	    });
+	 
+	$("#testDatepicker2").datepicker({
+				dateFormat: 'yyyy-mm-dd',
+				changeMonth : true,
+				changeYear : true,
+				nextText : '다음 달',
+				prevText : '이전 달',
+				minDate : 0,
+				maxDate : "+3M",
+				onSelect : function(dateText, init) {
+					console.log(dateText);
+				}
+	});
+	
+	 $('#testDatepicker2').datepicker("option", "onClose", function ( selectedDate ) {
+		 max = selectedDate;
+	       
+	    });
+	
+	$("#member").change(function(){
+		var member = $('#member option:selected').val()
+		var mind = ""+min;
+		var maxd = ""+max;
+		var start = mind.split("/")[1];
+		var end = maxd.split("/")[1];
+		var days  = end-start;
+		console.log(days);
+	//	var newDt = new Date(days.replace(/-/g, '/'));
+	//	console.log(newDt);
+		
+		var price = ${list[0].PRICE};
+		price += member*10000;
+		price = price * days;
+		$("#price").html("₩ "+price+"<span style=\"font-size: 0.6em;\"> "+days+"박</span>");
+	});
+	
+
 </script>
 
