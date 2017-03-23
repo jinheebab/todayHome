@@ -65,12 +65,12 @@ public class BookDao {
 		return map;
 }
 	
-	public List getReserveDate(Map param){
+	public List getReserveDate(int num){
 		
 		List list = new ArrayList<>();
 		SqlSession sql = factory.openSession();
 		try {
-			list = sql.selectOne("booking.getReserveDate",param);
+			list = sql.selectList("booking.getReserveDate",num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

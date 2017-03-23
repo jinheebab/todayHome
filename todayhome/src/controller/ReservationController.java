@@ -56,11 +56,17 @@ public class ReservationController {
 		
 		Map hostinglist = hdao.readHostingAll(num);
 		
+		List reservelist = bdao.getReserveDate(num);
+		
+		System.out.println("예약리스트 : " + reservelist.toString());
+		
 		System.out.println("호스팅리스트 : " + hostinglist.toString());
 		
 		mav.addObject("hostinglist", hostinglist);
 		
 		mav.addObject("hostingnum", num);
+		
+		mav.addObject("reservelist", reservelist);
 		
 		mav.addObject("main", "reservation/reserve01");
 		
