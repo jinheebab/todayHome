@@ -93,7 +93,7 @@ public class HostingController {
 		
 		Map map = fdao.execute(file);
 		
-		String picurl = (String)map.get("fileaddress");
+		String picurl = (String)map.get("filelink");
 		
 		return picurl.toString();
 		
@@ -118,7 +118,7 @@ public class HostingController {
 		
 		long filesize = (long)map.get("filesize");
 		
-		String fileaddress = (String)map.get("fileaddress");
+		String fileaddress = (String)map.get("filelink");
 		
 		json.put("type", type);
 		

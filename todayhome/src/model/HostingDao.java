@@ -175,6 +175,21 @@ public class HostingDao {
 			}
 			return list;
 		}
+		
+		
+		public List getHostingList(Map param){
+			
+			List<HashMap> list = new ArrayList<>();
+			SqlSession sql = factory.openSession();
+			try {
+				list = sql.selectList("hosting.getHostingList", param);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return list;
+		}
 }
 		
 
