@@ -37,7 +37,7 @@ tr:nth-child(even) {
 
 		<thead>
 			<tr>
-				<th width="15%">받는 사람</th>
+				<th width="15%">보낸 사람</th>
 				<th width="75%">내 용</th>
 				<th width="15%">보낸 시간</th>
 			</tr>
@@ -45,16 +45,24 @@ tr:nth-child(even) {
 
 		<c:forEach var="all" items="${board}">
 			<tr>
-				<td>${all.RECEIVER}</td>
+				<td>${all.SENDER}</td>
 				<td>${all.CONTENT}</td>
 				<td>시간</td>
 
 			</tr>
 		</c:forEach>
 	</table>
-	
-	
-	
+
+
+	<div align="left">
+		<button style="width: 20%; font-size: 14px;"
+			class="btn btn-primary btn-block"
+			onClick="location.href='/view/send'">작 성</button>
+	</div>
+	<br />
+
+	<ul class="nav nav-tabs"></ul>
+
 	<ul class="pagination">
 		<c:forEach begin="1" end="${board.size()/5+1}" step="1" var="page"
 			varStatus="status">
@@ -62,26 +70,6 @@ tr:nth-child(even) {
 		</c:forEach>
 	</ul>
 
-
-
-
-
-	<ul class="nav nav-tabs">
-	</ul>
-	<br />
-	<div align="left">
-		<button style="width: 20%; font-size: 14px;"
-			class="btn btn-primary btn-block"
-			onClick="location.href='/view/send'">작 성</button>
-	</div>
-	<br />
-</div>
-
-
-
-<div class="container" align="left">
-	<ul class="nav nav-tabs">
-	</ul>
 </div>
 
 <br />
