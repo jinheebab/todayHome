@@ -296,7 +296,7 @@
 	 
 	</script>
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK0WmkDko31qXUi_KV5kZNvtLwkKxePyU&libraries=places&callback=initMap"
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCCtadQykezCNspZiTMu2TRdYXl9QZlbc&libraries=places&callback=initMap"
         async defer></script>
         <hr>
  <h2>제공비품</h2>

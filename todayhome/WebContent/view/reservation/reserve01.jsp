@@ -7,7 +7,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -57,21 +56,8 @@
   
 //===============================================================================================================
 	
-	var disabledDays = ["3-24-2017"];
-     
-	/* utility functions */
-	function noDay(date) {
-		var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
-		//console.log('Checking (raw): ' + m + '-' + d + '-' + y);
-		for (i = 0; i < disabledDays.length; i++) {
-			if($.inArray((m+1) + '-' + d + '-' + y,disabledDays) != -1 || new Date() > date) {
-				//console.log('bad:  ' + (m+1) + '-' + d + '-' + y + ' / ' + disabledDays[i]);
-				return [false];
-			}
-		}
-		//console.log('good:  ' + (m+1) + '-' + d + '-' + y);
-		return [true];
-	}
+
+
 	
 	
   
