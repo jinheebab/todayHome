@@ -3,6 +3,8 @@ package controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import model.MessageDao;
+import model.MessageDao.RequestModel;
 
 @Controller
 @RequestMapping("/view/")
@@ -77,14 +80,32 @@ public class MessageController {
 
 	@RequestMapping("/send")
 	public ModelAndView send(HttpSession session) {
+		
 		System.out.println("메시지 '작성' 페이지 접속");
 		ModelAndView mav = new ModelAndView();
-
+		
 		String send = (String) session.getAttribute("auth");
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/send");
 		mav.addObject("send", send);
+		
 		return mav;
-	}
-
+	}	
+		
+		
+		
+		
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
