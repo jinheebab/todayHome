@@ -349,12 +349,12 @@ name="textarea" maxlength="200" ></textarea>
 </div>
 </div>
 
-
+<hr/>
 <div class="col-md-4 " >
 <div class="bookbox">
-<form action="reservation/reserve01?num="${list[0].NUM} method="get" style="margin-bottom: 0;">
+<form action="/reservation/reserve01?num="${list[0].NUM} method="get" style="margin-bottom: 0;">
 <div style="padding-top: 5%; padding-left: 5%; padding-bottom: 1%; font-size: 2em; font-weight: bold; 
-background-color: 309; "><font color="white">₩ ${list[0].PRICE} <span style="font-size: 0.6em;">1박</span></font></div>
+background-color: 309; "><font color="white" id="price">₩ ${list[0].PRICE} <span style="font-size: 0.6em;">1박</span></font></div>
 <div class="row" style="padding: 5%;">
 <div class="col-md-6" style="padding-left: 8%;">
 체크인<input type="text" size="15" name="checkin" id="testDatepicker">
@@ -365,14 +365,14 @@ background-color: 309; "><font color="white">₩ ${list[0].PRICE} <span style="f
 </div>
 <div class="row"  style="padding-left: 13%; ">인원</div>
 <div class="row" align ="center" style="padding-left: 5%; padding-right: 5%; padding-bottom: 5%;">
-<select name="membercnt" style="width: 300px; height: 40px;">
+<select name="membercnt" id="member" style="width: 300px; height: 40px;">
 <option value="0">인원을 선택하세요</option>
       <c:forEach var="item" begin="1" end="20" varStatus="vs">
       <option value="${item}">${item}명</option>
       </c:forEach>
 </select>
 </div>
-<button type="submit" style=" background-color: CC3300; width: 100%; 
+<button type="submit" id="book" style=" background-color: CC3300; width: 100%; 
 font-size: 1.3em; font-weight: bold; padding-top: 2%; padding-bottom: 2%;"><font color="white">예 약 하 기</font></button>
 </form>
 
@@ -479,6 +479,16 @@ $('#testDatepicker2').datepicker("option", "maxDate", day2);
 					max = this.value;
 					console.log("djdjdj");
 				}
+	});
+	
+	$("#member").select(function(){
+		var member = $("#member").val();
+		var days  = day2-day;
+		console.log(days);
+		
+		var price = ${list[0].PRICE};
+		price += member*10000;
+		$("#price").html("₩ "+price+"<span style=\"font-size: 0.6em;\">"+days+"박</span>");
 	});
 	
 
