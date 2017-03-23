@@ -438,18 +438,32 @@ $("#content").onkeyup = function(obj){
 /* datepicker area */
 var min;
 var max;
-var day = "03/11/2017";	
-var day2 = "03/28/2017";	
+
+var startdate = "${list[0].STARTDATE}";
+var enddate = "${list[0].ENDDATE}";
+/* 2017-03-17 */
+/* 03/28/2017 */
+var day = startdate.split(' ');
+var day2 = enddate.split(' ');
+var ar1 = day[0].split("-");
+var ar2 = day2[0].split("-");
+
+var date1 = ar1[1]+"/"+ar1[2]+"/"+ar1[0];
+var date2 = ar2[1]+"/"+ar2[2]+"/"+ar2[0];
+
+
+console.log(date1);
+console.log(date2);
 
 $('#testDatepicker').datepicker();
 
-$('#testDatepicker').datepicker("option", "minDate", day);
-$('#testDatepicker').datepicker("option", "maxDate", day2);
+$('#testDatepicker').datepicker("option", "minDate",date1);
+$('#testDatepicker').datepicker("option", "maxDate", date2);
 
 $('#testDatepicker2').datepicker();
 
-$('#testDatepicker2').datepicker("option", "minDate", day);
-$('#testDatepicker2').datepicker("option", "maxDate", day2);
+$('#testDatepicker2').datepicker("option", "minDate", date1);
+$('#testDatepicker2').datepicker("option", "maxDate", date2);
 
 
 	$("#testDatepicker").datepicker({
@@ -458,14 +472,14 @@ $('#testDatepicker2').datepicker("option", "maxDate", day2);
 				nextText : '다음 달',
 				prevText : '이전 달',
 				minDate : 0,
-				maxDate : "+3D",
-				onSelect : function(dateText) {
-					min = this.value;
-					console.log(min);
+				maxDate : 0,
+				onSelect : function(dateText, init) {
+					console.log(dateText);
 				}
 	});
 	
 	 $('#testDatepicker').datepicker("option", "onClose", function ( selectedDate ) {
+		 min = selectedDate;
 	        $("#testDatepicker2").datepicker( "option", "minDate", selectedDate );
 	    });
 	 
@@ -476,20 +490,30 @@ $('#testDatepicker2').datepicker("option", "maxDate", day2);
 				prevText : '이전 달',
 				minDate : 0,
 				maxDate : "+3M",
-				onSelect : function(dateText) {
-					max = this.value;
-					console.log("djdjdj");
+				onSelect : function(dateText, init) {
+					console.log(dateText);
 				}
 	});
 	
+	 $('#testDatepicker2').datepicker("option", "onClose", function ( selectedDate ) {
+		 max = selectedDate;
+	       
+	    });
+	
 	$("#member").change(function(){
 		var member = $('#member option:selected').val()
-
-		var days  = day2-day;
+		var mind = ""+min;
+		var maxd = ""+max;
+		var start = mind.split("/")[1];
+		var end = maxd.split("/")[1];
+		var days  = end-start;
 		console.log(days);
+	//	var newDt = new Date(days.replace(/-/g, '/'));
+	//	console.log(newDt);
 		
 		var price = ${list[0].PRICE};
 		price += member*10000;
+		price = price * days;
 		$("#price").html("₩ "+price+"<span style=\"font-size: 0.6em;\">"+days+"박</span>");
 	});
 	
