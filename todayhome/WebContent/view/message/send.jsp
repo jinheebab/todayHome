@@ -16,7 +16,7 @@
 	</ul>
 </div>
 
-<form action="/message/message" method="get">
+<form action="/message/message" method="post">
 
 	<%-- 	<c:forEach var="all" items="${send }">
 		<tr>
@@ -30,17 +30,21 @@
 	<div class="container" align="left" class="col-md-8"
 		style="width: 70%; margin-left: 1%;">
 
+		<br />
 		<p class="form-inline">
 			<strong> 받는 분 </strong> <i> _ ID </i> <br /> <input type="text"
-				class="form-control" id="writer" name="writer"
-				placeholder="RECEIVER" maxlength="50" onkeyup="chkword(this, 50)" />
+				name="title" class="form-control" id="writer" placeholder="RECEIVER"
+				maxlength="50" onkeyup="chkword(this, 50)" />
 		</p>
-		<p>
-			<strong> 내용 </strong> <span id="cnt">(0</span>/500) <br />
-			<textarea rows="5" cols="60" id="content" class="form-control"
-				placeholder="CONTENT" maxlength="500" onkeyup="chkword(this, 500)"
-				style="resize: none;"></textarea>
+		<ul class="nav nav-tabs"></ul>
+		<p></p>
+		<strong> 내용 </strong> <span id="cnt">(0</span>/500) <br />
+		<textarea rows="7" cols="60" id="content" class="form-control"
+			placeholder="CONTENT" maxlength="500" onkeyup="chkword(this, 500)"
+			style="resize: none;"></textarea>
 		<div align="left">
+			<br />
+
 			<!-- <span id="cnt">0</span>/500  -->
 
 			<c:forEach var="all" items="${lists }">
@@ -53,13 +57,17 @@
 			</c:forEach>
 			<button type="submit" value="전 송" class="btn btn-primary btn-block"
 				style="width: 35%">전 송</button>
+			<br />
+
+			<ul class="nav nav-tabs"></ul>
+
+			<br /> <br />
+	
 		</div>
-
 	</div>
-
 </form>
 
-
+<!-- 스크립트 -->
 
 <script type="text/javascript">
 	$("a").click(function() {
@@ -103,3 +111,8 @@
 		}
 	}
 </script>
+
+
+
+
+

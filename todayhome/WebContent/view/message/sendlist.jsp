@@ -42,7 +42,7 @@ tr:nth-child(even) {
 				<th width="15%">보낸 시간</th>
 			</tr>
 		</thead>
-		<c:forEach var="all" items="${lists}">
+		<c:forEach var="all" items="${boards}">
 			<tr>
 				<td>${all.RECEIVER}</td>
 				<td>${all.CONTENT}</td>
@@ -51,34 +51,29 @@ tr:nth-child(even) {
 		</c:forEach>
 	</table>
 
-	<ul class="pagination">
-		<c:forEach begin="1" end="${boardss.size()/5+1}" step="1" var="sendpage"
-			varStatus="status">
-			<li><a href="/view/sendpaging?sendpage=${sendpage}">${sendpage}</a></li>
-		</c:forEach>
-	</ul>
-
-
-
-
-
-	<ul class="nav nav-tabs">
-	</ul>
-	<br />
 	<div align="left">
 		<button style="width: 20%; font-size: 14px;"
 			class="btn btn-primary btn-block"
 			onClick="location.href='/view/send'">작 성</button>
 	</div>
-	<br />
-</div>
+	<br/>
 
+	<ul class="nav nav-tabs"></ul>
 
-
-<div class="container" align="left">
-	<ul class="nav nav-tabs">
+	<ul class="pagination">
+		<c:forEach begin="1" end="${boards.size()/5+1}" step="1"
+			var="sendpage" varStatus="status">
+			<li><a href="/view/sendpaging?sendpage=${sendpage}">${sendpage}</a></li>
+		</c:forEach>
 	</ul>
+
+	<br />
+
 </div>
+
+
+
+
 
 <br />
 <br />
