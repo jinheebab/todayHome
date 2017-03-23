@@ -27,9 +27,9 @@
 		</c:forEach>
 		</div>
 		<!-- 페이지 뷰 -->
-<!-- 		<div align="center" >
+ 		<div align="center" >
  			<c:if test="${page ne 1 }">
-				<a href="/search/search?page=${page -1 }">이전</a>
+				<a href="/search/search?page=${page -1 }&target=${searchK.target}&sdate=${searchK.sdate}&edate=${searchK.edate}&cnt=${searchK.cnt}">이전</a>
 			</c:if>
 			<c:forEach var="p" begin="1" end="${size }" varStatus="vs">
 				<c:choose>
@@ -37,15 +37,15 @@
 						<b>${p }</b>
 					</c:when>
 					<c:otherwise>
-						<a href="/search/search?page=${p }">${p }</a>
+						<a href="/search/search?page=${p }&target=${searchK.target}&sdate=${searchK.sdate}&edate=${searchK.edate}&cnt=${searchK.cnt}">${p }</a>
 					</c:otherwise>
 				</c:choose>
 				<c:if test="${vs.last eq false }">|</c:if>
 			</c:forEach>
 			<c:if test="${page ne size }">
-				<a href="/search/search?page=${page +1 }">다음</a>
+				<a href="/search/search?page=${page +1 }&target=${searchK.target}&sdate=${searchK.sdate}&edate=${searchK.edate}&cnt=${searchK.cnt}">다음</a>
 			</c:if>
-		</div> -->
+		</div>
 	</div>
 	<div class="col-md-6" style="background-color: white;">
 	<h3>
@@ -55,7 +55,6 @@
 	  <head>
 	    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 	    <meta charset="utf-8">
-	    <title>Simple markers</title>
 	    <style>
 	      html, body {
 	        height: 100%;
@@ -75,18 +74,19 @@
 </div>
 <script>	
 	function initMap() {
-	  var myLatLng = {lat: 37.4839325, lng: 126.9051456};
 	
-	  var map = new google.maps.Map(document.getElementById('map'), {
-	    zoom: 4,
-	    center: myLatLng
-	  });
-			
-	  var marker = new google.maps.Marker({
-	    position: myLatLng,
-	    map: map,
-	    title: 'Hello World!'
-	  });
+		<c:forEach var="val" items="${loc}" begin="1" end="20" varStatus="vs">
+		  var myLatLng = {lat: ${val.result[i].geometry.location.lat}, lng: ${val.result[i].geometry.location.lng}};
+		  var map = new google.maps.Map(document.getElementById('map'), {
+		    zoom: 4,
+		    center: myLatLng
+		  });
+		  var marker = new google.maps.Marker({
+		    position: myLatLng,
+		    map: map,
+		    title: 'Hello World!'
+		  });		
+		</c:forEach>
 	}
 </script>
 <script async defer
