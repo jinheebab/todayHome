@@ -136,20 +136,18 @@ public class HostingDao {
 			return r;
 		}
 //		페이징 처리
-//		public List<HashMap> getSelectPage(HashMap map){
-//			List<HashMap> list = new ArrayList<>();
-//			SqlSession sql = factory.openSession();
-//			try {
-//				list = sql.selectList("hosting.pagingSelect", map);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			} finally {
-//				sql.close();
-//			}
-//			return list;
-//		}
-		
-		
+		public List<HashMap> getSelectPage(HashMap map){
+			List<HashMap> list = new ArrayList<>();
+			SqlSession sql = factory.openSession();
+			try {
+				list = sql.selectList("hosting.pagingSelect", map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return list;
+		}
 		
 		public int getHostingNum(Map param){
 			int hostingNumber = 0;

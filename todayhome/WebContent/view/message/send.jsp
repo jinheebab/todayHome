@@ -37,7 +37,7 @@
 		</p>
 		<p>
 			<strong> 내용 </strong> <span id="cnt">(0</span>/500) <br />
-			<textarea rows="5" cols="50" id="content" class="form-control"
+			<textarea rows="5" cols="60" id="content" class="form-control"
 				placeholder="CONTENT" maxlength="500" onkeyup="chkword(this, 500)"
 				style="resize: none;"></textarea>
 		<div align="left">
@@ -49,8 +49,10 @@
 					<td>${all.content}</td>
 					<td><a href="/message/message?num=${all.NUM}"></a></td>
 				</tr>
+
 			</c:forEach>
-				<button type="submit" class="btn btn-primary btn-block" style="width: 35%">전 송</button>
+			<button type="submit" value="전 송" class="btn btn-primary btn-block"
+				style="width: 35%">전 송</button>
 		</div>
 
 	</div>
@@ -58,10 +60,11 @@
 </form>
 
 
+
 <script type="text/javascript">
 	$("a").click(function() {
 		if ($("#content").val().length != 0) {
-			if (window.confirm("작성중인 내용이 있습니다.\취소하고 이동 하시겠습니까?")) {
+			if (window.confirm("작성중인 내용이 있습니다.\n취소하고 이동 하시겠습니까?")) {
 				location.href = $(this).attr("title");
 			}
 		} else {
