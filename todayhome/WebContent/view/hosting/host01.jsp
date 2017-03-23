@@ -366,7 +366,7 @@
 	 	    
 	 	    <h2 align="center"><span id="findPrice" class="label label-danger"></span></h2>
 	 	    
-	 	    </br>
+	 	    <br/>
 	 	    
 	 	    <h3 align="center"><input type="text" id="city" placeholder="도시이름 입력"/></h3>
 	 	    
