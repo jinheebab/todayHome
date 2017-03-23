@@ -2,6 +2,27 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+</style>
+
 
 <div class="container" align="left">
 	<h3>수신함</h3>
@@ -12,31 +33,41 @@
 
 	</ul>
 	<br />
-	<!-- <p><strong> Receive List </strong> </p> <br/>  -->
 
-	<form action="/message/message" method="post">
-		<table class="table">
+	<table class="table">
 
 			<thead>
 				<tr>
-					<th width="15%">보낸 사람</th>
+					<th width="15%">받는 사람</th>
 					<th width="75%">내 용</th>
-					<th width="15%">받은 시간</th>
+					<th width="15%">보낸 시간</th>
 				</tr>
 			</thead>
 
-			<c:forEach var="all" items="${listl }">
+			<c:forEach var="all" items="${board}">
 				<tr>
-
-					<td>${all.SENDER}</td>
+					<td>${all.RECEIVER}</td>
 					<td>${all.CONTENT}</td>
-					<%-- 				<td>${all.CONTENT}</td> --%>
-
-					<td><a href="/message/message?num=${all.NUM}"></a></td>
+					<td>시간</td>			
+					
 				</tr>
 			</c:forEach>
 		</table>
-	</form>
+	
+	
+	<ul class="pagination">
+    <c:forEach begin="1" end= "${board.size()/5+1}" step="1" var="page" varStatus="status">
+    <li><a href="/view/paging?page=${page}">${page}</a></li>
+    
+    </c:forEach>
+    
+  </ul>
+	
+	
+	
+
+	
+
 
 
 	<ul class="nav nav-tabs">
@@ -50,7 +81,7 @@
 	<br />
 </div>
 
-<!--  -->
+
 
 
 
@@ -60,15 +91,7 @@
 	</ul>
 </div>
 
-<div class="container" align="left">
-	<ul class="pagination">
-		<li><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-	</ul>
-</div>
+
 <br />
 <br />
 <!--  -->
