@@ -178,7 +178,11 @@ public class ReservationController {
 		
 		List wishlist = hdao.getWishList(param);
 		
+		List hostinglist = hdao.getHostingList(param);
+		
 		mav.addObject("wishlist", wishlist);
+		
+		mav.addObject("hostinglist", hostinglist);
 		
 		mav.addObject("main", "reservation/mywishlist");
 		
