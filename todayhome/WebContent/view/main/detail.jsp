@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <style>
 .mainpic{
    width:100%;
@@ -289,7 +291,7 @@
       </c:forEach>
       </c:when>
       <c:otherwise>
-         후기가 없다.
+         등록된 후기가 없습니다.
       </c:otherwise>
    </c:choose>
       
@@ -308,21 +310,29 @@
     <span class="close1">&times;</span>
     <div align="center">
     <h2>후기 등록</h2> <br/>
-    <b><span id="num" >${list[0].NUM}</span>.${list[0].TITLE}</b><br/>
+    <b>[NO.${list[0].NUM}] ${list[0].TITLE}</b><br/>
 <textarea  rows="6" cols="80" id="content" class="form-control" placeholder="후기를 입력해주세요" 
-name="textarea" maxlength="200" onkeyup="return teaxtarea_maxlength(this)"></textarea>
- <br/>
- <c:forEach var="i" begin="1" end="5">
- <input type="radio" value="i" id="grade"/> ${i}
- </c:forEach> <br/>
- <button type="submit" id="Rbtn" style="background-color: white; border-style: solid; border-color: orange; border-width: 2px;  width: 80px;">등록</button>
-    </div>
-  </div>
-  
+name="textarea" maxlength="200" ></textarea>
 
-
+<div class="row">
+<img src="/icon/star_1.png" width="25px" height="29px"><input type="radio" value="1" name="grade" />
+<img src="/icon/star_2.png" width="45px" height="29px"><input type="radio" value="2.5" name="grade" />
+<img src="/icon/star_3.png" width="70px" height="29px"><input type="radio" value="5" name="grade" />
+<img src="/icon/star_4.png" width="89px" height="29px"><input type="radio" value="7.5" name="grade" />
+<img src="/icon/star_on.png"  height="30px"><input type="radio" value="10" name="grade" />
 </div>
+
+ <br/>
+ <button type="submit" id="Rbtn" style="background-color: white; border-style: solid; border-color: orange; border-width: 2px;  width: 80px;">등록</button>
+  </div>
+</div>
+</div>
+
+
+
 <script>
+var num = ${list[0].NUM};
+
 // Get the modal
 var modal1 = document.getElementById('myModal1');
 
@@ -331,7 +341,7 @@ var btn1 = document.getElementById("myBtn1");
 
 // Get the <span> element that closes the modal
 var span1 = document.getElementsByClassName("close1")[0];
-
+var num = ${list[0].NUM};
 // When the user clicks the button, open the modal 
 btn1.onclick = function() {
     modal1.style.display = "block";
@@ -352,19 +362,19 @@ window.onclick = function(event) {
 
 $("#Rbtn").click(function(){
 	var msg = $("#content").val();
-	var grade = $("#grade").val();
-	var hostingnum = $("#num").val();
-	console.log(hostingnum+grade+msg);
-/* 	$.ajax({
-		url : "/review/resultAjax?msg="+msg+"grade="+grade+"hostingnum="+num
+	var grade = $('input:radio[name="grade"]:checked').val();
+	console.log("review/resultAjax?msg="+msg+"&grade="+grade+"&hostingnum="+num);
+ 	$.ajax({
+		url : "review/resultAjax?msg="+msg+"&grade="+grade+"&hostingnum="+num
 	}).done(function(txt){
-		window.alert("등록 성공");
 		modal1.style.display = "none";
-	}); */
+		location.reload();
+	}); 
 });
+	
+	
 
-
-function textarea_maxlength(obj){
+$("#content").onkeyup = function(obj){
 	var maxLength = parseInt(obj.getAttribute("maxlength"));
 		if(obj.value.length>maxLength){
 		obj.value = obj.value.substring(0, maxLength);

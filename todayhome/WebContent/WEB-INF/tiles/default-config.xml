@@ -64,6 +64,16 @@
 		<put-attribute name="footer" value="/view/footer.jsp" />
 	</definition>
 	
+	<definition name="main1" template="/view/template(nopaddingsearch).jsp">
+		<put-attribute name="title" value="todayhome" />
+		<put-attribute name="header" value="/view/header.jsp" />
+		<put-attribute name="nav" value="/view/nav.jsp" />
+		<put-attribute name="footer" value="/view/footer.jsp" />
+	</definition>
+	
+	<definition name="m_index3" extends="main1">
+		<put-attribute name="main" expression="/view/${main}.jsp"/>
+	</definition>
 
 </tiles-definitions>
 

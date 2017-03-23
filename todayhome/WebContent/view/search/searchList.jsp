@@ -2,29 +2,94 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" ></script>
 
-<br />
-<h3>
-	<span id="cnt">${vall.count}개 호스팅이 등록되어 있습니다.</span>
-</h3>
-<div class="well row" style="overflow:scroll; background-color:white;" >
-	<div class="col-md-3" align="center" style="background-color: white">
+<div class="well row" style="background-color:white;">
+	<div class="col-md-6" align="center" style="background-color: white; overflow:scroll; width:50%; height:100%;">
+	<h3>
+	<span id="cnt">&nbsp${count}개 호스팅이 등록되어 있습니다.</span>
+	</h3><br/>
+	<div class="row">
 		<c:forEach var="list" items="${val}">
-			<br/>
-			<div align="center">
-				<img src="${list.PICURL}" width="400px" height="300px" />
+			<div align="center" class="col-md-6">
+				<a href="/view/detail?num=${list.NUM}" >
+					<img src="${list.PICURL}" width="350px" height="300px" /><br/>
+				</a>
 				<b>
 					<span>\<fmt:formatNumber value="${list.PRICE}" pattern="#,###"/></span>
-					<span>${list.TITLE}</span><br/>
+					<span>${fn:substring(list.TITLE, 0, 10)}</span><br/>
 				</b>
 				<span>${list.HTYPE}</span>
 				<span>침대 ${list.BEDCNT}개</span>
 			</div>
-			<br/>
 		</c:forEach>
+		</div>
+		<!-- 페이지 뷰 -->
+<!-- 		<div align="center" >
+ 			<c:if test="${page ne 1 }">
+				<a href="/search/search?page=${page -1 }">이전</a>
+			</c:if>
+			<c:forEach var="p" begin="1" end="${size }" varStatus="vs">
+				<c:choose>
+					<c:when test="${p eq page }">
+						<b>${p }</b>
+					</c:when>
+					<c:otherwise>
+						<a href="/search/search?page=${p }">${p }</a>
+					</c:otherwise>
+				</c:choose>
+				<c:if test="${vs.last eq false }">|</c:if>
+			</c:forEach>
+			<c:if test="${page ne size }">
+				<a href="/search/search?page=${page +1 }">다음</a>
+			</c:if>
+		</div> -->
 	</div>
-	<div class="col-md-9" style="background-color: white">
-		
+	<div class="col-md-6" style="background-color: white;">
+	<h3>
+		<span id="cnt"></span>
+	</h3>
+	<html>
+	  <head>
+	    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	    <meta charset="utf-8">
+	    <title>Simple markers</title>
+	    <style>
+	      html, body {
+	        height: 100%;
+	        margin: 0;
+	        padding: 0;
+	      }
+	      #map {
+	        height: 100%;
+	      }
+	   </style>
+	  </head>
+	  <body>
+	    <div id="map"></div>
+	  </body>
+	</html>
 	</div>
 </div>
+<script>	
+	function initMap() {
+	  var myLatLng = {lat: 37.4839325, lng: 126.9051456};
+	
+	  var map = new google.maps.Map(document.getElementById('map'), {
+	    zoom: 4,
+	    center: myLatLng
+	  });
+			
+	  var marker = new google.maps.Marker({
+	    position: myLatLng,
+	    map: map,
+	    title: 'Hello World!'
+	  });
+	}
+</script>
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS-83LLE8F1nvtVtsy1Adu-j4LeS9qAQg&callback=initMap">
+</script>
 

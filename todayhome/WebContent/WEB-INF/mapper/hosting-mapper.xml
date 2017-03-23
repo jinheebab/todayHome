@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hosting">
 	
-	<select id="searchList" parameterType="java.util.HashMap" resultType="java.util.HashMap" >
-		select * from hosting where membercnt=#{cnt} and startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} and city=#{target} or location=#{target}
+	<select id="searchCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
+		select count(*) from hosting where membercnt=#{cnt} or startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} or city=#{target} or location=#{target}
 	</select>
 	
-	<select id="searchCnt" parameterType="java.util.HashMap" resultType="java.lang.Integer" >
-		select count(*) from hosting where membercnt=#{cnt} and startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} and city=#{target} or location=#{target}
+	<select id="searchList" parameterType="java.util.HashMap" resultType="java.util.HashMap" >
+		select * from hosting where membercnt=#{cnt} or startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} or city=#{target} or location=#{target} order by num desc
 	</select>
 
 	<select id="getMainList" resultType="java.util.HashMap">
@@ -26,6 +26,18 @@
 	
 	<select id="getAllList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select * from hosting where num=#{num}
+	</select>
+	
+	<select id="getAll" resultType="java.util.HashMap">
+		select * from hosting 
+	</select>
+	
+<!-- 	<select id="pagingSelect" resultType="java.util.HashMap" parameterType="java.util.HashMap"> -->
+<!--          select step2.* from (select rownum as r, step1.* from (select * from hosting order by num desc) step1) step2 where <![CDATA[r>= #{start} and r <= #{end}]]>   -->
+<!--    </select>  -->
+	
+	<select id="allCnt" resultType="java.lang.Integer" >
+		select count(*) from hosting 
 	</select>
 		
 	<select id="getDetailList" parameterType="java.util.HashMap" resultType="java.util.HashMap">

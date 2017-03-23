@@ -129,10 +129,10 @@ public class MainController {
 	
 	@RequestMapping("view/review/resultAjax")
 	@ResponseBody 
-	public boolean chatHandler(@RequestParam("msg")String msg, @RequestParam("grade")String grade, @RequestParam("hostingnum")String num,
+	public boolean chatHandler(@RequestParam("msg")String msg, @RequestParam("grade")double grade, @RequestParam("hostingnum")int num,
 			HttpSession session){
 			HashMap map = new HashMap (); 
-			map.put("writer", session.getAttribute("id"));
+			map.put("writer", session.getAttribute("auth"));
 			map.put("msg", msg);
 			map.put("grade", grade);
 			map.put("hostingnum", num);
@@ -142,11 +142,31 @@ public class MainController {
 		return rst;
 	}
 	
-	@RequestMapping("/listAjax")
-	@ResponseBody //를 responseText로 ajax에서 받는다.
-	public List listHandler(HttpSession session) {
-		
+	@RequestMapping("view/review/listAjax")
+	@ResponseBody 
+	public List listHandler(@RequestParam("num")String num) {	
+		System.out.println("넘 대령이오:"+ num);
+		HashMap map = new HashMap();
+		map.put("num", num);
 		List li = new ArrayList();
+		li = md.AjaxReviewHandler(map);
+		
+		HashMap map2 = new HashMap();
+		
+		double avgstar = md.getScore(map);
+		avgstar = avgstar*10;
+		int score = (int)avgstar;
+		map2.put("SCORE", score);
+		li.add(map2);
+		
+		List<HashMap> ll = md.getReviewcnt(map);
+		Iterator c = ll.iterator();
+		while(c.hasNext()){
+			HashMap cnt =(HashMap)c.next();
+			li.add(cnt);
+		}
+		System.out.println("아작스 가져옴");
+		
 		return li;
 	
 	}
