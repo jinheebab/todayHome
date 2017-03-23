@@ -179,7 +179,7 @@
     				<input type="text" class="form-control" id="country" name="country">
     				
     <label for="text">도시</label>
-    				<input type="text" class="form-control" id="city" name="city">
+    				<input type="text" class="form-control" id="city2" name="city">
     				
     <label for="text">하위주소</label>
     				<input type="text" class="form-control" id="location" name="location">
@@ -276,7 +276,7 @@
     	 
     	 $('#country').val(address2[0]);
     	 
-    	 $('#city').val(address2[2]);
+    	 $('#city2').val(address2[2]);
     	 
     	 for(var i=3; i<address2.length; i++){
     		 address3 += address2[i];
@@ -339,6 +339,7 @@
 	 	        changeYear: true,
 	 	        showButtonPanel: true,
 	 	        yearRange: 'c-99:c+99',
+	 	        minDate: 0
 	 	        };
 	 	    $.datepicker.setDefaults($.datepicker.regional['ko']);
 	 	 
@@ -366,7 +367,7 @@
 	 	    
 	 	    <h2 align="center"><span id="findPrice" class="label label-danger"></span></h2>
 	 	    
-	 	    </br>
+	 	    <br/>
 	 	    
 	 	    <h3 align="center"><input type="text" id="city" placeholder="도시이름 입력"/></h3>
 	 	    
@@ -395,9 +396,10 @@
 	 	    		 	    	
 	 	    	$.ajax({
 	 	            url:'/hosting/host02',
-	 	            type:'post',
+	 	            type:'get',
 	 	            data: { "city" : city },
 	 	            success: function(price){
+	 	            	
 	 	                
 	 	                var total = Number(price) + people2 *10000;
 	 	                

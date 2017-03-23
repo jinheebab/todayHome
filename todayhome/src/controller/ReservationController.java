@@ -54,7 +54,7 @@ public class ReservationController {
 		
 	//	int num = (int)session.getAttribute("num");
 		
-		int num = 1;
+		int num = 111;
 		
 		Map hostinglist = hdao.readHostingAll(num);
 		
@@ -178,7 +178,11 @@ public class ReservationController {
 		
 		List wishlist = hdao.getWishList(param);
 		
+		List hostinglist = hdao.getHostingList(param);
+		
 		mav.addObject("wishlist", wishlist);
+		
+		mav.addObject("hostinglist", hostinglist);
 		
 		mav.addObject("main", "reservation/mywishlist");
 		

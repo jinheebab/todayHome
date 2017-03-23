@@ -54,7 +54,6 @@
   
   var enddate2 = enddate.split(' ');
   
-  var reservedate = "$hostinglist.RESERVEDATE";
   
 //===============================================================================================================
 	
@@ -82,7 +81,6 @@
 		  changeMonth: true,
 	      changeYear: true,		  
 	      dateFormat: 'yy-mm-dd',
-	    //  disabled: reservedate
   }
   
   $.datepicker.setDefaults($.datepicker.regional['ko']);

@@ -8,28 +8,29 @@
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" ></script>
 	<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js" ></script>
-	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
 </head>
 <body>
 <form action="/search/search" method="post">
 	<div align="center">
-		<table style="width: 80%; height: 5%; border: 0px; border-collapse: collapse;">
+		<table style="width: 70%; height: 5%; border: 0px; border-collapse: collapse;">
 			<tr style="text-align: left; height: 30px;">
 				<td>
-					<label for="location">위치</label> 
-					<span class="glyphicon glyphicon-map-marker"></span><br/>
-					<input type="text" class="form-control" name="target" size="20px" placeholder="목적지, 도시명, 주소" style="border: 0; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;"></input>
+	                <label for="checkin">위치</label>
+	                <span class="glyphicon glyphicon-map-marker"></span><br/>
+	                <input type="text" id="target" name="target" size="20%" placeholder="목적지, 도시명, 주소" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
 				</td>
 				<td>
 	                <label for="checkin">체크인</label>
 	                <span class="glyphicon glyphicon-calendar"></span><br/>
-	                <input type="text" id="sdate" name="sdate" size="20px" placeholder="체크인 날짜를 입력하세요" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
+	                <input type="text" id="sdate" name="sdate" size="20%" placeholder="체크인 날짜를 입력하세요" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
 				</td>
 				<td>
 	                <label for="checkin">체크아웃</label>
 	                <span class="glyphicon glyphicon-calendar"></span><br/>
-	                <input type="text" id="edate" name="edate" size="20px" placeholder="체크아웃 날짜를 입력하세요" style="border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
+	                <input type="text" id="edate" name="edate" size="22%" placeholder="체크아웃 날짜를 입력하세요" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
 				</td>
 				<td>
 					<label for="cnt">인원</label> 
@@ -42,10 +43,9 @@
 					</select>
 				</td>
 				<td>
-					<button type="submit" class="btn"
-						style="width: 130px; height: 50px; border: none; background-color: #bb5d00;">
-						<font style="color: white; font-size: 25px; font-family: 나눔고딕"><b><span
-								class="glyphicon glyphicon-search"></span></b></font>
+					<button type="submit" class="btn" style="width: 120px; height: 50px; border: none; background-color: #bb5d00;" onclick="javascript:alert()">
+						<font style="color: white; font-size: 25px; font-family: 나눔고딕"><b>
+						<span class="glyphicon glyphicon-search"></span></b></font>
 					</button>
 				</td>
 			</tr>
@@ -53,7 +53,19 @@
 	</div>
 </form>
 </body>
-
+<script>
+	function alert( ) {
+		
+		var flag1 = document.getElementById("target").value;
+		var flag2 = document.getElementById("sdate").value;
+		var flag3 = document.getElementById("edate").value;
+		var flag4 = document.getElementById("cnt").value;
+			
+		if(flag1==null || flag2==null || flag3==null || flag4==0){
+			window.alert("목적지, 체크인/아웃 날짜, 인원을 모두 입력해주세요");
+		}
+	}
+</script>
 <script>
  	$.datepicker.regional['ko'] = {
 	        closeText: '닫기',
@@ -73,8 +85,6 @@
 	        isRTL: false,
 	        showMonthAfterYear: true,
 	        yearSuffix: '',
-	        showOn: 'both',
-	        buttonText: "달력",
 	        changeMonth: true,
 	        changeYear: true,
 	        showButtonPanel: true,

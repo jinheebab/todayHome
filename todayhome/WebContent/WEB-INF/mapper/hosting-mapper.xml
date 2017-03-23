@@ -32,10 +32,6 @@
 		select * from hosting 
 	</select>
 	
-<!-- 	<select id="pagingSelect" resultType="java.util.HashMap" parameterType="java.util.HashMap"> -->
-<!--          select step2.* from (select rownum as r, step1.* from (select * from hosting order by num desc) step1) step2 where <![CDATA[r>= #{start} and r <= #{end}]]>   -->
-<!--    </select>  -->
-	
 	<select id="allCnt" resultType="java.lang.Integer" >
 		select count(*) from hosting 
 	</select>
@@ -54,5 +50,13 @@
 	
 	<select id="getWishList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select * from hosting where num in (select hostingnum from book where name=#{id})
+	</select>
+	
+	<select id="pagingSelect" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+         select step2.* from (select rownum as r, step1.* from (select * from hosting where membercnt=#{cnt} or startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} or city=#{target} or location=#{target} order by num desc) step1) step2 where <![CDATA[r>= #{start} and r <= #{end}]]> 
+   </select> 
+   
+   <select id="getHostingList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from hosting where hname=#{id}
 	</select>
 </mapper>
