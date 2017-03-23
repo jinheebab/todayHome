@@ -291,17 +291,11 @@
       </c:forEach>
       </c:when>
       <c:otherwise>
-         후기가 없다.
+         등록된 후기가 없습니다.
       </c:otherwise>
    </c:choose>
       
    
-</div>
-
-
-<!-- 후기 다시만드는중 -->
-<div id="r_board">
-
 </div>
 
 <!-- =============================== -->
@@ -331,12 +325,14 @@ name="textarea" maxlength="200" ></textarea>
  <br/>
  <button type="submit" id="Rbtn" style="background-color: white; border-style: solid; border-color: orange; border-width: 2px;  width: 80px;">등록</button>
   </div>
-  
-
-
 </div>
 </div>
+
+
+
 <script>
+var num = ${list[0].NUM};
+
 // Get the modal
 var modal1 = document.getElementById('myModal1');
 
@@ -372,23 +368,11 @@ $("#Rbtn").click(function(){
 		url : "review/resultAjax?msg="+msg+"&grade="+grade+"&hostingnum="+num
 	}).done(function(txt){
 		modal1.style.display = "none";
-		refresh();
+		location.reload();
 	}); 
- 	
- 	
 });
-
 	
-	function refresh(){
-		 	$.ajax({
-				url : "review/listAjax?num="+num
-			}).done(function(txt){
-				console.log(txt);
-				$("#r_board").html("<img src=\""+txt[0].FILELINK+"\">");
-			}); 
-	    };
-
-
+	
 
 $("#content").onkeyup = function(obj){
 	var maxLength = parseInt(obj.getAttribute("maxlength"));

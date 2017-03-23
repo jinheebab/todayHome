@@ -150,6 +150,21 @@ public class MainController {
 		map.put("num", num);
 		List li = new ArrayList();
 		li = md.AjaxReviewHandler(map);
+		
+		HashMap map2 = new HashMap();
+		
+		double avgstar = md.getScore(map);
+		avgstar = avgstar*10;
+		int score = (int)avgstar;
+		map2.put("SCORE", score);
+		li.add(map2);
+		
+		List<HashMap> ll = md.getReviewcnt(map);
+		Iterator c = ll.iterator();
+		while(c.hasNext()){
+			HashMap cnt =(HashMap)c.next();
+			li.add(cnt);
+		}
 		System.out.println("아작스 가져옴");
 		
 		return li;

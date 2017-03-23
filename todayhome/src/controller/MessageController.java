@@ -1,7 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,12 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.MessageDao;
 
 @Controller
-@RequestMapping("/view/")
+@RequestMapping("/view")
 public class MessageController {
 
 	@Autowired
@@ -29,35 +36,28 @@ public class MessageController {
 		System.out.println((String) session.getAttribute("auth"));
 		HashMap map = new HashMap();
 		map.put("receiver", (String) session.getAttribute("auth"));
-		List message = mdao.getreceiveList(map);
+		
+		List message = mdao.getMyMessage(map);
+		
+		List board = new ArrayList<>();
+		
 		System.out.println(message);
+		
+		for(int i=0; i< 5 ; i++){
+			
+			board.add(message.get(i));
+			
+		}
+		System.out.println(board);
 
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/message");
-		mav.addObject("listl", message);
+		mav.addObject("board", board);
 
 		return mav;
 	}
 
-	/*
-	 * // 페이징 컨트롤러
-	 * 
-	 * @RequestMapping(value = "/message", method = RequestMethod.GET ) public
-	 * ModelAndView list(HttpSession MessageDao, Model model) {
-	 * 
-	 * logger.info("START LIST"); int count = 0;
-	 * 
-	 * pagemaker.setPage(pagemaker.getPage());
-	 * 
-	 * count = service.count(); // 레코드 총 갯수 구함 pagemaker.setCount(count); // 페이지
-	 * 계산 List<BoardVO>
-	 * 
-	 * list = service.getRead(pagemaker.getPage()); System.out.println("list = "
-	 * + list.toString()); model.addAttribute("auth",);
-	 * 
-	 * model.addAttribute("pageMaker", pagemaker); return "/board/list"; }
-	 */
-
+	
 	@RequestMapping("/sendlist")
 	public ModelAndView sendlist(HttpSession session) {
 		System.out.println("메시지 '발신' 리스트 접속");
@@ -85,6 +85,40 @@ public class MessageController {
 		mav.addObject("main", "message/send");
 		mav.addObject("send", send);
 		return mav;
+	}
+	
+	@RequestMapping("/paging")
+	public ModelAndView paging(@RequestParam(name="page")int page, HttpSession session){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		String receiver = (String)session.getAttribute("auth");
+		
+		Map map = new HashMap<>();
+		
+		Map move = new HashMap<>();
+		
+		map.put("receiver", receiver);
+		
+		List message = mdao.getMyMessage(map);
+		
+		List board = new ArrayList<>();
+		
+		for(int i=5*page-5; i< 5*page ; i++){
+			
+			board.add(message.get(i));
+			
+		}
+		
+		mav.setViewName("m_index2");
+		mav.addObject("main", "message/message");
+		mav.addObject("board", board);
+		
+		
+		return mav;
+		
+		
+		
 	}
 
 }

@@ -179,7 +179,7 @@
     				<input type="text" class="form-control" id="country" name="country">
     				
     <label for="text">도시</label>
-    				<input type="text" class="form-control" id="city" name="city">
+    				<input type="text" class="form-control" name="city">
     				
     <label for="text">하위주소</label>
     				<input type="text" class="form-control" id="location" name="location">
@@ -339,6 +339,7 @@
 	 	        changeYear: true,
 	 	        showButtonPanel: true,
 	 	        yearRange: 'c-99:c+99',
+	 	        minDate: 0
 	 	        };
 	 	    $.datepicker.setDefaults($.datepicker.regional['ko']);
 	 	 
@@ -395,9 +396,10 @@
 	 	    		 	    	
 	 	    	$.ajax({
 	 	            url:'/hosting/host02',
-	 	            type:'post',
+	 	            type:'get',
 	 	            data: { "city" : city },
 	 	            success: function(price){
+	 	            	
 	 	                
 	 	                var total = Number(price) + people2 *10000;
 	 	                
