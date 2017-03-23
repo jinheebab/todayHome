@@ -179,7 +179,7 @@
     				<input type="text" class="form-control" id="country" name="country">
     				
     <label for="text">도시</label>
-    				<input type="text" class="form-control" name="city">
+    				<input type="text" class="form-control" id="city2" name="city">
     				
     <label for="text">하위주소</label>
     				<input type="text" class="form-control" id="location" name="location">
@@ -276,7 +276,7 @@
     	 
     	 $('#country').val(address2[0]);
     	 
-    	 $('#city').val(address2[2]);
+    	 $('#city2').val(address2[2]);
     	 
     	 for(var i=3; i<address2.length; i++){
     		 address3 += address2[i];

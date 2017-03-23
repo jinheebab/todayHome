@@ -61,7 +61,7 @@
 </head>
 <body>
 
-<span style="font-weight:bold; font-size:1.5em;">MY WISHLIST</span>
+<span style="font-weight:bold; font-size:1.5em;">예약한 목록</span>
 
 <div class="container" style="margin-top:10px;">
 	
@@ -75,9 +75,9 @@
                 </div>
                 <div class="panel-image hide-panel-body">
                     <img src= "${x.PICURL}" class="panel-image-preview" />
-                    <label for="toggle-3"></label>
+                    <label for="toggle-${x}"></label>
                 </div>
-                <input type="checkbox" id="toggle-3" class="panel-image-toggle">
+                <input type="checkbox" id="toggle-${x}" class="panel-image-toggle">
                 <div class="panel-body">
                     ${x.INTRO}
                 </div>
@@ -108,9 +108,9 @@
                 </div>
                 <div class="panel-image hide-panel-body">
                     <img src="${x.PICURL}" class="panel-image-preview" />
-                    <label for="toggle-4"></label>
+                    <label for="toggle-${x}"></label>
                 </div>
-                <input type="checkbox" id="toggle-4" class="panel-image-toggle">
+                <input type="checkbox" id="toggle-${x}" class="panel-image-toggle">
                 <div class="panel-body">
                     ${x.INTRO}
                 </div>

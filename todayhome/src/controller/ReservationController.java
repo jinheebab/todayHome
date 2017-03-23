@@ -54,7 +54,7 @@ public class ReservationController {
 		
 	//	int num = (int)session.getAttribute("num");
 		
-		int num = 1;
+		int num = 111;
 		
 		Map hostinglist = hdao.readHostingAll(num);
 		
