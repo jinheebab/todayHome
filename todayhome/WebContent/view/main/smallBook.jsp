@@ -13,30 +13,30 @@
 <script>
 var min;
 var max;
+var day = "03/11/2017";	
+var day2 = "03/28/2017";	
+
+$('#testDatepicker').datepicker();
+
+$('#testDatepicker').datepicker("option", "minDate", day);
+$('#testDatepicker').datepicker("option", "maxDate", day2);
+
+$('#testDatepicker2').datepicker();
+
+$('#testDatepicker2').datepicker("option", "minDate", day);
+$('#testDatepicker2').datepicker("option", "maxDate", day2);
+
 
 	$("#testDatepicker").datepicker({
 				changeMonth : true,
 				changeYear : true,
 				nextText : '다음 달',
 				prevText : '이전 달',
-				/*  minDate : -10, */
 				minDate : 0,
 				maxDate : "+3D",
 				onSelect : function(dateText) {
 					min = this.value;
-				}
-	});
-	
-
-	$("#testDatepicker2").datepicker({
-				changeMonth : true,
-				changeYear : true,
-				nextText : '다음 달',
-				prevText : '이전 달',
-				minDate : -20,
-				maxDate : "+3M",
-				onSelect : function(dateText) {
-					max = this.value;
+					console.log(min);
 				}
 	});
 	
@@ -44,10 +44,22 @@ var max;
 	        $("#testDatepicker2").datepicker( "option", "minDate", selectedDate );
 	    });
 	 
-	 var day = "2017-03-01";	 
-	 $('#testDatepicker').datepicker();
-	 
-	  $('#testDatepicker').datepicker("option", "minDate", day);
+	$("#testDatepicker2").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				nextText : '다음 달',
+				prevText : '이전 달',
+				minDate : 0,
+				maxDate : "+3M",
+				onSelect : function(dateText) {
+					max = this.value;
+					console.log("djdjdj");
+				}
+	});
+	
+
+	  
+
 		
 
 </script>
