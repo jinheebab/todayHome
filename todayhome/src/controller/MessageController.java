@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -151,18 +153,25 @@ public class MessageController {
 	}
 	
 	@RequestMapping("/send")
-	public ModelAndView  send(HttpSession session) {
-		System.out.println("메시지 '작성' 페이지 접속");
-		ModelAndView mav = new ModelAndView();
-
+	public ModelAndView  send(HttpSession session, HttpServletRequest req) {
+		String addr = req.getRemoteAddr();
+		
+//		System.out.println("메시지 '작성' 페이지 접속");
+		ModelAndView mav = new ModelAndView("s_01");
+//		ModelAndView mav2 = new ModelAndView("s_01");
+		
 		String send = (String) session.getAttribute("auth");
+		
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/send");
+		mav.addObject("addr", addr);
 		mav.addObject("send", send);
+		
+		
 		return mav;
 	}
-
-
+	
+	
 }
 
 
