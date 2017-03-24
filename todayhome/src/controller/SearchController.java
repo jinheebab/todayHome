@@ -29,9 +29,10 @@ public class SearchController {
 	@Autowired
 	MainDao mDao;
 
+	
 	@RequestMapping("/search/search")
 	public ModelAndView search(@RequestParam HashMap map, HttpSession session, HttpServletRequest req) throws Exception{
-		
+		//페이징처리
 		String pStr = req.getParameter("page") == null ? "1" : req.getParameter("page");
 		String pa = req.getParameter("page");
 		
@@ -43,6 +44,7 @@ public class SearchController {
 		int count = hDao.selectCnt(map);
 		int size = count % 6 == 0 ? count / 6 : count / 6 + 1; 
 		
+		//리스트 가져오기
 		List<HashMap> list = hDao.getSelectPage(map);
 		List addr = new ArrayList();
 		// 지오코딩
@@ -69,6 +71,10 @@ public class SearchController {
 						outstr += str;
 				}
 				Map result = (HashMap)new ObjectMapper().readValue(outstr, Map.class);
+				result.put("num", list.get(i).get("NUM"));
+				result.put("title", list.get(i).get("TITLE"));
+				result.put("picurl", list.get(i).get("PICURL"));
+				result.put("price", list.get(i).get("PRICE"));
 				
 				loc.add(result);
 			}
@@ -78,6 +84,7 @@ public class SearchController {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+		
 		
 		ModelAndView mav = new ModelAndView("m_index3");
 			mav.addObject("searchK",map);
