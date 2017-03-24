@@ -115,7 +115,6 @@ public class ReservationController {
 			
 		
 		
-		
 		mav.addObject("reserve", new ObjectMapper().writeValueAsString(reserve));
 		
 		mav.addObject("hostinglist", hostinglist);

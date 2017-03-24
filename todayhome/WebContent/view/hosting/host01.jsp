@@ -479,17 +479,7 @@
 
 </div>
 	<script>
-	/*이미지 글씨  */
-	.image{
-		position:relative;
-		float:left;
-	}
-	.image.text{
-		position:absolute;
-		top:40px;
-		left:80px;
-		width:700px;
-	}
+	
 	
 	
 	
