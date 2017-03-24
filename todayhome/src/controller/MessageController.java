@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.MessageDao;
+
+
+
 
 @Controller
 @RequestMapping("/view")
@@ -38,17 +42,17 @@ public class MessageController {
 		System.out.println((String) session.getAttribute("auth"));
 		HashMap map = new HashMap();
 		map.put("receiver", (String) session.getAttribute("auth"));
-		
+
 		List message = mdao.getMyMessage(map);
-		
+
 		List board = new ArrayList<>();
-		
+
 		System.out.println(message);
-		
-		for(int i=0; i< 5 ; i++){
-			
+
+		for (int i = 0; i < 5; i++) {
+
 			board.add(message.get(i));
-			
+
 		}
 		System.out.println(board);
 
@@ -58,137 +62,139 @@ public class MessageController {
 
 		return mav;
 	}
-	
+
 	@RequestMapping("/paging")
-	public ModelAndView paging(@RequestParam(name="page")int page, HttpSession session){
-		
+	public ModelAndView paging(@RequestParam(name = "page") int page, HttpSession session) {
+
 		ModelAndView mav = new ModelAndView();
-		
-		String receiver = (String)session.getAttribute("auth");
-		
+
+		String receiver = (String) session.getAttribute("auth");
+
 		Map map = new HashMap<>();
-		
+
 		Map move = new HashMap<>();
-		
+
 		map.put("receiver", receiver);
-		
+
 		List message = mdao.getMyMessage(map);
-		
+
 		List board = new ArrayList<>();
-		
-		for(int i=5*page-5; i< 5*page ; i++){
-			
+
+		for (int i = 5 * page - 5; i < 5 * page; i++) {
+
 			board.add(message.get(i));
-			
+
 		}
-		
+
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/message");
 		mav.addObject("board", board);
-		
-		
+
 		return mav;
 	}
-	
+
 	@RequestMapping("/sendlist")
 	public ModelAndView sendlist(HttpSession session) {
 
-		
-	ModelAndView mav = new ModelAndView();
-		int sendpage=1;
-		String sender = (String)session.getAttribute("auth");
-		
+		ModelAndView mav = new ModelAndView();
+		int sendpage = 1;
+		String sender = (String) session.getAttribute("auth");
+
 		Map map = new HashMap<>();
-		
+
 		Map move = new HashMap<>();
-		
+
 		map.put("sender", sender);
-		
+
 		List sendlist = mdao.getsendMessage(map);
-		
+
 		List boards = new ArrayList<>();
-		
-		for(int i=5*sendpage-5; i< 5*sendpage ; i++){
-			
+
+		for (int i = 5 * sendpage - 5; i < 5 * sendpage; i++) {
+
 			boards.add(sendlist.get(i));
-			
+
 		}
-		
+
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/sendlist");
 		mav.addObject("boards", boards);
-		
+
 		return mav;
 
 	}
-	
+
 	@RequestMapping("/sendpaging")
-	public ModelAndView sendpaging(@RequestParam(name="sendpage")int sendpage, HttpSession session){
-		
+	public ModelAndView sendpaging(@RequestParam(name = "sendpage") int sendpage, HttpSession session) {
+
 		ModelAndView mav = new ModelAndView();
-		
-		String sender = (String)session.getAttribute("auth");
-		
+
+		String sender = (String) session.getAttribute("auth");
+
 		Map map = new HashMap<>();
-		
+
 		Map move = new HashMap<>();
-		
+
 		map.put("sender", sender);
-		
+
 		List sendlist = mdao.getsendMessage(map);
-		
+
 		List boards = new ArrayList<>();
-		
-		for(int i=5*sendpage-5; i< 5*sendpage ; i++){
-			
+
+		for (int i = 5 * sendpage - 5; i < 5 * sendpage; i++) {
+
 			boards.add(sendlist.get(i));
-			
+
 		}
-		
+
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/sendlist");
 		mav.addObject("boards", boards);
-		
+
 		return mav;
 	}
-	
+		
 	@RequestMapping("/send")
-	public ModelAndView send(HttpSession session, HttpServletRequest req) {
+	public ModelAndView send(@RequestParam Map map, HttpSession session, HttpServletRequest req) {
 		String addr = req.getRemoteAddr();
 		System.out.println("메시지 '작성' 페이지 접속");
 		ModelAndView mav = new ModelAndView();
-//		ModelAndView mav2 = new ModelAndView("s_01");
+		// ModelAndView mav2 = new ModelAndView("s_01");
 		
 		String send = (String) session.getAttribute("auth");
+		
 		
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/send");
 		mav.addObject("addr", addr);
 		mav.addObject("send", send);
 		
-		
 		return mav;
-	}
+	}	
+		
 	@RequestMapping("/sendcomp")
-	public ModelAndView sendcomp(HttpSession session, HttpServletRequest req) {
+	public ModelAndView sendcomp(HttpSession session, @RequestParam Map map) {
+		
+		String sender = (String) session.getAttribute("auth");
+			map.put("sender", sender);
+		System.out.println(map);
+		
+		int r = mdao.send(map);
 		
 		ModelAndView mav = new ModelAndView();
-
-		mav.setViewName("m_index2");
-		mav.addObject("main", "message/sendcomp");
-
 		
+		if(r==1){
+			mav.setViewName("m_index2");
+			mav.addObject("main", "message/message");
+		} else {
+			mav.setViewName("m_index2");
+			mav.addObject("main", "/send");
+		}
 		return mav;
-		
-		
 	}
-}
-
-
-
-
-
-
+	
+}		
+		
 
 
 
