@@ -13,7 +13,7 @@
 <script>
 var min;
 var max;
-var day = "03/11/2017";	
+/* var day = "03/11/2017";	
 var day2 = "03/28/2017";	
 
 $('#testDatepicker').datepicker();
@@ -24,7 +24,7 @@ $('#testDatepicker').datepicker("option", "maxDate", day2);
 $('#testDatepicker2').datepicker();
 
 $('#testDatepicker2').datepicker("option", "minDate", day);
-$('#testDatepicker2').datepicker("option", "maxDate", day2);
+$('#testDatepicker2').datepicker("option", "maxDate", day2); */
 
 
 	$("#testDatepicker").datepicker({
