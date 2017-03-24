@@ -76,14 +76,23 @@ html, body {
 		</html>
 	</div>
 </div>
+	
 
 <script>	
 
 	function initMap() {
 		<c:forEach var="val" items="${loc}" varStatus="vs">
 			var myLatLng${vs.index} = {
-					lat: ${val.results[0].geometry.location.lat},
-					lng: ${val.results[0].geometry.location.lng}
+					<c:choose>
+					<c:when test="${val.results[0].geometry.location.lat eq null}">
+									lat: 37.3421002,
+									lng: 127.0718116
+					</c:when>
+					<c:otherwise>
+								lat: ${val.results[0].geometry.location.lat},
+								lng: ${val.results[0].geometry.location.lng}
+					</c:otherwise>
+				</c:choose>
 			}
 		</c:forEach>
 		var map = new google.maps.Map(document.getElementById('map'), {
