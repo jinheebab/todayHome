@@ -15,6 +15,9 @@
 		select rownum rn, a.* from (select * from book where hostingnum=#{hostingnum} and name=#{name} order by num desc) a where rownum = 1
 	</select>
 	
+	<select id="getReserveDate" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select startdate, enddate from book where hostingnum = #{num}
+	</select>
 	
 
 </mapper>

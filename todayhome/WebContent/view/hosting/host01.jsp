@@ -77,9 +77,13 @@
 
 </head>
 <body>
-		<h2>호스팅</h2>
-		<p><b>${id}</b>님안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
-		
+<div class="image">
+	<img src="/host.png" width="100%" height="80%" />
+	<div class="text"><h2>호스팅</h2>
+	<p><b>${id}</b>님안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
+	</div>
+</div>
+
 		<form action="/hosting/host03">
 		
 		
@@ -102,8 +106,6 @@
 				</c:forEach>
 			</select>
 		</div>
-
-
 <hr>
 
 
@@ -296,7 +298,7 @@
 	 
 	</script>
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAK0WmkDko31qXUi_KV5kZNvtLwkKxePyU&libraries=places&callback=initMap"
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCCtadQykezCNspZiTMu2TRdYXl9QZlbc&libraries=places&callback=initMap"
         async defer></script>
         <hr>
  <h2>제공비품</h2>
@@ -477,6 +479,11 @@
 
 </div>
 	<script>
+	
+	
+	
+	
+	
 	
 	function uploadFile(){
         var form = $('FILE_FORM')[0];

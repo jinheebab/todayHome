@@ -6,9 +6,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -20,6 +26,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.BookDao;
 import model.HostingDao;
@@ -37,8 +46,10 @@ public class ReservationController {
 	ServletContext ac;
 	
 	@RequestMapping("/reserve01")
-	public ModelAndView reserve01(HttpSession session){
+	public ModelAndView reserve01(HttpSession session) throws JsonProcessingException{
 		ModelAndView mav = new ModelAndView();
+		
+		int num = 111;
 		
 		if(session.getAttribute("auth") == null){
 			
@@ -52,17 +63,65 @@ public class ReservationController {
 		
 		mav.addObject("id", id);
 		
-	//	int num = (int)session.getAttribute("num");
-		
-		int num = 111;
+	
 		
 		Map hostinglist = hdao.readHostingAll(num);
 		
-		System.out.println("호스팅리스트 : " + hostinglist.toString());
+		List reservelist = bdao.getReserveDate(num);
+		
+		System.out.println(reservelist);
+		
+		List reserve = new ArrayList<>();
+		
+			Iterator<Map> it = reservelist.iterator();
+			
+			while(it.hasNext()){
+				Map map = it.next();
+				Date startdate = (Date) map.get("STARTDATE"); 
+				
+				Date enddate = (Date)map.get("ENDDATE");
+				
+				long diff = (int) (enddate.getTime() - startdate.getTime());
+				
+				long diffDays = diff / (24*60*60*1000);
+				
+				
+				
+				System.out.println(diffDays+"일 차이");
+				
+				Calendar cal = new GregorianCalendar(Locale.KOREA);
+				
+				cal.setTime(startdate);
+				
+				for(int i=0; i< diffDays; i++){
+					
+					cal.add(Calendar.DAY_OF_YEAR, 1);
+					
+					
+					SimpleDateFormat transformer = new SimpleDateFormat("yyyy-MM-dd");
+					
+					String reservedate = transformer.format(cal.getTime());
+					
+					
+					reserve.add(reservedate);
+					
+				}
+				System.out.println("최종 예약리스트는 ? " + reserve.toString());
+			}
+			
+			
+			
+			
+			
+		
+		
+		mav.addObject("reserve", new ObjectMapper().writeValueAsString(reserve));
 		
 		mav.addObject("hostinglist", hostinglist);
 		
 		mav.addObject("hostingnum", num);
+		
+		
 		
 		mav.addObject("main", "reservation/reserve01");
 		

@@ -7,7 +7,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -36,7 +35,7 @@
 
  <input type="text" readonly="readonly" id="totalmoney" name="totalmoney" placeholder="총결제금액">
  
-<p>체크인 <input type="text" id="sdate" name="startdate"> ~ 체크아웃 <input type="text" id="edate" name="enddate"></p>
+<p>체크인 <input type="text" id="sdate" name="startdate" class="datepicker"> ~ 체크아웃 <input type="text" id="edate" name="enddate" class="datepicker"></p>
 
   <script>
   
@@ -57,21 +56,13 @@
   
 //===============================================================================================================
 	
-	var disabledDays = ["3-24-2017"];
-     
-	/* utility functions */
-	function noDay(date) {
-		var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
-		//console.log('Checking (raw): ' + m + '-' + d + '-' + y);
-		for (i = 0; i < disabledDays.length; i++) {
-			if($.inArray((m+1) + '-' + d + '-' + y,disabledDays) != -1 || new Date() > date) {
-				//console.log('bad:  ' + (m+1) + '-' + d + '-' + y + ' / ' + disabledDays[i]);
-				return [false];
-			}
-		}
-		//console.log('good:  ' + (m+1) + '-' + d + '-' + y);
-		return [true];
-	}
+	
+var disabledate = ${reserve};
+
+console.log(disabledate);
+
+//var disabledate2 = "2017-04-01, 2017-04-02";
+
 	
 	
   
@@ -81,6 +72,11 @@
 		  changeMonth: true,
 	      changeYear: true,		  
 	      dateFormat: 'yy-mm-dd',
+	      beforeShowDay: function(day){
+	    	  
+	    	  if(disabledate.indexOf($.datepicker.formatDate('yy-mm-dd', day)) != -1) return [false, "disabledate", "beforeShowDay로 블록"];
+	            else return [true, "", ""];
+		}
   }
   
   $.datepicker.setDefaults($.datepicker.regional['ko']);
@@ -89,16 +85,23 @@
  
   $('#sdate').datepicker("option", "minDate", startdate2[0]);
   $('#sdate').datepicker("option", "maxDate", enddate2[0]);
-  $('#sdate').datepicker("option", "beforeShowDay", noDay);
   
 
    $('#edate').datepicker();
    
    $('#edate').datepicker("option", "minDate", startdate2[0]);
    $('#edate').datepicker("option", "maxDate", enddate2[0]);
-   $('#edate').datepicker("option", "beforeShowDay", noDay);
   
    
+	function noDays(date) {
+	    	var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+	    	for (i = 0; i < disabledDays.length; i++) {
+	      	  if($.inArray(y + '-' +(m+1) + '-' + d,disabledDays) != -1) {
+	       	     return [false];
+	      	  }
+	  	  }
+	   	 return [true];
+		}
    
    
    

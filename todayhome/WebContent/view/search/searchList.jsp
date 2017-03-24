@@ -8,8 +8,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	
-
 
 <div class="well row" style="background-color: white;">
 	<div class="col-md-6" align="center"
@@ -87,25 +85,32 @@ html, body {
 					lat: ${val.results[0].geometry.location.lat},
 					lng: ${val.results[0].geometry.location.lng}
 			}
-			
-		var content${vs.index} = '<div><span id="title">${val.results[0].formatted_address}</span></a></div>';
 		</c:forEach>
-
 		var map = new google.maps.Map(document.getElementById('map'), {
 		    zoom: 10,
 		    center: myLatLng0
+		});
+
+		<c:forEach var="vall" items="${loc}" varStatus="vs">
+			var content${vs.index} = '';
+/* 			<c:forEach var="list" items="${val}">
+			  content${vs.index} = '<div><a href="/view/detail?num=${list.NUM}"><span id="title">${list.TITLE}</span></div><img src="${list.PICURL}" width="100px" height="70px" /><br /><b><span>\<fmt:formatNumber value="${list.PRICE}" pattern="#,###" /></span> <span>${fn:substring(list.TITLE, 0, 10)}</span><br /></b> <span>${list.HTYPE}</span> <span>침대 ${list.BEDCNT}개</span></a>';
+		  	</c:forEach> */
+		  var infowindow${vs.index} = new google.maps.InfoWindow({
+			    content: content${vs.index}
 		  });
 		
-		<c:forEach var="val" items="${loc}" varStatus="vs">
 		  var marker${vs.index} = new google.maps.Marker({
 			    position: myLatLng${vs.index},
 			    map: map,
 			    title: '${vs.index}번째 마커'
 	      });	
 		  marker${vs.index}.addListener('click', function() {
-			    infowindow.open(map, marker${vs.index});
+			    infowindow${vs.index}.open(map, marker${vs.index});
 		  });  
+
 		</c:forEach>
+
 	}
 </script>
 <script async defer
