@@ -77,9 +77,13 @@
 
 </head>
 <body>
-		<h2>호스팅</h2>
-		<p><b>${id}</b>님안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
-		
+<div class="image">
+	<img src="/host.png" width="100%" height="80%" />
+	<div class="text"><h2>호스팅</h2>
+	<p><b>${id}</b>님안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
+	</div>
+</div>
+
 		<form action="/hosting/host03">
 		
 		
@@ -102,8 +106,6 @@
 				</c:forEach>
 			</select>
 		</div>
-
-
 <hr>
 
 
@@ -477,6 +479,11 @@
 
 </div>
 	<script>
+	
+	
+	
+	
+	
 	
 	function uploadFile(){
         var form = $('FILE_FORM')[0];

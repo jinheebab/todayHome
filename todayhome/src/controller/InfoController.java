@@ -50,6 +50,7 @@ public class InfoController {
 			map.put("type", "info");
 		HashMap sharing = sDao.read(map);
 		
+		
 		ModelAndView mav = new ModelAndView("m_index2");
 			String path = ac.getRealPath("/nation.txt");
 			File f = new File(path);
@@ -78,7 +79,10 @@ public class InfoController {
 			String id = (String)session.getAttribute("auth");
 			HashMap map = fs.execute(file);
 				map.put("id", id);
-				
+				map.put("type", "info");
+						
+			System.out.println(map);
+			
 			int rst = sDao.update(map);
 			if(rst==1) {
 				mav = new ModelAndView("/info/picAjax");
@@ -119,7 +123,7 @@ public class InfoController {
 		String pass = (String)map.get("pass");
 		String id = (String)session.getAttribute("auth");
 			map.put("id", id);
-			map.put("type", "info");
+
 			
 		HashMap val = iDao.readOne(id);
 		String passs = (String)val.get("PASS");
