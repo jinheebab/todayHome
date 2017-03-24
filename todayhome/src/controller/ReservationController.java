@@ -124,7 +124,7 @@ public class ReservationController {
 		
 		mav.addObject("main", "reservation/reserve01");
 		
-		mav.setViewName("m_index2");
+		mav.setViewName("m_index3");
 		
 		return mav;
 		

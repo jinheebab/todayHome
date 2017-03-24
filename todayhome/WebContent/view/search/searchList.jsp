@@ -10,19 +10,6 @@
 </script>
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-<meta charset="utf-8">
-<style>
-html, body {
-   height: 100%;
-   margin: 0;
-   padding: 0;
-}
-
-#map {
-   height: 100%;
-}
-</style>
 
 <div class="well row" style="background-color: white;">
    <div class="col-md-6" align="center"
@@ -78,22 +65,21 @@ html, body {
 
    function initMap() {
       <c:forEach var="val" items="${loc}" varStatus="vs">
-         var myLatLng${vs.index} = {
-	        		 
-                 <c:choose>
-                 <c:when test="${val.results[0].geometry.location.lat eq null}">
-                             lat: 37.3421002,
-                             lng: 127.0718116
-                 </c:when>
-                 <c:otherwise>
-                          lat: ${val.results[0].geometry.location.lat},
-                          lng: ${val.results[0].geometry.location.lng}
-                 </c:otherwise>
-              </c:choose>
-         }
+      var myLatLng${vs.index} = {
+              <c:choose>
+              <c:when test="${val.results[0].geometry.location.lat eq null}">
+                          lat: 37.3421002,
+                          lng: 127.0718116
+              </c:when>
+              <c:otherwise>
+                       lat: ${val.results[0].geometry.location.lat},
+                       lng: ${val.results[0].geometry.location.lng}
+              </c:otherwise>
+           </c:choose>
+      }
       </c:forEach>
       var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
+          zoom: 15,
           center: myLatLng0
       });
 

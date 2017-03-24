@@ -75,8 +75,8 @@
      prevSelector: '#slider-prev',
      nextText: '>',
      prevText: '<',
-     
-   
+	 speed: 500,
+	 auto: true,
      minSlides: 2,
      maxSlides: 2,
      slideWidth: 480,
@@ -92,7 +92,8 @@
      prevSelector: '#slider-prev1',
      nextText: '>',
      prevText: '<',
-   
+	 speed: 500,
+	 auto: true,
      minSlides: 3,
      maxSlides: 3,
      slideWidth: 350,
