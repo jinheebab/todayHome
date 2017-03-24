@@ -71,34 +71,39 @@
     margin: 10px 5px 0 0;
   }
 
-    </style>
-
-
+.image {
+	position:relative;
+	floatLleft;	
+}
+.image .text{
+	position:absolute;
+	top:50%;
+	left:5%;
+	width:700px;
+	font-size: 25px;
+	font-family:"Sans-Serif";
+}
+</style>
 
 </head>
 <body>
 <div class="image">
 	<img src="/host.png" width="100%" height="80%" />
-	<div class="text"><h2>호스팅</h2>
-	<p><b>${id}</b>님안녕하세요! 호스팅 등록을 도와드리겠습니다</p>
+	<div class="text"><h1>호스팅</h1><br/>
+	<b>${id}</b>님 안녕하세요!<br/>호스팅 등록을 도와드리겠습니다
 	</div>
 </div>
 
-		<form action="/hosting/host03">
-		
-		
-		<div class="dropdown">
-			<select id="htype" name="htype">
-				<option value="allRoom">집전체</option>
-				<option value="oneRoom">일인실</option>
-				<option value="manyRoom">다인실</option>
-			</select>
-		</div>
-
-		<div class="dropdown">
-			<select id="people" name="people">
-
-				<c:forEach begin="1" end="15" step="1" var="x" varStatus="status">
+<div  style="margin-top:10%; margin-left: 10%; margin-right: 10%;">
+<form action="/hosting/host03">
+	<div class="dropdown" style="border:0.2px;">
+		<input type="radio" name="htype" value="allRoom">집전체<br/>
+		<input type="radio" name="htype" value="oneRoom">일인실<br/>
+		<input type="radio" name="htype" value="manyRoom">다인실
+	</div>
+	<div class="dropdown">
+		<select id="people" name="people">
+		<c:forEach begin="1" end="15" step="1" var="x" varStatus="status">
 					<option value=${x}>${x}인실</option>
 					<c:if test="${not status.last}">
 						<br>
@@ -107,8 +112,6 @@
 			</select>
 		</div>
 <hr>
-
-
 
 <h2>게스트가 묵을 방 유형</h2>
 
@@ -480,11 +483,6 @@
 </div>
 	<script>
 	
-	
-	
-	
-	
-	
 	function uploadFile(){
         var form = $('FILE_FORM')[0];
         var formData = new FormData(form);
@@ -522,10 +520,9 @@
 	   
 	        
 	        </form>
-	        
+	        </div>
 	        
 	     
-     
      
 </body> 
 </html>

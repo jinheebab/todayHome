@@ -46,10 +46,9 @@ public class ReservationController {
 	ServletContext ac;
 	
 	@RequestMapping("/reserve01")
-	public ModelAndView reserve01(HttpSession session) throws JsonProcessingException{
+	public ModelAndView reserve01(HttpSession session,@RequestParam(name="num")int num) throws JsonProcessingException{
 		ModelAndView mav = new ModelAndView();
 		
-		int num = 111;
 		
 		if(session.getAttribute("auth") == null){
 			
@@ -125,7 +124,7 @@ public class ReservationController {
 		
 		mav.addObject("main", "reservation/reserve01");
 		
-		mav.setViewName("m_index2");
+		mav.setViewName("m_index3");
 		
 		return mav;
 		

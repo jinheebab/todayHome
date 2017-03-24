@@ -75,6 +75,30 @@
 		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
 	</bean>
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/reservation/reserve01"/>
+				<bean class="interceptor.loginInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/hosting/host01"/>
+				<bean class="interceptor.loginInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/info/info"/>
+				<bean class="interceptor.loginInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/view/message"/>
+				<bean class="interceptor.loginInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/reservation/reserve01"/>
+				<bean class="interceptor.loginInterceptor"/>
+		</mvc:interceptor>
+		
+	</mvc:interceptors>
+	
 	<!-- mongoClient -->
 <!-- 	<mongo:mongo-client host="121.134.125.131" port="27017" id="mongo"/> -->
 <!-- 	<bean class="org.springframework.data.mongodb.core.MongoTemplate"> -->
