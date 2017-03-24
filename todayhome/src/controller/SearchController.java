@@ -75,9 +75,11 @@ public class SearchController {
 				result.put("title", list.get(i).get("TITLE"));
 				result.put("picurl", list.get(i).get("PICURL"));
 				result.put("price", list.get(i).get("PRICE"));
+				
 				loc.add(result);
 			}
 			System.out.println(loc);
+			System.out.println("jjjjjjjjjjjjjj"+loc.get(0));
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -85,7 +87,6 @@ public class SearchController {
 		
 		
 		ModelAndView mav = new ModelAndView("m_index3");
-			System.out.println(loc);
 			mav.addObject("searchK",map);
 			mav.addObject("main", "search/searchList");
 			mav.addObject("val", list);
