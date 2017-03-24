@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<%@ page import="model.MessageDao" %>
+<%@ page import="java.util.*"%>
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <div class="container" align="left">
 
@@ -16,7 +16,6 @@
 	</ul>
 </div>
 
-<form action="/message/addmessage" method="post">
 
 	<%-- 	<c:forEach var="all" items="${send }">
 		<tr>
@@ -27,6 +26,7 @@
 		</tr>
 	</c:forEach> --%>
 
+<form action="/message/sendcomp" method="post">
 	<div class="container" align="left" class="col-md-8"
 		style="width: 70%; margin-left: 1%;">
 
@@ -34,14 +34,14 @@
 		<p class="form-inline">
 			<strong> 받는 분 </strong> <i> _ ID </i> <br /> <input type="text"
 				name="title" class="form-control" id="writer" placeholder="RECEIVER"
-				maxlength="50" onkeyup="chkword(this, 50)" />
+				maxlength="50" onkeyup="chkword(this, 50)" value="${sender }" />
 		</p>
 		<ul class="nav nav-tabs"></ul>
-		<p></p> 
-		<strong> 내용 </strong> (<span id="counter" ></span>) <br/>
+		<p></p>
+		<strong> 내용 </strong> (<span id="counter"></span>) <br />
 		<textarea rows="7" cols="60" id="content" class="form-control"
-			placeholder="CONTENT" maxlength="500"  onkeyup="chkword(this, 500)"
-			style="resize: none;"></textarea>
+			placeholder="CONTENT" maxlength="500" onkeyup="chkword(this, 500)"
+			style="resize: none;" items="${content}"></textarea>
 		<div align="left">
 			<br />
 
@@ -65,6 +65,7 @@
 
 		</div>
 	</div>
+</form>
 
 
 	<!-- 스크립트 -->
@@ -79,16 +80,21 @@
 				location.href = $(this).attr("title");
 			}
 		});
-	
+
 		$(function() {
-		      $('#content').keyup(function (e){
-		    	  
-		          var content = $(this).val();
-		          $(this).height(((content.split('\n').length + 1) * 4.5) + 'em');
-		          $('#counter').html(content.length + '/500');
-		      
-		      });
-		      $('#content').keyup();
+			$('#content')
+					.keyup(
+							function(e) {
+
+								var content = $(this).val();
+								$(this)
+										.height(
+												((content.split('\n').length + 1) * 4.5)
+														+ 'em');
+								$('#counter').html(content.length + '/500');
+
+							});
+			$('#content').keyup();
 		});
 
 		function chkword(obj, maxByte) {
@@ -142,11 +148,3 @@
 			}
 		}
 	</script>
-
-
-
-
-
-
-
-

@@ -47,64 +47,41 @@ public class MessageDao {
 		return list;
 	}
 
-	// 메시지 보내기
-/*	public boolean sendRecv(Map map){ // 메시지 DAO 원본!!
+	// 메시지 보내기 sendcomp
+	public boolean sendcomp(Map map) { // 메시지 comp
 		boolean rst = false;
-		try{
+		try {
 			SqlSession sql = factory.openSession();
-			int r = sql.insert("message.addMsg", map);
-			if(r == 1){
-				rst= true;
+			int r = sql.insert("message.sendcomp", map);
+			if (r == 1) {
+				rst = true;
 				sql.commit();
-			}else{
+			} else {
 				rst = false;
 			}
 			sql.close();
-			
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		return rst;
-	}*/
-	// 메시지 보내기
-	public int sendRecv(String title, String content ) {
-		int rst = 0;
-		SqlSession sql = factory.openSession();
-		try{
-			HashMap param = new HashMap<>();
-			param.put("TITLE", title);
-			param.put("CONTENT", content);
-			rst = sql.insert("message.addMsg", param);
-			if(rst == 1)
-				sql.commit();
-		}catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sql.close();
 		}
 		return rst;
 	}
 
-/*	public int createOne(String writer, String content, String ip) {
-	int rst = 0;
-	SqlSession sql = factroy.openSession();
-	try {
-		HashMap param = new HashMap<>();
-		param.put("WRITER", writer);
-		param.put("CONTENT", content);
-		param.put("IP", ip);
-		rst = sql.insert("review.createOne", param);
-		if (rst == 1)
-			sql.commit();
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally {
-		sql.close();
+	// 메시지 보내기
+	public int sendRecv(HashMap<String, Object> map) {
+		try {
+			SqlSession sql = factory.openSession();
+			int rst = sql.insert("message.addMsg", map);
+			if (rst == 1) {
+				sql.commit();
+			}
+			sql.close();
+			return rst;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
 	}
-	return rst;
-	}			*/
 
-	
 	// 회원찾기
 	public List<HashMap> getRecvAll() {
 		List<HashMap> list = new ArrayList();
@@ -117,5 +94,17 @@ public class MessageDao {
 		}
 		return list;
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
