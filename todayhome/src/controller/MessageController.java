@@ -153,11 +153,10 @@ public class MessageController {
 	}
 	
 	@RequestMapping("/send")
-	public ModelAndView  send(HttpSession session, HttpServletRequest req) {
+	public ModelAndView send(HttpSession session, HttpServletRequest req) {
 		String addr = req.getRemoteAddr();
-		
-//		System.out.println("메시지 '작성' 페이지 접속");
-		ModelAndView mav = new ModelAndView("s_01");
+		System.out.println("메시지 '작성' 페이지 접속");
+		ModelAndView mav = new ModelAndView();
 //		ModelAndView mav2 = new ModelAndView("s_01");
 		
 		String send = (String) session.getAttribute("auth");
@@ -170,8 +169,19 @@ public class MessageController {
 		
 		return mav;
 	}
-	
-	
+	@RequestMapping("/sendcomp")
+	public ModelAndView sendcomp(HttpSession session, HttpServletRequest req) {
+		
+		ModelAndView mav = new ModelAndView();
+
+		mav.setViewName("m_index2");
+		mav.addObject("main", "message/sendcomp");
+
+		
+		return mav;
+		
+		
+	}
 }
 
 

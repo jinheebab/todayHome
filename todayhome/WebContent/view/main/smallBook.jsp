@@ -8,7 +8,7 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
 <input type="text" id="testDatepicker">
-<input type="text" id="testDatepicker2" name="end">
+<input type="text" id="testDatepicker2">
 
 <script>
 var min;
@@ -34,15 +34,18 @@ $('#testDatepicker2').datepicker("option", "maxDate", day2); */
 				prevText : '이전 달',
 				minDate : 0,
 				maxDate : "+3D",
-				onSelect : function(dateText) {
-					min = this.value;
+				onSelect : function(dateText, init) {
+					min = dateText;
 					console.log(min);
 				}
+/* 				onClose : function(selectedDate){
+					$("#testDatepicker2").datepicker( "option", "minDate", selectedDate );
+				} */
 	});
 	
 	 $('#testDatepicker').datepicker("option", "onClose", function ( selectedDate ) {
 	        $("#testDatepicker2").datepicker( "option", "minDate", selectedDate );
-	    });
+	    }); 
 	 
 	$("#testDatepicker2").datepicker({
 				changeMonth : true,
@@ -51,9 +54,9 @@ $('#testDatepicker2').datepicker("option", "maxDate", day2); */
 				prevText : '이전 달',
 				minDate : 0,
 				maxDate : "+3M",
-				onSelect : function(dateText) {
-					max = this.value;
-					console.log("djdjdj");
+				onSelect : function(dateText, init) {
+					max = dateText;
+					console.log(max);
 				}
 	});
 	

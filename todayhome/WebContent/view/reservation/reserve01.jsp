@@ -92,7 +92,10 @@ console.log(disabledate);
    $('#edate').datepicker("option", "minDate", startdate2[0]);
    $('#edate').datepicker("option", "maxDate", enddate2[0]);
   
-   
+   $('#sdate').datepicker("option", "onClose", function ( selectedDate ) {
+		 min = selectedDate;
+	        $("#edate").datepicker( "option", "minDate", selectedDate );
+	    });
 	function noDays(date) {
 	    	var m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
 	    	for (i = 0; i < disabledDays.length; i++) {
