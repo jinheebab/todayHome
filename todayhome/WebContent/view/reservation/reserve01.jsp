@@ -9,9 +9,13 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+
 
 </head>
 <body>
+
+
 
 
 <h2 align="center">예약하기</h2>
@@ -22,20 +26,21 @@
 
 <h2 align="center"><span id="total" class="label label-danger" name="total"></span></h2>
 
- <button id="ff" type="button" class="btn btn-primary">갱신</button>
-
-
-
 
 
 
 <form action="/reservation/reserve02">
 
-호스팅번호 :<input type="text" readonly="readonly" id="hostingnum" name="hostingnum" value="${hostingnum}">
+<input type="hidden" readonly="readonly" id="hostingnum" name="hostingnum" value="${hostingnum}">
 
- <input type="text" readonly="readonly" id="totalmoney" name="totalmoney" placeholder="총결제금액">
+ <input type="hidden" readonly="readonly" id="totalmoney" name="totalmoney" placeholder="총결제금액">
  
 <p>체크인 <input type="text" id="sdate" name="startdate" class="datepicker"> ~ 체크아웃 <input type="text" id="edate" name="enddate" class="datepicker"></p>
+
+
+
+
+
 
   <script>
   
@@ -122,12 +127,19 @@ console.log(disabledate);
   <h4 align="center"><textarea rows="10" cols="50" id="rule" readonly="readonly">${hostinglist.RULE}</textarea></h4>
   
   
-  
+  	
   
   
   <script>
+	 setInterval(reserveView,100);
   
-  $('#ff').click(function(){
+  $(document).ready(function(){
+	  
+	 reserveView(); 
+	 
+  });
+  
+  function reserveView(){
 	  
 	var date1 = new Date($("#sdate").datepicker("getDate"));
 	var date2 = new Date($("#edate").datepicker("getDate"));
@@ -159,7 +171,7 @@ console.log(disabledate);
 	
 	
 	  
-  });
+  }
 </script>
 
  <button id="pay" type="submit" class="btn btn-primary">결제하기</button>

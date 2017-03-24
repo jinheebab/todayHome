@@ -96,10 +96,7 @@
 			<mvc:mapping path="/reservation/reserve01"/>
 				<bean class="interceptor.loginInterceptor"/>
 		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/view/detail"/>
-				<bean class="interceptor.loginInterceptor"/>
-		</mvc:interceptor>
+		
 	</mvc:interceptors>
 	
 	<!-- mongoClient -->
