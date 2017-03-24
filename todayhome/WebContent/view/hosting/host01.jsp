@@ -94,14 +94,12 @@
 	</div>
 </div>
 
-<div style=margin-left:20%>
+<div  style="margin-top:10%; margin-left: 10%; margin-right: 10%;">
 <form action="/hosting/host03">
-	<div class="dropdown">
-		<select id="htype" name="htype">
-			<option value="allRoom">집전체</option>
-			<option value="oneRoom">일인실</option>
-			<option value="manyRoom">다인실</option>
-		</select>
+	<div class="dropdown" style="border:0.2px;">
+		<input type="radio" name="htype" value="allRoom">집전체<br/>
+		<input type="radio" name="htype" value="oneRoom">일인실<br/>
+		<input type="radio" name="htype" value="manyRoom">다인실
 	</div>
 	<div class="dropdown">
 		<select id="people" name="people">
@@ -114,8 +112,6 @@
 			</select>
 		</div>
 <hr>
-
-
 
 <h2>게스트가 묵을 방 유형</h2>
 
@@ -524,10 +520,9 @@
 	   
 	        
 	        </form>
-	        
+	        </div>
 	        
 	     
      
-</div>
 </body> 
 </html>
