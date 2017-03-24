@@ -71,7 +71,11 @@
     margin: 10px 5px 0 0;
   }
 
-    </style>
+.image {
+	position:relative;
+	floatLleft;	
+}
+</style>
 
 
 
@@ -479,11 +483,6 @@
 
 </div>
 	<script>
-	
-	
-	
-	
-	
 	
 	function uploadFile(){
         var form = $('FILE_FORM')[0];
