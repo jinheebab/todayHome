@@ -28,37 +28,26 @@ import model.SharingDao;
 @Controller
 @RequestMapping("/hosting")
 public class HostingController {
-		
 	@Autowired
 	HostingDao hdao;
-		
 	@Autowired
 	FileUploadService fdao;
-	
 	@Autowired
 	SharingDao sdao;
 		
 	@RequestMapping("/host01")
 	public ModelAndView host01(HttpServletRequest request, HttpSession session){	// 컨트롤러  7 - 1번
-		
 		ModelAndView mav = new ModelAndView();
 		
 		if(session.getAttribute("auth") == null){
 			mav.addObject("main","login/pagelogin");
-			
 			mav.setViewName("g_index");
 		}
-		
 		String id = (String)session.getAttribute("auth");
-		
-		System.out.println("id는 "+ id);
-		
-		mav.addObject("id",id);
 				
-		
-		mav.addObject("main", "hosting/host01");
-		
-		mav.setViewName("m_index3");
+			mav.addObject("id",id);
+			mav.addObject("main", "hosting/host01");
+			mav.setViewName("m_index3");
 		
 		return mav;
 		

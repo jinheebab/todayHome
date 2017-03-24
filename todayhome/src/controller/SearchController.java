@@ -69,15 +69,17 @@ public class SearchController {
 						outstr += str;
 				}
 				Map result = (HashMap)new ObjectMapper().readValue(outstr, Map.class);
+				
 				loc.add(result);
 			}
+			System.out.println(loc);
+			System.out.println("jjjjjjjjjjjjjj"+loc.get(0));
 			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 		
 		ModelAndView mav = new ModelAndView("m_index3");
-			System.out.println(loc);
 			mav.addObject("searchK",map);
 			mav.addObject("main", "search/searchList");
 			mav.addObject("val", list);

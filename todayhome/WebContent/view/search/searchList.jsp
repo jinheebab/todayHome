@@ -96,9 +96,9 @@ html, body {
 /* 			<c:forEach var="list" items="${val}">
 			  content${vs.index} = '<div><a href="/view/detail?num=${list.NUM}"><span id="title">${list.TITLE}</span></div><img src="${list.PICURL}" width="100px" height="70px" /><br /><b><span>\<fmt:formatNumber value="${list.PRICE}" pattern="#,###" /></span> <span>${fn:substring(list.TITLE, 0, 10)}</span><br /></b> <span>${list.HTYPE}</span> <span>침대 ${list.BEDCNT}개</span></a>';
 		  	</c:forEach> */
-		  var infowindow${vs.index} = new google.maps.InfoWindow({
-			    content: content${vs.index}
-		  });
+// 		  var infowindow${vs.index} = new google.maps.InfoWindow({
+// 			    content: content${vs.index}
+// 		  });
 		
 		  var marker${vs.index} = new google.maps.Marker({
 			    position: myLatLng${vs.index},
