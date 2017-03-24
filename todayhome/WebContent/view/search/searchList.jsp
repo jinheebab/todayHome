@@ -22,7 +22,7 @@
 					<a href="/view/detail?num=${list.NUM}"> <img
 						src="${list.PICURL}" width="350px" height="300px" /><br />
 					</a> <b> <span>\<fmt:formatNumber value="${list.PRICE}"
-								pattern="#,###" /></span> <span>${fn:substring(list.TITLE, 0, 10)}</span><br />
+								pattern="#,###" /></span> <span>${fn:substring(list.TITLE, 0, 20)}</span><br />
 					</b> <span>${list.HTYPE}</span> <span>침대 ${list.BEDCNT}개</span>
 				</div>
 			</c:forEach>
@@ -93,9 +93,7 @@ html, body {
 
 		<c:forEach var="vall" items="${loc}" varStatus="vs">
 			var content${vs.index} = '';
-/* 			<c:forEach var="list" items="${val}">
-			  content${vs.index} = '<div><a href="/view/detail?num=${list.NUM}"><span id="title">${list.TITLE}</span></div><img src="${list.PICURL}" width="100px" height="70px" /><br /><b><span>\<fmt:formatNumber value="${list.PRICE}" pattern="#,###" /></span> <span>${fn:substring(list.TITLE, 0, 10)}</span><br /></b> <span>${list.HTYPE}</span> <span>침대 ${list.BEDCNT}개</span></a>';
-		  	</c:forEach> */
+			  content${vs.index} = '<div><a href="/view/detail?num=${vall.num}"><span id="title">${vall.title}</span></div><img src="${vall.picurl}" width="100px" height="70px" /><br /><b><span>\<fmt:formatNumber value="${vall.price}" pattern="#,###" /></span> <span>${fn:substring(vall.title, 0, 10)}</span><br /></b> </a>';
 		  var infowindow${vs.index} = new google.maps.InfoWindow({
 			    content: content${vs.index}
 		  });
