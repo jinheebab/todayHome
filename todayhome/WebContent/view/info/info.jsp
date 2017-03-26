@@ -59,7 +59,7 @@
 				<hr/>
 				<input type="file" class="form-control"	name="pic" />
 				<br/>
-				<button type="submit" class="btn">사진변경</button>
+				<button type="submit" class="form-control">사진변경</button>
 		</form>
 	</div>
 	<div class="col-md-9" style="background-color: white">

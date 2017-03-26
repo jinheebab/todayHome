@@ -22,7 +22,9 @@
 <body>
 
 <div class="container">
-  <h2>추가사진등록성공</h2>
+<!--   <h2>호스팅정보보기</h2> -->
+<!--   <!-- Trigger the modal with a button --> 
+<!--   <button type="button" class="btn btn-default btn-lg" id="myBtn">호스팅정보</button> -->
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-default btn-lg" id="myBtn">버튼</button>
 
@@ -36,18 +38,45 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4><span class="glyphicon glyphicon-lock"></span> 추가사진</h4>
         </div>
+        
         <div class="modal-body" style="padding:40px 50px;">
             <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 제목</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.title}" readonly="readonly">
               
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 숙소유형</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.htype}" readonly="readonly">
+              
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 방유형</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.rtype}" readonly="readonly">
+              
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 방개수</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.roomcnt}" readonly="readonly">
+              
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 수용인원</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.membercnt}" readonly="readonly">
+              
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 침대개수</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.bedcnt}" readonly="readonly">
+              
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 욕실개수</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.bathcnt}" readonly="readonly">
+              
+               <label for="usrname"><span class="glyphicon glyphicon-user"></span> 국가</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.country}" readonly="readonly">
+              
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 도시</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.city}" readonly="readonly">
+              
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> 하위주소</label>
+              <input type="text" class="form-control" id="usrname" value="${hostinginfo.location}" readonly="readonly">
+            </div>     
+        
+            <div class="form-group">
             </div>
-           
-            
               <button class="btn btn-success btn-block" id="tomain"><span class="glyphicon glyphicon-off"></span> 메인화면으로</button>
-              
                <button class="btn btn-success btn-block" id="topicture"><span class="glyphicon glyphicon-off"></span> 사진추가하기</button>
-              
               <script>
-              
               $(document).ready(function() { 
             	  $("#myBtnn").hide();
             	  $("#myBtn").trigger('click');
