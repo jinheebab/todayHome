@@ -76,18 +76,21 @@ public class HostingController {
 		String filename = (String)map.get("filename");
 		long filesize = (long)map.get("filesize");
 		String fileaddress = (String)map.get("filelink");
-		json.put("type", type);
-		json.put("filename", filename);
-		json.put("filesize", filesize);
-		json.put("fileaddress", fileaddress);
-		json.put("filelink", fileaddress);
-		json.put("id", id);
-		String  objm = new ObjectMapper().writeValueAsString(json);
+			json.put("type", type);
+			json.put("filename", filename);
+			json.put("filesize", filesize);
+			json.put("fileaddress", fileaddress);
+			json.put("filelink", fileaddress);
+			json.put("id", id);
+		String objm = new ObjectMapper().writeValueAsString(json);
 		System.out.println(objm);
 		return json;
 	}
 	@RequestMapping("/host03")
-	public ModelAndView host03(@RequestParam Map map){
+	public ModelAndView host03(@RequestParam Map map, HttpSession session){
+		int hostingnum = hdao.getHostingNum(map);
+		session.setAttribute("hostingnum", hostingnum);
+		
 		System.out.println(map.toString());
 		ModelAndView mav= new ModelAndView();
 		Map hostinginfo = map;
@@ -106,15 +109,26 @@ public class HostingController {
 		return mav;
 	}
 	@RequestMapping("/host04")
-	public ModelAndView host04(@RequestParam Map map){
+	public ModelAndView host04(@RequestParam(name="file") MultipartFile file, HttpSession session) throws Exception{
 		ModelAndView mav = new ModelAndView();
+		Map map = fdao.execute(file);
+		System.out.println(map);
+		String id = (String)session.getAttribute("auth");
+		System.out.println(id);
+		String hostingnum = (String)session.getAttribute("hostingnum");
+		System.out.println(hostingnum);
+			map.put("id", id);
+			map.put("type", "hosting");
+			map.put("hostingnum", hostingnum);
 		int r = sdao.createOne(map);
 		if(r == 1){
-			mav.addObject("main", "hosting/host02");
 			mav.setViewName("m_index3");
+			mav.addObject("main", "hosting/ajax");
+			mav.addObject("msg", "<h2>사진이 추가되었습니다.</h2>");
 		}else{
-			mav.addObject("main", "hosting/host02");
 			mav.setViewName("m_index3");
+			mav.addObject("main", "hosting/ajax");
+			mav.addObject("msg", "<h2>사진 등록이 실패하였습니다.</h2>");
 		}
 		return mav;
 	}

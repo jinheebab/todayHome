@@ -84,6 +84,11 @@
    border-bottom-color: black;
    margin-top: 10px;
 }
+.box{
+	border:1px; 
+	width:100%; 
+	height:50%"
+}
 </style>
 
 <div class="image">
@@ -162,7 +167,7 @@
 				 		<h5 align="center">평균 금액</h5>
 				 		<h2 align="center"><span id="findPrice" style="background-color:white; "></span></h2><br/>
 				 		<h4 align="center">위를 참고하시고 원하시는 가격을 입력해주세요</h4>
-				 	    <div align="center"><input class="form-control" type="number" name="price" min="1" max="1000000" placeholder="가격을 입력하세요(단위:원)" id="price" style="width:210px; height:50px"></div>
+				 	    <div align="center"><input class="form-control" type="number" name="price" min="1" max="1000000" placeholder="가격을 입력하세요(단위:원)" id="price" style="width:220px; height:50px"></div>
 					</div>
 				</div>
 			</div><div class="line"></div>
@@ -283,11 +288,11 @@
 	    <div class="col-md-6">
 	    	<h2 style="margin-left: 23%;"> 숙소 이름</h2>
 	    	<div style="margin-left: 15%;">
-	    		<input class="form-control" type="text" id="title" name="title" style="width:200px; height:50px;" />
+	    		<input class="form-control" type="text" id="title" name="title" style="width:200px; height:50px;" placeholder="숙소 이름을 입력하세요"/>
 	    	</div>
 			<h2 style="margin-left: 20%;"> 호스트 이름</h2>
 			<div style="margin-left: 15%;">
-	    		<input class="form-control" type="text" id="hname" name="hname" style="width:200px; height:50px;" />
+	    		<input class="form-control" type="text" id="hname" name="hname" style="width:200px; height:50px;"placeholder="호스트 이름을 입력하세요" />
 	    	</div><br/>
 			<h2 style="margin-left: 23%;"> 호스팅 기간</h2>
 			<div> 
@@ -306,26 +311,37 @@
 	</div><div class="line"></div>
 	<div class="row"><br/>
 		<span class="glyphicon glyphicon-map-marker"></span>4단계
-		<h4>숙소 사진과 설명을 입력해주세요</h4><hr/>
+		<h4>숙소 사진과 추가조건을 입력해주세요</h4><hr/>
 		<div class="row">
-			<h2>메인사진등록</h2>
-	 	    <div id="image"  style="width:90%; height:50%; overflow: hidden; border:1%"></div>
-            파일주소<input type="text" class="form-control" id="picurl" name=picurl readonly="readonly" />
-            <input class="form-control" type="file" id="FILE_TAG" >
-	 	   	<a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile();">등록</a>
- 	    </div>
-	 	    <div class="col-md-5">
-			</div>
+			<h2>메인사진 등록</h2><br/>
+	 	    <div id="image" class="box"></div>
+            파일주소<input type="text" class="form-control" id="picurl" name=picurl readonly="readonly" placeholder="커버사진이 될 숙소 사진을 등록하세요"/>
+           	<div>
+	           	<input class="form-control" type="file" id="FILE_TAG" style="width:30%; height:5%;'">
+		 	   	<a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile();">등록</a>
+            </div>
+ 	    </div><hr/>
 		<div class="row">
-			<div class="form-group">
-	  			<label for="comment">소개글:</label>
-	  			<textarea name="intro" id="intro" class="form-control" rows="5"></textarea>
-	  			<label for="comment">게스트 자격조건:</label>
-		  		<textarea name="condition" id="condition" class="form-control" rows="5"></textarea>
-			</div>
-			<button type="submit" class="btn" id="register">최종등록</button>
+			<div class="col-md-6">
+				<h2 style="margin-left: 23%;">소개글</h2>
+	  			<textarea class="form-control" name="intro" id="intro" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px"></textarea>
+  			</div>
+  			<div class="col-md-6">
+  				<h2 style="margin-left: 23%;">게스트 자격조건</h2>
+	  			<textarea class="form-control" name="condition" id="condition" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px"></textarea>
+	  		</div>
 		</div>
-	 </div>
+	</div><div class="line"></div>
+	<div class="row" ><br/><br/>
+		<div class="col-md-6">
+			<span class="glyphicon glyphicon-map-marker"></span>최종
+			<h4>모든 정보를 입력하셨다면 최종 등록 하세요</h4>
+		</div>
+		<div class="col-md-6" align="center">
+			<button type="submit" class="form-control" id="register" style="width:20%; height:10%">등록하기</button><br/>
+		</div>
+		<br/><br/>
+	</div>
 	</form>
 </div>
 
@@ -424,11 +440,8 @@
                     success: function(result){
                         alert('사진등록성공');
                         console.log(result);
-                        
                         $('#image').html('<img src="'+result+'" width="100%" height="100%">');
-                        
                         $('#picurl').val(result);
-                        
                     }
             });
     }
