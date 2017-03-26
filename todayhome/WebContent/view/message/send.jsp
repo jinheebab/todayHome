@@ -4,34 +4,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="model.MessageDao"%>
 <%@ page import="java.util.*"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<script type="text/javascript"
-	src="./resources/lib/jquery-1.11.3.min.js"></script>
-<script type="text/javascript" src="./resources/lib/jquery-ui.js"></script>
-
-
-
 
 <div class="container" align="left">
 	<h3>용건을 전달해드립니다.</h3>
 	<ul class="nav nav-tabs">
 		<li><a title="/view/message">받은 메시지</a></li>
 		<li><a title="/view/sendlist">보낸 메시지</a></li>
-		<!-- 		<li><a href="/view/send">전 송</a></li> -->
 	</ul>
 </div>
-
-<%-- 	<c:forEach var="all" items="${send }">
-		<tr>
-			<td>${all.RECEIVER}</td>
-			<td>${all.CONTENT}</td>
-						<td>${all.CONTENT}</td>				
-			<td><a href="/message/message?num=${all.NUM}"></a></td>
-		</tr>
-	</c:forEach> --%>
 
 <form action="/view/sendcomp" method="post" name="send">
 
