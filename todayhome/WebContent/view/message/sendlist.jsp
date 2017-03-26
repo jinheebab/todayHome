@@ -44,7 +44,7 @@ tr:nth-child(even) {
 			<tr>
 				<td>${all.RECEIVER}</td>
 				<td>${all.CONTENT}</td>
-				<td>시간</td>
+				<td>${all.WRITETIME }</td>
 			</tr>
 		</c:forEach>
 	</table>
