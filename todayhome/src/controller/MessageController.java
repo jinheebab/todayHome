@@ -28,15 +28,14 @@ import model.MessageDao;
 
 
 @Controller
-@RequestMapping("/view")
+@RequestMapping("/view/message")
 public class MessageController {
 
 	@Autowired
 	MessageDao mdao;
 
-	@RequestMapping("/message") // 수신 리스트 and 메시지 main
+	@RequestMapping("/") // 수신 리스트 and 메시지 main
 	public ModelAndView message(HttpSession session) { //
-		System.out.println("메시지 '수신' 리스트 접속");
 		ModelAndView mav = new ModelAndView();
 
 		System.out.println((String) session.getAttribute("auth"));
@@ -50,12 +49,11 @@ public class MessageController {
 		System.out.println(message);
 
 		for (int i = 0; i < 5; i++) {
-
 			board.add(message.get(i));
-
 		}
+		
 		System.out.println(board);
-
+		
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/message");
 		mav.addObject("board", board);
@@ -81,13 +79,11 @@ public class MessageController {
 		List board = new ArrayList<>();
 
 		for (int i = 5 * page - 5; i < 5 * page; i++) {
-
 			board.add(message.get(i));
-
 		}
 
 		mav.setViewName("m_index2");
-		mav.addObject("main", "message/message");
+		mav.addObject("main", "/message");
 		mav.addObject("board", board);
 
 		return mav;
@@ -153,16 +149,13 @@ public class MessageController {
 
 		return mav;
 	}
-		
+	
 	@RequestMapping("/send")
 	public ModelAndView send(@RequestParam Map map, HttpSession session, HttpServletRequest req) {
 		String addr = req.getRemoteAddr();
-		System.out.println("메시지 '작성' 페이지 접속");
 		ModelAndView mav = new ModelAndView();
-		// ModelAndView mav2 = new ModelAndView("s_01");
 		
 		String send = (String) session.getAttribute("auth");
-		
 		
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/send");
@@ -172,28 +165,28 @@ public class MessageController {
 		return mav;
 	}	
 		
-/*	@RequestMapping("/sendcomp")
-	public ModelAndView sendcomp(HttpSession session, @RequestParam Map map) {
-
-		
-		
+	@RequestMapping("/sendcomp")
+	public String sendcomp(HttpSession session, @RequestParam Map map) {
 		String sender = (String) session.getAttribute("auth");
+		System.out.println(sender);
 			map.put("sender", sender);
+		System.out.println(map);
 		System.out.println(map);
 		
 		int r = mdao.send(map);
+		String redirect = "";
 		
 		ModelAndView mav = new ModelAndView();
 		
 		if(r==1){
 			mav.setViewName("m_index2");
-			mav.addObject("main", "message/message");
+			redirect = "redirect:sendresult.jsp";
 		} else {
 			mav.setViewName("m_index2");
-			mav.addObject("main", "/send");
+			redirect = "redirect:send";
 		}
-		return mav;
-	}*/
+		return redirect ;
+	}
 }		
 		
 

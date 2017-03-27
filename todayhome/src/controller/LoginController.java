@@ -49,8 +49,6 @@ public class LoginController {
 		return redirect;
 
 	}
-
-
 	
 	@RequestMapping("view/login/pagelogin")
 	public ModelAndView pageLoinHandler(){
