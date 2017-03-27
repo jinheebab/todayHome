@@ -172,8 +172,10 @@ public class MessageController {
 		return mav;
 	}	
 		
-	@RequestMapping("/sendcomp")
+/*	@RequestMapping("/sendcomp")
 	public ModelAndView sendcomp(HttpSession session, @RequestParam Map map) {
+
+		
 		
 		String sender = (String) session.getAttribute("auth");
 			map.put("sender", sender);
@@ -191,8 +193,7 @@ public class MessageController {
 			mav.addObject("main", "/send");
 		}
 		return mav;
-	}
-	
+	}*/
 }		
 		
 
