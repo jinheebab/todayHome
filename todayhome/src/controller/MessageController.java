@@ -107,9 +107,7 @@ public class MessageController {
 		List boards = new ArrayList<>();
 
 		for (int i = 5 * sendpage - 5; i < 5 * sendpage; i++) {
-
 			boards.add(sendlist.get(i));
-
 		}
 
 		mav.setViewName("m_index2");
@@ -122,7 +120,6 @@ public class MessageController {
 
 	@RequestMapping("/sendpaging")
 	public ModelAndView sendpaging(@RequestParam(name = "sendpage") int sendpage, HttpSession session) {
-
 		ModelAndView mav = new ModelAndView();
 
 		String sender = (String) session.getAttribute("auth");
@@ -138,9 +135,7 @@ public class MessageController {
 		List boards = new ArrayList<>();
 
 		for (int i = 5 * sendpage - 5; i < 5 * sendpage; i++) {
-
 			boards.add(sendlist.get(i));
-
 		}
 
 		mav.setViewName("m_index2");
@@ -189,26 +184,4 @@ public class MessageController {
 	}
 }		
 		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
