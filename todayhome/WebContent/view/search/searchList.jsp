@@ -17,7 +17,7 @@
       <h3>
          <span id="cnt">&nbsp${count}개 호스팅이 등록되어 있습니다.</span>
       </h3>
-      <br />
+      <br/>
       <div class="row">
          <c:forEach var="list" items="${val}">
             <div align="center" class="col-md-6">
