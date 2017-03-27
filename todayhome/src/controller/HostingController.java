@@ -82,6 +82,7 @@ public class HostingController {
 			json.put("fileaddress", fileaddress);
 			json.put("filelink", fileaddress);
 			json.put("id", id);
+			
 		String objm = new ObjectMapper().writeValueAsString(json);
 		System.out.println(objm);
 		return json;
@@ -91,7 +92,8 @@ public class HostingController {
 		int hostingnum = hdao.getHostingNum(map);
 		session.setAttribute("hostingnum", hostingnum);
 		
-		System.out.println(map.toString());
+		String hname = (String)session.getAttribute("auth");
+			map.put("hname", hname);
 		ModelAndView mav= new ModelAndView();
 		Map hostinginfo = map;
 		int n = hdao.addHosting(map);
@@ -120,7 +122,9 @@ public class HostingController {
 			map.put("id", id);
 			map.put("type", "hosting");
 			map.put("hostingnum", hostingnum);
+			
 		int r = sdao.createOne(map);
+		
 		if(r == 1){
 			mav.setViewName("m_index3");
 			mav.addObject("main", "hosting/ajax");
