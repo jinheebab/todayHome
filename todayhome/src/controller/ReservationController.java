@@ -224,9 +224,8 @@ public class ReservationController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		//String id = (String)session.getAttribute("auth");
+		String id = (String)session.getAttribute("auth");
 		
-		String id = "leeja";
 		
 		System.out.println("아이디는 " + id);
 		
