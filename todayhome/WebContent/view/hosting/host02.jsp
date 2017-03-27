@@ -39,10 +39,34 @@
 			<img src="/addition.jpg" width="100%" height="80%" />
 			<br/><br/>
 		</div>
-		<div class="row" >
-			<h2><span class="glyphicon glyphicon-map-marker"></span>추가 숙소 내부사진을 등록하세요</h2><br/>
-		</div>
 	</div>
+	
+	<form action="/hosting/host04">
+  		호스팅번호<input type="text" id="hostingnum" name="hostingnum" readonly="readonly" value="${hostingNumber}"/>
+		TYPE<input type="text" id="type" name="type" readonly="readonly" value="hosting"/>
+		파일이름<input type="text" id="filename" name="filename" readonly="readonly"/>
+		파일사이즈<input type="text" id="filesize" name="filesize" readonly="readonly"/>
+		파일링크<input type="text" id="filelink" name="filelink" readonly="readonly"/>
+		아이디<input type="text" id="id" name="id" readonly="readonly" value="${sessionScope.auth}"/>
+	
+	
+		<div class="row">
+			 <div class="col-md-6" style="margin-left:5%; margin-right:-14%">
+				<h2><span class="glyphicon glyphicon-map-marker"></span>추가 숙소 내부사진을 등록하세요</h2><br/>
+				<h3 align="center">추가 사진 등록</h3>
+		        <input type="file" id="fileObj" name="file">
+		      	<div align="center">
+		       		<button type="submit" class="form-control" id="register" style="background-color:white; width:20%; height:10%">추가 사진 등록</button><br/>
+		       	</div>
+	        </div><br/>
+	        <div class="col-md-6" align="center">
+		       	<br/><br/>
+		       	<h3>
+		       		<a class="ui-shadow ui-btn ui-corner-all" href="/view/"><span class="glyphicon glyphicon-off"></span>&nbsp홈 화면으로 가기</a>
+		       	</h3>
+	       	</div>
+		</div>
+	</form>
 	
 	<div class="container">
 	  <!-- Modal -->
@@ -73,31 +97,7 @@
 	});
 	</script>
 	
-	<form action="/hosting/host04">
-<%--  호스팅번호<input type="text" id="hostingnum" name="hostingnum" readonly="readonly" value="${hostingNumber}"/>
-		TYPE<input type="text" id="type" name="type" readonly="readonly" value="hosting"/>
-		파일이름<input type="text" id="filename" name="filename" readonly="readonly"/>
-		파일사이즈<input type="text" id="filesize" name="filesize" readonly="readonly"/>
-		파일링크<input type="text" id="filelink" name="filelink" readonly="readonly"/>
-		아이디<input type="text" id="id" name="id" readonly="readonly" value="${sessionScope.auth}"/> --%>
 	
-	
-		<br/>
-		<div class="row">
-			 <div class="col-md-6">
-				<h3 align="center">추가 사진 등록</h3><br/>
-		        <input type="file" id="fileObj" name="file">
-		      	<div align="center">
-		       		<button type="submit" class="form-control" id="register" style="background-color:white; width:20%; height:10%">추가 사진 등록</button><br/>
-		       	</div>
-	        </div><br/>
-	        <div class="col-md-6" align="center">
-		       	<h3>
-		       		<span class="glyphicon glyphicon-off"></span>사진 추가 그만 두기<br/><br/>
-			       	<a class="ui-shadow ui-btn ui-corner-all" href="/view/">홈 화면으로 가기</a>
-		       	</h3>
-	       	</div>
-		</div>
 	<script>
 		function uploadFile(){
 	        var form = $('FILE_FORM')[0];
@@ -121,7 +121,7 @@
 	        });
 	    }
 		</script>
-	</form>
+
 </div>
 </body>
 </html>

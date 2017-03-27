@@ -71,10 +71,10 @@ public class SearchController {
 						outstr += str;
 				}
 				Map result = (HashMap)new ObjectMapper().readValue(outstr, Map.class);
-				result.put("num", list.get(i).get("NUM"));
-				result.put("title", list.get(i).get("TITLE"));
-				result.put("picurl", list.get(i).get("PICURL"));
-				result.put("price", list.get(i).get("PRICE"));
+					result.put("num", list.get(i).get("NUM"));
+					result.put("title", list.get(i).get("TITLE"));
+					result.put("picurl", list.get(i).get("PICURL"));
+					result.put("price", list.get(i).get("PRICE"));
 				
 				loc.add(result);
 			}

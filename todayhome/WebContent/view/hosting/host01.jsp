@@ -105,35 +105,35 @@
 			<h3>숙소 등록부터 시작해 보세요.<br/>숙소에 대한 프로필을 작성하는 것과 같습니다.</h3><br/></div><br/>
 				<b></b><span class="glyphicon glyphicon-map-marker"></span>1단계
 				<h4>회원님의 숙소 유형은 무엇인가요?</h4><hr/>
-					<div class="col-md-6" >
-						<h2 style="margin-left: 22%;">숙소 유형</h2>
-						<div style="margin-left: 15%;">
-							<select class="form-control" name="htype" id="htype" style="width:200px; height:50px"> 
+					<div class="col-md-6" style="margin-left:4%; margin-right:-4%">
+						<h2>숙소 유형</h2>
+						<div>
+							<select class="form-control allInput" name="htype" id="htype" style="width:200px; height:50px"> 
 								<c:forTokens items="단독주택,아파트,호텔,산장,호스텔,리조트,레지던스,게스트하우스,기숙사,민수(타이완),료칸(일본),펜션(한국),헤리티지 호텔(인도)" delims=",." var="t">
 									<option>${t}</option>
 								</c:forTokens>
 							</select>
 						</div>
-						<h2 style="margin-left: 23%;">방 유형</h2>
-						<div style="margin-left: 15%;">
-							<input type="radio" name="rtype" value="allRoom">집 전체
-							<input type="radio" name="rtype" value="oneRoom">일인실
-							<input type="radio" name="rtype" value="manyRoom">다인실<br/>
+						<h2>방 유형</h2>
+						<div>
+							<input class="allInput" type="radio" name="rtype" value="allRoom">집 전체
+							<input class="allInput" type="radio" name="rtype" value="oneRoom">일인실
+							<input class="allInput" type="radio" name="rtype" value="manyRoom">다인실<br/>
 						</div>
 					</div>
-					<div class="col-md-6" >
-						<h2 style="margin-left: 23%;">방 개수</h2>
-						<div style="margin-left: 15%;">
-							<select class="form-control" name="roomcnt" id="roomcnt" style="width:200px; height:50px">
+					<div class="col-md-6" style="margin-left:4%; margin-right:-4%">
+						<h2>방 개수</h2>
+						<div>
+							<select class="form-control allInput" name="roomcnt" id="roomcnt" style="width:200px; height:50px">
 								<option value="0">방 개수를 선택하세요</option>
 								<c:forEach var="item" begin="1" end="20" varStatus="vs">
 									<option value="${item}">${item }개</option>
 								</c:forEach>
 							</select>
 						</div>
-						<h2 style="margin-left: 23%;">수용인원</h2>
-						<div style="margin-left: 15%;">
-							<select class="form-control" name="membercnt" id="membercnt" style="width:200px; height:50px">
+						<h2>수용인원</h2>
+						<div>
+							<select class="form-control allInput" name="membercnt" id="membercnt" style="width:200px; height:50px">
 								<option value="0">인원을 선택하세요</option>
 								<c:forEach var="item" begin="1" end="20" varStatus="vs">
 									<option value="${item}">${item }명</option>
@@ -148,9 +148,9 @@
 				<div class="col-md-6" >
 					<h5 style="margin-left: 23%;">1. 지도에 호스팅할 위치를 입력하세요</h5><br/>
 					<div>
-						<input id="pac-input" class="controls" type="text" placeholder="예) 강남구" name=address>
+						<input id="pac-input" class="controls allInput" type="text" placeholder="예) 강남구" name=address>
 						    <div id="type-selector" class="controls">
-						    	<button type="button" id="refresh" class="btn btn-primary btn-md">검색</button>
+						    	<button type="button" id="refresh" class="btn btn-primary btn-md" >검색</button>
 						   	</div>
 					    <div id="map" style="width:103%; height:70%;"></div>
 				    </div>
@@ -159,24 +159,24 @@
 				    <div >
 				    <h5 style="margin-left: 23%;">2. 상세 하위주소와 가격을 입력하세요</h5><br/>
 				    	<h4>국가</h4>
-					    <input type="text" class="form-control" id="country" name="country" readonly="readonly" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+					    <input type="text" class="form-control allInput" id="country" name="country" readonly="readonly" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 					    <h4>도시</h4>
-					    <input type="text" class="form-control" id="city" name="city" readonly="readonly" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+					    <input type="text" class="form-control allInput" id="city" name="city" readonly="readonly" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 					    <h4>하위주소</h4>
-				 		<input type="text" class="form-control" id="location" name="location" /><br/>
+				 		<input type="text" class="form-control allInput" id="location" name="location" /><br/>
 				 		<h5 align="center">평균 금액</h5>
 				 		<h2 align="center"><span id="findPrice" style="background-color:white; "></span></h2><br/>
-				 		<h4 align="center">위를 참고하시고 원하시는 가격을 입력해주세요</h4>
-				 	    <div align="center"><input class="form-control" type="number" name="price" min="1" max="1000000" placeholder="가격을 입력하세요(단위:원)" id="price" style="width:220px; height:50px"></div>
+				 		<h4 align="center">위를 참고하시고 원하시는 가격을 입력해주세요(1일 기준)</h4>
+				 	    <div align="center"><input class="allInput" type="number" name="price" min="1" max="1000000" placeholder="가격을 입력하세요(단위:원)" id="price" style="width:220px; height:50px"> 원</div>
 					</div>
 				</div>
 			</div><div class="line"></div>
 			<div class=row><br/>
 				<span class="glyphicon glyphicon-map-marker"></span>3단계
 				<h4>첫번째 세부정보를 입력해주세요</h4><hr/>
-				<div class="col-md-6" >
-					<h2 style="margin-left: 23%;">침대 개수</h2>
-					<div style="margin-left: 15%;">
+				<div class="col-md-6" style="margin-left:4%; margin-right:-4%">
+					<h2>침대 개수</h2>
+					<div>
 						<select class="form-control" name="bedcnt" id="bedcnt" style="width:200px; height:50px">
 							<option value="0">침대 개수를 선택하세요</option>
 							<c:forEach var="item" begin="1" end="10" varStatus="vs">
@@ -184,14 +184,14 @@
 							</c:forEach>
 						</select>
 					</div>
-					<h2 style="margin-left: 23%;">제공 비품</h2>
+					<h2>제공 비품</h2>
 					<div>
 						<textarea class="form-control" name="amenity" id="amenity" placeholder="제공비품을 입력하세요" rows="3" cols="50" style="width:400px; height:150px"></textarea>
 					</div>    
 				</div>
-				<div class="col-md-6">
-					<h2 style="margin-left: 23%;">욕실 개수</h2>
-					<div style="margin-left: 15%;">
+				<div class="col-md-6" style="margin-left:4%; margin-right:-4%">
+					<h2>욕실 개수</h2>
+					<div>
 						<select class="form-control" name="bathcnt" id="bathcnt" style="width:200px; height:50px">
 							<option value="0">욕실 개수를 선택하세요</option>
 							<c:forEach var="item" begin="1" end="10" varStatus="vs">
@@ -199,7 +199,7 @@
 							</c:forEach>
 						</select>
 					</div>
-					<h2 style="margin-left: 23%;">이용 수칙</h2>
+					<h2>이용 수칙</h2>
 					<div>
 	 			 		<textarea class="form-control" name="rule" id="rule" placeholder="이용수칙을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px"></textarea>
 	 			 	</div>
@@ -214,12 +214,12 @@
 			  var input = /** @type {!HTMLInputElement} */(
 			      document.getElementById('pac-input'));
 		
-			  var types = document.getElementById('type-selector');
+ 			  var types = document.getElementById('type-selector');
 			  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 			  map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 		
 			  var autocomplete = new google.maps.places.Autocomplete(input);
-			  autocomplete.bindTo('bounds', map);
+			  autocomplete.bindTo('bounds', map); 
 		
 			  var infowindow = new google.maps.InfoWindow();
 			  var marker = new google.maps.Marker({
@@ -227,14 +227,13 @@
 			    anchorPoint: new google.maps.Point(0, -29)
 			  });
 		
-			  autocomplete.addListener('place_changed', function() {
+ 			  autocomplete.addListener('place_changed', function() {
 			    infowindow.close();
 			    marker.setVisible(false);
 			    var place = autocomplete.getPlace();
-			    if (!place.geometry) {
+/* 			    if (!place.geometry) {
 			      window.alert("Autocomplete's returned place contains no geometry");
-			      return;
-			    }
+			    }  */
 		
 			    // If the place has a geometry, then present it on a map.
 			    if (place.geometry.viewport) {
@@ -268,69 +267,64 @@
 		
 			  // Sets a listener on a radio button to change the filter type on Places
 			  // Autocomplete.
-			  function setupClickListener(id, types) {
+/*   			  function setupClickListener(id, types) {
 			    var radioButton = document.getElementById(id);
 			    radioButton.addEventListener('click', function() {
 			      autocomplete.setTypes(types);
 			    });
-			  }
+			  } 
 		
-			  setupClickListener('changetype-all', []);
+ 			  setupClickListener('changetype-all', []);
 			  setupClickListener('changetype-address', ['address']);
 			  setupClickListener('changetype-establishment', ['establishment']);
-			  setupClickListener('changetype-geocode', ['geocode']);
+			  setupClickListener('changetype-geocode', ['geocode']);  */
 			}
 	</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCCtadQykezCNspZiTMu2TRdYXl9QZlbc&libraries=places&callback=initMap" async defer></script>
 
 	<div class="row">
 		<h4>두번째 세부정보를 입력해주세요</h4><hr/>
-	    <div class="col-md-6">
-	    	<h2 style="margin-left: 23%;"> 숙소 이름</h2>
-	    	<div style="margin-left: 15%;">
-	    		<input class="form-control" type="text" id="title" name="title" style="width:200px; height:50px;" placeholder="숙소 이름을 입력하세요"/>
-	    	</div>
-			<h2 style="margin-left: 20%;"> 호스트 이름</h2>
-			<div style="margin-left: 15%;">
-	    		<input class="form-control" type="text" id="hname" name="hname" style="width:200px; height:50px;"placeholder="호스트 이름을 입력하세요" />
-	    	</div><br/>
-			<h2 style="margin-left: 23%;"> 호스팅 기간</h2>
+	    <div class="col-md-6" style="margin-left:4%; margin-right:-4%">
+	    	<h2> 숙소 이름</h2>
+	    	<div>
+	    		<input class="form-control allInput" type="text" id="title" name="title" style="width:200px; height:50px;" placeholder="숙소 이름을 입력하세요"/>
+	    	</div><br/><br/>
+			<h2> 호스팅 기간</h2>
 			<div> 
-				<input type="text" id="sdate" name="startdate" placeholder="체크인 날짜를 입력하세요" style="width:200px; height:50px; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" /> 
-				<input type="text" id="edate" name="enddate" placeholder="체크아웃 날짜를 입력하세요" style="width:200px; height:50px; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
+				<input class="allInput" type="text" id="sdate" name="startdate" placeholder="체크인 날짜를 입력하세요" style="width:200px; height:50px; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" /> 
+				<input class="allInput" type="text" id="edate" name="enddate" placeholder="체크아웃 날짜를 입력하세요" style="width:200px; height:50px; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;"/>
 			</div>
 	    </div>
-		<div class="col-md-6">
-			<h2 style="margin-left:35%;"> 카테고리</h2> 
-			<div align="center">
-				<input type="text" id="inputCategory" placeholder="카테고리를 입력해주세요" style="width:200px; height:50px; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" /> 
+		<div class="col-md-6" style="margin-left:0%;">
+			<h2> 카테고리</h2> 
+			<div>
+				<input class="allInput" type="text" id="inputCate" name="inputCate" placeholder="카테고리를 입력해주세요" style="width:200px; height:50px; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" /> 
 				<button type="button" id="plus" style="width:70px; height:50px; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; background-color:white">추가</button> 
-			 	<textarea class="form-control" rows="3" id="category" name="category" rows="3" cols="50" style="width:400px; height:240px"></textarea>
+				<button type="button" id="minus" style="width:70px; height:50px; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; background-color:white">삭제</button>
+			 	<input type="hidden" class="form-control" id="category" name="category" style="width:400px; height:240px" ></input>
+			 	<div id="cate" style="border:1px;">
+			 	</div>
 		 	</div>
 		 </div>
 	</div><div class="line"></div>
 	<div class="row"><br/>
 		<span class="glyphicon glyphicon-map-marker"></span>4단계
 		<h4>숙소 사진과 추가조건을 입력해주세요</h4><hr/>
-		<div class="row">
+		<div class="col-md-6">
 			<h2>메인사진 등록</h2><br/>
-	 	    <div id="image" class="box"></div>
-            파일주소<input type="text" class="form-control" id="picurl" name=picurl readonly="readonly" placeholder="커버사진이 될 숙소 사진을 등록하세요"/>
+	 	    <div id="image" class="box" align="center"><img src="/cover.jpg" width="80%" height="30%"></div>
+            파일주소<input type="text" class="form-control allInput" id="picurl" name=picurl readonly="readonly" placeholder="커버사진이 될 숙소 사진을 등록하세요"/>
            	<div>
-	           	<input class="form-control" type="file" id="FILE_TAG" style="width:30%; height:5%;'">
+	           	<input class="form-control allInput" type="file" id="FILE_TAG" style="width:30%; height:5%;'">
 		 	   	<a class="ui-shadow ui-btn ui-corner-all" href="javascript:uploadFile();">등록</a>
             </div>
- 	    </div><hr/>
-		<div class="row">
-			<div class="col-md-6">
-				<h2 style="margin-left: 23%;">소개글</h2>
-	  			<textarea class="form-control" name="intro" id="intro" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px"></textarea>
-  			</div>
-  			<div class="col-md-6">
-  				<h2 style="margin-left: 23%;">게스트 자격조건</h2>
-	  			<textarea class="form-control" name="condition" id="condition" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px"></textarea>
-	  		</div>
-		</div>
+        </div>
+		<div class="col-md-6" >
+			<h2>소개글</h2>
+  			<textarea class="form-control allInput" name="intro" id="intro" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px"></textarea>
+			<h2>게스트 자격조건</h2>
+  			<textarea class="form-control allInput" name="condition" id="condition" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px" onkeyup="javascript:chkValue();"></textarea>
+  		</div>
 	</div><div class="line"></div>
 	<div class="row" ><br/><br/>
 		<div class="col-md-6">
@@ -338,7 +332,7 @@
 			<h4>모든 정보를 입력하셨다면 최종 등록 하세요</h4>
 		</div>
 		<div class="col-md-6" align="center">
-			<button type="submit" class="form-control" id="register" style="width:20%; height:10%">등록하기</button><br/>
+			<button type="submit" class="form-control" id="register" name="register" style="width:20%; height:10%" disabled>등록하기</button><br/>
 		</div>
 		<br/><br/>
 	</div>
@@ -385,7 +379,41 @@
 	    	console.log(selectedDate)
 	        $("#sdate").datepicker( "option", "maxDate", selectedDate );
 	    });
-	    
+	    // 지도 엔터 
+	    $(document).ready(function(){
+	    	$("input[name=address]").keydown(function(key){
+	    		if(key.keyCode == 13){
+	    			addrSearch();
+	    		}	
+	    	});
+	    });
+	    function addrSearch(){
+	   		 var address = $('#pac-input').val();
+	   		 var address2 = address.split(' ');
+	   		 var address3 = '';
+	   		 $('#country').val(address2[0]);
+	   		 $('#city').val(address2[2]);
+	   		 for(var i=3; i<address2.length; i++){
+	   			 address3 += address2[i];
+	   		 }
+	   		 $('#location').val(address3);		
+	    	refresh();
+	    }
+	
+	 	 // 지도 검색 버튼  
+ 		$('#refresh').click(function(){
+			 var address = $('#pac-input').val();
+			 var address2 = address.split(' ');
+			 var address3 = '';
+			 $('#country').val(address2[0]);
+			 $('#city').val(address2[2]);
+			 for(var i=3; i<address2.length; i++){
+				 address3 += address2[i];
+			 }
+			 $('#location').val(address3);
+			refresh();
+		});     
+    
 	    // 가격 띄우기
  	    function refresh(){
  	    	var city = $('#city').val();
@@ -400,32 +428,64 @@
  	        });
  	    };
 
- 	    $('#plus').click(function(){
+ 	    // 카테고리 엔터
+	    $(document).ready(function(){
+	    	$("input[name=inputCate]").keydown(function(key){
+	    		if(key.keyCode == 13){
+	    			addCate();
+	    		}	
+	    	});
+	    });
+
+ 	    // div에 카테 버튼넣기
+	    function addCate(){
+ 	    	var inputCategory = $('#inputCate').val();
+ 	    	$('#inputCategory').val('');
+ 	    	var category = '<button class="btns" style="background-color:white; height:8%; width:15%" disabled>'+'#'+ inputCategory+'</button>';
+ 	    	$('#cate').append(category);
+ 	    	
+ 	    	var category1 = $('#category').val() + '#' + inputCategory;
+ 	    	console.log(category1);
+ 	    	$('#category').val(category1);
+	    }
+ 	    // 카테고리 추가 	    
+  	    $('#plus').click(function(){
+ 	    	var inputCategory = $('#inputCate').val();
+ 	    	$('#inputCategory').val('');
+ 	    	var category = '<button class="btns" style="background-color:white; height:8%; width:15%" disabled>'+'#'+ inputCategory+'</button>';
+ 	    	$('#cate').append(category);
+ 	    	
+ 	    	var category1 = $('#category').val() + '#' + inputCategory;
+ 	    	console.log(category1);
+ 	    	$('#category').val(category1);
+ 	    });
+ 	    
+  		// 카테고리 삭제 	    
+  	    $('#minus').click(function(){
+  	    	$("#category").val('');
+  	    	$("#cate").empty();
+ 	    });
+ 	    
+	
+/*   	    $('#plus').click(function(){
  	    	var inputCategory = $('#inputCategory').val();
  	    	$('#inputCategory').val('');
  	    	var category = $('#category').val() + '#' + inputCategory;
  	    	$('#category').val(category);
- 	    	
- 	    });
+ 	    }); */
+ 	    
+ 	    
+ 	    
+ 	    // 필수 입력 체크(input form)
+		function chkValue(){
+	 		var inputObjs = $(".allInput");    	
+	 		inputObjs.each(function(index){
+	 			if($(this).val() != ''){
+		 			$("#register").prop("disabled", false);
+	 			}
+	 		});
+	 	}
 	
-	
-	$('#refresh').click(function(){
-		refresh();
-		
-		 var address = $('#pac-input').val();
-		 var address2 = address.split(' ');
-		 var address3 = '';
-		 
-		 $('#country').val(address2[0]);
-		 $('#city').val(address2[2]);
-		 
-		 for(var i=3; i<address2.length; i++){
-			 address3 += address2[i];
-		 }
-		 
-		 $('#location').val(address3);
-		 
-	});
 	function uploadFile(){
         var form = $('FILE_FORM')[0];
         var formData = new FormData(form);
@@ -440,7 +500,7 @@
                     success: function(result){
                         alert('사진등록성공');
                         console.log(result);
-                        $('#image').html('<img src="'+result+'" width="100%" height="100%">');
+                        $('#image').html('<img src="'+result+'" width="80%" height="30%">');
                         $('#picurl').val(result);
                     }
             });
