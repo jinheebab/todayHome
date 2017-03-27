@@ -8,7 +8,7 @@
 <style>
 table {
 	font-family: arial, sans-serif;
-	border-collapse: collapse;
+	border-collap se: collapse;
 	width: 100%;
 }
 

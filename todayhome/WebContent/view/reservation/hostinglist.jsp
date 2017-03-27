@@ -54,7 +54,7 @@
        <c:forEach items="${list}" var="x" >
        <div class="col-md-4">
                 <div class="frame">
-                    <img src="${x.PICURL}" width="400px" />
+                    <img src="${x.PICURL}" width="400px"/>
                 </div>
                     <a href="/view/detail?num=${x.NUM}">
                     <b><font color="black">${fn:substring(x.TITLE,0,23)}<c:if test="${fn:length(x.TITLE) gt 23}">..</c:if></font></b> </a>

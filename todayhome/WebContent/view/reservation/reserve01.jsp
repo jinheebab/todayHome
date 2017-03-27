@@ -88,8 +88,9 @@
 
 }
 .frame{
-	padding-top: 5%;
-	padding-bottom: 5%; 
+	padding: 0;
+	margin-left: 0;
+	margin-right:0;
 	overflow: hidden;
 	
 }
@@ -136,10 +137,12 @@
  
   <hr/> 
  <div class="row">
- <div class="col-md-6">
+ <div class="col-md-7">
  <span class="font1">※ 이용수칙 ※</span>
   
   <div style="font-weight: bold; margin-top: 5%;" id="rule" >${hostinglist.RULE}</div><br/>
+  <input type="radio" name="agree" value="agree" >이용수칙에 동의합니다.&nbsp;&nbsp;
+  <input type="radio" name="agree" value="disagree" >이용수칙에 동의하지 않습니다.
   </div>
 </div>
  
@@ -154,10 +157,10 @@
  
  
  <div class="col-md-4 box">
-  <div  class="summery">
  <div class="frame" align="center">
- <img src="${hostinglist.PICURL}" width= "350px"/>
+ <img src="${hostinglist.PICURL}" width= "380px"/>
  </div>
+  <div  class="summery">
  <b>${hostinglist.TITLE}</b><br/>
  ${fn:substring(hostinglist.INTRO, 0, 20)}
  </div>
@@ -171,6 +174,7 @@
 
 
   <script>
+  $("#pay").attr("disabled", true);
 	 setInterval(reserveView,100);
   
   $(document).ready(function(){
@@ -274,5 +278,19 @@ console.log(disabledate);
 	  	  }
 	   	 return [true];
 		}
+	
+	$('input[name="agree"]').change(function(){
+		if($(this).val() == "agree"){
+			$("#pay").attr("disabled", false);
+			console.log("agree");
+		}else if($(this).val() =="disagree"){
+			window.alert("이용수칙에 동의해야 합니다");
+			console.log("disagree");
+			$("#pay").attr("disabled", true);
+		}		
+		
+	});
+	
+
 </script>
  
