@@ -37,44 +37,34 @@ public class MessageController {
 	@RequestMapping("/") // 수신 리스트 and 메시지 main
 	public ModelAndView message(HttpSession session) { //
 		ModelAndView mav = new ModelAndView();
-
-		System.out.println((String) session.getAttribute("auth"));
+		List message = new ArrayList();
 		HashMap map = new HashMap();
 		map.put("receiver", (String) session.getAttribute("auth"));
 
-		List message = mdao.getMyMessage(map);
+		message = mdao.getMyMessage(map);
 
-		List board = new ArrayList<>();
-
-		System.out.println(message);
-
-		for (int i = 0; i < 5; i++) {
+		/*for (int i = 0; i < 5; i++) {
 			board.add(message.get(i));
-		}
-		
-		System.out.println(board);
+		}*/
 		
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/message");
-		mav.addObject("board", board);
+		mav.addObject("board", message);
 
 		return mav;
 	}
 
 	@RequestMapping("/paging")
-	public ModelAndView paging(@RequestParam(name = "page") int page, HttpSession session) {
-
+	public ModelAndView paging(@RequestParam("page") int page, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-
+		List message = new ArrayList();
 		String receiver = (String) session.getAttribute("auth");
 
 		Map map = new HashMap<>();
 
-		Map move = new HashMap<>();
-
 		map.put("receiver", receiver);
 
-		List message = mdao.getMyMessage(map);
+		message = mdao.getMyMessage(map);
 
 		List board = new ArrayList<>();
 
@@ -97,41 +87,28 @@ public class MessageController {
 		String sender = (String) session.getAttribute("auth");
 
 		Map map = new HashMap<>();
-
-		Map move = new HashMap<>();
-
 		map.put("sender", sender);
 
 		List sendlist = mdao.getsendMessage(map);
 
-		List boards = new ArrayList<>();
-
-		for (int i = 5 * sendpage - 5; i < 5 * sendpage; i++) {
-			boards.add(sendlist.get(i));
-		}
-
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/sendlist");
-		mav.addObject("boards", boards);
+		mav.addObject("boards", sendlist);
 
 		return mav;
 
 	}
 
 	@RequestMapping("/sendpaging")
-	public ModelAndView sendpaging(@RequestParam(name = "sendpage") int sendpage, HttpSession session) {
+	public ModelAndView sendpaging(@RequestParam("sendpage") int sendpage, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 
 		String sender = (String) session.getAttribute("auth");
 
 		Map map = new HashMap<>();
-
-		Map move = new HashMap<>();
-
 		map.put("sender", sender);
 
 		List sendlist = mdao.getsendMessage(map);
-
 		List boards = new ArrayList<>();
 
 		for (int i = 5 * sendpage - 5; i < 5 * sendpage; i++) {
