@@ -43,7 +43,7 @@ tr:nth-child(even) {
 			</tr>
 		</thead>
 
-		<c:forEach var="all" items="${board}">
+		<c:forEach var="all" items="${board}" end = "5">
 			<tr>
 				<td>${all.SENDER}</td>
 				<td>${all.CONTENT}</td>
