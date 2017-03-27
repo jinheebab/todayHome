@@ -74,7 +74,6 @@ public class MainController {
 		avgstar = avgstar*10;
 		int score = (int)avgstar;
 		
-		
 		List<HashMap> review = md.getReview(map);
 		System.out.println("리뮤갯수: "+review.size());
 		List<HashMap> reviewerphoto = new ArrayList();
@@ -85,10 +84,7 @@ public class MainController {
 			reviewerphoto.add(md.getUserPhoto(reviewer)); 
 		}
 		
-		System.out.println("리뷰어 사진 갯수"+reviewerphoto.size());
-		
 		List<HashMap> reviewcnt  = md.getReviewcnt(map);
-		
 		
 		String hoster = md.hoster(num);
 		System.out.println("hoster name="+ hoster);
@@ -96,14 +92,9 @@ public class MainController {
 		map2.put("id", hoster);
 		HashMap uphoto = md.getUserPhoto(map2);
 		
-		
 		HashMap map3 = new HashMap();
 		map3.put("id", hoster);
 		List<HashMap> hphoto = md.getHostingPhoto(map3);
-		System.out.println("hosting photo: "+ hphoto.size());
-		
-		
-		
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -112,7 +103,7 @@ public class MainController {
 		System.out.println("멤버임");
 		}else{
 			mav.setViewName("g_detail");
-			System.out.println("멤버아님");		
+			System.out.println("멤버아님");	
 		}
 		mav.addObject("list", list);
 		mav.addObject("score", score);
