@@ -117,7 +117,7 @@ public class HostingController {
 		System.out.println(map);
 		String id = (String)session.getAttribute("auth");
 		System.out.println(id);
-		String hostingnum = (String)session.getAttribute("hostingnum");
+		Integer hostingnum = (Integer)session.getAttribute("hostingnum");
 		System.out.println(hostingnum);
 			map.put("id", id);
 			map.put("type", "hosting");

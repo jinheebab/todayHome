@@ -186,7 +186,7 @@
 					</div>
 					<h2>제공 비품</h2>
 					<div>
-						<textarea class="form-control" name="amenity" id="amenity" placeholder="제공비품을 입력하세요" rows="3" cols="50" style="width:400px; height:150px"></textarea>
+						<textarea class="form-control" name="amenity" id="amenity" placeholder="제공비품을 입력하세요" rows="3" cols="50" style="resize:none; width:400px; height:150px"></textarea>
 					</div>    
 				</div>
 				<div class="col-md-6" style="margin-left:4%; margin-right:-4%">
@@ -201,7 +201,7 @@
 					</div>
 					<h2>이용 수칙</h2>
 					<div>
-	 			 		<textarea class="form-control" name="rule" id="rule" placeholder="이용수칙을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px"></textarea>
+	 			 		<textarea class="form-control" name="rule" id="rule" placeholder="이용수칙을 입력하세요"  rows="3" cols="50" style="resize:none; width:400px; height:150px"></textarea>
 	 			 	</div>
 				</div>
 			</div><br/><br/>
@@ -321,9 +321,9 @@
         </div>
 		<div class="col-md-6" >
 			<h2>소개글</h2>
-  			<textarea class="form-control allInput" name="intro" id="intro" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px"></textarea>
+  			<textarea class="form-control allInput" name="intro" id="intro" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="resize:none; width:400px; height:150px"></textarea>
 			<h2>게스트 자격조건</h2>
-  			<textarea class="form-control allInput" name="condition" id="condition" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="width:400px; height:150px" onkeyup="javascript:chkValue();"></textarea>
+  			<textarea class="form-control allInput" name="condition" id="condition" placeholder="숙소 소개글을 입력하세요"  rows="3" cols="50" style="resize:none; width:400px; height:150px" onkeyup="javascript:chkValue();"></textarea>
   		</div>
 	</div><div class="line"></div>
 	<div class="row" ><br/><br/>

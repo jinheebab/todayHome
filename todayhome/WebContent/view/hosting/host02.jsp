@@ -41,13 +41,13 @@
 		</div>
 	</div>
 	
-	<form action="/hosting/host04">
-  		호스팅번호<input type="text" id="hostingnum" name="hostingnum" readonly="readonly" value="${hostingNumber}"/>
+	<form action="/hosting/host04" method="post" enctype="multipart/form-data">
+<%--  호스팅번호<input type="text" id="hostingnum" name="hostingnum" readonly="readonly" value="${hostingNumber}"/>
 		TYPE<input type="text" id="type" name="type" readonly="readonly" value="hosting"/>
 		파일이름<input type="text" id="filename" name="filename" readonly="readonly"/>
 		파일사이즈<input type="text" id="filesize" name="filesize" readonly="readonly"/>
 		파일링크<input type="text" id="filelink" name="filelink" readonly="readonly"/>
-		아이디<input type="text" id="id" name="id" readonly="readonly" value="${sessionScope.auth}"/>
+		아이디<input type="text" id="id" name="id" readonly="readonly" value="${sessionScope.auth}"/> --%>
 	
 	
 		<div class="row">
