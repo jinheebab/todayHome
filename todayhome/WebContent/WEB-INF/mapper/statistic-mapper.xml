@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="statistic">
+		
+	<select id="location" resultType="java.util.HashMap">
+		select city, count(*) as hosting, sum(roomcnt) as roomcnt from hosting group by city
+	</select>
+	
+	<select id="country" resultType="java.util.HashMap">
+		select country, count(*) as count from hosting group by country
+	</select>
+	
+	<select id="country2" resultType="java.util.HashMap">
+		select country, count(*) as count from member group by country
+	</select>
+	
+	
+	
+
+</mapper>
