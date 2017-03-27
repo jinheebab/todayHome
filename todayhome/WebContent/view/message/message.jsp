@@ -48,7 +48,6 @@ tr:nth-child(even) {
 				<td>${all.SENDER}</td>
 				<td>${all.CONTENT}</td>
 				<td>시간</td>
-
 			</tr>
 		</c:forEach>
 	</table>
