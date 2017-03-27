@@ -19,28 +19,25 @@ import model.SharingDao;
 
 @Service
 public class DBregister {
-
-	
 	@Autowired
 	SqlSessionFactory factory;
 	@Autowired
 	ServletContext application;
 	@Autowired
-	   HostingDao hdao;
-	   @Autowired
-	   BookDao bdao;
-	   @Autowired
-	   JoinDao jdao;
-	   @Autowired
-	   LoginDao ldao;
-	   @Autowired
-	   MessageDao mdao;
-	   @Autowired
-	   SharingDao sdao;
-	   @Autowired
-	   MainDao madao;
-
-	
+	HostingDao hdao;
+	@Autowired
+	BookDao bdao;
+	@Autowired
+	JoinDao jdao;
+	@Autowired
+	LoginDao ldao;
+	@Autowired
+	MessageDao mdao;
+	@Autowired
+	SharingDao sdao;
+	@Autowired
+	MainDao madao;
+	   
 	public int hosting(){
 		
 		 for(int a=0; a<100000; a++){

@@ -11,24 +11,16 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 @Service
 public class loginInterceptor extends HandlerInterceptorAdapter {
 	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		try {
 			HttpSession session = request.getSession();
-			
-			
 			if (session.getAttribute("auth") == null) {
-				
 				response.sendRedirect("/view/login/pagelogin");
-
 				return false;
-
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return true;
 	}
 }
