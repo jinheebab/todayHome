@@ -60,9 +60,9 @@
 
 </head>
 <body>
-
+<div align="center" style="margin-bottom: 20px">
 <span style="font-weight:bold; font-size:1.5em;">예약한 목록</span>
-
+</div>
 <div class="container" style="margin-top:10px;">
 	
        <c:forEach items="${wishlist}" var="x">
@@ -92,9 +92,9 @@
        </c:forEach>
 	</div>
 	
-	
+	<div align="center" style="margin-bottom: 20px">
 	<span style="font-weight:bold; font-size:1.5em;">MY HOSTINGLIST</span>
-	
+	</div>
 	
 	<div class="container" style="margin-top:10px;">
 	

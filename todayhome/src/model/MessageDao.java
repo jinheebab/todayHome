@@ -62,14 +62,6 @@ public class MessageDao {
 			return 0;
 		}
 	}
-	/*
-	 * // 메시지 보내기 sendcomp public int sendcomp(Map map) { // 메시지 comp int r = 0;
-	 * try { SqlSession sql = factory.openSession(); r =
-	 * sql.insert("message.sendcomp", map); if (r == 1) { sql.commit(); }
-	 * sql.close(); } catch (Exception e) { e.printStackTrace(); } return r; }
-	 */
-
-	// send Test
 
 	// 회원찾기
 	public List<HashMap> getRecvAll() {

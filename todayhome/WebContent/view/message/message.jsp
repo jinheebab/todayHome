@@ -11,13 +11,11 @@ table {
 	border-collapse: collapse;
 	width: 100%;
 }
-
 /* td, th {
 	border: 1px solid #dddddd; /* ffffff  */
 	text-align: left;
 	padding: 8px;
 } 	 */
-
 tr:nth-child(even) {
 	background-color: #dddddd; /* dddddd  */
 }
@@ -47,7 +45,7 @@ tr:nth-child(even) {
 			<tr>
 				<td>${all.SENDER}</td>
 				<td>${all.CONTENT}</td>
-				<td>시간</td>
+				<td>${all.WRITETIME }</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -78,10 +76,3 @@ tr:nth-child(even) {
 
 </body>
 </html>
-
-
-
-
-
-
-
