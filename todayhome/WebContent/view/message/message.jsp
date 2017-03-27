@@ -38,8 +38,8 @@ tr:nth-child(even) {
 		<thead>
 			<tr>
 				<th width="15%">보낸 사람</th>
-				<th width="75%">내 용</th>
-				<th width="15%">보낸 시간</th>
+				<th width="70%">내 용</th>
+				<th width="15%">받은 시간</th>
 			</tr>
 		</thead>
 
@@ -47,13 +47,12 @@ tr:nth-child(even) {
 			<tr>
 				<td>${all.SENDER}</td>
 				<td>${all.CONTENT}</td>
-				<td>시간</td>
-
+				<td>${all.WRITETIME }</td>
 			</tr>
 		</c:forEach>
 	</table>
 
-
+	<br />
 	<div align="left">
 		<button style="width: 20%; font-size: 14px;"
 			class="btn btn-primary btn-block"

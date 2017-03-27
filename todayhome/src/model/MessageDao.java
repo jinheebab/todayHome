@@ -47,27 +47,8 @@ public class MessageDao {
 		return list;
 	}
 
-	// 메시지 보내기 sendcomp
-	public boolean sendcomp(Map map) { // 메시지 comp
-		boolean rst = false;
-		try {
-			SqlSession sql = factory.openSession();
-			int r = sql.insert("message.sendcomp", map);
-			if (r == 1) {
-				rst = true;
-				sql.commit();
-			} else {
-				rst = false;
-			}
-			sql.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return rst;
-	}
-
 	// 메시지 보내기
-	public int sendRecv(HashMap<String, Object> map) {
+	public int send(Map map) {
 		try {
 			SqlSession sql = factory.openSession();
 			int rst = sql.insert("message.addMsg", map);
@@ -95,16 +76,3 @@ public class MessageDao {
 		return list;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

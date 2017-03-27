@@ -2,47 +2,181 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
-<html>
-<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   
+<style>
+.pan{
+	padding-top: 2%; 
+	margin-right: 200; 
+	margin-left: 200; 
+	padding-right: 30px; 
+	padding-left: 30px;
+}
+.font1{
+   font-size: 1.2em;
+   line-height: 1.9em;
+      padding-top: 1%;
+}
+.font2{
+   font-size: 2.5em;
+   padding-top: 1%;
+}
+.font3{
+   font-size: 0.7em;
+}
+.line {
+   padding-top: 2%;
+   border-bottom-style: solid;
+   border-bottom-width: 1.5px;
+   border-bottom-color: black;
+   margin-top: 10px;
+}
+.total{
+	text-align: center;
+	font-weight: bolder;
+	color: white;
+	font-size: 2em;
+	background-color: B35656;
+	border-radius: 10%;
+	margin-right: 10%; 
+	margin-left: 10%; 
+	padding-top: 5%;
+	padding-bottom: 5%;
+
+}
+.box{
+	border-style:solid;
+	border-width: 1px;
+	border-color: grey;
+	padding-top: 10%;
+	padding-bottom: 10%;
+	padding-right: 5%;
+	padding-left: 5%;
+
+}
+.reserve{
+	font-weight: bold;
+	font-family: MS Sans Serif;
+	font-size: 1.2em;
+	line-height: 2.3em;
+	margin-bottom: 2%;
+	margin-top: 2%;
+	
+}
+</style>
 
 
-</head>
-<body>
 
-
-
-
-<h2 align="center">예약하기</h2>
-
-
-<h4 align="center"><textarea rows="10" cols="50" id="reserveinfo" readonly="readonly"></textarea></h4>
-
-
-<h2 align="center"><span id="total" class="label label-danger" name="total"></span></h2>
-
-
-
+<div class="row pan" >
+<div class="col-md-8">
+<span class="font2">예약하기</span><br/>
+<hr/>
 
 <form action="/reservation/reserve02">
-
 <input type="hidden" readonly="readonly" id="hostingnum" name="hostingnum" value="${hostingnum}">
-
  <input type="hidden" readonly="readonly" id="totalmoney" name="totalmoney" placeholder="총결제금액">
  
-<p>체크인 <input type="text" id="sdate" name="startdate" class="datepicker"> ~ 체크아웃 <input type="text" id="edate" name="enddate" class="datepicker"></p>
+ 
+ <div class="row">
+ <div class="col-md-6">
+ <span class="font1">체크인</span><br/>
+ <input type="text" size="30" id="sdate" name="startdate" class="datepicker">
+ </div>
+ 
+ <div class="col-md-6">
+ <span class="font1"> 체크아웃 </span><br/>
+  <input type="text" size="30" id="edate" name="enddate" class="datepicker">
+ </div>
+ </div>
+ 
+ <div class="row" style="margin-top: 5%;">
+ <div class="col-md-6">
+ <input type="number" size="30" min="1" max="20" placeholder="1" id="people" name="membercnt"> <span class="font1">명</span>
+ </div>
+ </div>
+ 
+ 
+ <div class="row" style="margin-top: 5%;">
+ <div class="col-md-9">
+<span class="font1"> 호스트에게 간단한 자기소개를 하고 여행가는 이유를 알려주세요</span><br/>
+  
+ <textarea rows="5" cols="50" id="intro" name=intro></textarea><br/>
+  </div>
+ </div>
+ 
+  <hr/> 
+ <div class="row">
+ <div class="col-md-6">
+ <span class="font1">※ 이용수칙 ※</span>
+  
+  <div style="font-weight: bold; margin-top: 5%;" id="rule" >${hostinglist.RULE}</div><br/>
+  </div>
+</div>
+ 
 
+
+<div class="row" align="center" style="margin-top: 5%; margin-bottom: 5%;">
+<button id="pay" type="submit" class="btn btn-primary">결제하기</button>
+</div>
+</form>
+
+ </div>
+ 
+ 
+ <div class="col-md-4 box">
+
+
+ <div id="reserveinfo"  class="reserve" readonly="readonly"></div>
+  <div id="total" class="total" name="total"></div>
+
+ </div>
+
+</div>
 
 
 
 
 
   <script>
+	 setInterval(reserveView,100);
+  
+  $(document).ready(function(){
+	  
+	 reserveView(); 
+	 
+  });
+  
+  function reserveView(){
+	  
+	var date1 = new Date($("#sdate").datepicker("getDate"));
+	var date2 = new Date($("#edate").datepicker("getDate"));
+	
+	var clean = 49999;
+	
+	var service = 29069;
+
+	var reserve_time = date2 - date1;
+	
+	var reserve_time2 = reserve_time/86400000;
+	
+	var people = $('#people').val();
+	
+	var total = reserve_time2 * 50000 + clean + service + people*10000;
+	
+	var intro = $('#intro').val();
+
+	$('#reserveinfo').html(reserve_time2 + "박 = " + 50000*reserve_time2 + "원 <br/>청소비 = " + clean + "원<br/> 서비스수수료 = " 
+			+ service +"원<br/>인원수 " + people + "명 = " + people*10000 + "원 <br/>" + "메세지 : " + intro);
+	
+	$('#total').html(total + "원");
+	
+	$('#totalmoney').val(total);
+	
+  }
   
   var startdate = "${hostinglist.STARTDATE}";
   
@@ -110,74 +244,5 @@ console.log(disabledate);
 	  	  }
 	   	 return [true];
 		}
-   
-   
-   
-  </script>
-  
-  <h3 align="left"><input type="number" min="1" max="20" placeholder="1" id="people" name="membercnt">명</h3>
-  
-  
-  <h4 align="center">호스트에게 간단한 자기소개를 하고 여행가는 이유를 알려주세요</h4>
-  
-  <h4 align="center"><textarea rows="10" cols="50" id="intro" name=intro></textarea></h4>
-  
-  <h4 align="center">이용수칙</h4>
-  
-  <h4 align="center"><textarea rows="10" cols="50" id="rule" readonly="readonly">${hostinglist.RULE}</textarea></h4>
-  
-  
-  	
-  
-  
-  <script>
-	 setInterval(reserveView,100);
-  
-  $(document).ready(function(){
-	  
-	 reserveView(); 
-	 
-  });
-  
-  function reserveView(){
-	  
-	var date1 = new Date($("#sdate").datepicker("getDate"));
-	var date2 = new Date($("#edate").datepicker("getDate"));
-	
-	var clean = 49999;
-	
-	var service = 29069;
-
-	var reserve_time = date2 - date1;
-	
-	var reserve_time2 = reserve_time/86400000;
-	
-	var people = $('#people').val();
-	
-	var total = reserve_time2 * 50000 + clean + service + people*10000;
-	
-	var intro = $('#intro').val();
-
-	$('#reserveinfo').html(reserve_time2 + "박 = " + 50000*reserve_time2 + "원" +'\n'+ "+ 청소비 = " + clean + "원"+ 
-			'\n' + " + 서비스수수료 = " + service +"원" + '\n' + "+ 인원수 " + people + "명 = " + people*10000 + "원" + "\n" + "메세지 : " + intro);
-	
-	$('#total').html(total + "원");
-	
-	$('#totalmoney').val(total);
-	
-	
-	
-		
-	
-	
-	  
-  }
 </script>
-
- <button id="pay" type="submit" class="btn btn-primary">결제하기</button>
  
-
-</form>
- 
-</body>
-</html>

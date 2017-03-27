@@ -9,7 +9,7 @@
 
 	<!-- insert mapper : parameter type resultType은 설정 불가능! ==> 결과물은 int기 때문에.. --> 
 	<insert id="addMsg" parameterType="java.util.HashMap" >	
-		insert into message values(message_SEQ.nextval, #{sender}, #{receiver}, #{content} ) 
+		insert into message values(message_SEQ.nextval, #{sender}, #{receiver}, #{content}, sysdate ) 
 	</insert> 
 	<select id="getRecvMsgs" parameterType="java.util.HashMap" resultType="java.util.HashMap"> 
 		select * from message where receiver=#{receiver} order by num desc 

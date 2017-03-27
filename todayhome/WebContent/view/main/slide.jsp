@@ -47,6 +47,9 @@ $('.bxslider').bxSlider({
 	  slideWidth: 500,
 	  slideMargin: 10,
 	  mode: 'horizontal' ,
+	  speed: 500,
+	  auto: true,
+	  autoHover: true,
 	  captions: true,
 	  pagerCustom: '#bx-pager'
 	});
