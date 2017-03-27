@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!doctype html>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -48,23 +49,48 @@
 	padding-bottom: 5%;
 
 }
-.box{
-	border-style:solid;
-	border-width: 1px;
-	border-color: grey;
-	padding-top: 10%;
-	padding-bottom: 10%;
-	padding-right: 5%;
-	padding-left: 5%;
 
+.box{
+	background-color: F2F2F2;
+	padding: 0;
+	
+	
+
+}
+.pricebox{
+	background-color: black;
+	text-align: right;
+	color: white;
+	font-size: 2em;
+	padding-top: 5%;
+	padding-bottom: 2%;
+	padding-left: 5%;
+	padding-right: 5%;
+	font-weight: bolder;
+	
+	
 }
 .reserve{
 	font-weight: bold;
 	font-family: MS Sans Serif;
 	font-size: 1.2em;
-	line-height: 2.3em;
-	margin-bottom: 2%;
-	margin-top: 2%;
+	line-height: 1.5em;
+	padding-bottom: 5%;
+	padding-top: 5%;
+	padding-right: 5%;
+	padding-left: 5%;
+	
+}
+.summery{
+	font-size: 1em;
+	line-height: 1.7em;
+	padding: 5%;
+
+}
+.frame{
+	padding-top: 5%;
+	padding-bottom: 5%; 
+	overflow: hidden;
 	
 }
 </style>
@@ -128,15 +154,18 @@
  
  
  <div class="col-md-4 box">
-
-
- <div id="reserveinfo"  class="reserve" readonly="readonly"></div>
-  <div id="total" class="total" name="total"></div>
-
+  <div  class="summery">
+ <div class="frame" align="center">
+ <img src="${hostinglist.PICURL}" width= "350px"/>
  </div>
+ <b>${hostinglist.TITLE}</b><br/>
+ ${fn:substring(hostinglist.INTRO, 0, 20)}
+ </div>
+ <div id="reserveinfo"  class="reserve" ></div>
+<div id="total" class="pricebox" name="total"></div>
 
 </div>
-
+</div>
 
 
 
@@ -169,10 +198,10 @@
 	
 	var intro = $('#intro').val();
 
-	$('#reserveinfo').html(reserve_time2 + "박 = " + 50000*reserve_time2 + "원 <br/>청소비 = " + clean + "원<br/> 서비스수수료 = " 
-			+ service +"원<br/>인원수 " + people + "명 = " + people*10000 + "원 <br/>" + "메세지 : " + intro);
+	$('#reserveinfo').html(reserve_time2 + "박 = " + 50000*reserve_time2 + "원 <br/>+<br/>청소비 = " + clean + "원<br/>+<br/> 서비스수수료 = " 
+			+ service +"원<br/>+<br/>인원수 " + people + "명 = " + people*10000 + "원 <br/>" + "<hr/>메세지 <br/>" + intro);
 	
-	$('#total').html(total + "원");
+	$('#total').html("<span style=\"font-size: 0.6em; color: red;\">total</span> "+total + "원");
 	
 	$('#totalmoney').val(total);
 	
@@ -191,6 +220,7 @@
   var enddate = "${hostinglist.ENDDATE}";
   
   var enddate2 = enddate.split(' ');
+  console.log(enddate2[0]);
   
   
 //===============================================================================================================

@@ -243,15 +243,45 @@ public class ReservationController {
 		
 		mav.addObject("main", "reservation/mywishlist");
 		
-		mav.setViewName("m_index2");
+		mav.setViewName("m_index3");
 		
 		return mav;
 		
+	}
+	
+	@RequestMapping("/hostinglist")
+	public ModelAndView allHostinglistHandler(@RequestParam("id")String id){
+		HashMap map = new HashMap();
+		map.put("id", id);
+		List hostinglist = hdao.getHostingList(map);
 		
 		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("m_index3");
+		mav.addObject("main", "reservation/hostinglist");
+		mav.addObject("list", hostinglist);
+		return mav;
 		
 		
 		
 	}
 	
+	@RequestMapping("/booklist")
+	public ModelAndView allbooklistHandler(@RequestParam("id")String id){
+		HashMap map = new HashMap();
+		map.put("id", id);
+		List wishlist = hdao.getWishList(map);
+		
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("m_index3");
+		mav.addObject("main", "reservation/hostinglist");
+		mav.addObject("list", wishlist);
+		return mav;
+		
+		
+		
+	}
 }

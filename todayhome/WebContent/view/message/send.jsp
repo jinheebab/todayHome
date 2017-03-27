@@ -4,42 +4,45 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="model.MessageDao"%>
 <%@ page import="java.util.*"%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <div class="container" align="left">
+
+
 	<h3>용건을 전달해드립니다.</h3>
 	<ul class="nav nav-tabs">
 		<li><a title="/view/message">받은 메시지</a></li>
-		<li><a title="/view/sendlist">보낸 메시지</a></li>
+		<li><a title="/view/message/sendlist">보낸 메시지</a></li>
 	</ul>
-</div>
-
-<form action="/view/sendcomp" method="post" name="send">
-
-	${sender}
-
-	<div class="container" align="left" class="col-md-8"
-		style="width: 70%; margin-left: 1%;">
-		<br />
-		<p class="form-inline">
-			<strong> 받는 분 </strong> <i> _ ID </i> <br /> <input type="text"
-				name="receiver" id="writer" class="form-control"
-				placeholder="RECEIVER" maxlength="50" onkeyup="chkword(this, 50)"/>
-		</p>
-		<ul class="nav nav-tabs"></ul>
-		<br /> <strong> 내용 </strong> (<span id="counter"></span>) <br />
-		<textarea rows="6" cols="60" id="content" class="form-control"
-			placeholder="CONTENT" maxlength="500" onkeyup="chkword(this, 500)"
-			style="resize: none;" name="content"></textarea>
-		<div align="left">
+	
+	<form action="/view/message/sendcomp" method="post" name="send">
+		<%-- ${sender} --%>
+		<div class="container" align="left" class="col-md-8"
+			style="width: 70%; margin-left: 1%;">
 			<br />
-			<button type="submit" class="btn btn-primary btn-block"
-				style="width: 35%" id="">전 송</button>
-			<br />
+			<p class="form-inline">
+				<strong> 받는 분 </strong> <i> _ ID </i> <br /> <input type="text"
+					name="receiver" id="writer" class="form-control"
+					placeholder="RECEIVER" maxlength="50" onkeyup="chkword(this, 50)" />
+			</p>
 			<ul class="nav nav-tabs"></ul>
-			<br /> <br />
+			<br /> <strong> 내용 </strong> (<span id="counter"></span>) <br />
+			<textarea rows="6" cols="60" id="content" class="form-control"
+				placeholder="CONTENT" maxlength="500" onkeyup="chkword(this, 500)"
+				style="resize: none;" name="content"></textarea>
+			<div align="left">
+				<br />
+				<button type="submit" class="btn btn-primary btn-block"
+					style="width: 35%" id="">전 송</button>
+				<br />
+				<ul class="nav nav-tabs"></ul>
+				<br /> <br />
+			</div>
 		</div>
-	</div>
-</form>
+	</form>
+</div>
 
 <!-- 스크립트 -->
 
@@ -57,7 +60,7 @@
 	$(function() {
 		$('#content').keyup(function(e) {
 			var content = $(this).val();
-//			$(this).height(((content.split('\n').length + 1) * 3.5) + 'em');
+			//			$(this).height(((content.split('\n').length + 1) * 3.5) + 'em');
 			$('#counter').html(content.length + '/500');
 		});
 		$('#content').keyup();
@@ -113,9 +116,6 @@
 			$(eventInput).val(inputText.substr(0, count));
 		}
 	}
-	
-
-	
 </script>
 
 

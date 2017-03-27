@@ -85,7 +85,7 @@ public class MainController {
 			reviewerphoto.add(md.getUserPhoto(reviewer)); 
 		}
 		
-		System.out.println("사진 갯수"+reviewerphoto.size());
+		System.out.println("리뷰어 사진 갯수"+reviewerphoto.size());
 		
 		List<HashMap> reviewcnt  = md.getReviewcnt(map);
 		
@@ -100,6 +100,7 @@ public class MainController {
 		HashMap map3 = new HashMap();
 		map3.put("id", hoster);
 		List<HashMap> hphoto = md.getHostingPhoto(map3);
+		System.out.println("hosting photo: "+ hphoto.size());
 		
 		
 		

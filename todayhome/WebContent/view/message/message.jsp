@@ -16,7 +16,7 @@ table {
 	border: 1px solid #dddddd; /* ffffff  */
 	text-align: left;
 	padding: 8px;
-} 	 */
+} */
 
 tr:nth-child(even) {
 	background-color: #dddddd; /* dddddd  */
@@ -27,8 +27,8 @@ tr:nth-child(even) {
 	<h3>수신함</h3>
 	<ul class="nav nav-tabs">
 		<li><a href="/view/message">받은 메시지</a></li>
-		<li><a href="/view/sendlist">보낸 메시지</a></li>
-		<li><a href="/view/send">작성</a></li>
+		<li><a href="/view/message/sendlist">보낸 메시지</a></li>
+		<li><a href="/view/message/send">작성</a></li>
 
 	</ul>
 	<br />
@@ -38,8 +38,8 @@ tr:nth-child(even) {
 		<thead>
 			<tr>
 				<th width="15%">보낸 사람</th>
-				<th width="70%">내 용</th>
-				<th width="15%">받은 시간</th>
+				<th width="68%">내 용</th>
+				<th width="17%">받은 시간</th>
 			</tr>
 		</thead>
 
@@ -47,7 +47,8 @@ tr:nth-child(even) {
 			<tr>
 				<td>${all.SENDER}</td>
 				<td>${all.CONTENT}</td>
-				<td>${all.WRITETIME }</td>
+				<td><fmt:formatDate value="${all.WRITETIME }" pattern="yy-MM-dd [E- hh시 mm분]" /><br/>
+<%-- 					<fmt:formatDate value="${all.WRITETIME }" pattern=" ( E요일 ) " /> --%></td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -56,7 +57,7 @@ tr:nth-child(even) {
 	<div align="left">
 		<button style="width: 20%; font-size: 14px;"
 			class="btn btn-primary btn-block"
-			onClick="location.href='/view/send'">작 성</button>
+			onClick="location.href='/view/message/send'">작 성</button>
 	</div>
 	<br />
 
@@ -65,7 +66,7 @@ tr:nth-child(even) {
 	<ul class="pagination">
 		<c:forEach begin="1" end="${board.size()/5+1}" step="1" var="page"
 			varStatus="status">
-			<li><a href="/view/paging?page=${page}">${page}</a></li>
+			<li><a href="/view/message/paging?page=${page}">${page}</a></li>
 		</c:forEach>
 	</ul>
 
@@ -74,14 +75,5 @@ tr:nth-child(even) {
 <br />
 <br />
 
-
-
 </body>
 </html>
-
-
-
-
-
-
-
