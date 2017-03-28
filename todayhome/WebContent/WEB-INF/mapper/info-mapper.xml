@@ -12,4 +12,7 @@
 	<insert id="createOne" parameterType="java.util.HashMap">
 		insert into sharing values(sharing_seq.nextval, )
 	</insert>
+	<select id="getnum" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		select * from member where num =#{num}
+	</select>
 </mapper>

@@ -1,11 +1,13 @@
 package controller;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import model.HostingDao;
 import model.MainDao;
+import service.reviewSetting;
 
 @Controller
 public class MainController {
@@ -24,6 +27,8 @@ public class MainController {
 	HostingDao hd;
 	@Autowired
 	MainDao md;
+	@Autowired
+	reviewSetting rs;
 
 	@RequestMapping("/view/")
 	public ModelAndView main(HttpServletRequest request, HttpSession session) {
@@ -161,6 +166,11 @@ public class MainController {
 		
 		return li;
 	
+	}
+	
+	@RequestMapping("view/make")
+	public void MakeHandler(){
+		rs.ReviewMaker();
 	}
 	
 }
