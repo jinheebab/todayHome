@@ -60,5 +60,20 @@ public List country2() {
 	}
 	return list;
 }
+
+
+public List country_people() {	
+	
+	List list = new ArrayList<>();
+	SqlSession sql = factory.openSession();
+	try {
+		list = sql.selectList("statistic.country_people");
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		sql.close();
+	}
+	return list;
+}
 	
 }

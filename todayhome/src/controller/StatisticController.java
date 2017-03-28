@@ -255,4 +255,66 @@ public class StatisticController {
 }
 		return mav;
 }
+	
+	@RequestMapping("/graph03")
+	public ModelAndView graph03(){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		List list = new ArrayList<>();
+		
+		Map map = new HashMap<>();
+		
+		list = sdao.country_people();
+		
+		System.out.println(list.toString());				
+		
+		for(int i=0; i<list.size(); i++){
+			
+			Map map2 = new HashMap<>();
+			
+			map2 = (Map) list.get(i);
+			
+			String key = (String) map2.get("COUNTRY");
+			
+			BigDecimal value2 = (BigDecimal) map2.get("PEOPLE");
+			
+			int value = value2.intValue();
+			
+			if(key.contains("China")){
+				map.put("China", value);
+			}else if(key.contains("India")){
+				map.put("India", value);
+			}else if(key.contains("미국")){
+				map.put("US", value);
+			}else if(key.contains("Indonesia")){
+				map.put("Indonesia", value);
+			}else if(key.contains("Brazil")){
+				map.put("Brazil", value);
+			}else if(key.contains("Pakistan")){
+				map.put("Pakistan", value);
+			}else if(key.contains("Nigeria")){
+				map.put("Nigeria", value);
+			}else if(key.contains("Bangladesh")){
+				map.put("Bangladesh", value);
+			}else if(key.contains("Russia")){
+				map.put("Russia", value);
+			}else if(key.contains("Japan")){
+				map.put("Japan", value);
+			}else if(key.contains("대한민국")){
+				map.put("Korea", value);
+		}
+		
+		
+		
+		mav.addObject("map", map);
+		mav.addObject("main","/statistic/graph03");
+		mav.setViewName("m_index3");
+		
+	}
+	
+		return mav;
+	
+}
+	
 }

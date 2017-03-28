@@ -47,14 +47,41 @@ public class DBregister2 {
 	public int hosting() {
 
 		for (int a = 0; a < 100000; a++) {
+			
 			Map map = new HashMap<>();
-			String title = "";
 
-			for (int i = 1; i <= 20; i++) {
-				char ch = (char) ((Math.random() * 26) + 65);
-				title += ch;
-			}
-
+			//////////////////////////////////////TITLE//////////////////////////////////////////////////////////////////////////////////////////////
+			String title ="";
+			
+			String[] titles;
+			
+			List titles2 = new ArrayList<>();
+			
+				try {
+				
+				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/hashtag.txt")));
+				String line;
+				
+				while ((line = br.readLine()) != null) {
+					String str = br.readLine();
+										
+						titles2.add(str);
+					
+				}
+				
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				int n = (int)(Math.random()*titles2.size());
+				
+				int n2 = (int)(Math.random()*titles2.size());
+				
+				title = (String) titles2.get(n) + "은 " + (String) titles2.get(n2) +" 입니다";
+				
+				
+				
+				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			String[] htypeSample = { "단독주택", "아파트", "호텔", "산장", "호스텔", "리조트", "레지던스", "게스트하우스", "기숙사", "민수(타이완)",
 					"료칸(일본)", "펜션(한국)", "헤리티지 호텔(인도)" };
 
@@ -75,39 +102,130 @@ public class DBregister2 {
 			int bedcnt = (int) (Math.random() * 5 + 1);
 
 			int bathcnt = (int) (Math.random() * 5 + 1);
-
-			String[] countrySample = { "대한민국", "일본", "그리스", "필리핀", "영국", "미국", "중국", "호주", "이탈리아", "스페인", "인도네시아", "인도",
-					"프랑스", "러시아", "아프리카", "캐나다", "아일랜드" };
-
-			int d = (int) (Math.random() * 8);
-
-			String country = countrySample[d];
-
-			String[] citySample = { "서울시", "수원시", "부천시", "제주시", "안산시", "안양시", "부산시", "인천시", "광주시", "상하이", "도쿄", "북경",
-					"신주쿠", "LA", "NewYork", "rome", "런던", "파리" };
-
-			int e = (int) (Math.random() * 8);
-
-			String city = citySample[e];
-
-			String location = "신영통";
-
+///////////////////////////////////////////////////////////////ADDRESS/////////////////////////////////////////////////////////////////////////////
+			String address="";
+			String city="";
+			String country="대한민국";
+			String location="";
+			
+			
+			/*
+			String[] address2;
+			
+			List addressList = new ArrayList<>();
+			
+				try {
+				
+				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/address.txt")));
+				String line;
+				
+				while ((line = br.readLine()) != null) {
+						
+						String str = br.readLine();
+						
+						addressList.add(str);
+					
+				}
+				
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				int r = (int)(Math.random()*addressList.size());
+				
+				address = (String) addressList.get(r);
+				
+				address2 = address.split(" ");
+				
+				city = address2[0];
+				
+				location = address2[1] + " "+ address2[2] + " " + address2[3];
+				
+				System.out.println("풀주소 : " + address + "/ 도시 : " + city + "/ 하위주소 : " + location);
+				
+				
+			*/
+			String[] address2 = {};
+			
+			
+			
+			
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			String amenity = "";
 
-			for (int i = 1; i <= 20; i++) {
-				char ch = (char) ((Math.random() * 26) + 65);
-				amenity += ch;
-			}
+			
+			List amenityList = new ArrayList<>();
+			
+				try {
+				
+				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/amenity.txt")));
+				String line;
+				
+				while ((line = br.readLine()) != null) {
+						
+						String str = br.readLine();
+						
+						amenityList.add(str);
+					
+				}
+				
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				int q = (int)(Math.random()*amenityList.size());
+				
+				int q2 = (int)(Math.random()*amenityList.size());
+				
+				int q3 = (int)(Math.random()*amenityList.size());
+				
+				
+				amenity = (String) amenityList.get(q) + "," + (String) amenityList.get(q2) + "," + (String) amenityList.get(q3);
 
+				
+				
 			String rule = "";
 
-			for (int i = 1; i <= 20; i++) {
-				char ch = (char) ((Math.random() * 26) + 65);
-				rule += ch;
-			}
+			
+			List ruleList = new ArrayList<>();
+			
+				try {
+				
+				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/rule.txt")));
+				
+				String line;
+				
+				while ((line = br.readLine()) != null) {
+						
+						String str = br.readLine();
+						
+						ruleList.add(str);
+					
+				}
+				
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				int w = (int)(Math.random()*ruleList.size());
+				
+				int w2 = (int)(Math.random()*ruleList.size());
+				
+				int w3 = (int)(Math.random()*ruleList.size());
+				
+				int w4 = (int)(Math.random()*ruleList.size());
+				
+				
+				rule = (String) ruleList.get(w) + "\n" + (String) ruleList.get(w2) + "\n" + (String) ruleList.get(w3) + "\n" + (String) ruleList.get(w4);
 
-			String condition = "아무나";
 
+			String condition = "";
+			
+			int e = (int)(Math.random()*titles2.size());
+			
+			
+			condition = (String) titles2.get(e) + "금지";
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			int[] maxDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 			int iMinMonth = 1;
@@ -142,19 +260,57 @@ public class DBregister2 {
 
 			String category = "#";
 
-			for (int i = 1; i <= 20; i++) {
-				char ch = (char) ((Math.random() * 26) + 65);
-				category += ch;
-			}
+			int t = (int)(Math.random()*titles2.size());
+			
+			int t2 = (int)(Math.random()*titles2.size());
+			
+			int t3 = (int)(Math.random()*titles2.size());
+			
+			int t4 = (int)(Math.random()*titles2.size());
+			
+			
+			category = (String) titles2.get(t) + "#" + (String) titles2.get(t2) + "#" + (String) titles2.get(t3) + "#" + (String) titles2.get(t4);
+			
+			
+			
+			////////////////////////////////////////////////////////////HNAME///////////////////////////////////////////////////////////
 
-			String hname = "leeja";
+			String hname ="";
+			
+			String[] hnames;
+			
+			List hnames2 = new ArrayList<>();
+			
+				try {
+				
+				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/id_list.txt")));
+				String line;
+				
+				while ((line = br.readLine()) != null) {
+					String str = br.readLine();
+					
+					String[] ar = str.split(",");
+					
+					for(int i=0; i<ar.length; i++){
+						hnames2.add(ar[i]);
+					}
+					
+				}
+				
+				}catch(Exception ee){
+					ee.printStackTrace();
+				}
+				
+				int nn = (int)(Math.random()*hnames2.size());
+				
+				hname = (String) hnames2.get(nn);
+				
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			String intro = "안녕하세요 !! 저희는 " + title + ". 위치는 "+ country + "에 있는 " + city + " " + location + 
+					"입니다. 비품은 " + amenity + " 제공되고 있고 규칙은 " + rule +" 입니다. 주인 이름은 " + hname + " 입니다.";
+			
 
-			String intro = "";
-
-			for (int i = 1; i <= 20; i++) {
-				char ch = (char) ((Math.random() * 26) + 65);
-				intro += ch;
-			}
+			
 
 			String[] picurlSample = {
 					"https://a0.muscache.com/im/pictures/4084180/e5bc5484_original.jpg?aki_policy=xx_large",
@@ -224,7 +380,6 @@ public class DBregister2 {
 
 			String picurl = picurlSample[f];
 
-			String address = "경상북도 울릉군 울릉읍 독도박물관";
 
 			map.put("title", title);
 			map.put("htype", htype);
@@ -250,9 +405,9 @@ public class DBregister2 {
 
 			System.out.println(map.toString());
 
-			int r = hdao.addHosting(map);
+			int rrr = hdao.addHosting(map);
 
-			if (r == 1) {
+			if (rrr == 1) {
 				System.out.println("등록성공");
 			} else {
 				System.out.println("등록실패");
@@ -369,24 +524,31 @@ public class DBregister2 {
 				
 				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/id_list.txt")));
 				String line;
-				List ids = new ArrayList<>();
+				
 				while ((line = br.readLine()) != null) {
 					String str = br.readLine();
 					
 					String[] ar = str.split(",");
 					
-					int n = ar.length;
-					
-					name = ar[n];
+					for(int i=0; i<ar.length; i++){
+						names2.add(ar[i]);
+					}
 					
 				}
-
 				
-				int n = (int)(Math.random()*192);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 				
-				country = (String) countries.get(n);
+				int nn = (int)(Math.random()*names2.size());
+				
+				name = (String) names2.get(nn);
+				
+			int nnn = (int)(Math.random()*999+1);
 			
-			
+			String id = name+nnn;
+						
+									
 			
 
 			String pass = "";
@@ -428,12 +590,12 @@ public class DBregister2 {
 			String country ="";
 			try {
 				
-				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/nation.txt")));
-				String line;
+				BufferedReader br2 = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/nation.txt")));
+				String line2;
 				List countries = new ArrayList<>();
-				while ((line = br.readLine()) != null) {
+				while ((line2 = br2.readLine()) != null) {
 					
-					countries.add(line);
+					countries.add(line2);
 				}
 
 				
@@ -457,17 +619,18 @@ public class DBregister2 {
 			map.put("BIRTH", birth);
 			map.put("MAIL", mail);
 			 map.put("COUNTRY", country);
+				
 
-			// int r = jdao.addMember(map);
-			//
-			// if(r==1){
-			// System.out.println("등록성공");
-			// }else{
-			// System.out.println("등록실패");
-			// }
+			 int r = jdao.addMember(map);
+			
+			 if(r==1){
+			 System.out.println("등록성공");
+			 }else{
+			 System.out.println("등록실패");
+			 }
 
 		}
-
+				
 		return 1;
 	}
 
