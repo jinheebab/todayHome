@@ -26,8 +26,8 @@ tr:nth-child(even) {
 <div class="container" align="left">
 	<h3>발신함</h3>
 	<ul class="nav nav-tabs">
-		<li><a href="/view/message">받은 메시지</a></li>
-		<li><a href="/view/message/sendlist">보낸 메시지</a></li>
+		<li><a href="/view/message?page=1">받은 메시지</a></li>
+		<li><a href="/view/message/sendlist?page=1">보낸 메시지</a></li>
 		<li><a href="/view/message/send">작성</a></li>
 	</ul>
 	<br />
