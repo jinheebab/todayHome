@@ -16,6 +16,10 @@
 		select country, count(*) as count from member group by country
 	</select>
 	
+	<select id="country_people" resultType="java.util.HashMap">
+		select country, count(*) as people from member group by country
+	</select>
+	
 	
 	
 

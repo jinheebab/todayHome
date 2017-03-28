@@ -2,78 +2,72 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <style>
-table {
-	font-family: arial, sans-serif;
-	border-collap se: collapse;
-	width: 100%;
+.sender{
+	margin-top: 5%;
+	margin-bottom: 0;
+	margin-right: 85%;
+	border-top-left-radius: 10%;
+	border-top-right-radius: 10%;
+	padding: 1%;
+	padding-bottom: 0.5%;
+	background-color: F2F2F2;
+	font-weight: bold;
+	font-size: 1.1em;
+
+}
+.content{
+	margin-top: 0;
+/* 	border-style: solid;
+ 	border-width: 2px;
+	border-color: grey;  */
+	padding: 2%;
+	padding-bottom: 0.5%;
+	font-size: 1.1em;
+	background-color: pink;
 }
 
-/* td, th {
-	border: 1px solid #dddddd; /* ffffff  */
-	text-align: left;
-	padding: 8px;
-} */
 
-tr:nth-child(even) {
-	background-color: #dddddd; /* dddddd  */
-}
 </style>
-
-<div class="container" align="left">
 	<h3>수신함</h3>
 	<ul class="nav nav-tabs">
-		<li><a href="/view/message">받은 메시지</a></li>
-		<li><a href="/view/message/sendlist">보낸 메시지</a></li>
+		<li><a href="/view/message?page=1">받은 메시지</a></li>
+		<li><a href="/view/message/sendlist?page=1">보낸 메시지</a></li>
 		<li><a href="/view/message/send">작성</a></li>
-
 	</ul>
-	<br />
-
-	<table class="table">
-
-		<thead>
-			<tr>
-				<th width="15%">보낸 사람</th>
-				<th width="68%">내 용</th>
-				<th width="17%">받은 시간</th>
-			</tr>
-		</thead>
-
-		<c:forEach var="all" items="${board}" end = "5">
-			<tr>
-				<td>${all.SENDER}</td>
-				<td>${all.CONTENT}</td>
-				<td><fmt:formatDate value="${all.WRITETIME }" pattern="yy-MM-dd [E- hh시 mm분]" /><br/>
-<%-- 					<fmt:formatDate value="${all.WRITETIME }" pattern=" ( E요일 ) " /> --%></td>
-			</tr>
-		</c:forEach>
-	</table>
-
-	<br />
-	<div align="left">
-		<button style="width: 20%; font-size: 14px;"
-			class="btn btn-primary btn-block"
-			onClick="location.href='/view/message/send'">작 성</button>
+	
+		<c:forEach var="i" items="${list}" end="5">
+	<div class="row">
+			<div class="sender">
+				<span style="font-size: 0.8em;">FROM.</span> ${i.SENDER}
+			</div>
+			<div class="content">
+				${i.CONTENT}
+				<div align="right" style="font-size: 0.9em;">
+				<fmt:formatDate value="${i.WRITETIME }" pattern="yyyy. MM. dd " />
+				<fmt:formatDate value="${i.WRITETIME }" pattern="a hh:mm" />
+				</div> 
+			</div>
 	</div>
-	<br />
-
-	<ul class="nav nav-tabs"></ul>
-
-	<ul class="pagination">
-		<c:forEach begin="1" end="${board.size()/5+1}" step="1" var="page"
-			varStatus="status">
-			<li><a href="/view/message/paging?page=${page}">${page}</a></li>
 		</c:forEach>
-	</ul>
 
+	<!-- 페이징 -->
+	<div align= "center">
+		<c:if test="${page ne 1 }">
+			<a href="/view/message?page=${page -1}">이전</a>
+		</c:if>
+		<c:forEach var="p" begin="1" end="${list.size()}" varStatus="vs" >
+			<c:choose>
+				<c:when test="${p eq page}">
+					<b>${p}</b>
+				</c:when>
+				<c:otherwise>
+					<a href="/view/message?page=${p}">${p}</a>
+				</c:otherwise>
+			</c:choose>
+			<c:if test="${vs.last eq false }">|</c:if>
+		</c:forEach>
+		<c:if test="${page ne list.size() }">
+			<a href="/view/message?page=${page +1 }">다음</a>
+		</c:if>	
 </div>
-
-<br />
-<br />
-
-</body>
-</html>

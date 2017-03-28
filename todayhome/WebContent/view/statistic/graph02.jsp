@@ -16,9 +16,9 @@
           ['영국', ${map.uk}],
           ['그리스',    ${map.greece}],
           ['필리핀',    ${map.philipin}],
-          ['호주',    ${map.austrailia}],
-          ['일본',    ${map.japan}]
+          ['호주',    ${map.austrailia}]
         ]);
+         
 
         var options = {
           title: '국가별 호스팅 비율',

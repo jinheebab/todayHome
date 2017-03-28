@@ -16,7 +16,28 @@
 	</select> 
 	<select id="getSendList" parameterType="java.util.HashMap" resultType="java.util.HashMap"> 
 		select * from message where sender= #{sender} order by num desc 
-	</select> 
+	</select>
+	<!-- 페이징 -->
+
+	<select id="getRmessagenum" parameterType="java.lang.String" resultType="java.lang.String">
+		select receiver from message where num = #{num}
+	</select>
+	
+	<select id="getSmessagenum" parameterType="java.lang.String" resultType="java.lang.String">
+		select sender from message where nusm = #{num }
+	</select>
+
+	<select id="rpaging" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+		select step2.* from (select rownum as r, step1.* from (select * from message where receiver=#{receiver} order by num desc) step1) step2 where <![CDATA[r>= #{start} and r <= #{end}]]>
+	</select>
+
+	<select id="spaging" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+         select step2.* from (select rownum as r, step1.* from (select * from message where sender=#{sender} order by num desc) step1) step2 where <![CDATA[r>= #{start} and r <= #{end}]]>
+	</select>
+
+	<!-- 페이징 -->
+
+
 	<update parameterType="java.util.HashMap" id="updateCount"> 
 		update message set count = count+1 where num =#{num} 
 	</update> 

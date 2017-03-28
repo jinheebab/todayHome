@@ -31,13 +31,20 @@ public class SearchController {
 
 	
 	@RequestMapping("/search/search")
-	public ModelAndView search(@RequestParam HashMap map, HttpSession session, HttpServletRequest req) throws Exception{
+	public ModelAndView search(@RequestParam HashMap map, HttpSession session, HttpServletRequest req,@RequestParam(name="page",defaultValue="1") int page) throws Exception{
 		//페이징처리
-		String pStr = req.getParameter("page") == null ? "1" : req.getParameter("page");
-		String pa = req.getParameter("page");
 		
-		int start = (Integer.parseInt(pStr) -1 ) *6 +1; 
-		int end = Integer.parseInt(pStr) *6;
+		
+		
+		int pageStart = page % 10 == 1 ? page : page/11 * 10+1;
+		
+		int pageEnd = pageStart + 9;
+		
+		
+		
+		int start = (page -1 ) *6 +1; 
+		int end = start + 5;
+		
 			map.put("start", start);
 			map.put("end", end);;
 		
@@ -59,7 +66,7 @@ public class SearchController {
 				String ad = (String)addr.get(i);
 				ad=ad.replaceAll("\\s", "");
 				String target = "https://maps.googleapis.com/maps/api/geocode/json?address=" + ad
-						+ "&key=AIzaSyCTedVAKth6lZoKGXnNbPolpWVSjyctv6g&language=ko";
+						+ "&key=AIzaSyD1RAXAGZJtm6cYauXbWbDtVgIzjK69b_M&language=ko";
 				
 				URL url = new URL(target);
 				BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -70,6 +77,7 @@ public class SearchController {
 							break;
 						outstr += str;
 				}
+				
 				Map result = (HashMap)new ObjectMapper().readValue(outstr, Map.class);
 					result.put("num", list.get(i).get("NUM"));
 					result.put("title", list.get(i).get("TITLE"));
@@ -87,13 +95,16 @@ public class SearchController {
 		
 		
 		ModelAndView mav = new ModelAndView("m_index3");
-			mav.addObject("searchK",map);
+				
 			mav.addObject("main", "search/searchList");
 			mav.addObject("val", list);
 			mav.addObject("count", count);
-			mav.addObject("page", pStr);		
+			mav.addObject("page", page);		
 			mav.addObject("size", size);
 			mav.addObject("loc", loc);
+			mav.addObject("pageStart", pageStart);
+			mav.addObject("pageEnd", pageEnd);
+			mav.addObject("searchK",map);
 			
 		return mav;
 	}

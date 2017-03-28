@@ -68,6 +68,21 @@ public class InfoDao {
 		}
 		return rst;
 	}
+	
+	public List getNum(HashMap map){
+		SqlSession sql = factory.openSession();
+		List list = new ArrayList();
+		
+		try{
+			list = sql.selectList("info.getnum",map);
+				sql.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			sql.close();
+		}
+		return list;
+	}
 }
 
 
