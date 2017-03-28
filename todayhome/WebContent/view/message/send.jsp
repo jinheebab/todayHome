@@ -15,6 +15,7 @@
 	<ul class="nav nav-tabs">
 		<li><a title="/view/message">받은 메시지</a></li>
 		<li><a title="/view/message/sendlist">보낸 메시지</a></li>
+		<li><a title="/view/message/send" >작성</a></li>
 	</ul>
 	
 	<form action="/view/message/sendcomp" method="post" name="send">
@@ -49,7 +50,7 @@
 <script type="text/javascript">
 	$("a").click(function() {
 		if ($("#content").val().length != 0) {
-			if (window.confirm("작성중인 내용이 있습니다.\n취소하고 이동 하시겠습니까?")) {
+			if (window.confirm("작성중인 문서를 취소하고 이동합니까?")) {
 				location.href = $(this).attr("title");
 			}
 		} else {

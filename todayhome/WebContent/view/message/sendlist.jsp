@@ -36,16 +36,16 @@ tr:nth-child(even) {
 		<thead>
 			<tr>
 				<th width="15%">받는 사람</th>
-				<th width="68%">내 용</th>
-				<th width="17%">보낸 시간</th>
+				<th width="72%">내 용</th>
+				<th width="13%">보낸 시간</th>
 			</tr>
 		</thead>
 		<c:forEach var="all" items="${boards}">
 			<tr>
 				<td>${all.RECEIVER}</td>
 				<td>${all.CONTENT}</td>
-				<td><fmt:formatDate value="${all.WRITETIME }" pattern="yy-MM-dd [E- hh시 mm분]" /><br/>
-					<%-- <fmt:formatDate value="${all.WRITETIME }" pattern=" ( E요일 ) " /> --%></td>
+				<td><fmt:formatDate value="${all.WRITETIME }" pattern="yy / MM / dd ( E ) " />  <br/>
+					<fmt:formatDate value="${all.WRITETIME }" pattern="a: hh시 mm분" /> </td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -60,12 +60,25 @@ tr:nth-child(even) {
 				
 	<ul class="nav nav-tabs"></ul>
 	
-	<ul class="pagination">
-		<c:forEach begin="1" end="${boards.size()/5+1}" step="1"
-			var="sendpage" varStatus="status">
-			<li><a href="/view/message/sendpaging?sendpage=${sendpage}">${sendpage}</a></li>
+	<div align="left">
+		<c:if test="${page ne 1 }">
+			<a href="/view/message/sendlist?page=${page -1 }&target=${searchK.target}&sdate=${searchK.sdate}&edate=${searchK.edate}&cnt=${searchK.cnt}">이전</a>
+		</c:if>
+		<c:forEach var="p" begin="1" end="${size }" varStatus="vs">
+			<c:choose>
+				<c:when test="${p eq page }">
+					<b>${p }</b>
+				</c:when>
+				<c:otherwise>
+					<a href="/view/message/sendlist?page=${p }&target=${searchK.target}&sdate=${searchK.sdate}&edate=${searchK.edate}&cnt=${searchK.cnt}">${p }</a>	
+				</c:otherwise>
+			</c:choose>
+			<c:if test="${vs.last eq false }">|</c:if>
 		</c:forEach>
-	</ul>
+		<c:if test="${page ne size }">
+			<a href="/view/message/sendlist?page=${page +1 }&target=${searchK.target}&sdate=${searchK.sdate}&edate=${searchK.edate}&cnt=${searchK.cnt}">다음</a>
+		</c:if>	
+	</div>
 
 	<br />
 
