@@ -40,18 +40,30 @@ public class DBregister {
 
 
 	public int member() {
-		for (int a = 0; a <= 10000; a++) {
+		/*for (int a = 0; a <= 10000; a++) {*/
 			HashMap map = new HashMap<>();
 			String name = "";
-			String[] sung = {"김","이","박","최","정","강","조","윤","장","임","오","한","신","서","권","황","안","송","류","홍"};			
-			String[] name1 = {"성","진","희","덕","대","재","나","현","태","찬","자","효","강","상","기","원","준","병"};
-			String[] name2 = {"범","환","영","환","성","희","용","찬","원","정","용","민","남","일",""};
+			String[] nameSample = {"Jacob","Mason","William","Jayden","Noah","Michael","Ethan","Alexander","Aiden","Daniel","Anthony","Matthew","Elijah","Joshua","Liam","Andrew","James","David","Benjamin",
+					"Logan","Christopher","Joseph","Jackson","Gabriel","Ryan","Samuel","John","Nathan","Lucas","Christian","Jonathan","Caleb","Dylan","Landon","Isaac","Gavin","Brayden","Tyler",
+					"YLuke","Evan","Carter","Nicholas","Isaiah","Owen","Jack","Jordan","Brandon","Wyatt","Julian","Aaron","Sophia","Isabella","Emma","Olivia","Ava","Emily","Abigail","Madison","Mia",
+					"Chloe","Elizabeth","Ella","Addison","Natalie","Lily","Grace","Samantha","Avery","Sofia","Aubrey","Brooklyn","Lilian","Victoria","Evelyn","Hannah","Alexis","Charlotte","Zoey",
+					"Leah","Amelia","Zoe","Hailey","Layla","Gabriella","Nevaeh","Kaylee","Alyssa","Anna","Sarah","Allison","Savannah","Ashley","Audrey","Tayler","Brianna","Aaliyah","Riley","Camila",
+					"Khloe","ClaireAce","Adela","Agatha","Aggie","Aida","Ailish","Aimee","Alice","Alika","Allie","Amanda","Andra","Angel","Angelica","Anika","Anna","Annie","arbara","Barbie","Becky","Bella",
+					"Belle","Bessie","Biana","Bianca","Bibiane","Bonita","Calla","Callia","Camilla","Cara","Carmen","Casey","Catherine","Celina","Chloe","Cindy","Clara","Connie","Crystal","Cutie","Daria",
+					"Doris","Dorothy","Edeline","Eden","Eilis","Eldora","Elisha","Elizabeth","Elle","Elsa","Esther","Eva","Felice","Filia","Floria","Gemma","Gloria","Grace","Harmony","Heba","Helen","Helia",
+					"Hera","Iris","Isabel","Isadora","Isis","Jane","Jasmine","Jennie","Jerry","Jessica","Jessie","Johanna","Juliana","Juliet","Kara","Karis","Kassia","Kate","Kelley","Kyra","Lara","Lavina",
+					"Lidia","Lily","Linda","Lisa","Lottie","Lucia","Lucy","Luna","Madonna","Maggie","Malissa","Margaret","Mary","Mathilda","Melina","Meriel","Minnie","Miranda","Molly","Mulan","Nana","Nara",
+					"Olive","Pamela","Peppi","Phila","Pinky","Raina","Remy","Sally","Sandy","Sarah","Sasha","Scarlet","Selina","Serena","Shaina","Silky","Sonia","Sophie","Stella","Sweetie","Sylvia","Terra",
+					"Tess","Trisha","Vanessa","Velika","Vera","Veronica","Victoria","Violet","Wendy","Adam","Adelio","Alan","Albert","Alex","Alfred","Alvin","Andra","Andrew","Andy","Anthony","Apollo","Arnold",
+					"Arvid","Baldy","Barney","Baron","Basil","Billy","Bliss","Boris","Bright","Bruno","Buddy","Caley","Calix","Champ","Charles","Charlie","Chase","Clark","Crimson","Darin","Dario","Darwin","Dave",
+					"David","Dean","Dennis","Denver","Dick","Dino","Douglas","Duke","Dustin","Edan","Edward","Edwin","Elroy","Emilie","Eric","Esteban","Evan","Favian","Felix","Fidelio","George","Gilbert","Gregory",
+					"Harold","Hollis","Hubert","Isaac","Jack","Jackson","Jaclyn","Jade","Jefferson","Jerry","Jodie","Jolly","Joy","Justin","Karis","Kellan","Kevin","Lamis","Leo","Lloyd","Lonnie","Louis","Malo",
+					"Mickey","Mighty","Morris","Neal","Nero","Nicholas","Nicky","Oscar","Patrick","Phillip","Pluto","Ralph","Rex","Richard","Ricky","Rio","Robbie","Robert","Robin","Rocky","Romeo","Roy","Rudy","Ryan",
+					"Sam","Sebastian","Severino","Simon","Solomon","Steven","Sylvester","Talli","Ted","Thomas","Vincent","Vito","Walter","William","Wily","Winston","Zeki","Zeus"
+};		
+			System.out.println(nameSample.length);
 			
-			
-			for (int i = 1; i <= 3; i++) {
-				char ch = (char) ((Math.random() * 11172) + 0xAC00);
-				name += ch;
-			}
+		
 			
 			String id = "";
 			for (int i = 1; i <= 5; i++) {
@@ -97,7 +109,7 @@ public class DBregister {
 			} else {
 				System.out.println("등록실패");
 			}
-		}
+		/*}*/
 		return 1;
 	}
 	
