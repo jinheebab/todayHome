@@ -610,6 +610,17 @@ public class DBregister2 {
 
 			int e = (int) (Math.random() * 8);
 
+			
+			//==============================================================================================================================
+			Map map2 = new HashMap<>();
+			
+			map2.put("type", "info");
+			map2.put("filename", "img.png");
+			map2.put("filesize", 100);
+			map2.put("fileaddress", "/img.png");
+			map2.put("filelink", "/img.png");
+			map2.put("id", id);
+			map2.put("hostingnum", 0);
 			// ===============================================================================================================================
 
 			map.put("NAME", name);
@@ -620,10 +631,14 @@ public class DBregister2 {
 			map.put("MAIL", mail);
 			 map.put("COUNTRY", country);
 				
-
+			 System.out.println(map.toString() + "//" + map2.toString());
+			 
+			 
 			 int r = jdao.addMember(map);
 			
-			 if(r==1){
+			 int r2 = sdao.createOne(map2);
+			 
+			 if(r==1 && r2 ==1){
 			 System.out.println("등록성공");
 			 }else{
 			 System.out.println("등록실패");
