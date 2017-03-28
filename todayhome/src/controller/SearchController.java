@@ -70,6 +70,7 @@ public class SearchController {
 							break;
 						outstr += str;
 				}
+				
 				Map result = (HashMap)new ObjectMapper().readValue(outstr, Map.class);
 					result.put("num", list.get(i).get("NUM"));
 					result.put("title", list.get(i).get("TITLE"));
@@ -87,7 +88,7 @@ public class SearchController {
 		
 		
 		ModelAndView mav = new ModelAndView("m_index3");
-			mav.addObject("searchK",map);
+				
 			mav.addObject("main", "search/searchList");
 			mav.addObject("val", list);
 			mav.addObject("count", count);

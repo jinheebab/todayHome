@@ -30,8 +30,39 @@ public class MessageDao {
 		}
 		return list;
 	}
-
-	// 발신리스트
+	
+	// 수신리스트 '페이징' =====================================================
+	public List<HashMap> getMyMessagePage(HashMap map){
+		List<HashMap> list = new ArrayList<>();
+		SqlSession sql = factory.openSession();
+		try {
+			list = sql.selectList("message.rpaging", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sql.close();
+		}
+		return list;
+	}
+	
+	public int getRMessageNum(Map param){
+		int rMsgnumber = 0;
+		SqlSession sql = factory.openSession();
+		try {
+			rMsgnumber = sql.selectOne("message.getRmessagenum",param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sql.close();
+		}
+		return rMsgnumber;
+	}	
+	
+	// ========================================================================
+	
+	
+	
+	// 발신리스트 ==============================================================
 	public List<HashMap> getsendMessage(Map map) {
 		System.out.println(map);
 		List<HashMap> list = null;
@@ -46,6 +77,36 @@ public class MessageDao {
 		}
 		return list;
 	}
+
+	public int getSMessageNum(Map param){
+		int sMsgnumber = 0;
+		SqlSession sql = factory.openSession();
+		try {
+			sMsgnumber = sql.selectOne("message.getSmessagenum",param);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sql.close();
+		}
+		return sMsgnumber;
+	}	
+	
+	// ========================================================================
+	
+	
+/*	// 발신리스트 '페이징'
+	public List<HashMap> getSendMessagePage(HashMap map){
+		List<HashMap> list = new ArrayList<>();
+		SqlSession sql = factory.openSession();
+		try {
+			list = sql.selectList("message.spaging", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sql.close();
+		}
+		return list;
+	}*/
 
 	// 메시지 보내기
 	public int send(Map map) {

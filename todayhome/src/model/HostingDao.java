@@ -135,6 +135,7 @@ public class HostingDao {
 			}
 			return r;
 		}
+
 //		페이징 처리
 		public List<HashMap> getSelectPage(HashMap map){
 			List<HashMap> list = new ArrayList<>();
@@ -175,6 +176,7 @@ public class HostingDao {
 			}
 			return list;
 		}
+		
 		
 		
 		public List getHostingList(Map param){

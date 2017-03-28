@@ -35,10 +35,9 @@ public class MessageController {
 	MessageDao mdao;
 
 	@RequestMapping("/") // 수신 리스트 and 메시지 main
-	public ModelAndView message(HttpSession session) { //
+	public ModelAndView message(@RequestParam HashMap map,HttpSession session, HttpServletRequest req) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		List message = new ArrayList();
-		HashMap map = new HashMap();
 		map.put("receiver", (String) session.getAttribute("auth"));
 
 		message = mdao.getMyMessage(map);
@@ -46,15 +45,28 @@ public class MessageController {
 		/*for (int i = 0; i < 5; i++) {
 			board.add(message.get(i));
 		}*/
-		
+
+		//페이징처리
+		String pStr = req.getParameter("page") == null ? "1" : req.getParameter("page");
+		String pa = req.getParameter("page");
+
+		int start = (Integer.parseInt(pStr) -1 ) *6 +1; 
+		int end = Integer.parseInt(pStr) *6;
+			map.put("start", start);
+			map.put("end", end);;
+
+		int count = mdao.getRMessageNum(map);
+		int size = count % 6 == 0 ? count / 6 : count / 6 + 1; 
+
 		mav.setViewName("m_index2");
+		mav.addObject("searchK",map);
 		mav.addObject("main", "message/message");
 		mav.addObject("board", message);
 
 		return mav;
 	}
 
-	@RequestMapping("/paging")
+/*	@RequestMapping("/paging")
 	public ModelAndView paging(@RequestParam("page") int page, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		List message = new ArrayList();
@@ -77,21 +89,32 @@ public class MessageController {
 		mav.addObject("board", board);
 
 		return mav;
-	}
+	}*/
 
 	@RequestMapping("/sendlist")
-	public ModelAndView sendlist(HttpSession session) {
+	public ModelAndView sendlist(@RequestParam HashMap map,HttpSession session, HttpServletRequest req) throws Exception{
 
 		ModelAndView mav = new ModelAndView();
 		int sendpage = 1;
 		String sender = (String) session.getAttribute("auth");
 
-		Map map = new HashMap<>();
 		map.put("sender", sender);
-
+		
 		List sendlist = mdao.getsendMessage(map);
+		
+		String pStr = req.getParameter("page") == null ? "1" : req.getParameter("page");
+		String pa = req.getParameter("page");
+
+		int start = (Integer.parseInt(pStr) -1 ) *6 +1; 
+		int end = Integer.parseInt(pStr) *6;
+			map.put("start", start);
+			map.put("end", end);;
+
+		int count = mdao.getSMessageNum(map);
+		int size = count % 6 == 0 ? count / 6 : count / 6 + 1; 
 
 		mav.setViewName("m_index2");
+		mav.addObject("searchK",map);
 		mav.addObject("main", "message/sendlist");
 		mav.addObject("boards", sendlist);
 
@@ -99,7 +122,7 @@ public class MessageController {
 
 	}
 
-	@RequestMapping("/sendpaging")
+/*	@RequestMapping("/sendpaging")
 	public ModelAndView sendpaging(@RequestParam("sendpage") int sendpage, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 
@@ -120,7 +143,7 @@ public class MessageController {
 		mav.addObject("boards", boards);
 
 		return mav;
-	}
+	}*/
 	
 	@RequestMapping("/send")
 	public ModelAndView send(@RequestParam Map map, HttpSession session, HttpServletRequest req) {
