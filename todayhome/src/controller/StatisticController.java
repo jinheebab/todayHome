@@ -67,9 +67,9 @@ public class StatisticController {
 				map.put("SeoulRoomcnt", map2.get("ROOMCNT"));
 				break;
 			
-			case "수원시":
-				map.put("SuwonHosting", map2.get("HOSTING"));
-				map.put("SuwonRoomcnt", map2.get("ROOMCNT"));
+			case "용인시":
+				map.put("YonginHosting", map2.get("HOSTING"));
+				map.put("YonginRoomcnt", map2.get("ROOMCNT"));
 				break;
 				
 			case "안양시":
@@ -105,6 +105,9 @@ public class StatisticController {
 			default:
 				break;
 			}
+			
+			
+			System.out.println("전달되는 map = " + map);
 			
 			mav.addObject("map", map);
 			mav.addObject("main","/statistic/graph01");
