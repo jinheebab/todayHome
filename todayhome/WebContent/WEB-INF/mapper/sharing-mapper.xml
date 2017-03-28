@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="sharing">
 	<insert id="createOne" parameterType="java.util.HashMap" > 
-		insert into sharing values(sharing_seq.nextval, #{type}, #{filename}, #{filesize}, #{fileaddress}, #{filelink}, #{id},#{hostingnum}) 
+		insert into sharing values(sharing_seq.nextval, #{type}, #{filename}, #{filesize}, #{fileaddress}, #{filelink}, #{id}, #{hostingnum}, #{additionnum}) 
 	</insert>
 	<select id="getuphoto" resultType="java.util.HashMap" parameterType="java.util.HashMap"> 
 		select * from sharing where id=#{id} and type='info' order by num desc 
@@ -16,6 +16,6 @@
 		update sharing set filename=#{filename}, filesize=#{filesize}, fileaddress=#{fileaddress}, filelink=#{filelink}, hostingnum=null where type=#{type} and id=#{id}
 	</update>
 	<delete id="delete" parameterType="java.util.HashMap">
-		delete from sharing where id=#{id} and type=#{type}
+		delete from sharing where type=#{type} and id=#{id} and hostingnum=#{hostingnum} and additionnum=#{additionnum}
 	</delete>
 </mapper>
