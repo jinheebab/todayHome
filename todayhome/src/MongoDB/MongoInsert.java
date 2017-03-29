@@ -11,12 +11,24 @@ public class MongoInsert {
 	@Autowired
 	MongoTemplate mt;
 	
-	public int search(){
+	// 검색결과 인서트
+	public void searchInsert(){
 		HashMap map = new HashMap();
-		String target = ""; 
-		
-		
-		int result = 0;
-		return result;
+			String[] target={"서울","서울","","",""};
+			String[] startMonth={};
+			String[] endMonth={};
+			String[] peopleCnt={};
+			String[] id={}; // 있는거에서 
+	}
+	// 뷰꾸미기 용 가상 인서트
+	public void popularInsert(){
+		HashMap map = new HashMap();
+			String[] hostingnum={}; // 있는거에서
+			String[] during={};
+			String[] viewcount={}; 
+	}
+	// 검색결과가 빈약 지역 홍보용
+	public void cntInsert(){
+		String[] resultCnt={""};
 	}
 }
