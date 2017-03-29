@@ -5,8 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD53IpkHwpF-EViVKy52nOANIme2CK7Rns&callback=initMap">
-</script>
+
 
 <div class="well row" style="background-color: white;">
    <div class="col-md-6" align="center"
@@ -55,7 +54,7 @@
          <span id="cnt"></span>
       </h3>
 
-   <div id="map"></div>
+   <div id="map" style="height:100%"></div>
    </div>
 </div>
 
@@ -65,17 +64,17 @@ function initMap() {
        var myLatLng${vs.index} = {
                <c:choose>
                <c:when test="${val.results[0].geometry.location.lat eq null}">
-                           lat: 37.3421002,
-                           lng: 127.0718116
+                           'lat': 37.3421002,
+                           'lng': 127.0718116
                </c:when>
                <c:otherwise>
-                        lat: ${val.results[0].geometry.location.lat},
-                        lng: ${val.results[0].geometry.location.lng}
+                        'lat': ${val.results[0].geometry.location.lat},
+                        'lng': ${val.results[0].geometry.location.lng}
                </c:otherwise>
             </c:choose>
        };
     </c:forEach>
-    var map = new google.maps.Map(document.getElementById('map') {
+    var map = new google.maps.Map(document.getElementById('map'), {
        zoom: 10,
        center: myLatLng0
    });
@@ -94,8 +93,7 @@ function initMap() {
      marker${vs.index}.addListener('click', function() {
           infowindow${vs.index}.open(map, marker${vs.index});
      });  
-
    </c:forEach>
-
 }
 </script>
+<script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD53IpkHwpF-EViVKy52nOANIme2CK7Rns&callback=initMap"></script>
