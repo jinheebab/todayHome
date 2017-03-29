@@ -295,12 +295,12 @@
       <c:when test="${review.size() gt 0 }">
       <c:forEach var ="i" begin="0" end="${review.size()-1}">
    <div class="row font1">
-   <div class="col-md-1" align="center">
+   <div class="col-md-1"  align="center">
       <div class="profile">
       <img src="${reviewerphoto[i].FILELINK} " width="70px">
       </div>
    </div>
-   <div class="col-md-11" >
+   <div class="col-md-11" style="padding-left: 5%;" >
       <b><a href="/view/message/send?id=${review[i].WRITER}"> ${review[i].WRITER}</a></b>
          <div class="point1">
             <div class="point2_r" style="width: ${review[i].GRADE*10}%;">
