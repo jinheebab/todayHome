@@ -4,10 +4,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-   <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS-83LLE8F1nvtVtsy1Adu-j4LeS9qAQg&callback=initMap">
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -63,36 +61,38 @@
 </div>
 
 <script>   
-   function initMap() {
-      <c:forEach var="val" items="${loc}" varStatus="vs">
-      var myLatLng${vs.index} = {
-              <c:choose>
-              <c:when test="${val.results[0].geometry.location.lat eq null}">
-                          lat: 37.3421002,
-                          lng: 127.0718116
-              </c:when>
-              <c:otherwise>
-                       lat: ${val.results[0].geometry.location.lat},
-                       lng: ${val.results[0].geometry.location.lng}
-              </c:otherwise>
-           </c:choose>
-      }
-      </c:forEach>
-      var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: myLatLng0
-      });
-      <c:forEach var="vall" items="${loc}" varStatus="vs">
-         var content${vs.index} = '';
-      
-        var marker${vs.index} = new google.maps.Marker({
-             position: myLatLng${vs.index},
-             map: map,
-             title: '${vs.index}번째 마커'
-         });   
-        marker${vs.index}.addListener('click', function() {
-             infowindow${vs.index}.open(map, marker${vs.index});
-        });  
-      </c:forEach>
-   }
+<script>   
+function initMap() {
+   <c:forEach var="val" items="${loc}" varStatus="vs">
+	   var myLatLng${vs.index} = {
+	           <c:choose>
+	           <c:when test="${val.results[0].geometry.location.lat eq null}">
+	                       lat: 37.3421002,
+	                       lng: 127.0718116
+	           </c:when>
+	           <c:otherwise>
+	                    lat: ${val.results[0].geometry.location.lat},
+	                    lng: ${val.results[0].geometry.location.lng}
+	           </c:otherwise>
+	        </c:choose>
+	   }
+   </c:forEach>
+   var map = new google.maps.Map(document.getElementById('map'), {
+       zoom: 15,
+       center: myLatLng0
+   });
+   <c:forEach var="vall" items="${loc}" varStatus="vs">
+      var content${vs.index} = '';
+   
+     var marker${vs.index} = new google.maps.Marker({
+          position: myLatLng${vs.index},
+          map: map,
+          title: '${vs.index}번째 마커'
+      });   
+     marker${vs.index}.addListener('click', function() {
+          infowindow${vs.index}.open(map, marker${vs.index});
+     });  
+   </c:forEach>
+}
+</script>
 </script>
