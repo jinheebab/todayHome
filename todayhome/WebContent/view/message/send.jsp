@@ -72,7 +72,7 @@
 	<div class="pad2">
 	<form action="/view/message/sendcomp" method="post" name="send">
 				<h4>To</h4>
-				<input type="text" name="receiver" id="writer" list="id_list" value="${receiver}"/><span id="set" style="color: 2F97F2;"> 엔터로 겁색</span>
+				<input type="text" name="receiver" id="writer" list="id_list" value="${receiver}"/><span id="set" style="color: 2F97F2;"> 엔터로 검색</span>
 					<datalist id="id_list"></datalist>
 			
 			<br /><br />
@@ -184,25 +184,4 @@
 		}
 	}
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -148,7 +148,7 @@
 	      <div class="profile">
 	      <img src="${uphoto.FILELINK}" width="70px"  >
 	      </div>
-      		<a href="/view/message/send?id=${i.HNAME}">${i.HNAME}</a><br/>
+      		<a href="/view/message/send?receiver=${i.HNAME}">${i.HNAME}</a><br/>
 	      <c:if test="${i.HNAME eq id}"> 
 	      	<a href="/view/delete" >호스팅 삭제하기</a>
 	      </c:if>
@@ -301,7 +301,7 @@
       </div>
    </div>
    <div class="col-md-11" style="padding-left: 5%;" >
-      <b><a href="/view/message/send?id=${review[i].WRITER}"> ${review[i].WRITER}</a></b>
+      <b><a href="/view/message/send?receiver=${review[i].WRITER}"> ${review[i].WRITER}</a></b>
          <div class="point1">
             <div class="point2_r" style="width: ${review[i].GRADE*10}%;">
                <img src="/icon/star_on.png" width="120px" height="30px">
