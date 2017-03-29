@@ -75,8 +75,6 @@ public class MainController {
 		map.put("num", num);
 		
 		List<HashMap> list = md.getDetaillist(map);
-			map.put("id", id);
-		list.add(map);
 		System.out.println(list);
 		
 		double avgstar = md.getScore(map);
