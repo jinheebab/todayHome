@@ -5,19 +5,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBS-83LLE8F1nvtVtsy1Adu-j4LeS9qAQg&callback=initMap">
-</script> 
-<link rel="stylesheet"
-   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD53IpkHwpF-EViVKy52nOANIme2CK7Rns&callback=initMap">
+</script>
 
 <div class="well row" style="background-color: white;">
    <div class="col-md-6" align="center"
       style="background-color: white; overflow: scroll; width: 50%; height: 100%;">
       <h3>
-         <span id="cnt">&nbsp${count}개 호스팅이 등록되어 있습니다.</span>
+         <span id="cnt">&nbsp ${count}개 호스팅이 등록되어 있습니다.</span>
       </h3>
       <br/>
       <div class="row">
@@ -65,28 +60,31 @@
 </div>
 
 <script>   
-<script>   
 function initMap() {
-   <c:forEach var="val" items="${loc}" varStatus="vs">
-	   var myLatLng${vs.index} = {
-	           <c:choose>
-	           <c:when test="${val.results[0].geometry.location.lat eq null}">
-	                       lat: 37.3421002,
-	                       lng: 127.0718116
-	           </c:when>
-	           <c:otherwise>
-	                    lat: ${val.results[0].geometry.location.lat},
-	                    lng: ${val.results[0].geometry.location.lng}
-	           </c:otherwise>
-	        </c:choose>
-	   }
-   </c:forEach>
-   var map = new google.maps.Map(document.getElementById('map'), {
-       zoom: 15,
+    <c:forEach var="val" items="${loc}" varStatus="vs">
+       var myLatLng${vs.index} = {
+               <c:choose>
+               <c:when test="${val.results[0].geometry.location.lat eq null}">
+                           lat: 37.3421002,
+                           lng: 127.0718116
+               </c:when>
+               <c:otherwise>
+                        lat: ${val.results[0].geometry.location.lat},
+                        lng: ${val.results[0].geometry.location.lng}
+               </c:otherwise>
+            </c:choose>
+       };
+    </c:forEach>
+    var map = new google.maps.Map(document.getElementById('map') {
+       zoom: 10,
        center: myLatLng0
    });
+
    <c:forEach var="vall" items="${loc}" varStatus="vs">
-      var content${vs.index} = '';
+      var content${vs.index} = '<div><a href="/view/detail?num=${vall.num}"><span id="title">${vall.title}</span></div><img src="${vall.picurl}" width="100px" height="70px" /><br /><b><span>\<fmt:formatNumber value="${vall.price}" pattern="#,###" /></span> <span>${fn:substring(vall.title, 0, 10)}</span><br /></b> </a>';
+     var infowindow${vs.index} = new google.maps.InfoWindow({
+          content: content${vs.index}
+     });
    
      var marker${vs.index} = new google.maps.Marker({
           position: myLatLng${vs.index},
@@ -96,6 +94,8 @@ function initMap() {
      marker${vs.index}.addListener('click', function() {
           infowindow${vs.index}.open(map, marker${vs.index});
      });  
+
    </c:forEach>
+
 }
 </script>
