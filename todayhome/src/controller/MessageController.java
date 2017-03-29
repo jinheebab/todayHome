@@ -85,11 +85,19 @@ public class MessageController {
 
 	
 	@RequestMapping("/send")
-	public ModelAndView send(@RequestParam Map map, HttpSession session, HttpServletRequest req) {
+	public ModelAndView send(@RequestParam HashMap map, HttpSession session, HttpServletRequest req) {
 		String addr = req.getRemoteAddr();
 		ModelAndView mav = new ModelAndView();
-		
 		String send = (String) session.getAttribute("auth");
+		System.out.println("send의 map : "+map);
+		
+		if(map.get("receiver").toString().length() >1){
+			mav.addObject("receiver", map.get("receiver"));
+			System.out.println("리시버가 존재함");
+		}else{
+			mav.addObject("receiver", "RECEIVER");
+			System.out.println("리시버가 없어요");
+		}
 		
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/send");
@@ -114,7 +122,7 @@ public class MessageController {
 		
 		if(r==1){
 			mav.setViewName("m_index2");
-			redirect = "redirect:sendresult.jsp";
+			redirect = "redirect:sendlist?page=1";
 		} else {
 			mav.setViewName("m_index2");
 			redirect = "redirect:send";

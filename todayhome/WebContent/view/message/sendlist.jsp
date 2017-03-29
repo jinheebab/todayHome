@@ -31,19 +31,30 @@
 	font-size: 1.1em;
 	background-color: E3F7FC;
 }
+.title{
+	font-family: 나눔고딕;
+	font-size: 2em;
+	padding-bottom: 3%;
 
+}
+.pad{
+
+	padding: 5%;
+	
+}
 </style>
-
-	<h3>발신함</h3>
+	<div class="pad">
+	<div class="title">보낸 메시지</div>
 	<ul class="nav nav-tabs">
 		<li><a href="/view/message?page=1">받은 메시지</a></li>
-		<li><a href="/view/message/sendlist?page=1">보낸 메시지</a></li>
-		<li><a href="/view/message/send">작성</a></li>
+		<li><a href="/view/message/sendlist?page=1" style="color:black; font-weight: bold;">보낸 메시지</a></li>
+		<li><a href="/view/message/send?receiver=">작성</a></li>
 	</ul>
 		<c:forEach var="i" items="${list}" begin="${page*5-5}" end="${page*5-1}">
 	<div class="row">
 			<div class="receiver">
-				<span style="font-size: 0.8em;">To.</span> ${i.RECEIVER}
+				<span style="font-size: 0.8em;">To.</span>
+				<a href="/view/message/send?receiver=${i.RECEIVER}" title="${i.RECEIVER}에게 메시지 보내기" style="color: black" > ${i.RECEIVER}</a>
 			</div>
 			<div class="content">
 				${i.CONTENT}
@@ -76,4 +87,5 @@
 		<c:if test="${page ne size and size gt 1}">
 			<a href="/view/message/sendlist?page=${page +1 }">다음</a>
 		</c:if>	
+</div>
 </div>

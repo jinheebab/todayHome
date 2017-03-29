@@ -7,44 +7,59 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+.pad{
 
-<div class="container" align="left">
+	padding: 5%;
+	
+}
+.button{
+	background-color: white;
+	border-style: solid;
+	border-radius: 10px;
+	border-width: 2px;
+	border-color: 2F97F2;
+	padding: 0.5% 2%;
+	font-weight: bold;
+	font-family: 나눔고딕;
+
+}
+.title{
+	font-family: 나눔고딕;
+	font-size: 2em;
+	padding-bottom: 3%;
 
 
-	<h3>용건을 전달해드립니다.</h3>
+}
+
+</style>
+
+<div class="pad">
+	<div class="title">
+	메시지 보내기
+	</div>
 	<ul class="nav nav-tabs">
 		<li><a href="/view/message?page=1">받은 메시지</a></li>
 		<li><a href="/view/message/sendlist?page=1">보낸 메시지</a></li>
-		<li><a href="/view/message/send">작성</a></li>
+		<li><a href="/view/message/send?receiver=" style="color:black; font-weight: bold;">작성</a></li>
 	</ul>
 	
 	<form action="/view/message/sendcomp" method="post" name="send">
-		<%-- ${sender} --%>
-		<div class="container" align="left" class="col-md-8"
-			style="width: 70%; margin-left: 1%;">
-			<br />
 			<p class="form-inline">
 				<strong> 받는 분 </strong> <i> _ ID </i> <br /> <input type="text"
 					name="receiver" id="writer" class="form-control"
-					placeholder="RECEIVER" maxlength="50" onkeyup="chkword(this, 50)" />
+					value="${receiver}" maxlength="50" onkeyup="chkword(this, 50)" />
 			</p>
 			<ul class="nav nav-tabs"></ul>
 			<br /> <strong> 내용 </strong> (<span id="counter"></span>) <br />
 			<textarea rows="6" cols="60" id="content" class="form-control"
 				placeholder="CONTENT" maxlength="500" onkeyup="chkword(this, 500)"
 				style="resize: none;" name="content"></textarea>
-			<div align="left">
-				<br />
-				<button type="submit" class="btn btn-primary btn-block"
-					style="width: 35%" id="">전 송</button>
-				<br />
-				<ul class="nav nav-tabs"></ul>
-				<br /> <br />
+			<div class="pad" align="center">
+				<button type="submit" class=" button">전 송</button>
 			</div>
-		</div>
 	</form>
 </div>
-
 <!-- 스크립트 -->
 
 <script type="text/javascript">
