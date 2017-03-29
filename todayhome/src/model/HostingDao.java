@@ -207,6 +207,20 @@ public class HostingDao {
 			return flag;
 		}
 		
+		public int delete(HashMap map){
+			SqlSession sql = factory.openSession();
+			int rst = 0;
+			try{
+				rst = sql.delete("hosting.delete", map);
+				if(rst == 1)
+					sql.commit();
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				sql.close();
+			}
+			return rst;
+		}
 }
 		
 

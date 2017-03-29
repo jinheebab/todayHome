@@ -12,7 +12,6 @@
 
 	padding: 5%;
 	padding-bottom: 2%;
-	
 }
 .pad2{
 

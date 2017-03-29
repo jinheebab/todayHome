@@ -18,7 +18,6 @@
 	border-color: 2F97F2;
 	font-weight: bold;
 	font-size: 1.1em;
-
 }
 .content{
 	margin-top: 0;
