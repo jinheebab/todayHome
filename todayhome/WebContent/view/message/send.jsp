@@ -10,7 +10,6 @@
 
 <div class="container" align="left">
 
-
 	<h3>용건을 전달해드립니다.</h3>
 	<ul class="nav nav-tabs">
 		<li><a href="/view/message?page=1">받은 메시지</a></li>
