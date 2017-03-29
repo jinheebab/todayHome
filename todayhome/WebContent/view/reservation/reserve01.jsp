@@ -303,6 +303,25 @@ console.log(disabledate);
 		
 	});
 	
+	
+	function allCompare( ) {
+		var f1 = document.getElementById("sdate").value;
+		var f2 = document.getElementById("edate").value;
+		var f3 = document.getElementById("people").value;
+		var f4 = document.getElementById("intro").value;
+		
+		console.log(f1);
+		console.log(f2);
+		console.log(f3);
+		console.log(f4);
+		
+		if(f1=="" || f2==""  || f3==""  || f4=="" ){
+			$("#pay").attr("disabled", true);
+		}else{
+			$("#pay").attr("disabled", false);
+		}
+	}
+	
 
 </script>
  
