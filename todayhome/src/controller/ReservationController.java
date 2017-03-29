@@ -68,16 +68,15 @@ public class ReservationController {
 		
 		List reservelist = bdao.getReserveDate(num);
 		
-		System.out.println(reservelist);
 		
 		List reserve = new ArrayList<>();
+		
 		
 			Iterator<Map> it = reservelist.iterator();
 			
 			while(it.hasNext()){
 				Map map = it.next();
 				Date startdate = (Date) map.get("STARTDATE"); 
-				
 				Date enddate = (Date)map.get("ENDDATE");
 				
 				long diff = (int) (enddate.getTime() - startdate.getTime());
@@ -108,22 +107,10 @@ public class ReservationController {
 				System.out.println("최종 예약리스트는 ? " + reserve.toString());
 			}
 			
-			
-			
-			
-			
-		
-		
 		mav.addObject("reserve", new ObjectMapper().writeValueAsString(reserve));
-		
 		mav.addObject("hostinglist", hostinglist);
-		
 		mav.addObject("hostingnum", num);
-		
-		
-		
 		mav.addObject("main", "reservation/reserve01");
-		
 		mav.setViewName("m_index3");
 		
 		return mav;
