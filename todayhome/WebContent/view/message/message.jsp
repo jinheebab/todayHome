@@ -39,7 +39,6 @@
 		<li><a href="/view/message/sendlist?page=1">보낸 메시지</a></li>
 		<li><a href="/view/message/send">작성</a></li>
 	</ul>
-	
 		<c:forEach var="i" items="${list}" begin="${page*5-5}" end="${page*5-1}">
 	<div class="row">
 			<div class="sender">
