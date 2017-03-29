@@ -83,6 +83,22 @@ public class InfoDao {
 		}
 		return list;
 	}
+	
+	
+	public List readAll(){
+		SqlSession sql = factory.openSession();
+		List list = new ArrayList();
+		
+		try{
+			list = sql.selectList("info.readAll");
+				sql.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			sql.close();
+		}
+		return list;
+	}
 }
 
 

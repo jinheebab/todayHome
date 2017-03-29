@@ -15,4 +15,7 @@
 	<select id="getnum" resultType="java.util.HashMap" parameterType="java.util.HashMap">
 		select * from member where num =#{num}
 	</select>
+	<select id="readAll" resultType="java.util.HashMap"> 
+		select * from member
+	</select>
 </mapper>

@@ -43,6 +43,8 @@ public class DBregister2 {
 	SharingDao sdao;
 	@Autowired
 	MainDao madao;
+	@Autowired
+	reviewSetting rs;
 
 	public int hosting() {
 
@@ -653,30 +655,9 @@ public class DBregister2 {
 
 		for (int a = 0; a < 100000; a++) {
 
-			HashMap map = new HashMap<>();
-
-			String content = "";
-
-			for (int i = 1; i <= 20; i++) {
-				char ch = (char) ((Math.random() * 11172) + 0xAC00);
-				content += ch;
-			}
-
-			String writer = "";
-
-			for (int i = 1; i <= 5; i++) {
-				char ch = (char) ((Math.random() * 26) + 65);
-				writer += ch;
-			}
-
-			int grade = (int) (Math.random() * 10 + 1);
-
-			int hostingnum = (int) (Math.random() * 150 + 1);
-
-			map.put("msg", content);
-			map.put("writer", writer);
-			map.put("grade", grade);
-			map.put("hostingnum", hostingnum);
+			
+			
+			HashMap map = rs.ReviewMaker();
 
 			System.out.println(map.toString());
 
