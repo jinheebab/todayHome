@@ -69,10 +69,13 @@ public class MainController {
 	
 	@RequestMapping("view/detail")
 	public ModelAndView detailHandler(@RequestParam("num")String num, HttpSession session){
+		String id = (String)session.getAttribute("auth");
+		
 		HashMap map = new HashMap();
 		map.put("num", num);
 		
 		List<HashMap> list = md.getDetaillist(map);
+		System.out.println(list);
 		
 		double avgstar = md.getScore(map);
 		System.out.println(avgstar);

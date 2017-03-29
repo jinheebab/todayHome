@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link rel="stylesheet"	href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"	type="text/css" />
-<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>	
+<script   src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet"   href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css"   type="text/css" />
+<script   src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>   
 
 <style>
 .mainpic{
@@ -85,8 +85,8 @@
 /* Modal Content */
 .modal-content1 {
     background-color: #fefefe;
-	margin-right: 30%; 
-	margin-left:30%;
+   margin-right: 30%; 
+   margin-left:30%;
     padding: 5%;
     border: 1px solid #888;
 }
@@ -106,17 +106,17 @@
     cursor: pointer;
 }
 .btn{
-	border-style: soild;
-	border-width: 2px;
-	border-color: black;
-	background-color: white;
-	font-weight: bold;
+   border-style: soild;
+   border-width: 2px;
+   border-color: black;
+   background-color: white;
+   font-weight: bold;
 }
 .bookbox { 
-	border-style: solid;
-	border-color: grey;
-	border-width: thin;
-	width: 100%;
+   border-style: solid;
+   border-color: grey;
+   border-width: thin;
+   width: 100%;
 }
 </style>
 
@@ -414,24 +414,24 @@ window.onclick = function(event) {
 
 
 $("#Rbtn").click(function(){
-	var msg = $("#content").val();
-	var grade = $('input:radio[name="grade"]:checked').val();
-	console.log("review/resultAjax?msg="+msg+"&grade="+grade+"&hostingnum="+num);
- 	$.ajax({
-		url : "review/resultAjax?msg="+msg+"&grade="+grade+"&hostingnum="+num
-	}).done(function(txt){
-		modal1.style.display = "none";
-		location.reload();
-	}); 
+   var msg = $("#content").val();
+   var grade = $('input:radio[name="grade"]:checked').val();
+   console.log("review/resultAjax?msg="+msg+"&grade="+grade+"&hostingnum="+num);
+    $.ajax({
+      url : "review/resultAjax?msg="+msg+"&grade="+grade+"&hostingnum="+num
+   }).done(function(txt){
+      modal1.style.display = "none";
+      location.reload();
+   }); 
 });
-	
-	
+   
+   
 
 $("#content").onkeyup = function(obj){
-	var maxLength = parseInt(obj.getAttribute("maxlength"));
-		if(obj.value.length>maxLength){
-		obj.value = obj.value.substring(0, maxLength);
-		}
+   var maxLength = parseInt(obj.getAttribute("maxlength"));
+      if(obj.value.length>maxLength){
+      obj.value = obj.value.substring(0, maxLength);
+      }
 };
 
 
@@ -466,60 +466,59 @@ $('#testDatepicker2').datepicker("option", "minDate", date1);
 $('#testDatepicker2').datepicker("option", "maxDate", date2);
 
 
-	$("#testDatepicker").datepicker({
+   $("#testDatepicker").datepicker({
 
-				dateFormat: 'yyyy-mm-dd',
-				changeMonth : true,
-				changeYear : true,
-				nextText : '다음 달',
-				prevText : '이전 달',
-				minDate : 0,
-				maxDate : 0,
-				onSelect : function(dateText, init) {
-					console.log(dateText);
-				}
-	});
-	
-	 $('#testDatepicker').datepicker("option", "onClose", function ( selectedDate ) {
-		 min = selectedDate;
-	        $("#testDatepicker2").datepicker( "option", "minDate", selectedDate );
-	    });
-	 
-	$("#testDatepicker2").datepicker({
-				dateFormat: 'yyyy-mm-dd',
-				changeMonth : true,
-				changeYear : true,
-				nextText : '다음 달',
-				prevText : '이전 달',
-				minDate : 0,
-				maxDate : "+3M",
-				onSelect : function(dateText, init) {
-					console.log(dateText);
-				}
-	});
-	
-	 $('#testDatepicker2').datepicker("option", "onClose", function ( selectedDate ) {
-		 max = selectedDate;
-	       
-	    });
-	
-	$("#member").change(function(){
-		var member = $('#member option:selected').val()
-		var mind = ""+min;
-		var maxd = ""+max;
-		var start = mind.split("/")[1];
-		var end = maxd.split("/")[1];
-		var days  = end-start;
-		console.log(days);
-	//	var newDt = new Date(days.replace(/-/g, '/'));
-	//	console.log(newDt);
-		
-		var price = ${list[0].PRICE};
-		price += member*10000;
-		price = price * days;
-		$("#price").html("₩ "+price+"<span style=\"font-size: 0.6em;\"> "+days+"박</span>");
-	});
-	
+            dateFormat: 'yyyy-mm-dd',
+            changeMonth : true,
+            changeYear : true,
+            nextText : '다음 달',
+            prevText : '이전 달',
+            minDate : 0,
+            maxDate : 0,
+            onSelect : function(dateText, init) {
+               console.log(dateText);
+            }
+   });
+   
+    $('#testDatepicker').datepicker("option", "onClose", function ( selectedDate ) {
+       min = selectedDate;
+           $("#testDatepicker2").datepicker( "option", "minDate", selectedDate );
+       });
+    
+   $("#testDatepicker2").datepicker({
+            dateFormat: 'yyyy-mm-dd',
+            changeMonth : true,
+            changeYear : true,
+            nextText : '다음 달',
+            prevText : '이전 달',
+            minDate : 0,
+            maxDate : "+3M",
+            onSelect : function(dateText, init) {
+               console.log(dateText);
+            }
+   });
+   
+    $('#testDatepicker2').datepicker("option", "onClose", function ( selectedDate ) {
+       max = selectedDate;
+          
+       });
+   
+   $("#member").change(function(){
+      var member = $('#member option:selected').val()
+      var mind = ""+min;
+      var maxd = ""+max;
+      var start = mind.split("/")[1];
+      var end = maxd.split("/")[1];
+      var days  = end-start;
+      console.log(days);
+   //   var newDt = new Date(days.replace(/-/g, '/'));
+   //   console.log(newDt);
+      
+      var price = ${list[0].PRICE};
+      price += member*10000;
+      price = price * days;
+      $("#price").html("₩ "+price+"<span style=\"font-size: 0.6em;\"> "+days+"박</span>");
+   });
+   
 
 </script>
-
