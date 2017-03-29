@@ -42,9 +42,12 @@ public class MainDao {
 	
 	public double getScore (HashMap map){
 		SqlSession session = factory.openSession();
-		double score=0.0;
+		Double score=0.0;
 		try{
 			score = session.selectOne("review.staravg", map);
+			if(score == null){
+				return 0.0;
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally {
@@ -152,5 +155,16 @@ public class MainDao {
 		return list;
 	}
 	
-	
+	public List getPass(String id){
+		SqlSession session = factory.openSession();
+		List list = new ArrayList();
+		try{
+			list = session.selectList("info.getPass", id);
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+		return list;
+	}
 }

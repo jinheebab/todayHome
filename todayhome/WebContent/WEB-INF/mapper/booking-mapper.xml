@@ -18,6 +18,6 @@
 	<select id="getReserveDate" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select startdate, enddate from book where hostingnum = #{num}
 	</select>
-	
+
 
 </mapper>
