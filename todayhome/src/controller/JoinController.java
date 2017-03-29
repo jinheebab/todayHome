@@ -83,6 +83,9 @@ public class JoinController {
 			m.put("fileaddress", "NULL");
 			m.put("filelink", "/img.png");
 			m.put("id", id);
+			m.put("hostingnum", 0);
+			m.put("additionnum", 0);
+			
 		sDao.createOne(m);
 		int rst = jDao.addMember(map);
 		

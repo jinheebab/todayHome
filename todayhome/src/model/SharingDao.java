@@ -60,6 +60,20 @@ public class SharingDao {
 		}
 		return rst;
 	}
+	public int delete(HashMap map){
+		SqlSession sql = factory.openSession();
+		int rst = 0;
+		try{
+			rst = sql.delete("sharing.delete", map);
+			if(rst == 1)
+				sql.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			sql.close();
+		}
+		return rst;
+	}
 	
 	
 }
