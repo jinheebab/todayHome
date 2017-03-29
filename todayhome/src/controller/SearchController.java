@@ -34,16 +34,16 @@ public class SearchController {
 	public ModelAndView search(@RequestParam HashMap map, HttpSession session, HttpServletRequest req,@RequestParam(name="page",defaultValue="1") int page) throws Exception{
 		//페이징처리
 		
-		int pageStart = page % 10 == 1 ? page : page/11 * 10+1;
-		int pageEnd = pageStart + 9;
+		int pageStart = page % 6 == 0 ? page : page/6 * 6+1;
+		int pageEnd = pageStart + 6;
 		
-		int start = (page -1 ) *6 +1; 
+		int start = (page -1 ) *5 +1; 
 		int end = start + 5;
 			map.put("start", start);
 			map.put("end", end);;
 		
 		int count = hDao.selectCnt(map);
-		int size = count % 6 == 0 ? count / 6 : count / 6 + 1; 
+		int size = count % 5 == 0 ? count / 5 : count / 5 + 1; 
 		
 		//리스트 가져오기
 		List<HashMap> list = hDao.getSelectPage(map);
