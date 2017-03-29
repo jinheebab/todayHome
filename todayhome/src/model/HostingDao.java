@@ -177,8 +177,6 @@ public class HostingDao {
 			return list;
 		}
 		
-		
-		
 		public List getHostingList(Map param){
 			
 			List<HashMap> list = new ArrayList<>();
@@ -192,6 +190,23 @@ public class HostingDao {
 			}
 			return list;
 		}
+		
+		// 타이틀 가져오기
+		public boolean checkTitle(Map map){
+			boolean flag = false;
+			SqlSession sql = factory.openSession();
+			try {
+				int r = sql.selectOne("hosting.checkOne", map);
+				if(r >= 1)
+					flag = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return flag;
+		}
+		
 }
 		
 

@@ -56,7 +56,12 @@
 		select step2.* from (select rownum as r, step1.* from (select * from hosting where membercnt=#{cnt} or startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} or city=#{target} or location=#{target} or country=#{target} order by num desc) step1) step2 where <![CDATA[r>= #{start} and r <= #{end}]]> 
 	</select> 
    
-   <select id="getHostingList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	<select id="getHostingList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select * from hosting where hname=#{id}
 	</select>
+	
+	<select id="checkOne" resultType="java.lang.Integer" parameterType="java.util.HashMap"> 
+		select count(*) from hosting where title=#{title} 
+	</select>
+	
 </mapper>

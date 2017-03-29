@@ -13,9 +13,9 @@
 
 	<h3>용건을 전달해드립니다.</h3>
 	<ul class="nav nav-tabs">
-		<li><a title="/view/message">받은 메시지</a></li>
-		<li><a title="/view/message/sendlist">보낸 메시지</a></li>
-		<li><a title="/view/message/send" >작성</a></li>
+		<li><a href="/view/message?page=1">받은 메시지</a></li>
+		<li><a href="/view/message/sendlist?page=1">보낸 메시지</a></li>
+		<li><a href="/view/message/send">작성</a></li>
 	</ul>
 	
 	<form action="/view/message/sendcomp" method="post" name="send">

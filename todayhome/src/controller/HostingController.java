@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.eclipse.jdt.internal.compiler.ast.ContinueStatement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,49 +49,172 @@ public class HostingController {
 			mav.setViewName("m_index3");
 		return mav;
 	}	
+	// 타이틀 아작스
+	@RequestMapping("/titleAjax")
+	@ResponseBody
+	public String ajax(@RequestParam(name="title") String title){
+		HashMap<String, Object> map = new HashMap<>();
+			map.put("title", title);
+		boolean rst = hdao.checkTitle(map);
+		if(rst)
+			return "NNNNN";
+		else
+			return "YYYYY";
+	}
+	
 	@RequestMapping("/host02")
 	@ResponseBody
 	public String host02(@RequestParam ("city") String city){
+		BigDecimal price = null;
 		Map param = new HashMap<>();
-		param.put("city", city);
-		Map map = hdao.getPrice(param);
-		BigDecimal price = (BigDecimal)map.get("PRICE");	
-		return price.toString();
+		try{
+			param.put("city", city);
+			Map map = hdao.getPrice(param);
+			price = (BigDecimal)map.get("PRICE");	
+			return price.toString();
+		}catch(Exception e){
+			return null;
+		}
 	}	
 	@RequestMapping("/upload")
 	@ResponseBody
-	public String upload(@RequestParam(name="fileObj") MultipartFile file) throws Exception {
-		System.out.println(file.toString());
+	public String upload(@RequestParam(name="fileObj") MultipartFile file, HttpSession session) throws Exception {
 		Map map = fdao.execute(file);
+		String picurl = (String)map.get("filelink");
+		session.setAttribute("picurl", picurl);
+		return picurl.toString();
+	}
+	
+	// 추가 사진 등록 1
+	@RequestMapping("/upload1")
+	@ResponseBody
+	public String upload1(@RequestParam(name="fileObj") MultipartFile file, HttpSession session) throws Exception {
+		Map map = fdao.execute(file);
+		String id = (String)session.getAttribute("auth");
+		Integer hostingnum = ((Integer)(session.getAttribute("hostingnum"))).intValue();
+			map.put("type", "hosting");
+			map.put("id", id);
+			map.put("hostingnum", hostingnum);
+			map.put("additionnum", 1);
+			System.out.println(map);
+			
+		int r = sdao.createOne(map);	
 		String picurl = (String)map.get("filelink");
 		return picurl.toString();
 	}
-	@RequestMapping("/upload2")
+	// 추가 사진 삭제 1
+	@RequestMapping("/delete1")
 	@ResponseBody
-	public Map upload2(@RequestParam(name="fileObj") MultipartFile file, HttpSession session) throws Exception {
-		System.out.println(file.toString());
+	public int delete1(HttpSession session){
 		String id = (String)session.getAttribute("auth");
-		Map map = fdao.execute(file);
-		Map json = new HashMap<>();
-		String type = (String)map.get("type");
-		String filename = (String)map.get("filename");
-		long filesize = (long)map.get("filesize");
-		String fileaddress = (String)map.get("filelink");
-			json.put("type", type);
-			json.put("filename", filename);
-			json.put("filesize", filesize);
-			json.put("fileaddress", fileaddress);
-			json.put("filelink", fileaddress);
-			json.put("id", id);
+		Integer hostingnum = ((Integer)(session.getAttribute("hostingnum"))).intValue();
+		HashMap map = new HashMap();
+			map.put("type", "hosting");		
+			map.put("id", id);
+			map.put("hostingnum", hostingnum);
+			map.put("additionnum", 1);
 			
-		String objm = new ObjectMapper().writeValueAsString(json);
-		System.out.println(objm);
-		return json;
+		int r = sdao.delete(map);
+		return r;
 	}
+	// 추가 사진 등록 2
+		@RequestMapping("/upload2")
+		@ResponseBody
+		public String upload2(@RequestParam(name="fileObj") MultipartFile file, HttpSession session) throws Exception {
+			Map map = fdao.execute(file);
+			String id = (String)session.getAttribute("auth");
+			Integer hostingnum = ((Integer)(session.getAttribute("hostingnum"))).intValue();
+				map.put("type", "hosting");
+				map.put("id", id);
+				map.put("hostingnum", hostingnum);
+				map.put("additionnum", 2);
+				
+			int r = sdao.createOne(map);	
+			String picurl = (String)map.get("filelink");
+			return picurl.toString();
+		}
+		// 추가 사진 삭제 2
+		@RequestMapping("/delete2")
+		@ResponseBody
+		public int delete2(HttpSession session){
+			String id = (String)session.getAttribute("auth");
+			Integer hostingnum = ((Integer)(session.getAttribute("hostingnum"))).intValue();
+			HashMap map = new HashMap();
+				map.put("type", "hosting");		
+				map.put("id", id);
+				map.put("hostingnum", hostingnum);
+				map.put("additionnum", 2);
+			
+			int r = sdao.delete(map);
+			return r;
+		}
+		// 추가 사진 등록 3
+		@RequestMapping("/upload3")
+		@ResponseBody
+		public String upload3(@RequestParam(name="fileObj") MultipartFile file, HttpSession session) throws Exception {
+			Map map = fdao.execute(file);
+			String id = (String)session.getAttribute("auth");
+			Integer hostingnum = ((Integer)(session.getAttribute("hostingnum"))).intValue();
+				map.put("type", "hosting");
+				map.put("id", id);
+				map.put("hostingnum", hostingnum);
+				map.put("additionnum", 3);
+				
+			int r = sdao.createOne(map);	
+			String picurl = (String)map.get("filelink");
+			return picurl.toString();
+		}
+		// 추가 사진 삭제 3
+		@RequestMapping("/delete3")
+		@ResponseBody
+		public int delete3(HttpSession session){
+			String id = (String)session.getAttribute("auth");
+			Integer hostingnum = ((Integer)(session.getAttribute("hostingnum"))).intValue();
+			HashMap map = new HashMap();
+				map.put("type", "hosting");		
+				map.put("id", id);
+				map.put("hostingnum", hostingnum);
+				map.put("additionnum", 3);
+			
+			int r = sdao.delete(map);
+			return r;
+		}
+		// 추가 사진 등록 4
+		@RequestMapping("/upload4")
+		@ResponseBody
+		public String upload4(@RequestParam(name="fileObj") MultipartFile file, HttpSession session) throws Exception {
+			Map map = fdao.execute(file);
+			String id = (String)session.getAttribute("auth");
+			Integer hostingnum = ((Integer)(session.getAttribute("hostingnum"))).intValue();
+				map.put("type", "hosting");
+				map.put("id", id);
+				map.put("hostingnum", hostingnum);
+				map.put("additionnum", 4);
+				
+			int r = sdao.createOne(map);	
+			String picurl = (String)map.get("filelink");
+			return picurl.toString();
+		}
+		// 추가 사진 삭제 4
+		@RequestMapping("/delete4")
+		@ResponseBody
+		public int delete4(HttpSession session){
+			String id = (String)session.getAttribute("auth");
+			Integer hostingnum = ((Integer)(session.getAttribute("hostingnum"))).intValue();
+			HashMap map = new HashMap();
+				map.put("type", "hosting");		
+				map.put("id", id);
+				map.put("hostingnum", hostingnum);
+				map.put("additionnum", 4);
+			
+			int r = sdao.delete(map);
+			return r;
+		}
+	
+	
 	@RequestMapping("/host03")
 	public ModelAndView host03(@RequestParam Map map, HttpSession session){
-		int hostingnum = hdao.getHostingNum(map);
-		session.setAttribute("hostingnum", hostingnum);
+		System.out.println(map);
 		
 		String hname = (String)session.getAttribute("auth");
 			map.put("hname", hname);
@@ -98,7 +222,8 @@ public class HostingController {
 		Map hostinginfo = map;
 		int n = hdao.addHosting(map);
 		int hostingNumber = hdao.getHostingNum(map);
-		System.out.println("호스팅등록성공하면 1 == " +n);
+		session.setAttribute("hostingnum", new Integer(hostingNumber));
+		
 		if(n == 1){
 			mav.addObject("hostinginfo", hostinginfo);
 			mav.addObject("hostingNumber", hostingNumber);
@@ -111,37 +236,18 @@ public class HostingController {
 		return mav;
 	}
 	@RequestMapping("/host04")
-	public ModelAndView host04(@RequestParam(name="file") MultipartFile file, HttpSession session) throws Exception{
+	public ModelAndView host04(HttpSession session) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		Map map = fdao.execute(file);
-		System.out.println(map);
-		String id = (String)session.getAttribute("auth");
-		System.out.println(id);
-		Integer hostingnum = (Integer)session.getAttribute("hostingnum");
-		System.out.println(hostingnum);
-			map.put("id", id);
-			map.put("type", "hosting");
-			map.put("hostingnum", hostingnum);
-			
-		int r = sdao.createOne(map);
-		
-		if(r == 1){
-			mav.setViewName("m_index3");
-			mav.addObject("main", "hosting/ajax");
-			mav.addObject("msg", "<h2>사진이 추가되었습니다.</h2>");
-		}else{
-			mav.setViewName("m_index3");
-			mav.addObject("main", "hosting/ajax");
-			mav.addObject("msg", "<h2>사진 등록이 실패하였습니다.</h2>");
-		}
 		return mav;
 	}
 	
 	@RequestMapping("/again")
-	public ModelAndView again(){
+	public ModelAndView again(HttpSession session){
+		String picurl = (String)session.getAttribute("picurl");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("main", "hosting/host02");
-		mav.setViewName("m_index3");
+			mav.addObject("main", "hosting/host02");
+			mav.addObject("picurl", picurl);
+			mav.setViewName("m_index3");
 		return mav;
 	}
 }

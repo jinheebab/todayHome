@@ -7,12 +7,11 @@
     <script type='text/javascript'>
      google.charts.load('current', {'packages': ['geochart']});
      google.charts.setOnLoadCallback(drawMarkersMap);
-
       function drawMarkersMap() {
       var data = google.visualization.arrayToDataTable([
         ['도시',   '호스팅개수', '방개수'],
         ['Seoul',      ${map.SeoulHosting},    ${map.SeoulRoomcnt}],
-        ['Suwon',      ${map.SuwonHosting},    ${map.SuwonRoomcnt}],
+        ['Yongin',      ${map.YonginHosting},    ${map.YonginRoomcnt}],
         ['Anyang',      ${map.AnyangHosting},    ${map.AnyangRoomcnt}],
         ['Ansan',      ${map.SeoulHosting},    ${map.AnsanRoomcnt}],
         ['Incheon',      ${map.InchunHosting},    ${map.InchunRoomcnt}],
@@ -20,13 +19,11 @@
         ['Bucheon',      ${map.BuchunHosting},    ${map.BuchunRoomcnt}],
         ['Busan',      ${map.BusanHosting},    ${map.BusanRoomcnt}]
       ]);
-
       var options = {
         region: 'KR',
         displayMode: 'markers',
-        colorAxis: {colors: ['green', 'blue']}
+        colorAxis: {colors: ['pink', 'red']}
       };
-
       var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
       chart.draw(data, options);
     };
