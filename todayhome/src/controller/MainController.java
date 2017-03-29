@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,6 +71,7 @@ public class MainController {
 	@RequestMapping("view/detail")
 	public ModelAndView detailHandler(@RequestParam("num")String num, HttpSession session){
 		String id = (String)session.getAttribute("auth");
+		session.setAttribute("hostingnum", new Integer(num));
 		
 		HashMap map = new HashMap();
 		map.put("num", num);
@@ -79,6 +81,7 @@ public class MainController {
 		
 		double avgstar = md.getScore(map);
 		System.out.println(avgstar);
+		
 		avgstar = avgstar*10;
 		int score = (int)avgstar;
 		
@@ -121,8 +124,47 @@ public class MainController {
 		mav.addObject("reviewcnt", reviewcnt);
 		mav.addObject("reviewerphoto", reviewerphoto);
 		mav.addObject("main", "main/detail");
+		mav.addObject("id", id);
+		
+		return mav;
+	}
+	// 삭제
+	@RequestMapping("view/delete")
+	public ModelAndView hostingDelete(){
+		ModelAndView mav = new ModelAndView();
+			mav = new ModelAndView("m_index2");
+			mav.addObject("main", "/main/delete");
+		return mav;
+	}
+	@RequestMapping("view/delete1")
+	public ModelAndView hostingDeleteAjax(@RequestParam(name="pass") String pass, HttpSession session){
+		String id = (String)session.getAttribute("auth");
+		Integer hostingnum = ((Integer)(session.getAttribute("hostingnum"))).intValue();
 		
 		
+		HashMap map = new HashMap();
+			map.put("hname", id);
+			map.put("num", hostingnum);
+			
+		List li = new ArrayList();
+			li = md.getPass(id);
+		HashMap result = (HashMap)li.get(0);
+		String PASS = (String)result.get("PASS");
+		if(PASS.equals(pass)){
+			int r = hd.delete(map);
+			ModelAndView mav = new ModelAndView();
+				if(r == 0){
+						mav = new ModelAndView("/main/delete1");
+						mav.addObject("msg", "호스팅 삭제가 실패하였습니다.");
+				}else{
+						mav = new ModelAndView("/main/delete1");
+						mav.addObject("msg", "호스팅 삭제가 성공하였습니다.");
+				}
+			return mav;
+		}
+		
+		ModelAndView mav = new ModelAndView();
+			mav = new ModelAndView("/main/delete1");
 		return mav;
 	}
 	

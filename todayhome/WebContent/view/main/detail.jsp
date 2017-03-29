@@ -145,10 +145,13 @@
       
    
       <div class="col-md-4 font1" align="center">
-      <div class="profile">
-      <img src="${uphoto.FILELINK}" width="70px"  >
-      </div>
-         <a href="/view/message/send?id=${i.HNAME}">${i.HNAME}</a> 
+	      <div class="profile">
+	      <img src="${uphoto.FILELINK}" width="70px"  >
+	      </div>
+      		<a href="/view/message/send?id=${i.HNAME}">${i.HNAME}</a><br/>
+	      <c:if test="${i.HNAME eq id}"> 
+	      	<a href="/view/delete" >호스팅 삭제하기</a>
+	      </c:if>
       </div>
       </div>
 

@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -85,11 +86,19 @@ public class MessageController {
 
 	
 	@RequestMapping("/send")
-	public ModelAndView send(@RequestParam Map map, HttpSession session, HttpServletRequest req) {
+	public ModelAndView send(@RequestParam HashMap map, HttpSession session, HttpServletRequest req) {
 		String addr = req.getRemoteAddr();
 		ModelAndView mav = new ModelAndView();
-		
 		String send = (String) session.getAttribute("auth");
+		System.out.println("send의 map : "+map);
+		
+		if(map.get("receiver").toString().length() >1){
+			mav.addObject("receiver", map.get("receiver"));
+			System.out.println("리시버가 존재함");
+		}else{
+			mav.addObject("receiver", "RECEIVER");
+			System.out.println("리시버가 없어요");
+		}
 		
 		mav.setViewName("m_index2");
 		mav.addObject("main", "message/send");
@@ -114,12 +123,32 @@ public class MessageController {
 		
 		if(r==1){
 			mav.setViewName("m_index2");
-			redirect = "redirect:sendresult.jsp";
+			redirect = "redirect:sendlist?page=1";
 		} else {
 			mav.setViewName("m_index2");
 			redirect = "redirect:send";
 		}
 		return redirect ;
+	}
+	
+	@RequestMapping("/search")
+	@ResponseBody
+	public List search(@RequestParam("id")String id){
+		List list = new ArrayList();
+		List result = new ArrayList();
+		list = mdao.getRecvAll();
+		Iterator it = list.iterator();
+		
+		while(it.hasNext()){
+			HashMap map = (HashMap)it.next();
+			String getId = (String) map.get("ID");
+			if(getId.contains(id) && result.size() <= 10){
+				result.add(getId);
+			}
+		}
+		
+		return result;
+		
 	}
 }		
 		

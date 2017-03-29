@@ -64,4 +64,8 @@
 		select count(*) from hosting where title=#{title} 
 	</select>
 	
+	<delete id="delete" parameterType="java.util.HashMap">
+		delete from hosting where hname=#{hname} and num=#{num}
+	</delete>
+	
 </mapper>
