@@ -56,7 +56,7 @@ tr:nth-child(even) {
 			class="btn btn-primary btn-block"
 			onClick="location.href='/view/message/send'">작 성</button>
 	</div>		
-	<br/>		
+	<br/>
 				
 	<ul class="nav nav-tabs"></ul>
 	
