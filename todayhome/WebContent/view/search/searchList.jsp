@@ -30,7 +30,7 @@
          <c:if test="${page ne 1 }">
             <a href="/search/search?page=${page -1 }&target=${searchK.target}&sdate=${searchK.sdate}&edate=${searchK.edate}&cnt=${searchK.cnt}">이전</a>
          </c:if>
-         <c:forEach var="p" begin="${pageStart}" end="${pageEnd}" varStatus="vs">
+         <c:forEach var="p" begin="${pageStart}" end="${size}" varStatus="vs">
             <c:choose>
                <c:when test="${p eq page }">
                   <b>${p }</b>
@@ -41,12 +41,12 @@
                </c:otherwise>
             </c:choose>
             <c:if test="${vs.last eq false }">|</c:if>
-         <c:if test="${vs.last eq true}">
+         </c:forEach>
+         <c:if test="${page ne size}">
             <a href="/search/search?page=${page +1 }&target=${searchK.target}&sdate=${searchK.sdate}&edate=${searchK.edate}&cnt=${searchK.cnt}">다음</a>
          </c:if>
          
          
-         </c:forEach>
       </div>
    </div>
    <div class="col-md-6" style="background-color: white;">
