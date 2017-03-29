@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -128,6 +129,26 @@ public class MessageController {
 			redirect = "redirect:send";
 		}
 		return redirect ;
+	}
+	
+	@RequestMapping("/search")
+	@ResponseBody
+	public List search(@RequestParam("id")String id){
+		List list = new ArrayList();
+		List result = new ArrayList();
+		list = mdao.getRecvAll();
+		Iterator it = list.iterator();
+		
+		while(it.hasNext()){
+			HashMap map = (HashMap)it.next();
+			String getId = (String) map.get("ID");
+			if(getId.contains(id) && result.size() <= 10){
+				result.add(getId);
+			}
+		}
+		
+		return result;
+		
 	}
 }		
 		
