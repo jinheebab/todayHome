@@ -124,12 +124,13 @@ public class MainDao {
 	}
 	
 	public boolean addReview(HashMap map){
+		System.out.println("리뷰의 맵은 "+map);
 		SqlSession session = factory.openSession();
 		boolean rst = false;
 		try{
-			System.out.println("등록성공");
 			int r= session.insert("review.addReview", map);
 			if(r==1){
+				System.out.println("등록성공");
 				rst = true;
 			}
 		}catch(Exception e){
