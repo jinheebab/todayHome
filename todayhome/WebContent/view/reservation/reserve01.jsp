@@ -72,7 +72,7 @@
 }
 .reserve{
 	font-weight: bold;
-	font-family: MS Sans Serif;
+	font-family: 나눔고딕;
 	font-size: 1.2em;
 	line-height: 1.5em;
 	padding-bottom: 5%;
@@ -85,6 +85,7 @@
 	font-size: 1em;
 	line-height: 1.7em;
 	padding: 5%;
+	font-family: 나눔고딕;
 
 }
 .frame{
@@ -93,6 +94,17 @@
 	margin-right:0;
 	overflow: hidden;
 	
+}
+.button{
+	background-color: white;
+	border-style: solid;
+	border-radius: 10px;
+	border-width: 2px;
+	border-color: 2F97F2;
+	padding: 0.5% 2%;
+	font-weight: bold;
+	font-family: 나눔고딕;
+
 }
 </style>
 
@@ -149,7 +161,7 @@
 
 
 <div class="row" align="center" style="margin-top: 5%; margin-bottom: 5%;">
-<button id="pay" type="submit" class="btn btn-primary">결제하기</button>
+<button id="pay" type="submit" class="button">결제하기</button>
 </div>
 </form>
 
@@ -290,6 +302,25 @@ console.log(disabledate);
 		}		
 		
 	});
+	
+	
+	function allCompare( ) {
+		var f1 = document.getElementById("sdate").value;
+		var f2 = document.getElementById("edate").value;
+		var f3 = document.getElementById("people").value;
+		var f4 = document.getElementById("intro").value;
+		
+		console.log(f1);
+		console.log(f2);
+		console.log(f3);
+		console.log(f4);
+		
+		if(f1=="" || f2==""  || f3==""  || f4=="" ){
+			$("#pay").attr("disabled", true);
+		}else{
+			$("#pay").attr("disabled", false);
+		}
+	}
 	
 
 </script>
