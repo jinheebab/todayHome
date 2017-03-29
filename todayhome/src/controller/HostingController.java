@@ -113,7 +113,7 @@ public class HostingController {
 			map.put("id", id);
 			map.put("hostingnum", hostingnum);
 			map.put("additionnum", 1);
-			
+		
 		int r = sdao.delete(map);
 		return r;
 	}

@@ -141,17 +141,14 @@
          </div>
       </div>
       </div>
-      
-      
-   
-      <div class="col-md-4 font1" align="center">
-      <div class="profile">
-      <img src="${uphoto.FILELINK}" width="70px"  >
+      	<div class="col-md-4 font1" align="center">
+	      	<div class="profile">
+	      		<img src="${uphoto.FILELINK}" width="70px"  >
+			</div>
+				<a href="/view/message/send?id=${i.HNAME}">${i.HNAME}</a><br/>
+			</div>
       </div>
-         <a href="/view/message/send?id=${i.HNAME}">${i.HNAME}</a> 
-      </div>
-      </div>
-
+	
       <hr class="line" />
       <div class="row" align="center">
          <div class="col-md-3">
