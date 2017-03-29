@@ -20,6 +20,12 @@
 		select country, count(*) as people from member group by country
 	</select>
 	
+	<select id="topten" resultType="java.util.HashMap">
+	<![CDATA[
+		select * from hosting where num in (select hostingnum from (select hostingnum, avg(grade) as score from review group by hostingnum order by score desc)) and rownum <= 10
+		]]>
+	</select>
+	
 	
 	
 

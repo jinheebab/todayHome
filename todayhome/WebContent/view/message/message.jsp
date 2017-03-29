@@ -22,27 +22,57 @@
 .content{
 	margin-top: 0;
 	margin-bottom: 2%;
-/* 	border-style: solid;
- 	border-width: 2px;
-	border-color: grey;  */
 	padding: 2%;
 	padding-bottom: 0.5%;
 	font-size: 1.1em;
 	background-color: E3F7FC;
 }
+.title{
+	font-family: 나눔고딕;
+	font-size: 2em;
+	padding-bottom: 3%;
+	padding-left: 0;
+	margin-left: -15;
+
+}
+.pad{
+
+	padding: 5%;
+	
+}
+.navbtn{
+	background-color: 2F97F2;
+	border-style: solid;
+	border-color: 2F97F2;
+	border-width: thin;
+	font-weight: bold;
+	color: white;
+}
+.selectbtn{
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-style: solid;
+	border-color: 2F97F2;
+	border-width: thin;
+	font-weight: bold;
+	color: black;
+
+}
 
 
 </style>
-	<h3>수신함</h3>
-	<ul class="nav nav-tabs">
-		<li><a href="/view/message?page=1">받은 메시지</a></li>
-		<li><a href="/view/message/sendlist?page=1">보낸 메시지</a></li>
-		<li><a href="/view/message/send">작성</a></li>
+<div class="pad">
+	<div class="title">받은 메시지</div>
+	<ul class="nav nav-tabs" style="margin-left:-15; margin-right: -15; border-bottom-style: solid; border-bottom-width:3px; ">
+		<li class="selectbtn"><a href="/view/message?page=1" style="color:black;">받은 메시지</a></li>
+		<li class="navbtn"><a href="/view/message/sendlist?page=1" style="color: white;">보낸 메시지</a></li>
+		<li class="navbtn"><a href="/view/message/send?receiver=" style="color: white;">작성</a></li>
 	</ul>
 		<c:forEach var="i" items="${list}" begin="${page*5-5}" end="${page*5-1}">
 	<div class="row">
 			<div class="sender">
-				<span style="font-size: 0.8em;">From.</span> ${i.SENDER}
+				<span style="font-size: 0.8em;">From.</span> 
+				<a href="/view/message/send?receiver=${i.SENDER}"title="${i.SENDER}에게 메시지 보내기" style="color: black" >${i.SENDER}</a>
 			</div>
 			<div class="content">
 				${i.CONTENT}
@@ -74,4 +104,5 @@
 		<c:if test="${page ne size and size gt 1}">
 			<a href="/view/message?page=${page +1 }">다음</a>
 		</c:if>	
+</div>
 </div>

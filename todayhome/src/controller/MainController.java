@@ -175,7 +175,7 @@ public class MainController {
 			HttpSession session){
 			HashMap map = new HashMap (); 
 			map.put("writer", session.getAttribute("auth"));
-			map.put("msg", msg);
+			map.put("content", msg);
 			map.put("grade", grade);
 			map.put("hostingnum", num);
 			

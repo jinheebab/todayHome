@@ -91,22 +91,6 @@ public class MessageDao {
 		return sMsgnumber;
 	}	
 	
-	// ========================================================================
-	
-	
-/*	// 발신리스트 '페이징'
-	public List<HashMap> getSendMessagePage(HashMap map){
-		List<HashMap> list = new ArrayList<>();
-		SqlSession sql = factory.openSession();
-		try {
-			list = sql.selectList("message.spaging", map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			sql.close();
-		}
-		return list;
-	}*/
 
 	// 메시지 보내기
 	public int send(Map map) {

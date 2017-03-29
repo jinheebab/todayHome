@@ -11,14 +11,13 @@
       var data = google.visualization.arrayToDataTable([
         ['도시',   '호스팅개수', '방개수'],
         ['Seoul',      ${map.SeoulHosting},    ${map.SeoulRoomcnt}],
-        ['Yongin',      ${map.YonginHosting},    ${map.YonginRoomcnt}],
-        ['Anyang',      ${map.AnyangHosting},    ${map.AnyangRoomcnt}],
-        ['Ansan',      ${map.SeoulHosting},    ${map.AnsanRoomcnt}],
+        ['Gangnam',      ${map.GangnamHosting},    ${map.GangnamRoomcnt}],
+        ['Daejeon',      ${map.DaejeonHosting},    ${map.DaejeonRoomcnt}],
+        ['Daegu',      ${map.DaeguHosting},    ${map.DaeguRoomcnt}],
         ['Incheon',      ${map.InchunHosting},    ${map.InchunRoomcnt}],
         ['Jeju',      ${map.JejuHosting},    ${map.JejuRoomcnt}],
-        ['Bucheon',      ${map.BuchunHosting},    ${map.BuchunRoomcnt}],
         ['Busan',      ${map.BusanHosting},    ${map.BusanRoomcnt}]
-      ]);
+        ]);
       var options = {
         region: 'KR',
         displayMode: 'markers',
