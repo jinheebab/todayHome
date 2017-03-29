@@ -13,22 +13,22 @@
 				<td>
 	                <label for="checkin">위치</label>
 	                <span class="glyphicon glyphicon-map-marker"></span><br/>
-	                <input type="text" id="target" name="target" size="20%" placeholder="목적지, 도시명, 주소" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
+	                <input type="text" id="target" name="target" size="20%" placeholder="목적지, 도시명, 주소" class="form-control" style="width:80%; height:80%; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
 				</td>
 				<td>
 	               <label for="checkin">체크인</label>
 	                <span class="glyphicon glyphicon-calendar"></span><br/>
-	                <input type="text" id="testDatepicker" name="sdate" size="20%" placeholder="체크인 날짜를 입력하세요" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
+	                <input type="text" id="testDatepicker" name="sdate" size="20%" placeholder="체크인 날짜를 입력하세요" class="form-control" style="width:80%; height:80%; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
 				</td>
 				<td>
 	                <label for="checkin">체크아웃</label>
 	                <span class="glyphicon glyphicon-calendar"></span><br/>
-	                <input type="text" id="testDatepicker2" name="edate" size="22%" placeholder="체크아웃 날짜를 입력하세요" style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
+	                <input type="text" id="testDatepicker2" name="edate" size="22%" placeholder="체크아웃 날짜를 입력하세요" class="form-control" style="width:80%; height:80%; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" />
 				</td>
 				<td>
 					<label for="cnt">인원</label> 
 					<span class="glyphicon glyphicon-user"></span><br /> 
-					<select class="form-control" name="cnt" id="cnt" style="border: none; border-right: 0px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;">
+					<select class="form-control" name="cnt" id="cnt" class="form-control" style="width:80%; height:80%; border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;" >
 						<option value="0">인원을 선택하세요</option>
 							<c:forEach var="item" begin="1" end="20" varStatus="vs">
 								<option value="${item}">${item }명</option>

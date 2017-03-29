@@ -34,17 +34,11 @@ public class SearchController {
 	public ModelAndView search(@RequestParam HashMap map, HttpSession session, HttpServletRequest req,@RequestParam(name="page",defaultValue="1") int page) throws Exception{
 		//페이징처리
 		
-		
-		
 		int pageStart = page % 10 == 1 ? page : page/11 * 10+1;
-		
 		int pageEnd = pageStart + 9;
-		
-		
 		
 		int start = (page -1 ) *6 +1; 
 		int end = start + 5;
-		
 			map.put("start", start);
 			map.put("end", end);;
 		
@@ -66,7 +60,7 @@ public class SearchController {
 				String ad = (String)addr.get(i);
 				ad=ad.replaceAll("\\s", "");
 				String target = "https://maps.googleapis.com/maps/api/geocode/json?address=" + ad
-						+ "&key=AIzaSyDyG2sAlWBcLndbIHx5Te2BF2DPKgmzcGA&language=ko";
+						+ "&key=AIzaSyAlKtilIxIb3u52hJegDeUbqmkY1qFJJ6Y&language=ko";
 				
 				URL url = new URL(target);
 				BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -86,8 +80,6 @@ public class SearchController {
 				
 				loc.add(result);
 			}
-			System.out.println(loc);
-			System.out.println("jjjjjjjjjjjjjj"+loc.get(0));
 			
 		}catch(Exception e){
 			e.printStackTrace();
