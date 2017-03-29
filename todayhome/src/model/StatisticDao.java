@@ -75,5 +75,20 @@ public List country_people() {
 	}
 	return list;
 }
+
+
+public List topten() {	
+	
+	List list = new ArrayList<>();
+	SqlSession sql = factory.openSession();
+	try {
+		list = sql.selectList("statistic.topten");
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		sql.close();
+	}
+	return list;
+}
 	
 }
