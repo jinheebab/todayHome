@@ -69,9 +69,12 @@ public class MainController {
 	
 	
 	@RequestMapping("view/detail")
-	public ModelAndView detailHandler(@RequestParam("num")String num, HttpSession session){
+	public ModelAndView detailHandler(@RequestParam("num")int num, HttpSession session){
 		String id = (String)session.getAttribute("auth");
-		session.setAttribute("hostingnum", new Integer(num));
+		
+		System.out.println("넘어온 호스팅 넘버는 ? " + num);
+		
+		session.setAttribute("hostingnum",num);
 		
 		HashMap map = new HashMap();
 		map.put("num", num);
