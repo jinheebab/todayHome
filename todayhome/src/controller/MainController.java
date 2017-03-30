@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import model.HostingDao;
 import model.MainDao;
+import model.MongoDao;
 import service.reviewSetting;
 
 @Controller
@@ -30,6 +30,8 @@ public class MainController {
 	MainDao md;
 	@Autowired
 	reviewSetting rs;
+	@Autowired
+	MongoDao mongd;
 
 	@RequestMapping("/view/")
 	public ModelAndView main(HttpServletRequest request, HttpSession session) {
@@ -112,6 +114,9 @@ public class MainController {
 		
 		ModelAndView mav = new ModelAndView();
 		
+		List top = mongd.Toplist();
+
+		
 		if(session.getAttribute("auth")!=null){
 		mav.setViewName("m_detail");
 		System.out.println("멤버임");
@@ -120,6 +125,7 @@ public class MainController {
 			System.out.println("멤버아님");	
 		}
 		mav.addObject("list", list);
+		mav.addObject("top", top);
 		mav.addObject("score", score);
 		mav.addObject("uphoto", uphoto);
 		mav.addObject("hphoto", hphoto);
