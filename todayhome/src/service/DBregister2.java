@@ -48,20 +48,19 @@ public class DBregister2 {
 
 	public int hosting() {
 
-		for (int a = 0; a < 100000; a++) {
+		for (int a = 0; a < 50000; a++) {
 			
 			Map map = new HashMap<>();
 
 			//////////////////////////////////////TITLE//////////////////////////////////////////////////////////////////////////////////////////////
 			String title ="";
 			
-			String[] titles;
 			
 			List titles2 = new ArrayList<>();
 			
 				try {
 				
-				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/hashtag.txt")));
+				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/title.txt")));
 				String line;
 				
 				while ((line = br.readLine()) != null) {
@@ -77,9 +76,9 @@ public class DBregister2 {
 				
 				int n = (int)(Math.random()*titles2.size());
 				
-				int n2 = (int)(Math.random()*titles2.size());
 				
-				title = (String) titles2.get(n) + "은 " + (String) titles2.get(n2) +" 입니다";
+				
+				title = (String) titles2.get(n);
 				
 				
 				
@@ -111,7 +110,7 @@ public class DBregister2 {
 			String location="";
 			
 			
-			/*
+			
 			String[] address2;
 			
 			List addressList = new ArrayList<>();
@@ -146,8 +145,7 @@ public class DBregister2 {
 				System.out.println("풀주소 : " + address + "/ 도시 : " + city + "/ 하위주소 : " + location);
 				
 				
-			*/
-			String[] address2 = {};
+			
 			
 			
 			
@@ -422,7 +420,7 @@ public class DBregister2 {
 
 	public int book() {
 
-		for (int a = 0; a < 100000; a++) {
+		for (int a = 0; a < 1000; a++) {
 
 			Map map = new HashMap<>();
 
@@ -653,7 +651,7 @@ public class DBregister2 {
 
 	public int review() {
 
-		for (int a = 0; a < 100000; a++) {
+		for (int a = 0; a < 60000; a++) {
 
 			
 			
@@ -746,4 +744,7 @@ public class DBregister2 {
 		return 1;
 
 	}
+	
+	
+	
 }

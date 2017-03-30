@@ -57,4 +57,5 @@ public class RegisterController {
 		mav.setViewName("g_index2");
 		return mav;
 	}
+	
 }

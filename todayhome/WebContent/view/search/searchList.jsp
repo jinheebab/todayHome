@@ -30,7 +30,7 @@
          <c:if test="${page ne 1 }">
             <a href="/search/search?page=${page -1 }&target=${searchK.target}&sdate=${searchK.sdate}&edate=${searchK.edate}&cnt=${searchK.cnt}">이전</a>
          </c:if>
-         <c:forEach var="p" begin="${pageStart}" end="${size}" varStatus="vs">
+         <c:forEach var="p" begin="${pageStart}" end="${pageEnd}" step="1" varStatus="vs">
             <c:choose>
                <c:when test="${p eq page }">
                   <b>${p }</b>
