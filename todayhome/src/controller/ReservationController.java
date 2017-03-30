@@ -68,11 +68,17 @@ public class ReservationController {
 		
 		List reservelist = bdao.getReserveDate(num);
 		
+		System.out.println("예약날짜리스트 ? " + reservelist.toString());
+		
 		
 		List reserve = new ArrayList<>();
 		
 		
 			Iterator<Map> it = reservelist.iterator();
+			
+			///////////////////////////////////////
+			
+			if(reservelist.size() > 0){
 			
 			while(it.hasNext()){
 				Map map = it.next();
@@ -106,6 +112,10 @@ public class ReservationController {
 				}
 				System.out.println("최종 예약리스트는 ? " + reserve.toString());
 			}
+			
+			}
+			/////////////////////////////////////////////
+			
 			
 		mav.addObject("reserve", new ObjectMapper().writeValueAsString(reserve));
 		mav.addObject("hostinglist", hostinglist);

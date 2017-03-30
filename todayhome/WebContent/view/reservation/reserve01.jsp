@@ -47,15 +47,12 @@
 	margin-left: 10%; 
 	padding-top: 5%;
 	padding-bottom: 5%;
-
 }
-
 .box{
 	background-color: F2F2F2;
 	padding: 0;
 	
 	
-
 }
 .pricebox{
 	background-color: black;
@@ -86,7 +83,6 @@
 	line-height: 1.7em;
 	padding: 5%;
 	font-family: 나눔고딕;
-
 }
 .frame{
 	padding: 0;
@@ -104,7 +100,6 @@
 	padding: 0.5% 2%;
 	font-weight: bold;
 	font-family: 나눔고딕;
-
 }
 </style>
 
@@ -115,7 +110,7 @@
 <span class="font2">예약하기</span><br/>
 <hr/>
 
-<form action="/reservation/reserve02">
+<form action="/reservation/reserve02" class="form-horizontal" id="notEmptyForm">
 <input type="hidden" readonly="readonly" id="hostingnum" name="hostingnum" value="${hostingnum}">
  <input type="hidden" readonly="readonly" id="totalmoney" name="totalmoney" placeholder="총결제금액">
  
@@ -153,18 +148,18 @@
  <span class="font1">※ 이용수칙 ※</span>
   
   <div style="font-weight: bold; margin-top: 5%;" id="rule" >${hostinglist.RULE}</div><br/>
-  <input type="radio" name="agree" value="agree" >이용수칙에 동의합니다.&nbsp;&nbsp;
-  <input type="radio" name="agree" value="disagree" >이용수칙에 동의하지 않습니다.
-  </div>
+  <input type="radio" id="agree" name="agree" value="agree">이용수칙에 동의합니다.&nbsp;&nbsp;
+  <input type="radio" id="agree" name="agree" value="disagree" checked="checked">이용수칙에 동의하지 않습니다.
 </div>
  
+  </div><font color="red"><span id="agreetext"></span></font>
 
 
 <div class="row" align="center" style="margin-top: 5%; margin-bottom: 5%;">
 <button id="pay" type="submit" class="button">결제하기</button>
 </div>
-</form>
 
+</form>
  </div>
  
  
@@ -186,14 +181,12 @@
 
 
   <script>
-  $("#pay").attr("disabled", true);
-	 setInterval(reserveView,100);
   
-  $(document).ready(function(){
-	  
-	 reserveView(); 
+	 setInterval(reserveView,100);
+	 setInterval(allCompare,100);
 	 
-  });
+	 
+  
   
   function reserveView(){
 	  
@@ -203,8 +196,13 @@
 	var clean = 49999;
 	
 	var service = 29069;
-
 	var reserve_time = date2 - date1;
+	
+	if(reserve_time < 0){
+		
+		reserve_time = 0;
+		
+	}
 	
 	var reserve_time2 = reserve_time/86400000;
 	
@@ -213,7 +211,6 @@
 	var total = reserve_time2 * 50000 + clean + service + people*10000;
 	
 	var intro = $('#intro').val();
-
 	$('#reserveinfo').html(reserve_time2 + "박 = " + 50000*reserve_time2 + "원 <br/>+<br/>청소비 = " + clean + "원<br/>+<br/> 서비스수수료 = " 
 			+ service +"원<br/>+<br/>인원수 " + people + "명 = " + people*10000 + "원 <br/>" + "<hr/>메세지 <br/>" + intro);
 	
@@ -243,11 +240,8 @@
 	
 	
 var disabledate = ${reserve};
-
 console.log(disabledate);
-
 //var disabledate2 = "2017-04-01, 2017-04-02";
-
 	
 	
   
@@ -271,7 +265,6 @@ console.log(disabledate);
   $('#sdate').datepicker("option", "minDate", startdate2[0]);
   $('#sdate').datepicker("option", "maxDate", enddate2[0]);
   
-
    $('#edate').datepicker();
    
    $('#edate').datepicker("option", "minDate", startdate2[0]);
@@ -291,35 +284,37 @@ console.log(disabledate);
 	   	 return [true];
 		}
 	
-	$('input[name="agree"]').change(function(){
-		if($(this).val() == "agree"){
-			console.log("agree");
-		}else if($(this).val() =="disagree"){
-			window.alert("이용수칙에 동의해야 합니다");
-			console.log("disagree");
-		}		
-	});
+	function allCompare(){
+		
+		
+		var f1 = $('#sdate').val();
+		var f2 = $('#edate').val();
+		var f3 = $('#people').val();
+		var f4 = $('#intro').val();
+		var f5 = $(':radio[name="agree"]:checked').val();
 
-	function allCompare( ) {
-		var f1 = document.getElementById("sdate").value;
-		var f2 = document.getElementById("edate").value;
-		var f3 = document.getElementById("people").value;
-		var f4 = document.getElementById("intro").value;
-		
-		console.log(f1);
-		console.log(f2);
-		console.log(f3);
-		console.log(f4);
-		
-		if(f1=="" || f2==""  || f3==""  || f4=="disagree" ){
-			console.log("not allow");
-			$("#pay").attr("disabled", true);
+	
+		if(f5 == 'disagree'){
+			$('#agreetext').html("동의를 하셔야 결제가 가능합니다");
 		}else{
-			console.log("allow");
-			$("#pay").attr("disabled", false);
+			$('#agreetext').html("");
 		}
+		
+		
+		
+		if(f1 == '' || f2 == '' || f3 == '' || f4 == '' || f5 == 'disagree'){
+			
+			$('#pay').attr("disabled", true);
+			
+			
+		}else{
+			
+			$('#pay').attr("disabled", false);
+			
+		}
+		
 	}
 	
-
+	
+	
 </script>
- 
