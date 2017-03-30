@@ -222,6 +222,7 @@ public class ReservationController {
 		
 		List wishlist = hdao.getWishList(param);
 		
+		
 		List hostinglist = hdao.getHostingList(param);
 		
 		mav.addObject("wishlist", wishlist);
@@ -264,7 +265,7 @@ public class ReservationController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("m_index3");
-		mav.addObject("main", "reservation/hostinglist");
+		mav.addObject("main", "reservation/booklist");
 		mav.addObject("list", wishlist);
 		return mav;
 		

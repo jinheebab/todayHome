@@ -84,7 +84,7 @@ public class MainDao {
 	}
 	
 	
-	public String hoster(String num){
+	public String hoster(int num){
 		SqlSession session = factory.openSession();
 			String hoster="";
 		try{

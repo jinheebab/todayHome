@@ -21,7 +21,7 @@
       <tr>
         <th>순위</th>
         <th>호스팅번호</th>
-        <th>호스팅제목</th>
+        <th>호스팅제목</th> 
         <th>호스팅 주소</th>
       </tr>
     </thead>
@@ -32,7 +32,7 @@
       <tr class="success">
       	<td>${vs.count}위</td>
         <td>${x.NUM}</td>
-        <td>${x.TITLE}</td>
+        <td><a href="/view/detail?num=${x.NUM}">${x.TITLE}</a></td>
         <td>${x.ADDRESS}</td>
       </tr>
       

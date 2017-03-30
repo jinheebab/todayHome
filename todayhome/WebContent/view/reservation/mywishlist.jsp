@@ -56,7 +56,7 @@
 <span class="font1">나의 예약 목록</span>
 	  <div class="side">
        <c:if test="${wishlist.size() gt 3 }">
-		<a href="/view/hostinglist?id=${hostinglist[0].HNAME}"><font color="grey">더보기></font></a>
+		<a href="/reservation/booklist?id=${sessionScope.auth}"><font color="grey">더보기></font></a>
 		</c:if>
 		</div>
 	<hr class="line"/>
