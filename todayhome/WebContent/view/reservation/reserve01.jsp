@@ -293,17 +293,13 @@ console.log(disabledate);
 	
 	$('input[name="agree"]').change(function(){
 		if($(this).val() == "agree"){
-			$("#pay").attr("disabled", false);
 			console.log("agree");
 		}else if($(this).val() =="disagree"){
 			window.alert("이용수칙에 동의해야 합니다");
 			console.log("disagree");
-			$("#pay").attr("disabled", true);
 		}		
-		
 	});
-	
-	
+
 	function allCompare( ) {
 		var f1 = document.getElementById("sdate").value;
 		var f2 = document.getElementById("edate").value;
@@ -315,9 +311,11 @@ console.log(disabledate);
 		console.log(f3);
 		console.log(f4);
 		
-		if(f1=="" || f2==""  || f3==""  || f4=="" ){
+		if(f1=="" || f2==""  || f3==""  || f4=="disagree" ){
+			console.log("not allow");
 			$("#pay").attr("disabled", true);
 		}else{
+			console.log("allow");
 			$("#pay").attr("disabled", false);
 		}
 	}
