@@ -32,6 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.BookDao;
 import model.HostingDao;
+import model.MessageDao;
 
 @Controller
 @RequestMapping("/reservation")
@@ -44,6 +45,8 @@ public class ReservationController {
 	BookDao bdao;
 	@Autowired
 	ServletContext ac;
+	@Autowired
+	MessageDao mdao;
 	
 	@RequestMapping("/reserve01")
 	public ModelAndView reserve01(HttpSession session,@RequestParam(name="num")int num) throws JsonProcessingException{
@@ -205,6 +208,38 @@ public class ReservationController {
 		System.out.println(bookinfo.toString());
 		
 		System.out.println("2차 북 등록 여부(1이면 true) : " + r);
+		
+		////////////호스트에게 예약정보 메세지 보내기
+		
+		
+		
+		Map message = new HashMap<>();
+		
+		Map hostinginfo = hdao.readHostingAll(hostingnum);
+		
+		String receiver = (String) hostinginfo.get("HNAME");
+		
+		String content = (String) bookinfo.get("INTRO");
+		
+		message.put("sender", name);
+		
+		message.put("receiver", receiver);
+		
+		message.put("content", content);
+		
+		int rr = mdao.send(message);
+		
+		if(rr == 1){
+			System.out.println("메세지 전송 성공!");
+		}else{
+			System.out.println("메세지 전송 실패!");
+		}
+		
+		
+		
+		///////////////////////////////////////
+		
+		
 		
 		mav.addObject("bookinfo", bookinfo);
 		

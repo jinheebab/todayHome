@@ -442,7 +442,20 @@ html, body {
 
 <script>
 	// 타이틀 확인
+	
+	setInterval(chkValue,100);
+	
+		
 	document.getElementById("title").onkeyup = function() {
+		
+		var title = $('#title').val();
+		
+		
+		if(title == ''){
+			$('#chkResult').html('');
+		}else{
+	
+		
 		var xhr = new XMLHttpRequest();
 		xhr.open("get", "/hosting/titleAjax?title=" + this.value, true);
 		xhr.send();
@@ -459,8 +472,14 @@ html, body {
 					document.getElementById("chkResult").style.color = 'red';
 					flag1 = false;
 				}
-			}
+			
 		};
+		
+		
+	};
+	
+	};
+	
 	};
 
 	$.datepicker.regional['ko'] = {
@@ -547,8 +566,13 @@ html, body {
 				"city" : city
 			},
 			success : function(price) {
-				var total = Number(price);
+				var total = Math.round(Number(price));
+				
+				if(total == 0){
+					$('#findPrice').html("조회된 가격이 없습니다");
+				}else{
 				$('#findPrice').html(total + "원");
+				}
 			}
 		});
 	};
@@ -566,7 +590,7 @@ html, body {
 	// div에 카테 버튼넣기
 	function addCate() {
 		var inputCategory = $('#inputCate').val();
-		$('#inputCategory').val('');
+		$('#inputCate').val('');
 		var category = '<button class="btns" style="background-color:white; height:8%; width:15%" disabled>'
 				+ '#' + inputCategory + '</button>';
 		$('#cate').append(category);
@@ -580,8 +604,8 @@ html, body {
 			.click(
 					function() {
 						var inputCategory = $('#inputCate').val();
-						$('#inputCategory').val('');
-						var category = '<button class="btns" style="background-color:white; height:8%; width:15%" disabled>'
+						$('#inputCate').val('');
+						var category = '<button class="btns" type="button" style="background-color:white; height:8%; width:15%" disabled>'
 								+ '#' + inputCategory + '</button>';
 						$('#cate').append(category);
 
@@ -591,6 +615,8 @@ html, body {
 						$('#category').val(category1);
 					});
 
+		
+	
 	// 카테고리 삭제 	    
 	$('#minus').click(function() {
 		$("#category").val('');
@@ -608,7 +634,7 @@ html, body {
 	function chkValue() {
 		var inputObjs = $(".allInput");
 		inputObjs.each(function(index) {
-			if ($(this).val() != '') {
+			if ($(this).val() != '' && $('#title').val() != '') {
 				$("#register").prop("disabled", false);
 			}
 		});
@@ -633,7 +659,7 @@ html, body {
 				$('#picurl').val(result);
 			}
 		});
-	}
+	};
 </script>
 
 
