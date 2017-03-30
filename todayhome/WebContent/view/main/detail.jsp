@@ -381,6 +381,22 @@ font-size: 1.3em; font-weight: bold; padding-top: 2%; padding-bottom: 2%;"><font
 </form>
 
 </div>
+<c:forEach items="${top}" var="tt">
+<c:if test="${tt.num eq list[0].NUM}">
+<div class="row" style="padding:2%; font-size: 1.2em; font-weight: bold; margin:0; margin-top: 4%;  ">
+<div class="col-md-2" align="center">
+<img src="/icon/light.png" width="40px">
+</div>
+<div class="col-md-10">
+흔치 않은 기회입니다.<br/>
+${list[0].HNAME}님의 숙소는 보통 예약이 가득 차있습니다.
+</div>
+</div>
+
+</c:if>
+
+</c:forEach>
+
 </div>
 </div>
 
