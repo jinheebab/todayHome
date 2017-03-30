@@ -1,17 +1,27 @@
-package MongoDB;
+package controller;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-@Service
-public class MongoInsert {
+@Controller
+public class MongoControllerSH {
 	@Autowired
 	MongoTemplate mt;
 	
 	// 검색결과 인서트
+	@RequestMapping("/mongo/search")
 	public void searchInsert(){
 			String[] targetArray={"서울","서울","서울","서울","서울","서울","서울","서울","서울","서울","서울","서울","서울","서울","서울","서울","서울","서울",
 								"부산","부산","부산","부산","부산","부산","부산","부산","부산","부산","부산","부산",
@@ -79,18 +89,56 @@ public class MongoInsert {
 									"70대","70대","70대","70대","70대",
 									"80대 이상","80대 이상","80대 이상"};
 			
-			String target = "";
-			System.out.println(targetArray.length);
-			System.out.println(startMonthArray.length);
-			System.out.println(endMonthArray.length);
-			System.out.println(peopleCntArray.length);
-			System.out.println(ageGroupArray.length);
+			System.out.println("targetArray : "+targetArray.length);
+			System.out.println("startMonthArray : "+startMonthArray.length);
+			System.out.println("endMonthArray : "+endMonthArray.length);
+			System.out.println("peopleCntArray : "+peopleCntArray.length);
+			System.out.println("ageGroupArray : "+ageGroupArray.length);
 			
-			/*for(int i = 0; i<=100000; i++){
+			
+			for(int i = 0; i<=150000; i++){
+				// 목적지 
+				int a = (int)(Math.random()*351);
+				String target = targetArray[a];
+				// 체크인 달
+				int b = (int)(Math.random()*12);
+				String startMonth = startMonthArray[b];
+				// 체크아웃 달
+				int c = (int)(Math.random()*12);
+				String endMonth = endMonthArray[c];
+				// 인원
+				int d = (int)(Math.random()*144);
+				String peopleCnt = peopleCntArray[d];
+				// 연령대
+				int e = (int)(Math.random()*88);
+				String ageGroup = ageGroupArray[e];
+				// 삽입
 				HashMap map = new HashMap();
-				int a = (int)(Math.random()*);
-			}*/
-			
+					map.put("target", target);
+					map.put("startMonth", startMonth);
+					map.put("endMonth", endMonth);
+					map.put("peopleCnt", peopleCnt);
+					map.put("ageGroup", ageGroup);
+					
+				System.out.println(map);
+				mt.insert(map, "search");
+			}
 	}
+	// 검색결과 서치
+	@RequestMapping("/mongo/searchfind")
+	public void searchFind(){
 
+		// 지역 cnt
+		AggregationOperation a1 = Aggregation.group("target").count().as("cnt");
+		AggregationOperation a2 = Aggregation.sort(Sort.Direction.DESC, "cnt");
+		Aggregation aggr = Aggregation.newAggregation(a1, a2);
+		AggregationResults<Map> results = mt.aggregate(aggr, "search", Map.class);
+		List<Map> list = results.getMappedResults();
+		
+		System.out.println(list);
+		
+		
+		
+		
+	}
 }
