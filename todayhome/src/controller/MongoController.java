@@ -32,11 +32,9 @@ public class MongoController {
 		id = msd.getRecvAll();
 		
 		for(int i=0; i<150000; i++){
-		HashMap map = new HashMap();
-			
+			HashMap map = new HashMap();
 			
 			//hosting num 추출
-
 			int ran = (int)(Math.random()*list.size());
 			HashMap nm = (HashMap)list.get(ran);
 			
