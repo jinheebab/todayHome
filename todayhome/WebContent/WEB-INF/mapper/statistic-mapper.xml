@@ -26,6 +26,10 @@
 		]]>
 	</select>
 	
+	<select id="getCategory" resultType="java.util.HashMap">
+		select category from hosting
+	</select>
+	
 	
 	
 

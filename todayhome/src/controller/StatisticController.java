@@ -24,6 +24,7 @@ public class StatisticController {
 	@Autowired
 	StatisticDao sdao;
 	
+	
 	@RequestMapping("/statistic01")
 	public ModelAndView statistic01(){
 		
@@ -198,6 +199,41 @@ public class StatisticController {
 	
 		return mav;
 	
+}
+	
+	
+	
+	@RequestMapping("/graph04")
+	public ModelAndView graph04(){
+		
+		ModelAndView mav = new ModelAndView();
+		
+		List list = sdao.getCategory();
+		
+		String category = "";
+		
+		for(int i=0; i<list.size(); i++){
+			
+			Map map = new HashMap<>();
+			
+			map = (Map) list.get(i);
+			
+			category += map.get("CATEGORY");
+		}
+		
+		String category2 = category.replaceAll("#", " ");
+		
+		mav.addObject("category2", category2);
+		mav.addObject("main","/statistic/graph04");
+		mav.setViewName("m_index3");
+		
+		
+		return mav;
+		
+		
+		
+			
+
 }
 	
 }

@@ -90,5 +90,19 @@ public List topten() {
 	}
 	return list;
 }
+
+public List getCategory() {	
+	
+	List list = new ArrayList<>();
+	SqlSession sql = factory.openSession();
+	try {
+		list = sql.selectList("statistic.getCategory");
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		sql.close();
+	}
+	return list;
+}
 	
 }

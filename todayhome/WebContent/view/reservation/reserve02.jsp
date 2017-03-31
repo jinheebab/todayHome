@@ -24,7 +24,8 @@
 	
 </h2>
 	<form action="/reservation/reserve03" id="form" class="cmxform">
-	호스팅번호<input type="text" readonly="readonly" name="hostingnum" value="${hostingnum}">
+	<font color="blue">호스팅번호</font><input type="text" readonly="readonly" name="hostingnum" value="${hostingnum}"><br/>
+	<font color="blue">결제사이름</font><input type="text" readonly="readonly" id="company"  name="company">
 	
 	
 <h2 align="left">결제국가</h2>
@@ -46,7 +47,7 @@
 		
 		<p>
 				<b>카드사</b><br/>
-				<select class="form-control" name="company"  id="company">
+				<select class="form-control" id="creditcard">
 					<option value="신한카드">신한카드</option>
 					<option value="비씨카드">비씨카드</option>
 					<option value="현대카드">현대카드</option>
@@ -106,13 +107,13 @@
 	<h2>통신사 선택</h2>
 	<div class="btn-group" data-toggle="buttons">
 	  <label class="btn btn-primary active">
-	    <input type="radio" name="company" value="KT" autocomplete="off" checked> KT
+	    <input type="radio" name="phonecompany" value="KT" autocomplete="off" checked> KT
 	  </label>
 	  <label class="btn btn-primary">
-	    <input type="radio" name="company" value="SKT" autocomplete="off"> SKT
+	    <input type="radio" name="phonecompany" value="SKT" autocomplete="off"> SKT
 	  </label>
 	  <label class="btn btn-primary">
-	    <input type="radio" name="company" value="LGT" autocomplete="off"> LGT
+	    <input type="radio" name="phonecompany" value="LGT" autocomplete="off"> LGT
 	  </label>
 	  
 	  <div><input type="text" name="phonenumber" id="phonenumber" placeholder="휴대폰번호를 입력해주세요" maxlength="11">
@@ -170,7 +171,7 @@
 <div id="noaccount" style="display: none;">
 <div><input type="text" name="accountnumber" id="accountnumber" placeholder="통장번호를 입력해주세요" maxlength="15"></div>
 
-<input type="text" name="company" id="company" value="무통장" readonly="readonly">
+<input type="text" name="noaccount" id="noaccount" value="무통장" readonly="readonly">
 
 카드비밀번호<input type="password" placeholder="XXXX" maxlength="4"/>
 
@@ -183,6 +184,36 @@
 
 </form>
 <script>
+
+setInterval(company,200);
+
+	function company(){
+		
+		var payinfo = $('#payinfo').val();
+		
+		if(payinfo == 'card'){
+			
+			var company = $('#creditcard').val();
+			
+			$('#company').val(company);
+			
+		}else if(payinfo == 'phone'){
+			
+			var company = $("input[type=radio][name=phonecompany]:checked").val();
+			
+			$('#company').val(company);
+			
+		}else{
+			
+			var company = $('#payinfo').val();
+			
+			$('#company').val(company);
+			
+		}
+		
+	}
+
+
 	function changeview() {
 		
 	if($('#payinfo').val() == 'card'){
