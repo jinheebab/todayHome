@@ -3,6 +3,7 @@ package service;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -691,44 +692,62 @@ public class DBregister2 {
 
 			int filesize = (int) (Math.random() * 999999 + 1);
 
-			String[] fileaddressSample = { "http://cfile27.uf.tistory.com/image/19577E4B50AA17C8138ECB",
-					"http://ph.sisain.co.kr/news/photo/201509/24394_47673_4622.jpg",
-					"http://si.wsj.net/public/resources/images/OB-XS830_hodctm_H_20130605161334.jpg",
-					"https://www.google.co.kr/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwj8vNmE7_PSAhXMVrwKHUhVD8wQjRwIBw&url=http%3A%2F%2Fwww.thebloger.kr%2Fgo%2F16433&psig=AFQjCNH8BRjuvvY7UddLSmpEE_YqV4ogLw&ust=1490607294311070",
-					"http://cfs10.blog.daum.net/image/33/blog/2007/11/12/13/10/4737d2280b26d&filename=%EC%95%84%EB%A6%84%EB%8B%A4%EC%9A%B4%EC%A7%912.jpg",
-					"http://www.besthm.com/files/attach/images/100/1029/hr1774814-1.jpg",
-					"http://cfs11.blog.daum.net/image/28/blog/2008/11/25/15/17/492b987739e9a&filename=3%EC%9C%84%EB%A5%BC%EC%B0%A8%EC%A7%80%ED%95%9C%EB%AF%B8%EA%B5%AD%EB%84%A4%EB%B0%94%EB%8B%A4%EC%A3%BC%ED%83%80%ED%98%B8.jpg",
-					"http://i.huffpost.com/gen/2317982/thumbs/o-2BY4-570.jpg?6",
-					"http://file.news.joinsland.com/2014/08/23/thumb(550)13353171d5314.jpg",
-					"http://cfile5.uf.tistory.com/image/2525213B5668FE9D310EED",
-					"http://image.chosun.com/sitedata/image/201702/16/2017021603295_0.jpg",
-					"http://cfile3.uf.tistory.com/image/214B254152D8F9FF1B648F",
-					"http://si.wsj.net/public/resources/images/OB-WV032_hodBli_H_20130325142202.jpg",
-					"http://image.elle.co.kr/upload/NEWS/2014/09/ncd_140919004/thumb/namo/e7.jpg" };
+			////////////////////////////////////////////////////////////////////////////////////////////////////
+			List fileaddresses = new ArrayList<>();
+			try {
+				
+				BufferedReader br = new BufferedReader(new InputStreamReader(application.getResourceAsStream("/picurl.txt")));
+				String line;
+				
+				while ((line = br.readLine()) != null) {
+					
+					String str = br.readLine();
+					fileaddresses.add(str);
+																			
+				}
+				
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+				
+				int n = (int)(Math.random()*fileaddresses.size());
+				
+				String fileaddress = (String) fileaddresses.get(n);
+			
+				String filelink =(String) fileaddresses.get(n);
+			
+				List hosting_list = hdao.getAll();
+				
+				int nn = (int)(Math.random()*hosting_list.size());
+				
+				Map hosting_map = (Map) hosting_list.get(nn);
+				
+				String id = (String) hosting_map.get("HNAME");
+						
+				BigDecimal hostingnum2 = (BigDecimal) hosting_map.get("NUM");
+				
+				int hostingnum = hostingnum2.intValue();
+				
+				map.put("type", type);
+				
+				map.put("filename", filename);
+				
+				map.put("filesize", filesize);
+				
+				map.put("fileaddress", fileaddress);
+				
+				map.put("filelink", filelink);
+				
+				map.put("id", id);
+				
+				map.put("hostingnum", hostingnum);
+				
+				map.put("additionnum", "");
+			////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			int f = (int) (Math.random() * 14);
+			
 
-			String fileaddress = fileaddressSample[f];
-
-			String filelink = fileaddressSample[f];
-
-			String id = "";
-
-			for (int i = 1; i <= 5; i++) {
-				char ch = (char) ((Math.random() * 26) + 65);
-				id += ch;
-			}
-
-			int hostingnum = (int) (Math.random() * 150 + 1);
-
-			map.put("type", type);
-			map.put("filename", filename);
-			map.put("filesize", filesize);
-			map.put("fileaddress", fileaddress);
-			map.put("filelink", filelink);
-			map.put("id", id);
-			map.put("hostingnum", hostingnum);
-
+			
 			System.out.println(map.toString());
 
 			int r = sdao.createOne(map);

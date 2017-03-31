@@ -32,7 +32,7 @@ public class StatisticController {
 		
 		mav.addObject("main","/statistic/statistic01");
 		
-		mav.setViewName("g_index");
+		mav.setViewName("m_index3");
 		
 		return mav;
 		
@@ -235,5 +235,8 @@ public class StatisticController {
 			
 
 }
+	
+	
+	
 	
 }
