@@ -23,6 +23,7 @@
 			<li><a href="#menu1" >지역별</a></li>
 			<li><a href="#menu2">국가비율</a></li>
 			<li><a href="#menu3">나라별 회원수</a></li>
+			<li><a href="#menu4">해시태그 시각화차트</a></li>
 		</ul>
 		<div class="tab-content">
 			<!-- ///////////////////////////////////////////////////////////////////지역별/////////////////////////////////////////////////////////////////////////////// -->
@@ -50,12 +51,23 @@
 				<h3>나라별 회원수</h3>
 				<button type="button" class="btn btn-danger" id="goChart3">차트보기</button>
 			</div>
+			
+			<div id="menu4" class="tab-pane fade">
+				<h3>해시태그 시각화차트</h3>
+				<button type="button" class="btn btn-danger" id="goChart4">차트보기</button>
+			</div>
 		</div>
 		<hr>
 		<script>
 	$('#goChart3').click(function(){
 		
 		$(location).attr('href', "/statistic/graph03");
+		
+	});
+	
+	$('#goChart4').click(function(){
+		
+		$(location).attr('href', "/statistic/graph04");
 		
 	});
 	
