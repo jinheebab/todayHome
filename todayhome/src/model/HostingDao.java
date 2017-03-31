@@ -36,6 +36,44 @@ public class HostingDao {
 			return list;
 		}
 		
+		public List getbooktopList(List book) {
+			
+			
+			// DAO 1-1번
+			HashMap map = new HashMap();
+			List list = new ArrayList<>();
+			SqlSession sql = factory.openSession();
+			try {
+				for(int i=0; i<book.size(); i++){
+					map.put("num", book.get(i));
+					list.add(sql.selectOne("hosting.getviewtop",map)); 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return list;
+		}
+		
+		public List<HashMap> getviewtopList(List view) {	
+			// DAO 1-1번
+			HashMap map = new HashMap();
+			List<HashMap> list = new ArrayList<>();
+			SqlSession sql = factory.openSession();
+			try {
+				for(int i=0; i<view.size(); i++){
+					map.put("num", view.get(i));
+					list.add(sql.selectOne("hosting.getbooktop",map)); 
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				sql.close();
+			}
+			return list;
+		}
+		
 		public Map getPrice(Map param){
 			
 			Map map = new HashMap<>();

@@ -35,24 +35,29 @@ public class MongoDao {
 		return list;
 	}
 	
-	public List Toplist() {
+	public List bookToplist() {
 		AggregationOperation a1 = Aggregation.match(Criteria.where("during").gt(70));
-		AggregationOperation a2 = Aggregation.match(Criteria.where("viewCNT").gt(450));
-		//AggregationOperation a3 = Aggregation.group("during","tendency").count().as("cnt").avg("age").as("agev"); // area로 group을 짓고
-	//	 AggregationOperation a3 = Aggregation.count().as("cnt"); 
-		AggregationOperation a3 = Aggregation.sort(Sort.Direction.DESC, "during");
-		 AggregationOperation a4 = Aggregation.sort(Sort.Direction.DESC, "viewCNT");
-		 AggregationOperation a5 = Aggregation.limit(100);
-		// 그것을 count해서 cnt로 출력
-		// count연산이 있음 count연산한 것의 field명을 cnt로 하겠다는 것
-		Aggregation go = Aggregation.newAggregation(a1,a2,a3,a4,a5);
+		AggregationOperation a2 = Aggregation.sort(Sort.Direction.DESC, "during");
+		 AggregationOperation a3 = Aggregation.limit(100);
+		Aggregation go = Aggregation.newAggregation(a1,a2,a3);
 		System.out.println(go.toString());
 		AggregationResults<Map> results = mt.aggregate(go, "popular", Map.class);
 		List<Map> li = results.getMappedResults();
-		for (Map f : li) {
-			System.out.println("이거슨 추출값 "+f.toString());
-		}
+		System.out.println(li);
 		return li;
 	}
 	
+	public List viewToplist() {
+		AggregationOperation a1 = Aggregation.match(Criteria.where("viewCNT").gt(450));
+		 AggregationOperation a2 = Aggregation.sort(Sort.Direction.DESC, "viewCNT");
+		 AggregationOperation a3 = Aggregation.limit(100);
+		// 그것을 count해서 cnt로 출력
+		// count연산이 있음 count연산한 것의 field명을 cnt로 하겠다는 것
+		Aggregation go = Aggregation.newAggregation(a1,a2,a3);
+		System.out.println(go.toString());
+		AggregationResults<Map> results = mt.aggregate(go, "popular", Map.class);
+		List<Map> li = results.getMappedResults();
+		System.out.println(li);
+		return li;
+	}
 }

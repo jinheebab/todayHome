@@ -10,11 +10,11 @@
  <span id="slider-prev" style="font-size: 2em; padding-left: 20%"></span>
  </div>
 <div class="col-md-10">
-<span style=" font-weight:bold; font-size:1.5em; ">HOT LOCATION</span>
+<span style=" font-weight:bold; font-size:1.5em; ">MILLION VIEW LOCATION</span>
 <hr style="border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: black; margin-top: 10px;"/>
 <div align="center">
 <ul class="bxslider" >
-<c:forEach var="i" items="${list}" end="12" >
+<c:forEach var="i" items="${viewlist}"  end="72">
   <li><div style="width: 480.5px; height: 320.33px; overflow: hidden;">
   <a href="/view/detail?num=${i.NUM}">
   <img src="${i.PICURL}" width=600px height=350px title="${i.TITLE} .${i.COUNTRY}  [${i.HTYPE}] "/>
@@ -37,11 +37,11 @@
  <span id="slider-prev1" style="font-size: 2em; padding-left: 20%"></span>
  </div>
 <div class="col-md-10">
-<span style=" font-weight:bold; font-size:1.5em; ">TODAY's CHOICE</span>
+<span style=" font-weight:bold; font-size:1.5em; ">HOT RESERVATION</span>
 <hr style="border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: black; margin-top: 10px;"/>
 <div align="center">
 <ul class="bxslider1" >
-<c:forEach var="i" items="${list}" end="12" >
+<c:forEach var="i" items="${booklist}" end="72">
   <li><div style="width: 330.5px; height: 170.33px; overflow: hidden;">
   <a href="/view/detail?num=${i.NUM}">
   <img src="${i.PICURL}" width=270px height=170px title="${i.TITLE} .${i.COUNTRY}  [${i.HTYPE}] "/>
@@ -66,6 +66,7 @@
   <br/><br/>
   <b>오늘만큼은 여기가 우리 집이에요. 전 세계에 있는 우리 집을 경험해보세요.</b>
  </div>
+  
   
   
 <script>

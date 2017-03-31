@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +34,10 @@ public class MainController {
 	reviewSetting rs;
 	@Autowired
 	MongoDao mongd;
-
+	@Autowired
+	ServletContext application;
+	
+	
 	@RequestMapping("/view/")
 	public ModelAndView main(HttpServletRequest request, HttpSession session) {
 		// 컨트롤러 1 - 1번
@@ -46,24 +51,46 @@ public class MainController {
 				}
 			}
 		}
+		List viewtop = mongd.viewToplist();
+		application.setAttribute("viewtop", viewtop);
+		List booktop = mongd.bookToplist();
+		application.setAttribute("booktop", booktop);
 		
+		List viewNum = new ArrayList();
+		Iterator it = viewtop.iterator();
+		while(it.hasNext()){
+			HashMap imsi = (HashMap)it.next();
+			viewNum.add(imsi.get("num"));
+		}
+		
+		List bookNum = new ArrayList();
+		Iterator itt = booktop.iterator();
+		while(itt.hasNext()){
+			HashMap imsi = (HashMap)itt.next();
+			bookNum.add(imsi.get("num"));
+		}
+		
+		List<HashMap> booklist = hd.getbooktopList(bookNum);
+		List<HashMap> viewlist = hd.getviewtopList(viewNum);
 		ModelAndView mav = new ModelAndView();
-		List<HashMap> list = hd.readHostingSome();
 		
 		if (s != null) {
 			session.setAttribute("id", s.getValue());
 			mav.setViewName("m_index");
-			mav.addObject("list", list);
+			mav.addObject("viewlist", viewlist);
+			mav.addObject("booklist", booklist);
 			mav.addObject("main", "/main/main");
 			
 		}else if(session.getAttribute("auth")!=null){
 			mav.setViewName("m_index");
-			mav.addObject("list", list);
+			mav.addObject("viewlist", viewlist);
+			mav.addObject("booklist", booklist);
 			mav.addObject("main", "/main/main");
 			
 		}else {
 			mav.setViewName("g_index");
-			mav.addObject("list", list);
+			mav.addObject("viewlist", viewlist);
+			mav.addObject("booklist", booklist);
 			mav.addObject("main", "/main/main");
 		}
 		return mav;
@@ -114,9 +141,6 @@ public class MainController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		List top = mongd.Toplist();
-
-		
 		if(session.getAttribute("auth")!=null){
 		mav.setViewName("m_detail");
 		System.out.println("멤버임");
@@ -125,7 +149,7 @@ public class MainController {
 			System.out.println("멤버아님");	
 		}
 		mav.addObject("list", list);
-		mav.addObject("top", top);
+		mav.addObject("top", application.getAttribute("booktop"));
 		mav.addObject("score", score);
 		mav.addObject("uphoto", uphoto);
 		mav.addObject("hphoto", hphoto);

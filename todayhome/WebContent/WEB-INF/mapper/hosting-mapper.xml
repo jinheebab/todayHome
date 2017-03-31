@@ -71,4 +71,12 @@
 		select num from hosting
 	</select>
 	
+	<select id="getviewtop"  parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select num, title, picURL, price, category, country, Htype from hosting where num =#{num}
+	</select>
+	
+	<select id="getbooktop" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select num, title, picURL, price, category, country, Htype from hosting where num =#{num}
+	</select>
+	
 </mapper>
