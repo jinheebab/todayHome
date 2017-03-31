@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import model.MessageDao;
 import model.MongoDao;
@@ -70,14 +69,12 @@ public class MongoController {
 			System.out.println(map);
 
 			mt.insert(map, "popular");
-
 		}
 	}
 
 	@RequestMapping("/mongo/get")
 	public void getToplist() {
-		List list = md.Toplist();
-		
+		List list = md.viewToplist(); 
 		
 	}
 }
