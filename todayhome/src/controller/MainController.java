@@ -51,7 +51,6 @@ public class MainController {
 				}
 			}
 		}
-		
 		List viewtop = mongd.viewToplist();
 		application.setAttribute("viewtop", viewtop);
 		List booktop = mongd.bookToplist();
