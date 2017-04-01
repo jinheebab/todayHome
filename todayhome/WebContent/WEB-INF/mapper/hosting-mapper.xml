@@ -53,7 +53,7 @@
 	</select>
 	
 	<select id="pagingSelect" resultType="java.util.HashMap" parameterType="java.util.HashMap">
-		select step2.* from (select rownum as r, step1.* from (select * from hosting where membercnt=#{cnt} or startdate between #{sdate} and #{edate} or enddate between #{sdate} and #{edate} and (city like #{target}% or location like #{target}% or country like #{target}% )order by num desc) step1) step2 where <![CDATA[r>= #{start} and r <= #{end}]]> 
+		select step2.* from (select rownum as r, step1.* from (select * from hosting where (city like #{target} or location like #{target} or country like #{target} ) order by num desc) step1) step2 where <![CDATA[r>= #{start} and r <= #{end}]]> 
 	</select> 
    
 	<select id="getHostingList" parameterType="java.util.HashMap" resultType="java.util.HashMap">

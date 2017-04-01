@@ -31,8 +31,13 @@ public class SearchController {
 
 	
 	@RequestMapping("/search/search")
-	public ModelAndView search(@RequestParam HashMap map, HttpSession session, HttpServletRequest req,@RequestParam(name="page",defaultValue="1") int page) throws Exception{
+	public ModelAndView search(@RequestParam(name="target", defaultValue="대한민국", required = false)String target1, @RequestParam(name="sdate", defaultValue="2017-05-01", required = false)String sdate, @RequestParam(name="edate", defaultValue="2017-05-01", required = false)String edate, @RequestParam(name="cnt")int cnt, HttpSession session, HttpServletRequest req,@RequestParam(name="page",defaultValue="1") int page) throws Exception{
 		//페이징처리
+		HashMap map = new HashMap();
+			map.put("target", target1);
+			map.put("sdate", sdate);
+			map.put("edate", edate);
+			map.put("cnt", cnt);
 		
 		int pageStart = page % 10 == 1 ? page : (page-1)/10 * 10+1;
 		int pageEnd = pageStart + 9;
@@ -50,7 +55,6 @@ public class SearchController {
 		int end = start + 5;
 			map.put("start", start);
 			map.put("end", end);;
-		
 		
 		
 		//리스트 가져오기
