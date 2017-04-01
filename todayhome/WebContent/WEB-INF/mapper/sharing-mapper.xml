@@ -10,7 +10,7 @@
 		select * from sharing where id=#{id} and type='info' order by num desc 
 	</select>
 	<select id="gethphoto" resultType="java.util.HashMap" parameterType="java.util.HashMap"> 
-		select filelink from sharing where id=#{id} and type= 'hosting' order by num desc 
+		select filelink from sharing where hostingnum= #{num} and type= 'hosting' order by num desc 
 	</select>
 	<update id="update" parameterType="java.util.HashMap" >
 		update sharing set filename=#{filename}, filesize=#{filesize}, fileaddress=#{fileaddress}, filelink=#{filelink}, hostingnum=null where type=#{type} and id=#{id}
