@@ -511,7 +511,7 @@ public class DBregister2 {
 
 	public int member() {
 
-		for (int a = 0; a < 100000; a++) {
+		for (int a = 0; a < 1000; a++) {
 
 			HashMap map = new HashMap<>();
 

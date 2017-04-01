@@ -3,6 +3,7 @@ package service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import model.HostingDao;
 import model.InfoDao;
+import model.MongoDao;
 
 @Service
 public class reviewSetting {
@@ -18,21 +20,41 @@ public class reviewSetting {
 	HostingDao hd;
 	@Autowired
 	InfoDao id;
+	@Autowired
+	MongoDao mongd;
 
 	public HashMap ReviewMaker() {
 		HashMap map = new HashMap();
 		
 		
 		//hosting DB가져오기
-		List hostinglist = hd.getAll();
+		List viewtop = mongd.viewToplist();
+		List booktop = mongd.bookToplist();
+		
+		List viewNum = new ArrayList();
+		Iterator it = viewtop.iterator();
+		while(it.hasNext()){
+			HashMap imsi = (HashMap)it.next();
+			viewNum.add(imsi.get("num"));
+		}
+		
+		List bookNum = new ArrayList();
+		Iterator itt = booktop.iterator();
+		while(itt.hasNext()){
+			HashMap imsi = (HashMap)itt.next();
+			bookNum.add(imsi.get("num"));
+		}
+		
+		List<HashMap> booklist = hd.getbooktopList(bookNum);
+		List<HashMap> viewlist = hd.getviewtopList(viewNum);
 		
 		List hostingnumber = new ArrayList<>();
 		
-		for(int i=0; i<hostinglist.size(); i++){
+		for(int i=0; i<booklist.size(); i++){
 			
 			Map temp = new HashMap<>();
 			
-			temp = (Map) hostinglist.get(i);
+			temp = (Map) booklist.get(i);
 			
 			
 			BigDecimal number = (BigDecimal)temp.get("NUM");
@@ -60,7 +82,7 @@ public class reviewSetting {
 		}else{
 			travel = (String)hostinginfo.get("COUNTRY");
 		}
-		if(r<=6){
+		if(r<=3){
 			travel +=" 여행, 기대 많이 했었는데.. 숙소 ";
 		}else{
 			travel +=" 여행 기억에 남을 것 같아요. 숙소";
