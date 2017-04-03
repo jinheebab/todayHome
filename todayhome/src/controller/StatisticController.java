@@ -222,8 +222,9 @@ public class StatisticController {
 		}
 		
 		String category2 = category.replaceAll("#", " ");
+		String category3 = category.replaceAll("null", " ");
 		
-		mav.addObject("category2", category2);
+		mav.addObject("category3", category3);
 		mav.addObject("main","/statistic/graph04");
 		mav.setViewName("m_index3");
 		

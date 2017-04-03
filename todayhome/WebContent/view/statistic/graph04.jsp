@@ -41,7 +41,7 @@ a.active { text-decoration: none; color: #000; font-weight: bold; cursor: text; 
   <div id="custom-area">
     <p><label for="text">해시태그 모음</label>
     <p><textarea id="text">
-${category2}
+${category3}
 
     </textarea>
     <button id="go" type="submit">Go!</button>

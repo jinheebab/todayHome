@@ -50,11 +50,11 @@ public class reviewSetting {
 		
 		List hostingnumber = new ArrayList<>();
 		
-		for(int i=0; i<booklist.size(); i++){
+		for(int i=0; i<viewlist.size(); i++){
 			
 			Map temp = new HashMap<>();
 			
-			temp = (Map) booklist.get(i);
+			temp = (Map) viewlist.get(i);
 			
 			
 			BigDecimal number = (BigDecimal)temp.get("NUM");
