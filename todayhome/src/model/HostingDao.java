@@ -178,6 +178,7 @@ public class HostingDao {
 		public List<HashMap> getSelectPage(HashMap map){
 			List<HashMap> list = new ArrayList<>();
 			SqlSession sql = factory.openSession();
+			System.out.println("맵이에용 : "+map);
 			try {
 				list = sql.selectList("hosting.pagingSelect", map);
 			} catch (Exception e) {

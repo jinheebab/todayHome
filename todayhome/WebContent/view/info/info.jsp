@@ -6,7 +6,7 @@
 <head>
 <style>
 /* The Modal (background) */
-.modal {
+.modal2 {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -18,10 +18,11 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    align: center;
 }
 
 /* Modal Content */
-.modal-content {
+.modal-content2 {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
@@ -102,39 +103,39 @@
 		<br/>
 		<p>
 			<button type="submit" class="btn">변경하기</button>
-			<button id="withdraw" type="button" class="btn">탈퇴하기</button></a>
+			<button id="withdraw2" type="button" class="btn">탈퇴하기</button>
 		</p>
 	</form>
 	</div>
 </div>
 
-<div id="myModal" class="modal"  >
-	<div class="modal-content" style="margin-right: 35%; margin-left:35%;" >
-		<div style="padding-right: 10%; padding-left: 10%; padding-bottom: 20%; padding-top: 10%; text-align: center;">
-			<span class="close">&times;</span>
+<div id="myModal2" class="modal2"  >
+	<div class="modal-content2" >
+		<div align="center">
+			<span class="close2">&times;</span>
 				<form action="/info/withdrawAjax" >
 					<h3>PASSWORD</h3><br/>
 						<input type="password" name="pass" placeholder="비밀번호를 입력하세요"/><br/><br/>
-						<button type="submit" class="btn" style="background-color: white; border-style: solid; border-color: orange; border-width: 2px;">탈퇴하기</button>
+						<button type="submit" class="btn" style="background-color:white; border-style:solid; border-color:orange; border-width:2px;">탈퇴하기</button>
 				</form>
 		</div>
 	</div>
 </div>
 
 <script>
-var modal = document.getElementById('myModal');
-var btn = document.getElementById("withdraw");
-var span = document.getElementsByClassName("close")[0];
+var modal2 = document.getElementById('myModal2');
+var btn = document.getElementById("withdraw2");
+var span = document.getElementsByClassName("close2")[0];
 
 btn.onclick = function() {
-    modal.style.display = "block";
+    modal2.style.display = "block";
 }
 span.onclick = function() {
-    modal.style.display = "none";
+    modal2.style.display = "none";
 }
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == modal2) {
+        modal2.style.display = "none";
     }
 }
 </script>

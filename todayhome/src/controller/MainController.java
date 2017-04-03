@@ -135,9 +135,7 @@ public class MainController {
 		map2.put("id", hoster);
 		HashMap uphoto = md.getUserPhoto(map2);
 		
-		HashMap map3 = new HashMap();
-		map3.put("id", hoster);
-		List<HashMap> hphoto = md.getHostingPhoto(map3);
+		List<HashMap> hphoto = md.getHostingPhoto(map);
 		
 		ModelAndView mav = new ModelAndView();
 		

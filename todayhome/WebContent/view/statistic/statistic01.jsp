@@ -21,7 +21,7 @@
 		<p>통계 결과를 확인하세요</p>
 		<ul class="nav nav-tabs">
 			<li><a href="#menu1" >지역별</a></li>
-			<li><a href="#menu2">국가비율</a></li>
+			<li><a href="#menu2">호스팅 인기순위</a></li>
 			<li><a href="#menu3">나라별 회원수</a></li>
 			<li><a href="#menu4">해시태그 시각화차트</a></li>
 		</ul>
@@ -38,7 +38,7 @@
 			</div>
 			<!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 			<div id="menu2" class="tab-pane fade">
-				<h3>국가별 호스팅 및 회원</h3>
+				<h3>호스팅 인기순위</h3>
 				<button type="button" class="btn btn-danger" id="goChart2">차트보기</button>
 				<script>
 	$('#goChart2').click(function(){
