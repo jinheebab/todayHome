@@ -18,11 +18,9 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
-
 #map {
 	height: 100%;
 }
-
 .controls {
 	margin-top: 10px;
 	border: 1px solid transparent;
@@ -33,7 +31,6 @@ html, body {
 	outline: none;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
-
 #pac-input {
 	background-color: #fff;
 	font-family: Roboto;
@@ -44,38 +41,31 @@ html, body {
 	text-overflow: ellipsis;
 	width: 300px;
 }
-
 #pac-input:focus {
 	border-color: #4d90fe;
 }
-
 .pac-container {
 	font-family: Roboto;
 }
-
 #type-selector {
 	color: #fff;
 	background-color: #4d90fe;
 	padding: 5px 11px 0px 11px;
 }
-
 #type-selector label {
 	font-family: Roboto;
 	font-size: 13px;
 	font-weight: 300;
 }
-
 .thumb {
 	height: 75px;
 	border: 1px solid #000;
 	margin: 10px 5px 0 0;
 }
-
 .image {
 	position: relative;
 	floatLleft;
 }
-
 .image .text {
 	position: absolute;
 	top: 50%;
@@ -84,7 +74,6 @@ html, body {
 	font-size: 25px;
 	font-family: "Sans-Serif";
 }
-
 .line {
 	padding-top: 2%;
 	border-bottom-style: solid;
@@ -92,7 +81,6 @@ html, body {
 	border-bottom-color: black;
 	margin-top: 10px;
 }
-
 .box {
 	border: 1px;
 	width: 100%;
@@ -269,20 +257,16 @@ html, body {
 				});
 				var input = /** @type {!HTMLInputElement} */
 				(document.getElementById('pac-input'));
-
 				var types = document.getElementById('type-selector');
 				map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 				map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
-
 				var autocomplete = new google.maps.places.Autocomplete(input);
 				autocomplete.bindTo('bounds', map);
-
 				var infowindow = new google.maps.InfoWindow();
 				var marker = new google.maps.Marker({
 					map : map,
 					anchorPoint : new google.maps.Point(0, -29)
 				});
-
 				autocomplete
 						.addListener(
 								'place_changed',
@@ -293,7 +277,6 @@ html, body {
 									/* 			    if (!place.geometry) {
 									 window.alert("Autocomplete's returned place contains no geometry");
 									 }  */
-
 									// If the place has a geometry, then present it on a map.
 									if (place.geometry.viewport) {
 										map.fitBounds(place.geometry.viewport);
@@ -312,7 +295,6 @@ html, body {
 									}));
 									marker.setPosition(place.geometry.location);
 									marker.setVisible(true);
-
 									var address = '';
 									if (place.address_components) {
 										address = [
@@ -324,13 +306,11 @@ html, body {
 														&& place.address_components[2].short_name || '') ]
 												.join(' ');
 									}
-
 									infowindow.setContent('<div><strong>'
 											+ place.name + '</strong><br>'
 											+ address);
 									infowindow.open(map, marker);
 								});
-
 				// Sets a listener on a radio button to change the filter type on Places
 				// Autocomplete.
 				/*   			  function setupClickListener(id, types) {
@@ -430,7 +410,7 @@ html, body {
 			</div>
 			<div class="col-md-6" align="center">
 				<button type="submit" class="form-control" id="register"
-					name="register" style="width: 20%; height: 10%" disabled>등록하기</button>
+					name="register" style="width: 20%; height: 10%">등록하기</button>
 				<br />
 			</div>
 			<br />
@@ -481,7 +461,6 @@ html, body {
 	};
 	
 	};
-
 	$.datepicker.regional['ko'] = {
 		closeText : '닫기',
 		prevText : '이전달',
@@ -508,13 +487,11 @@ html, body {
 		minDate : 0
 	};
 	$.datepicker.setDefaults($.datepicker.regional['ko']);
-
 	$('#sdate').datepicker();
 	$('#sdate').datepicker("option", "maxDate", $("#edate").val());
 	$('#sdate').datepicker("option", "onClose", function(selectedDate) {
 		$("#edate").datepicker("option", "minDate", selectedDate);
 	});
-
 	$('#edate').datepicker();
 	$('#edate').datepicker("option", "minDate", $("#sdate").val());
 	$('#edate').datepicker("option", "onClose", function(selectedDate) {
@@ -541,7 +518,6 @@ html, body {
 		$('#location').val(address3);
 		refresh();
 	}
-
 	// 지도 검색 버튼  
 	$('#refresh').click(function() {
 		var address = $('#pac-input').val();
@@ -555,7 +531,6 @@ html, body {
 		$('#location').val(address3);
 		refresh();
 	});
-
 	// 가격 띄우기
 	function refresh() {
 		var city = $('#city').val();
@@ -576,7 +551,6 @@ html, body {
 			}
 		});
 	};
-
 	// 카테고리 엔터
 	$(document).ready(function() {
 		$("input[name=inputCate]").keydown(function(key) {
@@ -586,7 +560,6 @@ html, body {
 			}
 		});
 	});
-
 	// div에 카테 버튼넣기
 	function addCate() {
 		var inputCategory = $('#inputCate').val();
@@ -594,7 +567,6 @@ html, body {
 		var category = '<button class="btns" style="background-color:white; height:8%; width:15%" disabled>'
 				+ '#' + inputCategory + '</button>';
 		$('#cate').append(category);
-
 		var category1 = $('#category').val() + '#' + inputCategory;
 		console.log(category1);
 		$('#category').val(category1);
@@ -608,13 +580,11 @@ html, body {
 						var category = '<button class="btns" type="button" style="background-color:white; height:8%; width:15%" disabled>'
 								+ '#' + inputCategory + '</button>';
 						$('#cate').append(category);
-
 						var category1 = $('#category').val() + '#'
 								+ inputCategory;
 						console.log(category1);
 						$('#category').val(category1);
 					});
-
 		
 	
 	// 카테고리 삭제 	    
@@ -622,29 +592,70 @@ html, body {
 		$("#category").val('');
 		$("#cate").empty();
 	});
-
 	/*   	    $('#plus').click(function(){
 	 var inputCategory = $('#inputCategory').val();
 	 $('#inputCategory').val('');
 	 var category = $('#category').val() + '#' + inputCategory;
 	 $('#category').val(category);
 	 }); */
-
 	// 필수 입력 체크(input form)
 	function chkValue() {
-		var inputObjs = $(".allInput");
-		inputObjs.each(function(index) {
-			if ($(this).val() != '' && $('#title').val() != '') {
-				$("#register").prop("disabled", false);
+		
+		 
+		 var sdate =  $('#sdate').val();
+		 
+		 var edate =  $('#edate').val();
+		 
+			var htype =  $('#htype').val();
+			
+			var roomcnt =  $('#rtype').val();
+			
+			var rtype =  $('#rtype').val();
+			
+			var picurl =  $('#picurl').val();
+			 
+			var membercnt =  $('#membercnt').val();
+			
+			var category = $('#category').val();
+			
+			var title = $('#title').val();
+			
+			var country = $('#country').val();
+			
+			var city = $('#city').val();
+			
+			var location = $('#location').val();
+			
+			var price = $('#price').val();
+			
+			var bedcnt = $('#bedcnt').val();
+			
+			var amenity = $('#amenity').val();
+			
+			var bathcnt = $('#bathcnt').val();
+			
+			var rule = $('#rule').val();
+			
+			var intro = $('#intro').val();
+			
+			var condition = $('#condition').val();
+			
+			if(category == '' || title == '' ||  country == '' || city == '' || location == '' || price == '' || bedcnt == '' || amenity == '' ||
+					 bathcnt == '' || rule == '' || intro == '' || condition == '' || htype == '' || roomcnt == '' || rtype == '' || membercnt == '' || picurl == ''
+						 || sdate == '' || edate == ''){
+				
+				$('#register').attr("disabled",true);
+				
+			}else{
+				$('#register').attr("disabled",false);
 			}
-		});
+		 
+		 	 
 	}
-
 	function uploadFile() {
 		var form = $('FILE_FORM')[0];
 		var formData = new FormData(form);
 		formData.append("fileObj", $("#FILE_TAG")[0].files[0]);
-
 		$.ajax({
 			url : '/hosting/upload',
 			processData : false,
@@ -661,5 +672,3 @@ html, body {
 		});
 	};
 </script>
-
-
